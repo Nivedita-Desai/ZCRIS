@@ -1,0 +1,91 @@
+﻿@{
+    //ViewBag.Title = "LoanDisburseUnpaidList";
+    var grid = new WebGrid(Model, canSort: true, canPage: true, rowsPerPage: 9);
+    grid.Pager(WebGridPagerModes.All);
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@*<h2>LoanDisburseUnpaidList</h2>*@
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <style>
+                .webgrid-fixColumn {
+         min-width:150px;
+        }
+    </style>
+   
+</head>
+<body>
+    <br/>
+    <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Loan Disburse Unpaid List </label>  </div>
+                <div class="panel-body">
+        <div class="row">
+             <div class="col-xs-1">
+                           
+               </div>
+             <div class="col-xs-10">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Loan Disburse Unpaid List</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                    </div>
+                </div>
+                <div class="panel panel-primary" style=" overflow:auto;height:500px; ">
+                <table class="table">
+                    <thead>
+                        <tr class="filters" style="width:500px">
+
+                            <th style="width:150px">  <input type="text"  placeholder="Loan Account No" disabled> </th>
+                            <th style="width:150px">   <input type="text"  placeholder="Total Paid Amount" disabled> </th>
+                         @*   <th width="10px">   <input type="text"  placeholder="DueDays" disabled> </th>
+                           <th width="10px">  <input type="text"  placeholder="GracePeriod" disabled> </th>*@
+                            <th style="width:150px">   <input type="text"  placeholder="Total Balance Amount" disabled> </th>
+                            <th style="width:150px">   <input type="text"  placeholder="Unpaid Installment" disabled> </th>
+                            <th style="width:150px">  <input type="hidden" disabled></th>
+                            <th style="width:150px"> &nbsp;</th>
+                            <th style="width:150px">  </th>
+
+                            @* </div>*@
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="filters">
+                            @grid.GetHtml(
+                tableStyle: "table",
+                headerStyle: "webgrid-header",
+                       
+                columns: grid.Columns(
+                                 
+            grid.Column(columnName: "LoanAccountNo", style: "webgrid-fixColumn"),
+            grid.Column(columnName: "TotalPaidAmt", style: "webgrid-fixColumn"),
+                    //grid.Column(columnName: "DueDays", style: "webgrid-fixColumn"),
+                    // grid.Column(columnName: "GracePeriod", style: "webgrid-fixColumn"),
+                      grid.Column(columnName: "TotalBalAmt", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "UnpaidInstallment", style: "webgrid-fixColumn"),
+                              //grid.Column(columnName: "Id", style: "webgrid-hide"),
+                     grid.Column("", format: @<text>@Html.ActionLink("Pay Installment", "PaidInstallments","LoanDisburse", new { loanacno = item.LoanAccountNo }, null)</text>)
+                 ))
+              </tr>
+                    </tbody>
+                </table>
+            </div>
+                </div>
+                 </div> 
+            <div class="col-xs-1">
+                           
+               </div>
+        </div>
+    </div>
+                </div>
+        </div>
+
+</body>
+</html>
+

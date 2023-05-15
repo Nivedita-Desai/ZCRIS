@@ -1,0 +1,246 @@
+﻿@model CreditRatingModel.Model.CollegewiseCourse
+
+@{    
+    @Html.AntiForgeryToken()
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<div class="row" style="height: 50px">
+</div>
+    
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Collegewise Course</label>
+        </div>
+        <div class="panel-body">
+            <fieldset class="scheduler-border">
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label id="lblCollege" class="filter-col control-label label1">College Name</label>
+                            @Html.DropDownListFor(modelItem => modelItem.CollegeId, ViewBag.College as SelectList, "Select College", new { @class = "form-control dropdown", @id = "txtCollege" })
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label id="lblCountry" class="filter-col control-label label1">Stream Name</label>
+                            @Html.DropDownListFor(modelItem => modelItem.StreamId, ViewBag.Stream as SelectList, "Select Stream", new { @class = "form-control dropdown", @id = "txtStream" })
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label id="lblFIN" class="filter-col control-label label1">Category</label>
+                            @Html.DropDownListFor(modelItem => modelItem.CourseCategoryId, ViewBag.Category as SelectList, "Select Category", new { @class = "form-control dropdown", @id = "txtCategory" })
+                        </div>
+                    </div>
+                </div>
+                <div id="grid" class="panel panel-primary" style="overflow: auto; min-width: 200px"></div>
+            </fieldset>
+            <div class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
+                    <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                    <input type="hidden" id = "PId" value="" />                    
+                    <div class="col-xs-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        document.getElementById('grid').style.display = "none"; //hide grid
+        function GetCourseList()
+        {
+            debugger;
+            if ($('#txtStream').val() != '' && $('#txtCategory').val() != '')
+            {
+                $("#grid").empty();
+             
+                var streamid = $('#txtStream').val();
+                var coursecategoryid = $('#txtCategory').val();
+                var collegeId = $('#txtCollege').val();
+
+                var url = '@Url.Action("GetCourseName","CollegewiseCourse")';
+                $.post(url, { streamid: streamid, coursecategoryid: coursecategoryid, collegeId: collegeId }, function (data)
+                {
+                    document.getElementById('grid').style.display = "block";    //display grid
+                    var intCount = data.length;
+                    
+                    var tableData = '<table id="tblCourse" class="table" style="font-size:14px"><thead><tr><th>Active Course(s)</th><th>Course Name</th></tr></thead>';
+                    var tablerow = '';
+                    var tableId = '';
+                    var tablePKey = '';
+                    debugger;
+                    if (intCount > 0)
+                    {                        
+                        for (var i = 0; i < intCount; i++)
+                        {                            
+                            if (parseInt(data[i].Id) > 0)
+                            {
+                                tableId = tableId + data[i].CourseId + ',';
+                                tablePKey = tablePKey + data[i].Id + ',';
+                            }                                              
+                            tablerow += '<tr><td> <input class ="tbl1" type="checkbox" width="90px" id="c' + data[i].CourseId + '" value=' + data[i].CourseId + '> <td width="900px">' + data[i].CourseName + ' <input type="hidden" id="c' + data[i].CourseId + '_PId" value=' + data[i].Id + '><input type="hidden" id="c' + data[i].CourseId + '_Active" value=' + data[i].CourseExits + '></td></tr>';
+                        }
+                    }
+
+                    if (tableId != '') {
+                        tableId = tableId.substring(0, tableId.length - 1);
+                    }
+
+                    if (tablePKey != '') {
+                        tablePKey = tablePKey.substring(0, tablePKey.length - 1);
+                    }
+                    $("#PId").val(tablePKey);
+                    tableData += tablerow;
+                    tableData += '</table>';
+                    $("#grid").html(tableData);                  
+
+                    var result;
+                    result = tableId.split(",");
+                    var chk_id = "";
+                    var course_active="";
+
+                    for (var t = 0; t < result.length; t++)
+                    {
+                            chk_id = "#c" + result[t];
+                            course_active = "#c" + result[t] + "_Active";
+                            var stractive = $(course_active).val();
+                            if (stractive == "Y")
+                            {
+                                $(chk_id).prop("checked", true);
+                            }
+                    }
+                });
+                
+            }
+        }
+        
+      
+        $('#txtStream').change(function ()
+        {
+            debugger;
+            GetCourseList();
+         });            
+        
+        $('#txtCategory').change(function ()
+        {
+            debugger;
+            GetCourseList();
+        });
+        
+
+        $('#btnSave').click(function ()
+        {
+            var college_id = $("#txtCollege").val();
+            var stream_id = $("#txtStream").val();
+            var category_id = $("#txtCategory").val();
+                                              
+            if (college_id == '' || college_id == null || college_id == 0)
+            {
+                alert("Please Select College Name");
+                return false;
+            }
+
+            if (stream_id == '' || stream_id == null || stream_id == 0)
+            {
+                alert("Please Select Stream Name");
+                return false;
+            }
+
+            if (category_id == '' || category_id == null || category_id == -1)
+            {
+                alert("Please Select Category Name");
+                return false;
+            }
+
+            var Data1 = new Array;
+            var PKData = new Array;
+
+            var i = 0, j = 0, id_PId = 0, id_val=0;
+                 
+            $('.tbl1').each(function () {
+                debugger;
+                id = $(this).attr('id');
+                id_val = $("#" + id).val();
+                
+                id_PId = $("#" + id + "_PId").val();
+         
+                if (id_PId > 0) {
+                    if ($("#" + id).is(':checked'))              
+                    {
+                        var A = {
+                            Id: id_PId,
+                            Active: true
+                        }
+                        PKData[j] = A;
+                        j++;
+                    }
+                    else {
+                        var A = {
+                            Id: id_PId,
+                            Active: false
+                        }
+                        PKData[j] = A;
+                        j++;
+                    }
+                }
+                else
+                {
+                    if ($("#" + id).is(':checked')) {
+                        debugger;
+                        var P =
+                       {                       
+                           CollegeId: college_id,
+                           CourseId: id_val,
+                           StreamId: stream_id,
+                           CourseCategoryId: category_id,
+                           Active: true
+                       }
+
+                        Data1[i] = P;
+                        i++;
+                    }
+            }
+            });
+
+            if (i == 0 && j == 0)
+            {
+                alert("Please Select Atleast One Course Name");
+                return false;
+            }         
+               
+                var Details = JSON.stringify(Data1);
+                //var PKDetails = $("#PId").val();
+                var PKDetails = JSON.stringify(PKData);
+
+                var url = '@Url.Action("SaveData", "CollegewiseCourse")';
+                var url_index = '@Url.Action("AddCollegewiseCourse", "CollegewiseCourse")';
+                $.ajax({
+                    url: url,
+                    data: { SaveCollegewiseCourseData: Details, SavePrimaryKeyData:PKDetails},
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function (data) {
+                        alert("Data Saved Successfully");
+                        window.location.href = url_index;
+                    },
+                    error: function (data) {
+                        alert("Data Saved Falied");
+                    }
+                });
+
+                return false;
+         });
+    });        
+
+  </script>

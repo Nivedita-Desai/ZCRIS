@@ -1,0 +1,94 @@
+﻿@model CreditRatingModel.Model.Master
+
+@{
+  
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@using (@Html.BeginForm("AddProvince", "Master", FormMethod.Post, new { id = "frmState" }))
+{
+    <div class="row" style="height: 50px">
+    </div>
+           
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Province Master</label>
+            </div>
+            <div class="panel-body">
+                <fieldset class="scheduler-border">
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            @Html.HiddenFor(model => model.Id1)
+                            <div class="form-group">
+                                <label id="lblPanN" class="filter-col control-label label1">Country:</label>
+                                @Html.DropDownListFor(modelItem => modelItem.CountryId1, ViewBag.Country as SelectList, "Select Country", new { @class = "form-control dropdown" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="lblFIN" class="filter-col control-label label1">Province :</label>
+                                @Html.TextBoxFor(modelItem => modelItem.StateName, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)", @maxlength = "50" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row">
+                    <div class="col-xs-5">
+                    </div>
+                    <div class="col-xs-4">
+                        <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                    </div>
+                    <div class="col-xs-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnSave').click(function () {
+            debugger;
+            var frmvalidator = new Validator("frmState");
+            debugger;
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+            frmvalidator.addValidation("StateName", "req", "Please Enter Province");
+            frmvalidator.addValidation("CountryId1", "req", "Please Select Country");
+        });
+    });
+    $(function () {
+        $('#StateName').change(function () {
+            debugger;
+            var StateName = $('#StateName').val();
+            var CountryId = $('#CountryId1').val();
+            var Id = $('#Id1').val();
+            //
+            $.ajax({
+
+                url: '/Master/doesState/',
+                type: 'POST',
+                data: { StateName: StateName, CountryId: CountryId, Id: Id },
+                success: function (result) {
+                    var a = JSON.stringify(result);
+                    if (a == "false") {
+                        alert(' This Province already exits');
+                        $('#StateName').val('');
+                    }
+                }
+            });
+        });
+    });
+</script>

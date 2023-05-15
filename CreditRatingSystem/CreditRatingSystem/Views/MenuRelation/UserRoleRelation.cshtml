@@ -1,0 +1,59 @@
+﻿@model CreditRatingModel.Model.user
+
+@{
+    ViewBag.Title = "UserRoleRelation";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+  <form id="form1"  action="~/MenuRelation/btnAddClick">  
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><label id="lblHeading" class="filter-col control-label labelHead">User Role Relation</label></div>
+        <div class="panel-body">
+                        <div class="row">
+                               <div class="col-xs-2">
+                                   </div>
+                            <div class="col-xs-7">
+                                <div class="form-group">
+                               @ViewBag.m 
+                                    <label id="lblFIN" class="filter-col control-label label1">User Name :</label>
+                                     @Html.DropDownListFor(model => model.UserId, ViewBag.User as SelectList,"Select User", new { @id = "UserId", @class = "form-control dropdown " })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.UserId)
+                                    </div>
+                               
+                                </div>
+                            </div>
+                          <div class="col-xs-3">
+                                   </div>
+                        </div>
+             <div class="row">
+                   <div class="col-xs-2">
+                                   </div>
+                <div class="col-xs-7">
+                                <div class="form-group">
+                                    <label id="lblRN" class="filter-col control-label label1">Role :</label>
+                                     @Html.DropDownListFor(model => model.RoleId, ViewBag.Role as SelectList,"Select Role", new { @id = "RoleId", @class = "form-control dropdown " })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.RoleId)
+                                    </div>
+                               
+                                </div>
+                            </div>
+                   <div class="col-xs-3">
+                                   </div>
+            </div>
+             <div class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <input id="btnSAVE" type="submit" value="SAVE" formmethod="post"/>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                </div>            
+            </div>
+            </div>
+        </div>
+    </div>
+      </form>

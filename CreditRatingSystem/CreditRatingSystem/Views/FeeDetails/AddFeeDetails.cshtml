@@ -1,0 +1,275 @@
+﻿@model CreditRatingModel.Model.FeeDetails
+
+@{    
+    @Html.AntiForgeryToken()
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+    <div class="row" style="height: 50px">
+    </div>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Fee Details</label>
+        </div>
+        <div class="panel-body">
+            <fieldset class="scheduler-border">
+                <br />
+                <div class="row">                   
+                    <div class="col-xs-3">
+                        <div class="form-group"> 
+                            <label id="lblCountry" class="filter-col control-label label1">Country Name</label>
+                            @Html.DropDownListFor(modelItem => modelItem.CountryId, ViewBag.Country as SelectList, "Select Country", new { @class = "form-control dropdown", @id = "txtCountry" })
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3">
+                        <div class="form-group">
+                            <label id="lblFIN" class="filter-col control-label label1">Academic Year</label>
+                            <select id="selAcdYr" name="selAcdYr" style="color: black" class="form-control dropdown"></select>
+                        </div>
+                    </div>
+                     <div class="col-xs-3">
+                        <div class="form-group">
+                            <label id="lblCouse" class="filter-col control-label label1">Course Name</label>                                                        
+                            @Html.DropDownListFor(modelItem => modelItem.CourseId, ViewBag.Course as SelectList, "Select Course", new { @class = "form-control dropdown", @id = "selCourse" })                            
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="form-group">
+                            <label id="lblCollege" class="filter-col control-label label1">College Name</label>                                                        
+                            <select id="selCollege" name="selCollege" style="color: black" class="form-control dropdown"></select>
+                        </div>
+                    </div>                   
+                </div>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <div class="form-group" >
+                            <div id="grid" class="panel panel-primary" style="overflow: auto; max-width: 800px"></div>
+                        </div>
+                        <div class="col-xs-3"></div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
+                    <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                    <div class="col-xs-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        document.getElementById('grid').style.display = "none"; //hide grid
+        $("#selAcdYr").empty();
+        $("#selCollege").empty();
+        
+        $("#txtCountry").change(function () {
+            $("#selAcdYr").empty();
+            debugger;
+            var countryid = $("#txtCountry").val();
+            var url = '@Url.Action("FillAcademic", "FeeDetails")';
+
+            $.post(url, { CountryId: countryid }, function (data)
+            {
+                //debugger;                
+                $("#selAcdYr").empty().append($("<option></option>").val(-1).html('Select'));
+
+                $.each(data, function (Key, item)
+                {
+                    //debugger;
+                    $("#selAcdYr").append($("<option></option>").val(item.Value).html(item.Text));
+                });
+            });
+            
+            GetCourseDuration();
+        });
+
+
+        $("#selCollege").change(function () {
+            GetCourseDuration();
+        });
+
+        $('#selAcdYr').change(function () {
+            GetCourseDuration();
+        });
+
+        $('#selCourse').change(function () {
+            debugger;
+            var countryid = $("#txtCountry").val();
+            var courseid = $("#selCourse").val();
+
+            //Fill College
+            $("#selCollege").empty();
+            debugger;
+
+            var url = '@Url.Action("FillCollege", "FeeDetails")';
+
+            $.post(url, { CountryId: countryid, CourseId: courseid }, function (data)
+            {
+                //debugger;                
+                $("#selCollege").empty().append($("<option></option>").val(-1).html('Select'));
+
+                $.each(data, function (Key, item) {
+                    //debugger;
+                    $("#selCollege").append($("<option></option>").val(item.Value).html(item.Text));
+                });
+            });
+
+            GetCourseDuration();
+        });
+
+
+        function GetCourseDuration() {
+            $("#grid").empty();
+           
+            debugger;
+            var CourseId = $('#selCourse').val();
+            var AYId = $('#selAcdYr').val();
+            var collegeid = $('#selCollege').val();
+
+            if (CourseId > 0 && collegeid > 0)
+            {                
+                var url = '@Url.Action("GetCourseInfo","FeeDetails")';
+               
+                $.post(url, { CourseId: CourseId, AYId: AYId, collegeid: collegeid }, function (data) {
+                    $("#grid").empty();
+                    debugger;
+                    var intCount = data.length;
+                    document.getElementById('grid').style.display = "block";    //display grid
+
+                    var tableData = '<table id="tblFee" class="table" style="font-size:14px"><thead><tr><th></th><th>Year</th><th>Fee Amount</th></tr></thead>';
+
+                    var tablerow = '';
+                    if (intCount > 0) {
+                        for (var i = 0; i < intCount; i++)
+                        {
+                            tablerow += '<tr><td width="10px"></td><td width="10px"> <input class ="tbl1" style="border: none; width: 10px" readonly="true" type="text" id="f' + [i] + '" value=' + data[i].Year + '></td><td width="10px" class="numeric" > <input type="text" id="f' + [i] + '_fees" style="text-align:right; width: 150px;" onkeypress = "return isNumber(event)" maxlength=20 value=' + data[i].Fees + '> <input type="hidden" id="f' + [i] + '_old" value=' + data[i].Fees + '> <input type="hidden" id="f' + [i] + '_PId" value=' + data[i].Id + '></td></tr>';
+                        }
+                    }
+
+                    tableData += tablerow;
+                    tableData += '</table>';
+                    $("#grid").html(tableData);
+                });
+            }
+        }
+
+        $('#btnSave').click(function () {
+            debugger;
+                      
+            var country_id = $("#txtCountry").val();
+            var academic_id = $("#selAcdYr").val();
+            var college_id = $("#selCollege").val();
+            var course_id = $("#selCourse").val();
+
+            if (country_id == '' || country_id == null || country_id == 0)
+            {
+                alert("Please Select Country Name");
+                return false;
+            }
+
+            if (academic_id == '' || academic_id == null || academic_id == -1)
+            {
+                alert("Please Select Academic Year");
+                return false;
+            }
+
+            if (college_id == '' || college_id == null || college_id == 0)
+            {
+                alert("Please Select College Name");
+                return false;
+            }
+
+            if (course_id == '' || course_id == null || course_id == 0) {
+                alert("Please Select Course Name");
+                return false;
+            }
+
+            var Data1 = new Array;
+            var id_val = 0, i = 0, id_PId = 0, id_fees = 0, id_old = 0;
+            var strResult = '';
+
+            $('.tbl1').each(function () {
+                debugger;
+                id = $(this).attr('id');
+                id_val = $("#" + id).val();   //Year
+                id_fees = $("#" + id + "_fees").val();  //New Fee Amt 
+                id_old = $("#" + id + "_old").val(); //Old Fee Amt                
+                id_PId = $("#" + id + "_PId").val();
+
+                if (id_fees == '' || id_fees == null)
+                {
+                    id_fees = 0
+                }
+                if (id_old == '' || id_old==null) {
+                    id_old = 0
+                }
+
+                if (parseFloat(id_fees) != parseFloat(id_old)) {        //if new fees & old fees are differe than save
+                    var P =
+                   {
+                       AcademicYearId: academic_id,
+                       Year: id_val,
+                       CollegeId:college_id,
+                       CourseId:course_id,
+                       Fees: id_fees,
+                       OldFees: id_old,
+                       Id: id_PId
+                   }
+
+                    Data1[i] = P;
+                    i++;
+                    strResult = "Y"
+                }
+                else
+                {
+                    
+                    if (strResult != "Y")
+                    {
+                        strResult="N";
+                    }
+                }
+            });
+
+            if (strResult != "N") {
+                debugger;
+
+                var Details = JSON.stringify(Data1);
+                var url = '@Url.Action("SaveData", "FeeDetails")';
+                var url_index = '@Url.Action("AddFeeDetails", "FeeDetails")';
+                $.ajax({
+                    url: url,
+                    data: { SaveFeesData: Details },
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function (data) {
+                        alert("Data Saved Successfully");
+                        window.location.href = url_index;
+                    },
+                    error: function (data) {
+                        alert("Data Saved Falied");
+                    }
+                });
+                return false;
+            }
+            else
+            {
+                alert("Please enter Fees Amount to save the records.");
+            }
+        });
+    });        
+
+  </script>
+
+
+

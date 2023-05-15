@@ -1,0 +1,386 @@
+﻿@model CreditRatingModel.Model.Master
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@using (@Html.BeginForm("RatingRange", "Master", FormMethod.Post, new { id = "frmRating" }))
+{
+        
+    <div class="row" style="height: 50px">
+    </div>
+       
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Rating Range Master</label>
+            </div>
+            <div class="panel-body">
+                <fieldset class="scheduler-border">
+
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="" class="filter-col control-label label1">Range From  </label>
+                                @Html.TextBoxFor(modelItem => modelItem.FROM_VALUE, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "20" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="" class="filter-col control-label label1">Range To  </label>
+                                @Html.TextBoxFor(modelItem => modelItem.TO_VALUE, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "20" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="" class="filter-col control-label label1">Status</label>
+                                @*@Html.TextBoxFor(modelItem => modelItem.RATING_STATUS, new { @class = "form-control"})*@
+                                @{
+    List<SelectListItem> listItems2 = new List<SelectListItem>();
+    listItems2.Add(new SelectListItem
+    {
+        Text = ""
+
+    });
+    listItems2.Add(new SelectListItem
+    {
+        Text = "Good",
+        Value = "Good"
+    });
+    listItems2.Add(new SelectListItem
+    {
+        Text = "Bad",
+        Value = "Bad",
+
+    });
+    listItems2.Add(new SelectListItem
+    {
+        Text = "Excellent",
+        Value = "Excellent",
+
+    });
+    listItems2.Add(new SelectListItem
+    {
+        Text = "Very Good",
+        Value = "Very Good",
+
+    });
+    
+                                }
+
+                              
+                                @Html.DropDownListFor(model => model.RATING_STATUS, listItems2, new { @class = "form-control dropdown " })
+
+
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="row">
+                    <div class="col-xs-5">
+                    </div>
+                    <div class="col-xs-4">
+                        <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                    </div>
+                    <div class="col-xs-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+
+        var Id = $("#Id").val();
+        if (Id != 0) {
+
+            $("#FROM_VALUE").attr("readonly", true)
+        }
+
+        $('#btnSave').click(function () {
+            debugger;
+            var frmvalidator = new Validator("frmRating");
+            debugger;
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+            frmvalidator.addValidation("FROM_VALUE", "req", "Please Enter Starting of  Range ");
+            frmvalidator.addValidation("TO_VALUE", "req", "Please Enter End of  Range");
+            frmvalidator.addValidation("RATING_STATUS", "req", "Please Enter  Rating Status");
+        });
+
+
+
+
+    });
+    //// $(document).ready(function () {
+    // var k = '@(ViewBag.e)'
+    //if (k != "") {
+
+    //}
+    // else { $('#RATING_STATUS').val(""); }
+    // });
+    // $(document).ready(function () {
+    //debugger;
+    //var k = '@(ViewBag.slab)'
+
+    //});
+
+
+
+
+    //if (k != "") {
+
+    function smallerRate() {
+        debugger;
+        var FROM_VALUE = $('#FROM_VALUE').val();
+        var TO_VALUE = $('#TO_VALUE').val();
+
+        if (TO_VALUE != "" && FROM_VALUE > TO_VALUE) {
+            $.ajax({
+                url: '/Master/smallerRate/',
+                type: 'POST',
+                data: { FROM_VALUE: FROM_VALUE, TO_VALUE: TO_VALUE },
+                success: function (data) {
+                    debugger;
+                    var R = JSON.stringify(data);
+                    if (R == "false") {
+                        debugger;
+                        alert("Please enter smaller value  than " + TO_VALUE)
+                        $('#FROM_VALUE').val("");
+                        return false;
+                    }
+
+
+                }
+            });
+        }
+        else {
+            Exists();
+        }
+
+    }
+
+
+    function greaterRate() {
+        debugger;
+        var FROM_VALUE = $('#FROM_VALUE').val();
+        var TO_VALUE = $('#TO_VALUE').val();
+        debugger;
+        if (FROM_VALUE != "") {
+            $.ajax({
+                url: '/Master/greaterRate/',
+                type: 'POST',
+                data: { FROM_VALUE: FROM_VALUE, TO_VALUE: TO_VALUE },
+                success: function (data) {
+                    var R = JSON.stringify(data);
+                    if (R == "false") {
+                        debugger;
+                        alert("Please enter greater value  than " + FROM_VALUE)
+                        $('#TO_VALUE').val("");
+                        return false;
+                    }
+
+                }
+            });
+        }
+        else {
+            alert("Please  first enter value for Range from")
+            $('#TO_VALUE').val("");
+        }
+
+    }
+
+    function FromExists() {
+        debugger;
+        var FROM_VALUE = $('#FROM_VALUE').val();
+        var TO_VALUE = $('#TO_VALUE').val();
+        debugger;
+
+        $.ajax({
+            url: '/Master/Fromexist/',
+            type: 'POST',
+            data: { FROM_VALUE: FROM_VALUE },
+            success: function (data) {
+                //var R = JSON.stringify(data);
+                if (data != 0) {
+
+                    var S = data;
+                    var T = S + 1;
+                    if (T != FROM_VALUE) {
+                        alert("Please enter number with value " + " " + T);
+                        $('#FROM_VALUE').val("");
+
+                    }
+
+                }
+
+            }
+        });
+
+
+
+    }
+
+    function Exists() {
+        debugger;
+
+        var FROM_VALUE = $('#FROM_VALUE').val();
+        var TO_VALUE = $('#TO_VALUE').val();
+        var Id = $("#Id").val();
+        if (Id == "") {
+            Id = 0;
+        }
+        $.ajax({
+            url: '/Master/ChkFrom/',
+            type: 'POST',
+            data: { Id: Id, FROM_VALUE: FROM_VALUE },
+            success: function (data) {
+                //var R = JSON.stringify(data);
+                debugger;
+                if (Id == 0) {
+                    FromExists();
+                    if (data == "N") {
+                        alert("From value already exits ");
+                        $('#FROM_VALUE').val("");
+                    }
+                }
+                else {
+                    debugger;
+                    if (data == "N") {
+                        alert("From value already exits ");
+                        $('#FROM_VALUE').val("");
+                    }
+
+                }
+
+            }
+        });
+
+    }
+
+    $('#FROM_VALUE').focusout(function () {
+
+        var FROM_VALUE = $('#FROM_VALUE').val();
+        debugger;
+
+        smallerRate();
+
+
+
+    });
+    // }
+
+
+
+
+
+
+
+
+    $('#TO_VALUE').focusout(function () {
+
+        debugger;
+        greaterRate();
+        // var FROM_VALUE = $('#FROM_VALUE').val();
+        //var TO_VALUE = $('#TO_VALUE').val();
+        //  debugger;
+        // if (FROM_VALUE != "") {
+
+
+        // var url = '@Url.Action("greaterRate", "Master")';
+        // $.post(url, { FROM_VALUE: FROM_VALUE, TO_VALUE: TO_VALUE },
+        // function (result) {
+        //debugger;
+        // var R = JSON.stringify(result);
+        //if (R=="false") {
+        //alert("Please enter greater value number than " + FROM_VALUE)
+        // $('#TO_VALUE').val("");
+
+        // }
+        // });
+
+        //if ( RangeTo<=Rangefrom) {
+        //    alert("Please enter greater value number than " + Rangefrom)
+        //    $('#RangeTo').val("");
+        //}
+        // } else
+        // {
+        //alert("Please  first enter value for Range from" )
+        // $('#TO_VALUE').val("");
+        // }
+
+    });
+   // $('#RATING_STATUS').change(function () {
+      //  var FROM_VALUE = $('#FROM_VALUE').val();
+       // var TO_VALUE = $('#TO_VALUE').val();
+        //var RATING_STATUS = $('#RATING_STATUS').val();
+       // if (FROM_VALUE != "" && TO_VALUE != "") {
+
+
+           // var url = '@Url.Action("Statusexist", "Master")';
+
+           // $.post(url, { RATING_STATUS: RATING_STATUS },
+                   // function (data) {
+                       // debugger;
+                       // if (data != null) {
+                           // alert("Status Alreday Exists.")
+                          //  $('#RATING_STATUS').val("");
+
+                       // }
+                   // });
+
+       // }
+       // else {
+
+          //  alert("Please first enter  value for Rangefrom and RangeTo ")
+          //  $('#RATING_STATUS').val("");
+           // $('#RATING_STATUS').focus();
+           // return false;
+
+
+       // }
+ //   });
+
+
+
+    //$('#TO_VALUE').change(function () {
+    //var Rangefrom = $('#Rangefrom').val();
+    //var TO_VALUE = $('#TO_VALUE').val();
+    //var url = '@Url.Action("Toexist", "Master")';
+    //debugger;
+    //$.post(url, { TO_VALUE: TO_VALUE },
+    //function (data) {
+
+    //if (data != 0) {
+    //alert("This Range  is already exist")
+    //$('#TO_VALUE').val("");
+
+    //}
+
+    //});
+
+
+
+    // });
+</script>
+

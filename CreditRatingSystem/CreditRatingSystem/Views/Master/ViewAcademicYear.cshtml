@@ -1,0 +1,90 @@
+﻿@{
+    var grid= new WebGrid(Model,canPage : true,canSort : true , rowsPerPage:10);
+    grid.Pager(WebGridPagerModes.All);
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    
+}
+
+
+ <div class="container">
+      <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Academic Year Details</label>  </div>
+    
+            <div class="row" >
+                 <div class="col-xs-1">
+                           
+               </div>
+            <div class="col-xs-10">
+                           
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Academic Year</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                    </div>
+                </div>
+             
+                <div style=" overflow-x: auto;height:500px">
+                <table class="table">
+                    <thead>
+                        <tr class="filters">
+                                <th width="20px"> <input type="text"  placeholder="Academic Year" disabled> </th>
+
+                              <th width="15px"> <input type="text"  placeholder="From Date" disabled> </th>
+                             <th width="15px"> <input type="text"  placeholder="To Date" disabled> </th>
+                             <th width="15px"> <input type="text"  placeholder="Country" disabled> </th>
+                         
+                            <th width="5px">
+                                                <input type="hidden" class=" form-control" disabled>
+                                            </th>
+                                          
+                  
+                        </tr>
+                    </thead>
+                    <tbody class="table">
+                        <tr class="filters">
+                           @grid.GetHtml(
+                tableStyle: "table",
+                headerStyle: "webgrid-header",
+                       //  footerStyle: "webgrid-footer",
+                                    //alternatingRowStyle: "webgrid-alternating-row",
+                                    //rowStyle: "webgrid-row-style",
+                //
+             columns: grid.Columns(
+                                    //here i will add column for serial no
+                                    //grid.Column(columnName: "Date", format: (item) => Html.ActionLink(((string)item.Date), "Edit", new { id = item.id })),
+                                    //grid.Column(columnName:"Id", header:"ID", format: (item) => (item.Id)),
+                grid.Column(columnName: "AyId", style: "webgrid-fixColumn"),
+                                  grid.Column(columnName: "AyFromDate",format: item => ((item.AyFromDate == null) ? "" : item.AyFromDate.ToString("yyyy-MMM-dd")) ,style: "webgrid-fixColumn"),
+            grid.Column(columnName: "AyToDate",format: item => ((item.AyToDate == null) ? "" : item.AyToDate.ToString("yyyy-MMM-dd")) ,style: "webgrid-fixColumn"),
+              grid.Column(columnName: "Country", style: "webgrid-fixColumn"),
+                      
+            grid.Column(columnName: "Id", style: "webgrid-hide")
+         //   grid.Column("", format: @<text>@Html.ActionLink("View", "AcademicYear", "Master", new { id = item.Id }, null)</text>)
+     
+                           
+                            ))
+                        </tr>
+                    </tbody>
+                </table>
+                    </div>
+                </div>
+</div>
+                 <div class="col-xs-1">
+                           
+               </div>
+        </div>
+    </div>
+     </div>
+
+
+<script type="text/javascript">
+    $(function () {
+        debugger;
+        $('tbody tr').hover(function () {
+            $(this).toggleClass('clickable');
+        }).on('click', function () {
+            location.href = '/Master/EditAcademicYear/' + $(this).find('td:last').text();
+        });
+    });
+</script>

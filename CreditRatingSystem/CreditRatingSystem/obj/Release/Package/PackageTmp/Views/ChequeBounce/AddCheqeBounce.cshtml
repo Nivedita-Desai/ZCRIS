@@ -1,0 +1,263 @@
+﻿@model CreditRatingModel.Model.ChequeBounce_Metadata
+@using CreditRatingModel.Model;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<script src="@Url.Content("~/js/ValidationJavaScript.js")"></script>
+@using (Html.BeginForm("Index", "ChequeBounce", FormMethod.Post, new { id = "frmChequeBounce" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <br />
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label id="lblHeading" class="filter-col control-label labelHead">Cheque Bounce Transaction</label></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblBankCode" class="filter-col control-label label1">Enter Bank Code :</label>
+                            @Html.TextBoxFor(model => model.BankCode, new { @id = "txtBankCode", @class = "form-control", @onkeypress = "return isAlphaNumeric(event)", @onblur = "checkLengthForBankCode(this)" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.BankCode)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblBankName" class="filter-col control-label label1">Bank Name :</label>
+                            @Html.TextBoxFor(model => model.BankName, new { @id = "txtBankName", @class = "form-control input-sm", @readonly = "true" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.BankName)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblBrCode" class="filter-col control-label label1">Enter Branch Code :</label>
+                            @Html.TextBoxFor(model => model.BranchCode, new { @id = "txtBrCode", @class = "form-control input-sm", @onkeypress = "return isAlphaNumeric(event)", @onblur = "checkLengthForBranchCode(this)" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.BranchCode)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblBrName" class="filter-col control-label label1">Branch Name :</label>
+                            @Html.TextBoxFor(model => model.BranchName, new { @id = "txtBrName", @class = "form-control input-sm", @readonly = "true" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.BranchName)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblPanNo" class="filter-col control-label label1">Pan Card No :</label>
+                            @Html.TextBoxFor(model => model.Pancard, new { @id = "txtPanNo", @class = "form-control input-sm", @onchange = "return ValidatePAN(this)" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.Pancard)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblChqNo" class="filter-col control-label label1">Cheque No :</label>
+                            @Html.TextBoxFor(model => model.ChequeNo, new { @id = "txtChNo", @class = "form-control input-sm", @onkeypress = "return isNumber(event)", maxlength = "6"  })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.ChequeNo)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblToAcc" class="filter-col control-label label1">In Favour of Account No :</label>
+                            @Html.TextBoxFor(model => model.FavourAccountNo, new {@maxlength = "10", @id = "txtToAccNo", @class = "form-control input-sm", @onkeypress = "return isNumber(event)" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.FavourAccountNo)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblToName" class="filter-col control-label label1">In Favour of Name :</label>
+                            @Html.TextBoxFor(model => model.FavourOfName, new {  @id = "txtToName", @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.FavourOfName)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblChDt" class="filter-col control-label label1">Cheque Date :</label>
+                            @Html.TextBoxFor(model => model.ChequeDate, new { @id = "txtChDt", @class = "form-control input-sm", @type = "date" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.ChequeDate)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblChAmt" class="filter-col control-label label1">Cheque Amount :</label>
+                            @Html.TextBoxFor(model => model.ChequeAmount, new {@maxlength = "20", @id = "txtChAmt", @class = "form-control input-sm", @onkeypress = "return decimalOnly(event) " })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.ChequeAmount)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblChType" class="filter-col control-label label1">Cheque Type :</label>
+                            @Html.DropDownListFor(model => model.ChTypeId, ViewBag.CheckTypeList as SelectList, "Select Check Types", new { @id = "ddlChTypeId", @class = "form-control dropdown" })
+                            @* @Html.TextBoxFor(model => model.ChequeType, new { @id = "txtChtype", @class = "form-control input-sm" })*@
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.ChTypeId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblTrDt" class="filter-col control-label label1">Transaction Date :</label>
+                            @Html.TextBoxFor(model => model.TransDate, new { @id = "txtTrDt", @class = "form-control input-sm", @type = "date" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.TransDate)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblFrAccNo" class="filter-col control-label label1">From Account No :</label>
+                            @Html.TextBoxFor(model => model.FrAccNo, new {@maxlength = "10" ,@id = "txtFrAccNo", @class = "form-control input-sm", @onkeypress = "return isNumber(event)" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.FrAccNo)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblFrAccName" class="filter-col control-label label1">From Account Holder Name :</label>
+                            @Html.TextBoxFor(model => model.FrAccName, new { @id = "txtFrAccName", @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)" })
+                            <div class="row-error ErrorMessage">
+                                @Html.ValidationMessageFor(model => model.FrAccName)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblReason" class="filter-col control-label label1">Reason :</label>
+                            @Html.DropDownListFor(model => model.ReasonId, ViewBag.ReasonList as SelectList, "Select Reason", new { @id = "ddlReason", @class = "form-control dropdown" })
+                            @*   @Html.DropDownListFor(model => model.ReasonId ,ViewBag.ReasonList as SelectList ,"Select Reason",new { @id = "ddlReason", @class = "form-control dropdown" })*@
+
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group input-field-wrap">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                    </div>
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            <button id="btnAdd" type="submit" name="ADD" formmethod="post">SAVE</button>
+                        </div>
+                    </div>
+                    <div class="col-xs-1">
+
+                    </div>
+                    <div class="col-xs-6">
+                        <button id="btnClear" type="reset" name="RESET">RESET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+<script type="text/javascript">
+$(function(){
+ var wrapper=$(".input-field-wrap");
+ $('#ddlReason').change(function () {
+     debugger;
+     //  $('#txtOtherReason').remove();
+     //  $('#lblOtherReason').remove();
+     //var id = $('#ddlReason option:selected').val();
+     var id = $('#ddlReason option:selected').text();
+       if (id == "Others")
+       {
+           $(wrapper).append('<label id="lblOtherReason" class="filter-col control-label label1">Please Specify Other Reason :</label> @(Html.TextBoxFor(model => model.Reason, new {@id = "txtOtherReason", @class = "form-control input-sm" }))')
+           $('#ddlReason').attr("readonly", true);
+           $('#ddlReason').attr("enable", false);
+            //$(wrapper).append('<label id="lblOtherReason" class="filter-col control-label label1">Please Specify Other Reason :</label><input type="text" id="txtOtherReason" class = "form-control input-sm">')
+       }
+       else
+       {
+           $('#ddlReason').attr("readonly", false);
+           $('#ddlReason').attr("enable", true);
+           $('#txtOtherReason').remove();
+           $('#lblOtherReason').remove();
+       }
+
+
+    });
+
+$('#txtBankCode').change(function(){
+ //var Bankcode=$('#txtBankCode').val();
+ var url = '@Url.Action("RetrieveBankCode", "ChequeBounce")';
+ $.post(url,{strBankCode:Bankcode},function(data){
+    if(data == "")
+    {
+        alert("Please enter valid Bank Code");
+    }
+    else
+    {
+        $('#txtBankName').val(data);
+    }
+    });
+});
+
+$('#txtBrCode').change(function(){
+ var Brcode=$('#txtBrCode').val();
+ var url = '@Url.Action("RetrieveBrCode", "ChequeBounce")';
+ $.post(url,{strBrCode:Brcode},function(data){
+    if(data == "")
+    {
+        alert("Please enter valid Branch Code");
+    }
+    else
+    {
+        $('#txtBrName').val(data);
+    }
+
+    });
+});
+
+});
+</script>
+
+

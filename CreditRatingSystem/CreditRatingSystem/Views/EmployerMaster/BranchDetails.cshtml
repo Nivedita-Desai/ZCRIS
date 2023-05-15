@@ -1,0 +1,243 @@
+﻿@model CreditRatingModel.Model.EmployerMaster_Metadata
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<br> </br>
+ <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Add Branch</label>
+            </div>
+            <div class="panel-body">
+                   @using (Html.BeginForm("EditBranch", "EmployerMaster", FormMethod.Post,
+                            new { enctype = "multipart/form-data", id = "Branch" }))
+                  {
+                 <div  class="row"> 
+                      @Html.HiddenFor(model => model.id)                 
+                      <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblTitle" class="filter-col control-label label1">Employer Name</label>
+                                             @Html.TextBoxFor(model => model.EmployerName ,new { @class = "form-control", @maxlength = "100",@readOnly=true  } )
+                                        
+                                        </div>
+                                    </div>                   
+                 <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="" class="filter-col control-label label1">Division</label>
+                                            <div class="form-group input-field-wrap">
+                     @Html.TextBoxFor(model => model.EmployerType ,new { @class = "form-control", @maxlength = "100"  ,@readOnly=true} )
+                                        
+                        </div>                                           
+                                        </div>
+                                    </div>
+                      <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="" class="filter-col control-label label1">Branch</label>
+                                            @Html.TextBoxFor(model => model.EmployerBranch ,new { @class = "form-control", @maxlength = "100"  } )
+                                         
+                                        </div>
+                                    </div>
+                     
+                 </div>
+             
+                <div id="Address" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label class="filter-col control-label label1">Address</label>
+                                            @Html.TextBoxFor(model => model.Address1, new { @class = "form-control" , @maxlength = "100" })
+                                          
+                                            @Html.TextBoxFor(model => model.Address2, new { @class = "form-control" , @maxlength = "100"})
+                                         
+                                            @Html.TextBoxFor(model => model.Address3, new { @class = "form-control" , @maxlength = "100"})
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                         <div id="CID" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+
+                                            <label id="lblC" class="filter-col control-label label1">Country</label>
+                                            @Html.DropDownListFor(model => model.CountryId,   ViewBag.CountryList as SelectList, "select Country", new { @id = "Country", @class = "form-control dropdown" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label id="lblS" class="filter-col control-label label1">State</label>
+                                            @Html.DropDownListFor(model => model.StateId,ViewBag.StateList1 as SelectList,"Select", new { @id = "selState",@class = "form-control dropdown" })
+                              <div class="form-group input-field-wrap">
+                        </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                              <div id="CityPIN" class="row">
+                                     <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label id="lblCI" class="filter-col control-label label1">City </label>
+                                    @Html.DropDownListFor(model => model.Cityid,ViewBag.CityList1 as SelectList,"Select", new { @id = "selCity",@class = "form-control dropdown" })
+      
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label id="lblPIN" class="filter-col control-label label1">PIN code</label>
+                                            @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "6" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <label id="lblPhoneNo" class="filter-col control-label label1">Telephone number</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.LandlineCode, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "4",@readonly="true" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.LandlineNo, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "10" })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                             
+
+
+
+
+
+                                <div id="email" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+                                            <label id="lblemail" class="filter-col control-label label1">Email Id</label>
+                                            @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control", @onblur = "validateEmail(this)"  , @maxlength = "50" })
+
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                  <div class="row">
+                                    <div class="col-xs-12">
+                                  
+                                  <div class="form-group">
+                            
+                        
+                                     <h4 style="text-align: center">
+                                         <button id="btnBranch" type="submit" name="Save">Save</button>                                         
+                                     </h4>
+                                    </div>
+                         
+                                       </div>
+                                   
+                                    </div>
+                                    
+                                  @*  <div class="col-xs-6">        
+                                             <input type="submit" id="btnBranch" value="Add Branch details"  style="width:300px"/>
+                                    </div>*@
+                                   
+                                   
+                       
+                   }
+</div>
+            </div>
+
+
+            </div>
+ <script type="text/javascript">
+$( document ).ready(function() {
+
+
+    $("#EmployerName").attr("disabled", "disabled");
+    $("#EmployerType").attr("disabled", "disabled");
+    $("#EmployerBranch").attr("disabled", "disabled");
+   });
+
+
+$("#Country").change(function () {
+    var countryid = $("#Country").val();
+
+    var url = '@Url.Action("StateList", "EmployerMaster")';
+
+        $.post(url, { CountryId: countryid }, function (data) {
+
+            //debugger;
+            $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+                //debugger;
+                $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+    });
+
+   
+    $("#selState").change(function () {
+        var selState = $("#selState").val();
+
+        var url = '@Url.Action("CityList", "EmployerMaster")';
+
+        $.post(url, { selState: selState }, function (data) {
+
+            $("#selCity").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+
+                $("#selCity").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+      });
+   
+
+    $(function () {
+        $('#selCity').change(function () {
+            var selCity = $("#selCity").val();
+            debugger;
+            $.ajax({
+                url: '/EmployerMaster/CityCode/',
+                type: 'POST',
+                data: { selCity: selCity },
+                success: function (data) {
+
+                    debugger;
+                    if (data != null) {
+                        var vdata = data;
+                        $("#LandlineCode").val(vdata);
+
+                    }
+                }
+
+
+
+            });
+        });
+    });
+
+
+</script>

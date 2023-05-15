@@ -1,0 +1,168 @@
+﻿@model CreditRatingModel.Model.Master
+
+@{
+    ViewBag.Title = "LoanType";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@using (@Html.BeginForm("CityMaster", "Master", FormMethod.Post, new { id = "frmCity" }))
+{
+    <div class="row" style="height: 50px">
+    </div>
+            
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">City Master</label>
+            </div>
+            <div class="panel-body">
+                <fieldset class="scheduler-border">
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="lblCountry" class="filter-col control-label label1">Country:</label>
+                                @Html.DropDownListFor(modelItem => modelItem.CountryId1, ViewBag.Country as SelectList, "Select Country", new { @class = "form-control dropdown" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            @Html.HiddenFor(model => model.Id1)
+                            <div class="form-group">
+                                <label id="lblPanN" class="filter-col control-label label1">Province:</label>
+                                @Html.DropDownListFor(modelItem => modelItem.StateId1, ViewBag.State as SelectList, "Select Province", new { @class = "form-control dropdown", @id = "selState" })
+                                @*<select id="selState" name="selState" style="color: black" class="form-control dropdown"></select>
+                                @Html.TextBoxFor(modelItem => modelItem.StateId1, new { @id = "StateId", @hidden = "hidden" })*@
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="lblFIN" class="filter-col control-label label1">City :</label>
+                                @Html.TextBoxFor(modelItem => modelItem.CityName, new { @class = "form-control ", @onkeypress = "return  AllowAlphabet(event)", @maxlength = "100" })
+
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="lblSex" class="filter-col control-label label1">City Code :</label>
+                                @Html.TextBoxFor(modelItem => modelItem.CityCode, new { @class = "form-control dropdown", @onkeypress = "return  isNumberCode(event)", @maxlength = "4" })
+
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row">
+                    <div class="col-xs-4">
+                    </div>
+                    <div class="col-xs-4">
+                        <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                        <div class="col-xs-4">
+                        </div>                                               
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$("#selState").empty();
+        debugger;        
+      @*  var CountryId = $("#CountryId1").val();
+        alert(CountryId);
+        var url = '@Url.Action("BindStateList", "Master")';
+        $.post(url, { CountryId: CountryId }, function (data) {
+            //debugger;           
+            $.each(data, function (Key, item) {
+                //debugger;
+                $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });*@
+     
+
+        $('#btnSave').click(function () {
+            debugger;
+            var frmvalidator = new Validator("frmCity");
+            debugger;
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+            frmvalidator.addValidation("CountryId1", "req", "Please Select Country");
+            frmvalidator.addValidation("CityName", "req", "Please Enter City");
+            frmvalidator.addValidation("StateId1",  "dontselect=-1", "Please Select Province");
+            frmvalidator.addValidation("CityCode", "req", "Please Enter City Code");
+        });
+    });
+
+    $("#CountryId1").change(function () {
+        $("#selState").empty();
+        var countryid = $("#CountryId1").val();
+        var url = '@Url.Action("BindStateList", "Master")';
+        $.post(url, { CountryId: countryid }, function (data) {
+            //debugger;
+            $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                //debugger;
+                $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+    });
+    $(function () {
+        $('#CityName').change(function () {
+            var CityName = $('#CityName').val();
+            //
+            $.ajax({
+
+                url: '/Master/doesCity/',
+                type: 'POST',
+                data: { CityName: CityName },
+                success: function (result) {
+                    var a = JSON.stringify(result);
+                    if (a == "false") {
+                        alert(' That City already exits');
+                        $('#CityName').val('');
+                    }
+                }
+            });
+        });
+    });
+    $(function () {
+        $('#CityCode').change(function () {
+            var CityCode = $('#CityCode').val();
+            //
+            $.ajax({
+
+                url: '/Master/doesCityCode/',
+                type: 'POST',
+                data: { CityCode: CityCode },
+                success: function (result) {
+                    var a = JSON.stringify(result);
+                    if (a == "false") {
+                        alert(' That Country Code already exits');
+                        $('#CityCode').val('');
+                    }
+                }
+            });
+        });
+    });
+</script>

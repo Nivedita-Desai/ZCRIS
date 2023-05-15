@@ -1,0 +1,609 @@
+﻿
+@model CreditRatingModel.Model.login
+
+@{
+    
+    ViewBag.Title = "Login";
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Login </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        
+    <link href="~/CSS/login.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.css">
+
+    <link href="~/CSS/font-awesome.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="~/js/gen_validatorv4.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+
+    @*<script type="text/javascript">
+                 var _gaq = _gaq || [];
+                 _gaq.push(['_setAccount', 'UA-34731274-1']);
+                 _gaq.push(['_trackPageview']);
+                 (function () {
+                     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
+
+        '.google-analytics.com/ga.js';
+                     var s = document.getElementsByTagName('script')[0];
+
+                     s.parentNode.insertBefore(ga, s);
+                 })();
+            </script>*@
+    @*<script type="text/javascript">
+            var fb_param = {};
+            fb_param.pixel_id = '6007046190250';
+            fb_param.value = '0.00';
+            (function () {
+                var fpw = document.createElement('script');
+                fpw.async = true;
+                fpw.src = '//connect.facebook.net/en_US/fp.js';
+                var ref = document.getElementsByTagName('script')[0];
+                ref.parentNode.insertBefore(fpw, ref);
+            })();
+        </script>*@
+    @*<script type="text/javascript">
+        window.alert = function () { };
+        var defaultCSS = document.getElementById('bootstrap-css');
+        // debugger;
+        function changeCSS(css) {
+            if (css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="' +
+
+css + '" type="text/css" />');
+            else $('head > link').filter(':first').replaceWith(defaultCSS);
+        }
+        $(document).ready(function () {
+            var iframe_height = parseInt($('html').height());
+            // window.parent.postMessage(iframe_height, 'http://bootsnipp.com');
+        });
+    </script>*@
+</head>
+<body>
+ @*@if (ViewBag.LoginError != "")
+ {
+    <script type="text/javascript">
+        $('.login-box').fadeIn();
+    </script>
+ }
+ @if (ViewBag.LoginError == "")
+ {
+   //  ViewBag.LoginError = "";
+ }*@
+    @*<div id="playground-container">
+        <div id="preview-container">*@
+    <div class="container">
+
+        <div class="row">
+            <div class="com-md-12">
+                <div class="notification login-alert">
+                    Please Enter Your Username And Password!
+                </div>
+                <div class="notification notification-success logged-out">
+                    You logged out successfully!
+                </div>
+                <div class="well welcome-text">
+                    Hello, to access our app please <button class="btn btn-default btn-login">Log in</button> or <button class="btn btn-default btn-register">Register</button>
+                </div>
+               
+                
+            </div>
+        </div>
+    </div>
+
+  
+    @using (@Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "frmLogin" }))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="error_msg">@ViewBag.LoginError</div>
+                <div class="col-md-12">
+                    <div class="well login-box">
+
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <legend>Login</legend>
+
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+                            @Html.TextBoxFor(a => a.USERNAME, new { style = "width:200px;height:40px", @class = "form-control", @placeholder = "Username", @id="LoginUsername", @name="LoginUsername" })
+
+                        </div>
+
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+
+                            @Html.PasswordFor(a => a.PASSWORD, new { style = "width:200px;height:40px", @class = "form-control", @placeholder = "Password", @id = "LoginPasswd", @name = "LoginPasswd" })
+
+
+                        </div>
+
+
+                        <div class="form-group text-center">
+                            <input type="submit" class="btn btnLogin" value="Login" id="btnLogin" />
+                            <button class="btn btnLogin btn-cancel-action">Cancel</button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="logged-in well">
+                        <h1>
+                            You are loged in! <div class="pull-right">
+                                <button class="btn-logout btn btn-danger">
+                                    <span class="glyphicon glyphicon-off"></span>
+
+                                    Logout
+                                </button>
+                            </div>
+                        </h1>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+   
+    @*@using (@Html.BeginForm("Login", "Home", FormMethod.Post))*@
+    @using (@Html.BeginForm("Registration", "Home", FormMethod.Post, new { id = "frmRegistration" }))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well register1-box">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <legend>Register</legend>
+
+                        <div style="margin-bottom: 25px;" class="input-group">
+
+                            <span class="input-group-addon text1">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            @Html.TextBoxFor(a => a.Name, new { @class = "form-control", @placeholder = "Full Name" })
+                        </div>
+
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon text1">
+                                <i class="fa fa-user"></i>
+                            </span>
+
+                            @Html.TextBoxFor(a => a.RegUsername, new { @class = "form-control", @placeholder = "NID (Username)", @id="RegUsername", @name="RegUsername",@onkeypress = "return isNRCNumber(event)", @onblur = " checkLengthForNRC(this)", @maxlength = "13"})
+                           
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon text1">
+                                <i class="fa fa-lock"></i>
+                            </span>
+
+                            @Html.PasswordFor(a => a.RegPassword, new { @class = "form-control", @placeholder = "Password", @id = "RegPASSWORD", @name = "RegPASSWORD" })
+                           
+                            </div>
+                        <div style="margin-bottom: 25px" class="row">
+                            <div class="col-sm-6">
+                                <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 Characters Long<br>
+                                <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Uppercase Letter
+                            </div>
+                            <div class="col-sm-6">
+                                <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Lowercase Letter<br>
+                                <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Number
+                            </div>
+                        </div>
+                       
+                        <div  class="input-group">
+                            <span class="input-group-addon text1">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                            @Html.PasswordFor(a => a.ConfirmPasswd, new { @class = "form-control", @placeholder = "Confirm Password", @id = "ConfirmPasswd", @name = "ConfirmPasswd" })
+                        </div>
+                        <div style="margin-bottom: 25px" class="row">
+                            <div class="col-sm-12">
+                                <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Passwords Match
+                            </div>
+                        </div>
+                            <div style="margin-bottom: 25px" class="input-group">
+                                @*<span class="input-group-addon text1">
+                                    <i class="fa fa-users"></i>
+                                </span>*@
+                                @*@Html.DropDownListFor(a => a.UserTypeID, ViewBag.UserTypes as SelectList, "Select User Type", new { @id = "UserType1", @class = "form-control dropdown" })*@
+                                @* @Html.TextBoxFor(a => a.USERNAME, new { style = "width:200px;height:40px", @class = "form-control" })*@
+
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" class="btn btnRegister" value="Register" id="btnSave" />
+                                <button class="btn btnRegister btn-cancel-action">Cancel</button>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    
+    <script type="text/javascript">
+        var ErrorMsg = "";
+
+        $(document).ready(function () {
+
+
+            $('#RegUsername').change(function () {
+                debugger;
+                var USERNAME = $("#RegUsername").val();
+
+
+                var url = '/Home/doesUserNameExist';
+                $.get(url, { UserName: USERNAME }, function (data) {
+                    debugger;
+                    //alert(USERNAME);
+                    if(data!=USERNAME){alert(data);}
+                    
+                   // ErrorMsg = data;
+                });
+
+            });
+
+            $('#btnSave').click(function () {
+
+                var frmvalidator = new Validator("frmRegistration");
+
+                frmvalidator.clearAllValidations();
+                frmvalidator.EnableMsgsTogether();
+                frmvalidator.addValidation("Name", "req", "Please enter name");
+                frmvalidator.addValidation("RegUsername", "req", "Please enter username");
+                frmvalidator.addValidation("RegPASSWORD", "req", "Please enter password");
+                frmvalidator.addValidation("RegPASSWORD", "neelmnt=RegUsername", "The password should not be same as username");
+                frmvalidator.addValidation("ConfirmPasswd", "req", "Please enter confirm password");
+                frmvalidator.addValidation("ConfirmPasswd", "eqelmnt=RegPASSWORD", "The confirmed password is not same as password");
+                //frmvalidator.addValidation("UserTypeID", "req", "Please select user type");
+                frmvalidator.addValidation("btnSave", "ViewBagError", ErrorMsg);
+
+                if (ErrorMsg == "Invalid Password") {
+                    frmvalidator.addValidation("btnSave", "ViewBagError", "Invalid Password");
+                }
+               
+            });
+
+            $('#LoginPasswd').keyup(function () {
+
+                var USERNAME = $("#LoginUsername").val();
+                var PASSWORD = $("#LoginPasswd").val();
+
+                var url = '/Home/LoginValidation';
+                $.get(url, { username: USERNAME, passwd: PASSWORD }, function (data) {
+                    debugger;
+                    ErrorMsg = data;
+                });
+
+            });
+
+            $('#btnLogin').click(function () {
+
+                var frmvalidatorLogin = new Validator("frmLogin");
+
+                frmvalidatorLogin.clearAllValidations();
+                frmvalidatorLogin.EnableMsgsTogether();
+
+                frmvalidatorLogin.addValidation("LoginUsername", "req", "Please enter Username");
+                frmvalidatorLogin.addValidation("LoginPasswd", "req", "Please enter Password");
+                frmvalidatorLogin.addValidation("btnLogin", "ViewBagError", ErrorMsg);
+                
+                //ErrorMsg="";
+               // frmvalidatorLogin.setAddnlValidationFunction("CheckIsError");
+               
+            });
+
+        });
+    @*</script>*@
+  
+    
+    //<script type="text/javascript">
+        function varticalCenterStuff() {
+            
+            var windowHeight = $(window).height();
+            var loginBoxHeight = $('.login-box').innerHeight();
+            var welcomeTextHeight = $('.welcome-text').innerHeight();
+            var loggedIn = $('.logged-in').innerHeight();
+            var RegisterBoxHeight = $('.register1-box').innerHeight();
+
+            var mathLogin = (windowHeight / 2) - (loginBoxHeight / 2);
+            var mathWelcomeText = (windowHeight / 2) - (welcomeTextHeight / 2);
+            var mathLoggedIn = (windowHeight / 2) - (loggedIn / 2);
+            var mathRegister = (windowHeight / 2) - (RegisterBoxHeight / 2);
+
+            $('.login-box').css('margin-top', mathLogin);
+            $('.welcome-text').css('margin-top', mathWelcomeText);
+            $('.logged-in').css('margin-top', mathLoggedIn);
+            $('.register1-box').css('margin-top', mathRegister);
+        }
+        $(window).resize(function () {
+            varticalCenterStuff();
+        });
+        varticalCenterStuff();
+
+        // awesomeness
+        $('.btn-login').click(function () {
+            $(this).parent().fadeOut(function () {
+                //debugger;
+                $('.login-box').fadeIn();
+
+            })
+        });
+
+        $('.btn-register').click(function () {
+            $(this).parent().fadeOut(function () {
+                //debugger;
+                $('.register1-box').fadeIn();
+            })
+        });
+
+      
+       $('.btn-cancel-action').click(function (e) {
+           e.preventDefault();
+           //debugger;
+
+         //   $(this).parent().parent().parent().fadeOut(function () {
+           //$(this).offsetParent().fadeOut(function () {
+           //debugger;
+           $('.login-box').css('display', 'none')
+           $('.register1-box').css('display', 'none')
+               $('.welcome-text').fadeIn();
+              // var url = '/Home/Login'
+               //$.get(url);
+               //$.ajax({
+               //    url: '/Home/Login',
+               //    type: 'GET'
+               //});
+          // });
+       });
+      
+
+        // $('.btn-cancel-action').click(function (e) {
+        // e.preventDefault();
+        //$(this).parent().parent().parent().fadeOut(function () {
+        // $('.welcome-text').fadeIn();
+        //debugger;
+        // $.ajax({
+        // url:'/Home/Login',
+        // type:'GET'
+        // });
+        //$.post(url);
+        // });
+        //});
+
+
+       
+
+        //$('.btn-login-submit').click(function (e) {
+        //    e.preventDefault();
+
+        //    var element = $(this).parent().parent().parent();
+
+        //    var usernameEmail = $('#a => a.USERNAME').val();
+        //    var password = $('#a => a.PASSWORD').val();
+
+
+        //    if (usernameEmail == '' || password == '') {
+
+        //        // wigle and show notification
+        //        // Wigle
+        //        var element = $(this).parent().parent().parent();
+        //        $(element).addClass('animated rubberBand');
+        //        $(element).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+        //            $(element).removeClass('animated rubberBand');
+        //        });
+
+        //        // Notification
+        //        // reset
+        //        $('.notification.login-alert').removeClass('bounceOutRight notification-show animated bounceInRight');
+        //        // show notification
+        //        $('.notification.login-alert').addClass('notification-show animated bounceInRight');
+
+        //        $('.notification.login-alert').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+        //            setTimeout(function () {
+        //                $('.notification.login-alert').addClass('animated bounceOutRight');
+        //            }, 2000);
+        //        });
+        //    } else {
+        //        $(element).fadeOut(function () {
+        //            $('.logged-in').fadeIn();
+
+
+        //        });
+        //    }//endif
+        //});
+
+
+        $('.btn-logout').click(function () {
+            $('.logged-in').fadeOut(function () {
+                $('.welcome-text').fadeIn();
+                // Notification
+                $('.notification.logged-out').removeClass('bounceOutRight notification-show animated bounceInRight');
+                // show notification
+                $('.notification.logged-out').addClass('notification-show animated bounceInRight');
+
+                $('.notification.logged-out').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    setTimeout(function () {
+                        $('.notification.logged-out').addClass('animated bounceOutRight');
+                    }, 2000);
+                });
+
+            });
+        });
+
+        var ucase = new RegExp("[A-Z]+");
+        var lcase = new RegExp("[a-z]+");
+        var num = new RegExp("[0-9]+");
+
+        //$("input[type=password]").keyup(function () {
+        $("#RegPASSWORD").keyup(function () {
+            debugger;
+            var Count=0;
+            if ($("#RegPASSWORD").val().length >= 8) {
+                $("#8char").removeClass("glyphicon-remove");
+                $("#8char").addClass("glyphicon-ok");
+                $("#8char").css("color", "#00A41E");
+              
+            } else {
+                $("#8char").removeClass("glyphicon-ok");
+                $("#8char").addClass("glyphicon-remove");
+                $("#8char").css("color", "#FF0004");
+                Count = Count + 1;
+            }
+
+            if (ucase.test($("#RegPASSWORD").val())) {
+                $("#ucase").removeClass("glyphicon-remove");
+                $("#ucase").addClass("glyphicon-ok");
+                $("#ucase").css("color", "#00A41E");
+                
+            } else {
+                $("#ucase").removeClass("glyphicon-ok");
+                $("#ucase").addClass("glyphicon-remove");
+                $("#ucase").css("color", "#FF0004");
+                Count = Count + 1;
+            }
+
+            if (lcase.test($("#RegPASSWORD").val())) {
+                $("#lcase").removeClass("glyphicon-remove");
+                $("#lcase").addClass("glyphicon-ok");
+                $("#lcase").css("color", "#00A41E");
+                
+            } else {
+                $("#lcase").removeClass("glyphicon-ok");
+                $("#lcase").addClass("glyphicon-remove");
+                $("#lcase").css("color", "#FF0004");
+                Count = Count + 1;
+            }
+
+            if (num.test($("#RegPASSWORD").val())) {
+                $("#num").removeClass("glyphicon-remove");
+                $("#num").addClass("glyphicon-ok");
+                $("#num").css("color", "#00A41E");
+               
+            } else {
+                $("#num").removeClass("glyphicon-ok");
+                $("#num").addClass("glyphicon-remove");
+                $("#num").css("color", "#FF0004");
+                Count = Count + 1;
+            }
+
+            if (Count > 0) {
+                //return false;
+                ErrorMsg="Invalid Password";
+            }
+            else
+            {
+                ErrorMsg="";
+            }
+
+            
+        });
+
+        $("#ConfirmPasswd").keyup(function () {
+
+        
+            if ($("#RegPASSWORD").val() == $("#ConfirmPasswd").val()) {
+                $("#pwmatch").removeClass("glyphicon-remove");
+                $("#pwmatch").addClass("glyphicon-ok");
+                $("#pwmatch").css("color", "#00A41E");
+            } else {
+                $("#pwmatch").removeClass("glyphicon-ok");
+                $("#pwmatch").addClass("glyphicon-remove");
+                $("#pwmatch").css("color", "#FF0004");
+                Count = Count + 1;
+            }
+
+          
+        });
+    </script>
+    @*<script src="~/Script/js/login.js"></script>*@
+    @*<script type="text/javascript">
+                (function ($) {
+                    window.addEventListener('message', receiveMessage, false);
+                    function receiveMessage(evt) {
+                        if (evt.origin !== 'http://bootsnipp.com') return;
+
+                        if ((evt.data != undefined) && (evt.data) && (typeof evt.data === "number"))
+                            if (evt.data >= 500) {
+                                $('#playground-container').css('height', evt.data + 30 + 'px');
+                            }
+                    }
+
+                    var htmleditor = ace.edit("editor-html");
+                    var jseditor = ace.edit("editor-js");
+                    var csseditor = ace.edit("editor-css");
+
+                    $('#theme_chooser').change(function () {
+                        whichCSS = $(this).val();
+                        document.getElementById('snippet-preview').contentWindow.changeCSS
+
+        (whichCSS);
+                    });
+
+                    function setEditorOptions(editor, type) {
+                        editor.setTheme("ace/theme/clouds");
+                        editor.setHighlightActiveLine(false);
+                        editor.setReadOnly(true);
+                        editor.getSession().setMode("ace/mode/" + type);
+                    };
+
+                    setEditorOptions(htmleditor, 'html');
+                    setEditorOptions(jseditor, 'javascript');
+                    setEditorOptions(csseditor, 'css');
+
+                    function markActive(el) {
+                        $(el).siblings().removeClass('active');
+                        $(el).addClass('active');
+                    }
+
+                    $('#show-html').click(function (e) {
+                        e.preventDefault();
+                        $('#editor-html').show().siblings().hide();
+                        markActive(this);
+                        $('#preview-container').hide();
+                        htmleditor.resize();
+                    });
+
+                    $('#show-js').click(function (e) {
+                        e.preventDefault();
+                        $('#editor-js').show().siblings().hide();
+                        $('#preview-container').hide();
+                        markActive(this);
+                        jseditor.resize();
+                    });
+
+                    $('#show-css').click(function (e) {
+                        e.preventDefault();
+                        $('#editor-css').show().siblings().hide();
+                        $('#preview-container').hide();
+                        markActive(this);
+                        csseditor.resize();
+                    });
+
+                    $('#show-preview').click(function (e) {
+                        e.preventDefault();
+                        $('#preview-container').show();
+                        $('.playground-editor').hide();
+                        markActive(this);
+                    });
+
+
+                })(jQuery);
+                </script>*@
+
+
+</body>
+</html>

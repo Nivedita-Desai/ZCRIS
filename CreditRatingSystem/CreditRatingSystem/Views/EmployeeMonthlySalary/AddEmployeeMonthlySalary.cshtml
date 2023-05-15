@@ -1,0 +1,943 @@
+﻿@model CreditRatingModel.Model.EmployeeMonthlySalary
+
+@{
+    @Html.AntiForgeryToken()
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<br />
+<link href="@Url.Content("~/CSS/bootstrap-3.3.2.min.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/CSS/bootstrap-multiselect.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/CSS/prettify.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/bootstrap-3.3.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/prettify.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/bootstrap-multiselect.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/js/myjquery.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+
+        document.getElementById('grid').style.display = "none"; //hide grid
+        document.getElementById('gridComp').style.display = "none"; //hide grid Companywise on 2nd tab
+
+        var EMName = '@(ViewBag.EMName)';
+
+        $('#txtUser').val(EMName);
+
+        var strFrmName = '@TempData["strFormName"]';
+
+        var intuid = '@(ViewBag.Uid)';                                                                 //User Id
+        var intEmployer_Id = '@(ViewBag.Employer_Id)';                                 //Employer Id
+        var intEmp_Div_Id = '@(ViewBag.Employer_Div_Id)';                          //Employer Division Id
+        var intEmp_Br_Id = '@(ViewBag.Employer_Branch_Id)';                    //Employer Branch Id
+        var strEmployerName = '@(ViewBag.strEmployerName)';                //Employer Name
+        var strEmployerDivName = '@(ViewBag.strEmployerDivName)';     //Employer Division Name
+        var strEmployerBrName = '@(ViewBag.strEmployerBrName)';       //Employer Branch Name        
+        var intMonEmpSalId = '@(ViewBag.MonEmpSalId)';                      //MonthlySalaryHead Table Primary Key
+        var intCompMonDistId = '@(ViewBag.CompMonDistId)';             //CompMonthlyDistributionHead Table Primary Key
+
+        $('#txtCompName').val(strEmployerName);
+        $('#txtDivision').val(strEmployerDivName);
+        $('#txtBranch').val(strEmployerBrName);
+
+        if (strFrmName == "SDApp") {    //Approved from Employer Admin
+            $('#divApprove').show();        //show Approval Button div
+            $("#SecondTab").show();      //show second tab                    
+            $("#lblMonSal").show();
+            $("#DivDistEmpName").show();
+            $("#divSave2").show();
+
+            $("#divSave").hide();           //hide the Save button div used in salary Deduction
+            $("#dtpSalMonth").hide();
+            $("#DivCRSEmpName").hide();
+            $("#divApprove2").hide();
+
+            GetCompDistData("A", 0);
+        }
+
+        else if (strFrmName == "SD") { //Approved from Employer HR
+            $("#SecondTab").hide();
+            $("#lblMonSal").hide();
+
+            $("#dtpSalMonth").show();
+            $("#divSave2").show();
+            $("#divSave").show();
+        }
+
+        else if (strFrmName == "CRS") {     //Approved from CRS            
+            $("#SecondTab").show();      //show second tab                    
+            $("#lblMonSal").show();
+            $("#DivCRSEmpName").show();
+            $("#divApprove2").show();
+
+            $("#divSave").hide();           //hide the Save button div used in salary Deduction
+            $("#dtpSalMonth").hide();
+            $("#DivDistEmpName").hide();
+            $("#divSave2").hide();
+
+            GetCompDistData("C", intMonEmpSalId);
+            GetCompDistribution(intCompMonDistId);
+        }
+
+        $("#dtpSalMonth").change(function () {
+            debugger;
+                       
+            var Salary_Month = $('#dtpSalMonth').val();
+
+            var today = new Date();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            today = yyyy + '-' + mm;
+
+            debugger;
+            if (Salary_Month > today) {
+                alert("Please Save Current Month Salary");
+                $('#dtpSalMonth').val('');
+                $("#grid").empty();
+                $('#txtTotEMI').val('');
+                return false;
+            }
+            var url = '@Url.Action("GetEmpMonthlySalary", "EmployeeMonthlySalary")';
+
+            url = url + '?user_id=' + intuid + '&Employer_Id=' + intEmployer_Id + '&Employer_Type_Id=' + intEmp_Div_Id + '&EmployerBranch_Id=' + intEmp_Br_Id + '&Salary_Month=' + Salary_Month;
+
+            $.post(url, function (data) {
+                $("#grid").empty();
+                document.getElementById('grid').style.display = "block";    //display grid
+                $('#lblTotEMI').show();   //display Total EMI Amount div for lable
+                $('#TotEMI').show();   //display Total EMI Amount div for textbox
+                var intCount = data.length;
+
+                var tableData = '<table id="tblSal" class="table" style="font-size:14px;"><thead><tr><th>NID</th><th>Emp Id</th><th>Employee Name</th><th>Department</th><th style="text-align:left;">Salary</th><th style="text-align:left;">Slab</th><th style="text-align:left;">EMI Amount</th><th style="text-align:left;">Tot Loan Amt</th><th style="text-align:left;">Tot Bal Amt</th><th>Status</th></tr></thead>';
+
+                var tablerow = '';
+                var totalamt = 0;
+                var totalrow = '';
+
+                if (intCount > 0) {
+                    for (var i = 0; i < intCount; i++) {
+                        debugger;
+                        tablerow += '<tr><td width="50px"> <input style="border: none; width: 120px" class ="tbl1" readonly="true" id="N' + [i] + '" value="' + data[i].NID + '"></td><td width="20px"> <input style="border: none; width: 100px " readonly="true" id="N' + [i] + '_ECId" value="' + data[i].CEmployeeId + '"></td><td width="150px"> <input style="border: none; width: 250px; rows:2; cols:100; wrap:hard; " readonly="true" value="' + data[i].EmpName + '"></td><td width="50px"> <input style="border: none; width: 150px" readonly="true" value="' + data[i].DeptName + '"></td><td width="50px"> <input style="border: none; width: 120px ;" readonly="true" id="N' + [i] + '_Sal" value=' + data[i].Salary + '></td><td width="50px"> <input style="border: none; width: 120px;" readonly="true" value="' + data[i].Slab + '"></td><td width="50px"> <input style="border: none; width: 120px;" readonly="true" id="N' + [i] + '_EAMT" value=' + data[i].EMIAmount + '></td><td width="50px"> <input style="border: none; width: 150px;" readonly="true" id="N' + [i] + '_TotAmt" value=' + data[i].TotalLoanAmount + '></td><td width="50px"> <input style="border: none; width: 150px;" readonly="true" id="N' + [i] + '_TotBal" value=' + data[i].TotalBalanceAmount + '></td><td width="50px">' + data[i].Status + '</td><td width="50px"> <input type="hidden" readonly="true" id="N' + [i] + '_DId" value=' + data[i].DepartmentId + '></td><td width="50px"> <input type="hidden" readonly="true" id="N' + [i] + '_Slab" value=' + data[i].SlabId + '></td><td width="20px"> <input type="hidden" style="border: none;" readonly="true" id="N' + [i] + '_EId" value=' + data[i].EmployeeId + '></td></tr>';
+                        totalamt += data[i].EMIAmount
+                    }
+                }
+
+                tableData += tablerow;
+                totalamt = parseFloat(totalamt);
+                var totamt= totalamt .toFixed(2);
+                $('#txtTotEMI').val(totamt);
+
+                tableData += '</table>';
+                $("#grid").html(tableData);
+            });
+        });
+
+        $('#btnSave').click(function () {
+            debugger;
+                        
+            var Salary_Month = $('#dtpSalMonth').val();
+
+            var today = new Date();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            today = yyyy + '-' + mm;
+
+            var SalMon = $('#dtpSalMonth').val()
+
+            if (SalMon == '') {
+                alert("Please Select Month of Salary");
+                return false;
+            }
+
+            if (Salary_Month > today) {
+                alert("Please Save Current Month Salary");
+                return false;
+            }
+            else {
+                debugger;
+                $.ajax({
+
+                    url: '/EmployeeMonthlySalary/CheckRecordExists/',
+                    type: 'POST',
+                    data: { UserId: intuid, EmployerId: intEmployer_Id, EmployerTypeId: intEmp_Div_Id, EmployerBranchId: intEmp_Br_Id, SalaryMonth: Salary_Month },
+                    success: function (result) {
+                        var a = JSON.stringify(result);
+                        debugger;
+                        if (a == "true") {
+                            alert('Please Note Record Already Exists.');
+                        }
+                        else {
+                            var Data1 = new Array;
+                            var Data2 = new Array;
+
+                            var i = 0, id_val = 0, id_EId = 0, id_Sal = 0, id_EAMT = 0, id_TotAmt = 0, id_TotBal = 0, id_DId = 0, id_Slab = 0;
+
+                            var P =
+                           {
+                               UserId: intuid,
+                               EmployerId: intEmployer_Id,
+                               EmployerTypeId: intEmp_Div_Id,
+                               EmployerBranchId: intEmp_Br_Id,
+                               SalaryMonth: Salary_Month
+                           }
+
+                            Data2[i] = P;
+
+                            $('.tbl1').each(function () {
+                                debugger;
+
+                                id = $(this).attr('id');
+
+                                id_val = $("#" + id).val();
+                                id_EId = $("#" + id + "_EId").val();
+                                id_Sal = $("#" + id + "_Sal").val();
+                                id_EAMT = $("#" + id + "_EAMT").val();
+                                id_TotAmt = $("#" + id + "_TotAmt").val();
+                                id_TotBal = $("#" + id + "_TotBal").val();
+                                id_DId = $("#" + id + "_DId").val();
+                                id_Slab = $("#" + id + "_Slab").val();
+
+                                var c =
+                                    {
+                                        NID: id_val,
+                                        EmployeeId: id_EId,
+                                        Salary: id_Sal,
+                                        EMIAmount: id_EAMT,
+                                        TotalLoanAmount: id_TotAmt,
+                                        TotalBalanceAmount: id_TotBal,
+                                        DepartmentId: id_DId,
+                                        SlabId: id_Slab,
+                                    }
+                                Data1[i] = c;
+                                i++;
+                            });
+
+                            debugger;
+
+                            var Details = JSON.stringify(Data1);
+                            var HeadDetails = JSON.stringify(Data2);
+
+                            var url = '@Url.Action("SaveData", "EmployeeMonthlySalary")';
+                            var url_index = '@Url.Action("AddEmployeeMonthlySalary", "EmployeeMonthlySalary")';
+                            $.ajax({
+                                url: url,
+                                data: { SaveMonSalData: Details, SaveHeadSalData: HeadDetails },
+                                dataType: 'json',
+                                type: 'POST',
+                                success: function (data) {
+                                    alert(data.msg);
+                                    //alert("Data Saved Successfully");
+                                    window.location.href = url_index;
+                                },
+                                error: function (data) {
+                                    alert("Data Saved Falied");
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
+
+        //*******************************Second Tab **********************************
+
+        $("#btnApprove").click(function () {
+            debugger;
+
+            var selectedTab = currentTab;
+            var SecTab = selectedTab + 1;
+
+            var tabs = $('#tabs').tabs();
+            var curlen = $('#tabs').tabs("length");
+            currentTab = currentTab == (curlen - 1) ? currentTab : (currentTab + 1);
+            if (currentTab == (curlen - 1)) {
+
+                $("#btnSave2").show();
+
+                tabs.tabs('enable', SecTab);
+                tabs.tabs('option', 'active', SecTab);
+                tabs.tabs('option', 'selected', SecTab);
+
+                FillAccName(intEmployer_Id)
+                GetCompDistribution(0)
+
+            }
+            //var Data1 = new Array;
+            //var i = 0;
+
+            //$('.tblApp').each(function () {
+            //    debugger;
+            //    id = $(this).attr('id');
+            //    id_val = $("#" + id).val();
+
+            //    id_MonSalTranId = $("#" + id + "_MonSalTranId").val();
+
+            //    var P =
+            //    {
+            //        Id: id_MonSalTranId
+            //    }
+            //    Data1[i] = P;
+            //    i++;
+            //});
+
+            //if (Data1 == '') {
+            //    alert("Sorry, No Data for Approval !!")
+            //    return false;
+            //}
+
+@*            var Details = JSON.stringify(Data1);
+            var url = '@Url.Action("SaveApprovalData", "EmployeeMonthlySalary")';*@
+            //$.ajax({
+            //    url: url,
+            //    data: { SaveAppSalData: Details },
+            //    dataType: 'json',
+            //    type: 'POST',
+            //    success: function (data) {
+            //        //alert("Data Saved Successfully");
+            //        //window.location.href = url_index;
+
+            //        var selectedTab = currentTab;
+            //        var b = selectedTab + 1;
+
+            //        var tabs = $('#tabs').tabs();
+            //        var c = $('#tabs').tabs("length");
+            //        currentTab = currentTab == (c - 1) ? currentTab : (currentTab + 1);
+            //        if (currentTab == (c - 1)) {
+
+            //            $("#btnSave2").show();
+
+            //            tabs.tabs('enable', b);
+            //            tabs.tabs('option', 'active', b);
+            //            tabs.tabs('option', 'selected', b);
+
+            //            FillAccName(intEmployer_Id)
+            //            GetCompDistribution(0)
+            //        }
+            //        else {
+            //            $("#btnApprove").show();
+            //            $("#btnSave2").show();
+            //            tabs.tabs('enable', b);
+            //            tabs.tabs('option', 'active', b);
+            //            tabs.tabs('option', 'selected', b);
+
+            //            var c = tabs.find("ul li").size();
+            //            for (var i = 0; i < c; i++) {
+            //                tabs.tabs('disable', i);
+            //            }
+            //        }
+            //    },
+            //    error: function (data) {
+            //        alert("Data Approval Falied");
+            //    }
+            //});
+
+            //return false;
+        });
+
+        ///Saving in table CompMonthlydistributoionHead & Child***Start
+        $('#btnSave2').click(function () {
+            debugger;
+
+          //Approve the records from Monthly Salary from first Tab
+            var k=0;
+            var DataApp = new Array;
+
+            $('.tblApp').each(function () {
+                debugger;
+                id = $(this).attr('id');
+                id_val = $("#" + id).val();
+
+                id_MonSalTranId = $("#" + id + "_MonSalTranId").val();
+
+                var A =
+                {
+                    Id: id_MonSalTranId
+                }
+                DataApp[k] = A;
+                k++;
+            });
+
+                      
+            var Employer_Acc_id = $('#txtAccName').val();
+
+            var SalMon = $('#lblMonSal').val()
+
+            var Data1 = new Array;
+            var Data2 = new Array;
+
+            var i = 0, j = 0, id_val = 0, id_DistTypeId = 0, id_EmpAccId = 0, id_Per = 0, id_Amt = 0, id_AreaId = 0, id_BankId = 0, id_BranchId = 0, id_DistAccId = 0;
+
+            var P =
+           {
+               EmployerId: intEmployer_Id,
+               EmpDivisionid: intEmp_Div_Id,
+               EmpBranchId: intEmp_Br_Id,
+               DistMonth: SalMon
+           }
+            Data2[i] = P;
+            i++;
+
+            $('.tbl2').each(function () {
+                debugger;
+
+                id = $(this).attr('id');
+
+                id_val = $("#" + id).val();
+                id_DistTypeId = $("#" + id + "_DistTypeId").val();
+                id_EmpAccId = Employer_Acc_id;
+                id_Per = $("#" + id + "_Per").val();
+                id_Amt = $("#" + id + "_Amt").val();
+                id_AreaId = $("#" + id + "_drpArea").val();
+                id_BankId = $("#" + id + "_drpBank").val();
+                id_BranchId = $("#" + id + "_drpBranch").val();
+                id_DistAccId = $("#" + id + "_drpAcc").val();
+
+                var c =
+                    {
+                        DistTypeId: id_DistTypeId,
+                        EmpAccId: id_EmpAccId,
+                        Percentage: id_Per,
+                        Amount: id_Amt,
+                        AreaId: id_AreaId,
+                        BankId: id_BankId,
+                        BranchId: id_BranchId,
+                        AccId: id_DistAccId,
+                    }
+                Data1[j] = c;
+                j++;
+            });
+
+            debugger;
+
+            var Details = JSON.stringify(Data1);
+            var HeadDetails = JSON.stringify(Data2);
+            var AppDetails = JSON.stringify(DataApp);
+
+            var url = '@Url.Action("SaveDistData", "EmployeeMonthlySalary")';
+           @* var url_index = '@Url.Action("AddEmployeeMonthlySalary", "EmployeeMonthlySalary")';*@
+
+            $.ajax({
+                url: url,
+                data: { SaveDistSalHeadData: HeadDetails, SaveDistSalChildData: Details, SaveAppSalData: AppDetails },
+                dataType: 'json',
+                type: 'POST',
+                success: function (data) {
+                    alert(data.msg);
+                    //alert("Data Saved Successfully");
+                    //window.location.href = url_index;
+                    FieldsDisabled();
+                },
+                error: function (data) {
+                    alert("Data Saved Falied");
+                }
+            });
+        });
+        ///****end*****
+        function FieldsDisabled()
+        {
+            $('#btnSave2').prop('disabled', true);
+            $('#btnApprove').prop('disabled', true);
+            $('#txtAccName').prop('disabled', true);
+            $('#gridComp').children().prop('display','none');
+
+            $("#gridComp").find("*").prop("disabled", true);          
+      
+        }
+
+        function GetCompDistData(strType, intid)     //For Salary Approval from Employer  Admin
+        {
+            debugger;
+            
+            var today = new Date();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            today = yyyy + '-' + mm + '-01';
+            var strdate = mm + '-' + yyyy;
+
+            $("#lblMonSal").val(strdate);
+
+            debugger;
+            var url = '@Url.Action("GetDistEmpMonthlySalary", "EmployeeMonthlySalary")';
+
+            url = url + '?user_id=' + intuid + '&Employer_Id=' + intEmployer_Id + '&Employer_Type_Id=' + intEmp_Div_Id + '&EmployerBranch_Id=' + intEmp_Br_Id + '&Salary_Month=' + today + '&intid=' + intid + '&Type=' + strType;
+
+            $.post(url, function (data) {
+                $("#grid").empty();
+                document.getElementById('grid').style.display = "block";    //display grid
+                $('#lblTotEMI').show();   //display Total EMI Amount div for lable
+                $('#TotEMI').show();   //display Total EMI Amount div for textbox
+                var intCount = data.length;
+
+                var tableData = '<table id="tblSal" class="table" style="font-size:14px;"><thead><tr><th>NID</th><th>Emp Id</th><th>Employee Name</th><th>Department</th><th style="text-align:left;">Salary</th><th style="text-align:left;">Slab</th><th style="text-align:left;">EMI Amount</th><th style="text-align:left;">Tot Loan Amt</th><th style="text-align:left;">Tot Bal Amt</th><th>Status</th></tr></thead>';
+
+                var tablerow = '';
+                var totalamt = 0;
+                var totalrow = '';
+
+                if (intCount > 0) {
+                    for (var i = 0; i < intCount; i++) {
+                        debugger;
+                        tablerow += '<tr><td width="50px"> <input style="border: none; width: 120px" class ="tblApp" readonly="true" id="N' + [i] + '" value="' + data[i].NID + '"></td><td width="20px"> <input style="border: none; width: 100px " readonly="true" id="N' + [i] + '_ECId" value="' + data[i].CEmployeeId + '"></td><td width="150px"> <input style="border: none; width: 250px; rows:2; cols:100; wrap:hard; " readonly="true" value="' + data[i].EmpName + '"></td><td width="50px"> <input style="border: none; width: 150px" readonly="true" value="' + data[i].DeptName + '"></td><td width="50px"> <input style="border: none; width: 120px ;" readonly="true" id="N' + [i] + '_Sal" value=' + data[i].Salary + '></td><td width="50px"> <input style="border: none; width: 120px;" readonly="true" value="' + data[i].Slab + '"></td><td width="50px"> <input style="border: none; width: 120px;" readonly="true" id="N' + [i] + '_EAMT" value=' + data[i].EMIAmount + '></td><td width="50px"> <input style="border: none; width: 150px;" readonly="true" id="N' + [i] + '_TotAmt" value=' + data[i].TotalLoanAmount + '></td><td width="50px"> <input style="border: none; width: 150px;" readonly="true" id="N' + [i] + '_TotBal" value=' + data[i].TotalBalanceAmount + '></td><td width="50px">' + data[i].Status + '</td><td width="50px"> <input type="hidden" readonly="true" id="N' + [i] + '_DId" value=' + data[i].DepartmentId + '></td><td width="50px"> <input type="hidden" readonly="true" id="N' + [i] + '_Slab" value=' + data[i].SlabId + '></td><td width="20px"> <input type="hidden" style="border: none;" readonly="true" id="N' + [i] + '_EId" value=' + data[i].EmployeeId + '> </td><td width="20px"> <input type="hidden" style="border: none;" readonly="true" id="N' + [i] + '_MonSalTranId" value=' + data[i].MonSalTranId + '> </td></tr>';
+                        totalamt += data[i].EMIAmount
+                    }
+                }
+
+                tableData += tablerow;
+                
+                totalamt = parseFloat(totalamt);
+                var totamt = totalamt.toFixed(2);
+                $('#txtTotEMI').val(totamt);
+
+                tableData += '</table>';
+                $("#grid").html(tableData);
+            });
+        }
+
+        function GetCompDistribution(CDId) {    //Second Tab Data for distributopn
+            $("#gridComp").empty();
+            debugger;
+            var url = '@Url.Action("GetCompMonthlySalary", "EmployeeMonthlySalary")';
+            url = url + '?CompDistId=' + CDId;
+
+            $.post(url, {}, function (data) {
+                debugger;
+                var intCount = data.length;
+                document.getElementById('gridComp').style.display = "block";    //display grid
+
+                //var tableData = '<table id="tblComp" class="table" style="font-size:14px"><thead><tr><th>Dist Type</th><th>%</th><th>Amount</th><th>Area</th><th>Bank Name</th><th>Branch Name</th><th>Account Name</th><th>A/C No</th><th>Status</th></tr></thead>';
+
+                var tableData = '<table id="tblComp" class="table" style="font-size:14px"><thead><tr><th>Bank Name</th><th>Branch Name</th><th>A/C No</th><th>%</th><th>Amount</th><th>Status</th></tr></thead>';
+
+                var tablerow = '';
+                if (intCount > 0) {
+                    for (var i = 0; i < intCount; i++) {
+                        var CalcAmt = ($('#txtTotEMI').val() * data[i].Percentage) / 100;
+                        CalcAmt = parseFloat(CalcAmt);
+                        var CalAmt = CalcAmt.toFixed(2);
+                        
+                        //if (strFrmName == "CRS")
+                        //{
+                        debugger;
+                            
+                        $('#txtEAccName').val(data[i].EmpAccName);
+                        EmployerAccountInfo(data[i].EmpAccId);
+
+                        tablerow = tablerow + '<tr>';
+                        tablerow = tablerow + '<td width="50px"> <input style="border: none; width: 250px" class ="tbl2" readonly="true" id="C' + [i] + '" value="' + data[i].BankName + '"></td>';
+                        tablerow = tablerow + '<td width="50px"> <input style="border: none; width: 250px" readonly="true" id="C' + [i] + '_drpBranchName" value="' + data[i].BranchName + '"></td>';
+                        tablerow = tablerow + '<td width="50px"> <input style="border: none; width: 250px" readonly="true" id="C' + [i] + '_AccNo" value="' + data[i].AccountNo + '"></td>';
+                        tablerow = tablerow + '<td width="20px"> <input style="border: none; width: 100px " readonly="true" id="C' + [i] + '_Per" value="' + data[i].Percentage + '"></td>';
+                        tablerow = tablerow + '<td width="150px"> <input style="border: none; width: 100px " readonly="true" id="C' + [i] + '_Amt" value="' + CalAmt + '"></td>';
+                        tablerow = tablerow + '<td width="50px">' + data[i].Status + '</td>';
+                        tablerow = tablerow + '<td width="50px"> <input  type="hidden" readonly="true" id="C' + [i] + '_DistTypeId" value=' + data[i].DistributionTypeId + '></td><td width="50px"></td>';
+                        tablerow = tablerow + '<td width="50px"> <input  type="hidden" readonly="true" id="C' + [i] + '_drpAcc" value=' + data[i].DistributionAccId + '></td><td width="50px"></td>';
+                        tablerow = tablerow + '<td width="50px"> <input  type="hidden" readonly="true" id="C' + [i] + '_drpBank" value=' + data[i].FinancialInstitutionId + '></td><td width="50px"></td>';
+                        tablerow = tablerow + '<td width="50px"> <input  type="hidden" readonly="true" id="C' + [i] + '_drpBranch" value=' + data[i].FinancialInstitutionBranchId + '></td><td width="50px"></td>';
+                        tablerow = tablerow + '<td width="50px"> <input  type="hidden" readonly="true" id="C' + [i] + '_CompMonDistChildId" value=' + data[i].CompMonDistChildId + '></td><td width="50px"></td>';
+                        tablerow = tablerow + '</tr>';
+                        
+                            //tablerow += '<tr><td width="50px"> <input style="border: none; width: 120px" class ="tbl3" readonly="true" id="C' + [i] + '" value="' + data[i].DistType + '"></td><td width="20px"> <input style="border: none; width: 100px " readonly="true" id="C' + [i] + '_Per" value="' + data[i].Percentage + '"></td><td width="150px"> <input style="border: none; width: 100px " readonly="true" id="C' + [i] + '_Amt" value="' + CalAmt + '"></td><td width="500px"><input style="border: none; width: 100px " readonly="true" id="C' + [i] + '_drpArea" value="' + data[i].AreaName + '"><td width="500px"><input style="border: none; width: 200px " readonly="true" id="C' + [i] + '_drpBank" value="' + data[i].BankName + '"></td><td width="500px"><input style="border: none; width: 200px " readonly="true" id="C' + [i] + '_drpBranch" value="' + data[i].BranchName + '"></td><td width="500px"><input style="border: none; width: 100px " readonly="true" id="C' + [i] + '_drpAcc" value="' + data[i].AccName + '"></td><td width="50px"> <input style="border: none; width: 120px" readonly="true" id="C' + [i] + '_AccNo" value="' + data[i].AccountNo + '"></td><td width="50px">' + data[i].Status + '</td><td width="50px"> <input type="hidden" readonly="true" id="C' + [i] + '_DistTypeId" value=' + data[i].DistTypeId + '></td><td width="50px"></td></tr>';                           
+                        //}
+                        //else {
+                            //tablerow += '<tr><td width="50px"> <input style="border: none; width: 120px" class ="tbl2" readonly="true" id="C' + [i] + '" value="' + data[i].DistType + '"></td><td width="20px"> <input style="border: none; width: 100px " readonly="true" id="C' + [i] + '_Per" value="' + data[i].Percentage + '"></td><td width="150px"> <input style="border: none; width: 100px " readonly="true" id="C' + [i] + '_Amt" value="' + CalAmt + '"></td><td width="500px"><select id="C' + [i] + '_drpArea"  class="form-control dropdown" style="width: 250px " onchange="FillBank(this,' + [i] + ')"><td width="500px"><select id="C' + [i] + '_drpBank"  class="form-control dropdown" style="width: 250px " onchange="FillBranch(this,' + [i] + ')"></select></td><td width="500px"><select id="C' + [i] + '_drpBranch"  style="width: 250px " class="form-control dropdown"  onchange="FillDistAccName(this,' + [i] + ')"></select></td><td width="500px"><select id="C' + [i] + '_drpAcc" class="form-control dropdown"  onchange="FillDistAccNo(this,' + [i] + ')" style="width: 250px "></select></td><td width="50px"> <input style="border: none; width: 120px" readonly="true" id="C' + [i] + '_AccNo" value="' + data[i].AccountNo + '"></td><td width="50px">' + data[i].Status + '</td><td width="50px"> <input type="hidden" readonly="true" id="C' + [i] + '_DistTypeId" value=' + data[i].DistTypeId + '></td><td width="50px"></td></tr>';
+                        //}
+                    }
+                }
+                tableData += tablerow;
+                tableData += '</table>';
+                $("#gridComp").html(tableData);
+                //if (strFrmName != "CRS") {
+                //    FillArea(intCount);
+                //}
+            });
+        }
+
+        //Fill Area
+       @* function FillArea(id) {
+            debugger;
+
+            var url = '@Url.Action("FillData", "EmployeeMonthlySalary")';
+            $.post(url, { strType: 'A', ArId: 0, BId: 0, BrId: 0, DistTypeId: 0 }, function (data) {
+                debugger;
+                for (var j = 0; j < id; j++) {
+                    $("#C" + j + "_drpArea").empty().append($("<option></option>").val(-1).html('Select'));
+                    $.each(data, function (Key, item) {
+                        debugger;
+                        $("#C" + j + "_drpArea").append($("<option></option>").val(item.Id).html(item.Name));
+                    });
+                }
+            });
+        };*@
+
+        //Fill Employer Account Name
+        function FillAccName(id) {
+            debugger;
+
+            var url = '@Url.Action("FillData", "EmployeeMonthlySalary")';
+            $.post(url, { strType: 'E', ArId: id, BId: 0, BrId: 0, DistTypeId: 0 }, function (data) {
+                debugger;
+
+                $("#txtAccName").empty().append($("<option></option>").val(-1).html('Select'));
+                $.each(data, function (Key, item) {
+                    debugger;
+                    $("#txtAccName").append($("<option></option>").val(item.Id).html(item.Name));
+                });
+            });
+        };
+
+        //************ Saving for Apporval from CRS *************
+        $('#btnApprove2').click(function () {
+            debugger;
+
+            var Data1 = new Array;
+
+            var i = 0, id_val = 0, id_EMI = 0, intCompMonDistChildId = 0, intDistTypeId = 0;
+
+            $('.tbl2').each(function ()
+            {
+                debugger;
+                id = $(this).attr('id');                
+                intCompMonDistChildId = $("#" + id + "_CompMonDistChildId").val();
+                intDistTypeId = $("#" + id + "_DistTypeId").val();
+            });
+
+            $('.tblApp').each(function () {
+                id = $(this).attr('id');
+                id_val = $("#" + id).val();
+                id_EMI = $("#" + id + "_EAMT").val();
+                var P =
+                {
+                    NID: id_val,
+                    EMIAmount: id_EMI,
+                    CompMonId: intCompMonDistId,
+                    CompMonDistChildId: intCompMonDistChildId,
+                    DistTypeId: intDistTypeId
+                }
+
+                Data1[i] = P;
+                i ++;
+            });
+
+            debugger;
+
+            var Details = JSON.stringify(Data1);
+
+            var url = '@Url.Action("SaveCRSAppData", "EmployeeMonthlySalary")';
+            var url_index = '@Url.Action("ViewCRSAdminApproval", "EmployeeMonthlySalary")';
+
+            $.ajax({
+                url: url,
+                data: { SaveCRSAppData: Details },
+                dataType: 'json',
+                type: 'POST',
+                success: function (data) {
+                    alert(data.msg);
+                    //alert("Data Saved Successfully");
+                    window.location.href = url_index;          
+                    //$('#btnApprove2').prop('disabled', true);
+                },
+                error: function (data) {
+                    alert("Data Saved Falied");
+                }
+            });
+        });
+        // ***** end***********
+    });
+</script>
+
+
+<div class="row" style="height: 50px">
+</div>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">@(ViewBag.strFrmCaption)</label>
+        </div>
+        <div class="panel-body">
+            <div id="tabs">
+                <ul>
+                    <li>
+                        <a href="#tabs-1" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Employee Monthly Salary</a>
+                    </li>
+                    <li id="SecondTab">
+                        <a href="#tabs-2" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Company wise Monthly Salary</a>
+                    </li>
+                </ul>
+                @* ***************************************************first tab Start**************************************************** *@
+                <div id="tabs-1" class="tab-pane">
+                    <br />
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblempSal" class="filter-col control-label label2">Employee Monthly Salary</label>
+                        </legend>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblComp" class="filter-col control-label label2">Employer Name</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.EmployerId, new { @class = "form-control myclass", @readonly = "true", @id = "txtCompName" })
+                                    @Html.HiddenFor(modelItem => modelItem.Id, new { @id = "PkId" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblDiv" class="filter-col control-label label2">Division</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.EmployerTypeId, new { @class = "form-control myclass", @readonly = "true", @id = "txtDivision" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblBranch" class="filter-col control-label label2">Branch</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.EmployerBranchId, new { @class = "form-control myclass", @readonly = "true", @id = "txtBranch" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblUser" class="filter-col control-label label2">User Name</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.UserId, new { @class = "form-control myclass", @readonly = "true", @id = "txtUser" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group" id="DivdtpSalMonth">
+                                    <label id="lblMonth" class="filter-col control-label label1">Month of Salary</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.SalaryMonth, new { @type = "month", @id = "dtpSalMonth" })
+                                    @Html.TextBoxFor(modelItem => modelItem.SalaryMonth, new { @class = "form-control myclass", @readonly = "true", @id = "lblMonSal" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="grid" class="panel panel-primary" style="overflow: auto; min-width: 900px"></div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                            </div>
+                            <div class="col-xs-5">
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="form-group" id="lblTotEMI" hidden="hidden">
+                                    <label id="lblTotEMIAmt" class="filter-col control-label label2">Total EMI Amount</label>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-2">
+                                <div class="form-group" id="TotEMI" hidden="hidden">
+                                    @Html.TextBoxFor(modelItem => modelItem.TotEMIAmount, new { @class = "form-control myclass", @readonly = "true", @id = "txtTotEMI", @style = "text-align:right" })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row" id="divSave" hidden="hidden">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="divApprove" hidden="hidden">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnApprove" value="Approve" />
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* ***************************************************first tab end**************************************************** *@
+                @* ***************************************************Second tab Start**************************************************** *@
+                <div id="tabs-2" class="tab-pane">
+                    <br />
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblEmpAcc" class="filter-col control-label label2">Employer Account Details</label>
+                        </legend>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group" id="DivDistEmpName" hidden="hidden">
+                                    <label id="lblAcc" class="filter-col control-label label2">Account Name</label>
+                                    <select id="txtAccName" class="form-control dropdown" style="width: 250px"></select>
+                                </div>
+                                <div class="form-group" id="DivCRSEmpName" hidden="hidden">
+                                    <label id="lblCRSAcc" class="filter-col control-label label2">Account Name</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.EmpAccId, new { @class = "form-control myclass", @readonly = "true", @id = "txtEAccName" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblBank" class="filter-col control-label label2">Bank Name</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.BankId, new { @class = "form-control myclass", @readonly = "true", @id = "txtBankName" })
+                                    @Html.HiddenFor(modelItem => modelItem.EmpAccId, new { @id = "txtEmpAccNo" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblAccNo" class="filter-col control-label label2">Account No</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.AccountNo, new { @class = "form-control myclass", @readonly = "true", @id = "txtAccNo" })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblDistSal" class="filter-col control-label label2">Monthly Salary Distribution</label>
+                        </legend>
+                        <div id="gridComp" class="panel panel-primary" style="overflow: auto; min-width: 900px"></div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4" id="divSave2" hidden="hidden">
+                            <input type="button" id="btnSave2" value="Save" />
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="divApprove2" hidden="hidden">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnApprove2" value="Approve" />
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @* ***************************************************Second tab end**************************************************** *@
+            </div>
+        </div>
+    </div>
+    <script>
+
+        //Fill Branch
+   @*     function FillBranch(id, intCnt) {
+            debugger;
+            var areaid = $("#C" + intCnt + "_drpArea").val();
+            var bankid = id.value;
+
+            var url = '@Url.Action("FillData", "EmployeeMonthlySalary")';
+
+            $.post(url, { strType: 'R', ArId: areaid, BId: bankid, BrId: 0, DistTypeId: 0 }, function (data) {
+                debugger;
+                $("#C" + intCnt + "_drpBranch").empty().append($("<option></option>").val(-1).html('Select'));
+                $.each(data, function (Key, item) {
+                    debugger;
+                    $("#C" + intCnt + "_drpBranch").append($("<option></option>").val(item.Id).html(item.Name));
+                });
+            });
+        }*@
+
+        //Fill Bank       
+   @*     function FillBank(id, intCnt) {
+            debugger;
+            var areaid = id.value;
+
+            var url = '@Url.Action("FillData", "EmployeeMonthlySalary")';
+
+            $.post(url, { strType: 'B', ArId: areaid, BId: 0, BrId: 0, DistTypeId: 0 }, function (data) {
+                debugger;
+
+                $("#C" + intCnt + "_drpBank").empty().append($("<option></option>").val(-1).html('Select'));
+                $.each(data, function (Key, item) {
+                    debugger;
+                    $("#C" + intCnt + "_drpBank").append($("<option></option>").val(item.Id).html(item.Name));
+                });
+            });
+        }*@
+
+      @*  //fill Account Name
+        function FillDistAccName(id, intCnt) {
+            debugger;
+            var bankid = $("#C" + intCnt + "_drpBank").val();
+            var branchid = id.value;
+            var DistTypeId = $("#C" + intCnt + "_DistTypeId").val();
+
+            var url = '@Url.Action("FillData", "EmployeeMonthlySalary")';
+
+            $.post(url, { strType: 'N', ArId: 0, BId: bankid, BrId: branchid, DistTypeId: DistTypeId }, function (data) {
+                debugger;
+
+                $("#C" + intCnt + "_drpAcc").empty().append($("<option></option>").val(-1).html('Select'));
+                $.each(data, function (Key, item) {
+                    debugger;
+                    $("#C" + intCnt + "_drpAcc").append($("<option></option>").val(item.Id).html(item.Name));
+                });
+            });
+        }*@
+
+        //fill Account No--
+       @* function FillDistAccNo(id, intCnt) {
+            debugger;
+            var acckid = $("#C" + intCnt + "_drpAcc").val();
+            $("#C" + intCnt + "_AccNo").val('');
+
+            var url = '@Url.Action("FillData", "EmployeeMonthlySalary")';
+
+                $.post(url, { strType: 'C', ArId: acckid, BId: 0, BrId: 0, DistTypeId: 0 }, function (data) {
+                    debugger;
+                    $.each(data, function (Key, item) {
+                        $("#C" + intCnt + "_AccNo").val(item.Name);
+                    });
+                });
+            }*@
+
+            $('#txtAccName').change(function () {
+                debugger;
+                EmployerAccountInfo($('#txtAccName').val());
+            });
+
+            function EmployerAccountInfo(EmpAccId) {
+                var EAccId = EmpAccId
+                $.ajax({
+                    url: '/EmployeeMonthlySalary/GetAccountInfo/',
+                    type: 'POST',
+                    data: { EmpAccId: EmpAccId },
+                    success: function (data) {
+                        debugger;
+
+                        if (data != null) {
+                            debugger;
+                            $("#txtBankName").val(data.BankName);
+                            $("#txtAccNo").val(data.AccountNo);
+                        }
+                    }
+                });
+            }
+
+    </script>
+</div>
+
+<script type="text/javascript">
+    var currentTab = 0;
+    var strFrmName = '@TempData["strFormName"]'
+    $(function () {
+        debugger;
+
+        if (strFrmName == "CRS") {
+            $("#tabs").tabs
+                ({
+                    select: function (e, i) {
+                        currentTab = i.index;
+                        return currentTab;
+                    }
+                });
+        }
+        else {
+            $("#tabs").tabs
+                ({
+                    disabled: [0, 1, 2],
+                    select: function (e, i) {
+                        currentTab = i.index;
+                        return currentTab;
+                    }
+                });
+        }
+    });
+</script>
+
+

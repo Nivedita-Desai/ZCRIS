@@ -1,0 +1,340 @@
+﻿@model CreditRatingModel.Model.Reg
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@*@using (@Html.BeginForm("btnAddClick", "UserRegistration", FormMethod.Post, new { id = "frmRegistration" }))
+{
+       
+    *@
+<div class="row" style="height: 50px">
+</div>
+<div class="container">
+    @using (Html.BeginForm("Registration", "UserRegistration", FormMethod.Post, new { id = "frmRegistration" }))
+    { 
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Registration </label>
+            </div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="form-group">
+                            <label id="lblPanN" class="filter-col control-label label1">Name:</label>
+                            @Html.TextBoxFor(modelItem => modelItem.Name, new { @id = "txtName", @class = "form-control", @onkeypress = "return  AllowAlphabet(event)", @maxlength = "100" })
+                            <div class="row-error ErrorMessage">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lbluserType" class="filter-col control-label label1">User Type :</label>
+                            @Html.DropDownListFor(model => model.UserType, ViewBag.UserType as SelectList, "Select User Type", new { @id = "ddUserType", @class = "form-control dropdown" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblUsername" class="filter-col control-label label1">NID (Username) :</label>
+                            @Html.TextBoxFor(modelItem => modelItem.Username, new { @id = "txtUsername", @class = "form-control",  @onblur = "checkLengthForNRC(this)", @onkeypress = "return isNRCNumber(event)", @maxlength = "13" }) @*@onkeypress = "return isNRCNumber(event)",*@
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblCollege" class="filter-col control-label label1">College :</label>
+                            @Html.DropDownListFor(model => model.collegeId, ViewBag.CollegeList as SelectList, "Select College", new { @id = "ddlCollegeList", @class = "form-control dropdown" })
+                            @*<label id="lblEmail" class="filter-col control-label label1">Email Id :</label>*@
+
+                            @* <label id="lblMIN" class="filter-col control-label label1">Password :</label>
+                            @Html.TextBoxFor(modelItem => modelItem.Password, new { @class = "form-control" })*@
+                            <div class="row-error ErrorMessage">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblEmployer" class="filter-col control-label label1">Employer :</label>
+                            @Html.DropDownListFor(model => model.employerId, ViewBag.EmployerList as SelectList, "Select Employer", new { @id = "ddlEmployerList", @class = "form-control dropdown" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblEmpDiv" class="filter-col control-label label1">Employer Division :</label>
+                            <select id="selDivisionList" name="selDivisionList" style="color: black" class="form-control dropdown"></select>
+                            @*@Html.DropDownListFor(model => model.employerDivisionId, ViewBag.DivisionList as SelectList, "Select Employer Division", new { @id = "ddlDivisionList", @class = "form-control dropdown" })*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblEmpDivBr" class="filter-col control-label label1">Employer Branch :</label>
+                            <select id="selDivisionBranchList" name="selDivisionBranchList" style="color: black" class="form-control dropdown"></select>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                             <label id="lblCrsAdminType" class="filter-col control-label label1">CRS Admin Type :</label>
+                             @Html.DropDownListFor(model => model.DistributionTypeId, ViewBag.AdminTypeList as SelectList, "Select CRS Admin Type", new { @id = "ddlAdminTypeList", @class = "form-control dropdown" })
+                        </div> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblFinantialInstitute" class="filter-col control-label label1">Finantial Institute :</label>
+                            @Html.DropDownListFor(model => model.FinantialInstituteId, ViewBag.FinantialInstituteList as SelectList, "Select Finantial Institute", new { @id = "ddlFinantialInstituteList", @class = "form-control dropdown" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblFinantialInstituteBranch" class="filter-col control-label label1">Finantial Institute Branch :</label>
+                            <select id="selFinantialInstituteBranch" name="selFinantialInstituteBranch" style="color: black" class="form-control dropdown"></select>
+                            @*@Html.DropDownListFor(model => model.FinantialInstituteBranchId, ViewBag.FinantialInstituteBranchList as SelectList, "Select Finantial Institute Branch", new { @id = "ddlFinantialInstituteBranchList", @class = "form-control dropdown" })*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblContactNo" class="filter-col control-label label1">Contact No</label>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-5">
+                        <div class="form-group">
+                            <label id="lblEmail" class="filter-col control-label label1">Email Id :</label>
+                            @*<label id="lblcode" class="filter-col control-label label1">:</label>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.countryCode, new { @id = "txtCountryCode", @class = "form-control", @maxlength = "4", @onkeypress = "return isNumber(event)" })
+                        </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="form-group">
+                            @Html.TextBoxFor(modelItem => modelItem.ContactNo, new { @id = "txtContactNo", @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "10" })
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(modelItem => modelItem.EmailId, new { @id = "txtEmailId", @class = "form-control", @onblur = "validateEmail(this)" })
+                            @*<label id="lblcode" class="filter-col control-label label1">:</label>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @* <label id="lblStatus" class="filter-col control-label label1">Status :</label>
+                            @Html.CheckBoxFor(model => model.Active, new { @id = "chkActive", @value = "1" })*@
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-5">
+                    </div>
+                    <div class="col-xs-7">
+                        <button id="btnSave" type="submit" name="Save">Save</button>
+                        <button id="btnreset" type="reset" name="Reset">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@*}*@
+<script type="text/javascript">
+
+    $('#ddlEmployerList').change(function () {
+        debugger;
+        var EmployerId = $('#ddlEmployerList').val();
+
+        var url = '@Url.Action("EmployerDivisionList", "UserRegistration")';
+
+        $.post(url, { EmpId: EmployerId }, function (data) {
+
+            $("#selDivisionList").empty().append($("<option></option>").val(-1).html('Select Employer Division'));
+
+            $.each(data, function (Key, item) {
+
+                $("#selDivisionList").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+        });
+
+    $('#selDivisionList').change(function () {
+        debugger;
+        var EmployerId = $('#ddlEmployerList').val();
+        var DivisionId = $('#selDivisionList').val();
+
+        var url = '@Url.Action("EmployerDivisionBranchList", "UserRegistration")';
+
+        $.post(url, { EmpId: EmployerId, divId: DivisionId }, function (data) {
+
+            $("#selDivisionBranchList").empty().append($("<option></option>").val(-1).html('Select Employer Branch'));
+
+            $.each(data, function (Key, item) {
+
+                $("#selDivisionBranchList").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+    });
+
+
+    $('#ddlFinantialInstituteList').change(function () {
+        debugger;
+        var EmployerId = $('#ddlFinantialInstituteList').val();
+
+        var url = '@Url.Action("FinantialInstituteBranchList", "UserRegistration")';
+
+        $.post(url, { EmpId: EmployerId }, function (data) {
+
+            $("#selFinantialInstituteBranch").empty().append($("<option></option>").val(-1).html('Select Finantial Institute Branch'));
+
+            $.each(data, function (Key, item) {
+
+                $("#selFinantialInstituteBranch").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+    });
+
+    $('#txtUsername').change(function () {
+        debugger;
+        var UserName = $("#txtUsername").val();
+        var url;
+        url = '@Url.Action("CheckNid", "UserRegistration")';
+
+        $.post(url, { Nid: UserName }, function (data) {
+            debugger;
+            if (data != "") {
+                debugger;
+                alert(data);
+                $("#txtUsername").val('');
+            }
+        });
+    });
+
+
+    $('#ddUserType').change(function () {
+        var userTypeId = $('#ddUserType').val();
+        debugger;
+        if (userTypeId == 1) {
+            $('#ddlEmployerList').attr('disabled', true);
+            //$('#ddlDivisionList').attr('disabled', true);
+            $('#selDivisionList').attr('disabled', true);
+            $('#selDivisionBranchList').attr('disabled', true);
+            $('#ddlFinantialInstituteList').attr('disabled', true);
+            //$('#ddlFinantialInstituteBranchList').attr('disabled', true);
+            $('#selFinantialInstituteBranch').attr('disabled', true)
+            $('#ddlCollegeList').attr('disabled', true); 
+            $('#ddlAdminTypeList').attr('disabled', false);
+        }
+        else if (userTypeId == 2) {
+
+            $('#ddlEmployerList').attr('disabled', true);
+            //$('#ddlDivisionList').attr('disabled', true);
+            $('#selDivisionList').attr('disabled', true);
+            $('#selDivisionBranchList').attr('disabled', true);
+            $('#ddlFinantialInstituteList').attr('disabled', false);
+            //$('#ddlFinantialInstituteBranchList').attr('disabled', false);
+            $('#selFinantialInstituteBranch').attr('disabled', false)
+            $('#ddlCollegeList').attr('disabled', true);
+            $('#ddlAdminTypeList').attr('disabled', true);
+        }
+        else if (userTypeId == 4) {
+
+            $('#ddlEmployerList').attr('disabled', false);
+            //$('#ddlDivisionList').attr('disabled', false);
+            $('#selDivisionBranchList').attr('disabled', false);
+            $('#selDivisionList').attr('disabled', false);
+            $('#ddlFinantialInstituteList').attr('disabled', true);
+            //$('#ddlFinantialInstituteBranchList').attr('disabled', true);
+            $('#selFinantialInstituteBranch').attr('disabled', true)
+            $('#ddlCollegeList').attr('disabled', true);
+            $('#ddlAdminTypeList').attr('disabled', true);
+        }
+        else if (userTypeId == 5) {
+
+            $('#ddlEmployerList').attr('disabled', true);
+            //$('#ddlDivisionList').attr('disabled', true);
+            $('#selDivisionList').attr('disabled', true);
+            $('#selDivisionBranchList').attr('disabled', true);
+            $('#ddlFinantialInstituteList').attr('disabled', true);
+            //$('#ddlFinantialInstituteBranchList').attr('disabled', true);
+            $('#selFinantialInstituteBranch').attr('disabled', true)
+            $('#ddlCollegeList').attr('disabled', false);
+            $('#ddlAdminTypeList').attr('disabled', true);
+        }
+
+    });
+
+    $('#txtUsername').keypress(function (evt) {
+        debugger;
+        var NID = $('#txtUsername').val();
+        
+        var charcode = (evt.which) ? evt.which : event.keyCode;
+        if (charcode != 8) {
+            var chr = ValidateNID(NID);
+            $('#txtUsername').val(chr);
+        }
+        
+    });
+
+    $(document).ready(function () {
+        $('#btnSave').click(function () {
+            debugger;
+            var frmvalidator = new Validator("frmRegistration");
+            debugger;
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+
+            frmvalidator.addValidation("txtName", "req", "Please enter Name");
+            frmvalidator.addValidation("ddUserType", "req", "Please select User Type");
+            frmvalidator.addValidation("txtUsername", "req", "Please enter NID");
+
+            var userTypeId = $('#ddUserType').val();
+
+            if (userTypeId == 1) {
+            }
+            else if (userTypeId == 2) {
+                frmvalidator.addValidation("ddlFinantialInstituteList", "req", "Please Select Finantial Institute");
+                //frmvalidator.addValidation("ddlFinantialInstituteBranchList", "req", "Please Select Finantial Institute Branch");
+                frmvalidator.addValidation("selFinantialInstituteBranch", "req", "Please Select Finantial Institute Branch");
+            }
+            else if (userTypeId == 4) {
+                frmvalidator.addValidation("ddlEmployerList", "req", "Please Select Employer");
+                //frmvalidator.addValidation("ddlDivisionList", "req", "Please Select Employer Division");
+            }
+            else if (userTypeId == 5) {
+                frmvalidator.addValidation("ddlCollegeList", "req", "Please Select Country");
+            }
+
+
+            frmvalidator.addValidation("txtCountryCode", "req", "Please Enter Country");
+            frmvalidator.addValidation("txtContactNo", "req", "Please Enter Contact No");
+
+            frmvalidator.addValidation("txtEmailId", "req", "Please enter Email Id");
+            //frmvalidator.addValidation("txtEmailId", "email", "Invalid Email Id");
+
+            //frmvalidator.addValidation("chkActive", "shouldselchk=1", "Please select registration status wheather it is active or not");
+            //frmvalidator.addValidation("Password", "req", "Please enter Password");
+
+        });
+    });
+</script>

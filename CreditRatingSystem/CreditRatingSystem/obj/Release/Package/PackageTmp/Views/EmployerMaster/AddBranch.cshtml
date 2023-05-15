@@ -1,0 +1,389 @@
+﻿@model CreditRatingModel.Model.EmployerMaster_Metadata
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<br> </br>
+ <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Add Branch</label>
+            </div>
+            <div class="panel-body">
+                   @using (Html.BeginForm("AddBranchDetails", "EmployerMaster", FormMethod.Post,
+                            new { enctype = "multipart/form-data", id = "Employer" }))
+                  {
+                 <div  class="row">                 
+                      <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblTitle" class="filter-col control-label label1">Employer Name</label>
+                                            @Html.DropDownListFor(model => model.EmpName, ViewBag.EmpName as SelectList, "Select Employer Name", new { @class = "form-control dropdown" })
+                                         
+                                        </div>
+                                    </div>                   
+                 <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="" class="filter-col control-label label1">Division</label>
+                                            @Html.DropDownList("divsion", new SelectList(string.Empty, "Value", "Text") 
+                                            , new { @class = "form-control dropdown" })
+                                             <div class="form-group input-field-wrap">
+                        </div>                                           
+                                        </div>
+                                    </div>
+                      <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="" class="filter-col control-label label1">Branch</label>
+                                            @Html.TextBoxFor(model => model.EmployerBranch ,new { @class = "form-control", @maxlength = "100"  } )
+                                         
+                                        </div>
+                                    </div>
+                     
+                 </div>
+                       
+                <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblContPersonDetails" class="filter-col control-label label2">Add Branch Details</label>
+                        </legend>
+                <div id="Address" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label class="filter-col control-label label1">Address</label>
+                                            @Html.TextBoxFor(model => model.Address1, new { @class = "form-control" , @maxlength = "100" })
+                                          
+                                            @Html.TextBoxFor(model => model.Address2, new { @class = "form-control" , @maxlength = "100"})
+                                         
+                                            @Html.TextBoxFor(model => model.Address3, new { @class = "form-control" , @maxlength = "100"})
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div id="CID" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+
+                                            <label id="lblC" class="filter-col control-label label1">Country</label>
+                                            @Html.DropDownListFor(model => model.CountryId, ViewBag.Country as SelectList, "Select Country", new {  @class = "form-control dropdown" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label id="lblS" class="filter-col control-label label1">State</label>
+                                            @Html.DropDownList("selState", new SelectList(string.Empty, "Value", "Text"), " Select", new { @class = "form-control dropdown" })
+                                             <div class="form-group input-field-wrap">
+                        </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="CityPIN" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label id="lblCI" class="filter-col control-label label1">City </label>
+                                         @*   @Html.TextBoxFor(model => model.City, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)"  , @maxlength = "20"})*@
+                           <select id="selCity" name="selCity" style="color: black" class="form-control dropdown"></select>
+ 
+                                            
+                                            
+                                             </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label id="lblPIN" class="filter-col control-label label1">Pincode</label>
+                                            @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "6" })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <label id="lblPhoneNo" class="filter-col control-label label1">Telephone number</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.LandlineCode, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "4",@readonly="true" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.LandlineNo, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "10" })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                             
+
+
+
+
+
+                                <div id="email" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+                                            <label id="lblemail" class="filter-col control-label label1">Email Id</label>
+                                            @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control", @onblur = "validateEmail(this)"  , @maxlength = "50" })
+
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                  <div class="row">
+                                    <div class="col-xs-12">
+                                  
+                                  <div class="form-group">
+                            
+                        
+                                     <h4 style="text-align: center">
+                                         <button id="btnBranch" type="submit" name="Save">Save</button>                                         
+                                     </h4>
+                                    </div>
+                         
+                                       </div>
+                                   
+                                    </div>
+                                    
+                                  @*  <div class="col-xs-6">        
+                                             <input type="submit" id="btnBranch" value="Add Branch details"  style="width:300px"/>
+                                    </div>*@
+                                   
+                                   
+                        </fieldset>    
+                   }
+</div>
+            </div>
+
+
+            </div>
+ <script type="text/javascript">
+$( document ).ready(function() {
+  $("#divsion").attr ("disabled", "disabled" );
+  $("#EmployerBranch").attr ("disabled", "disabled" );
+
+
+ $("#Address1").attr("disabled", "disabled" );
+ $("#Address2").attr("disabled", "disabled" );
+ $("#Address3").attr("disabled", "disabled" );
+ $("#CountryId").attr("disabled", "disabled");
+ $("#selState").attr("disabled", "disabled" );
+ $("#selCity").attr("disabled", "disabled");
+ $("#Pincode").attr("disabled", "disabled" );
+ $("#LandlineCode").attr("disabled", "disabled" );
+ $("#LandlineNo").attr("disabled", "disabled" );
+ $("#EmailId").attr("disabled", "disabled" );
+
+ $("#btnBranch").attr("disabled", "disabled");
+});
+   $("#EmpName").change(function () {
+ debugger;
+  var EmployerName = $("#EmpName").val();
+if(EmployerName!=""){
+ $("#divsion").removeAttr("disabled", "disabled" );
+ var url = '@Url.Action("DivList", "EmployerMaster")';
+
+ $.post(url, { EmployerName: EmployerName }, function (data) {
+
+     debugger;
+ 
+     $("#divsion").empty().append($("<option></option>").val(-1).html('Select'));
+
+     $.each(data, function (Key, item) {
+         //debugger;
+         $("#divsion").append($("<option></option>").val(item.Value).html(item.Text));
+     });
+ });
+}
+else
+{
+      $("#divsion").val("");
+    $("#EmployerBranch").val("");
+    $("#EmployerBranch").attr ("disabled", "disabled" );
+    $("#divsion").attr ("disabled", "disabled" );
+    $("#Address1").attr("disabled", "disabled" );
+    $("#Address2").attr("disabled", "disabled" );
+    $("#Address3").attr("disabled", "disabled" );
+    $("#CountryId").attr("disabled", "disabled");
+    $("#selState").attr("disabled", "disabled" );
+    $("#selCity").attr("disabled", "disabled");
+    $("#Pincode").attr("disabled", "disabled" );
+    $("#LandlineCode").attr("disabled", "disabled" );
+    $("#LandlineNo").attr("disabled", "disabled" );
+    $("#EmailId").attr("disabled", "disabled" );
+
+}
+   });
+
+
+     $("#CountryId").change(function () {
+         var countryid = $("#CountryId").val();
+
+    var url = '@Url.Action("StateList", "EmployerMaster")';
+
+        $.post(url, { CountryId: countryid }, function (data) {
+
+            //debugger;
+            $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+                //debugger;
+                $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+    });
+
+    $("#divsion").change(function () {
+        debugger;;
+        $("#EmployerBranch").removeAttr("disabled", "disabled");
+
+
+    });
+    $("#selState").change(function () {
+        var selState = $("#selState").val();
+
+        var url = '@Url.Action("CityList", "EmployerMaster")';
+
+        $.post(url, { selState: selState }, function (data) {
+
+            $("#selCity").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+
+                $("#selCity").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+      });
+   
+
+    $(function () {
+        $('#selCity').change(function () {
+            var selCity = $("#selCity").val();
+            debugger;
+            $.ajax({
+                url: '/EmployerMaster/CityCode/',
+                type: 'POST',
+                data: { selCity: selCity },
+                success: function (data) {
+
+                    debugger;
+                    if (data != null) {
+                        var vdata = data;
+                        $("#LandlineCode").val(vdata);
+
+                    }
+                }
+
+
+
+            });
+        });
+    });
+
+    $(function () {
+        debugger;
+        var frmvalidator = new Validator("Employer");
+        frmvalidator.EnableMsgsTogether();
+        debugger;
+
+        frmvalidator.addValidation("Address1", "req", "Please enter Address");
+        frmvalidator.addValidation("CountryId", "req", "Please Select Country");
+        frmvalidator.addValidation("selState", "req", "Please Select State");
+        frmvalidator.addValidation("Pincode", "req", "Please Enter Pin number");
+       // frmvalidator.addValidation("MobileNo", "req", "Please Enter Mobile number ");
+        frmvalidator.addValidation("LandlineNo", "req", "Please Enter Landline number");
+
+        frmvalidator.addValidation("selCity", "req", "Please Select City");
+        frmvalidator.addValidation("EmailId", "req", "Please Enter Email id ");
+
+    });
+
+</script>
+<script type="text/javascript">
+            $("#EmployerBranch").change(function () {
+                        debugger;
+               var branch= $("#EmployerBranch").val();
+  var EmployerName = $("#EmpName").val();
+  var divsion = $("#divsion").val();
+                                        debugger;
+                $.ajax({                  
+                    url: '/EmployerMaster/branchexist/',
+                    type: 'POST',
+                    data: {EmployerName: EmployerName,divsion:divsion , branch:branch},
+                    
+                    success: function (result) {
+                        var a = JSON.stringify(result);
+                        debugger;
+                        if (a == "false") {
+                            
+                            alert('This branch already exist');
+                            $('#EmployerBranch').val('');
+                       }
+                       else {
+                   $("#Address1").removeAttr("disabled", "disabled" );
+                    $("#Address2").removeAttr("disabled", "disabled" );
+                    $("#Address3").removeAttr("disabled", "disabled" );
+                    $("#CountryId").removeAttr("disabled", "disabled");
+                    $("#selState").removeAttr("disabled", "disabled" );
+                    $("#selCity").removeAttr("disabled", "disabled");
+                    $("#Pincode").removeAttr("disabled", "disabled" );
+                    $("#LandlineCode").removeAttr("disabled", "disabled" );
+                    $("#LandlineNo").removeAttr("disabled", "disabled" );
+                    $("#EmailId").removeAttr("disabled", "disabled" );
+                    $("#btnBranch").removeAttr("disabled", "disabled" );
+              
+                       }
+                    }
+                   
+                });
+        });
+
+</script>
+@*$("#EmployerBranch").change(function () {
+    debugger;
+  var branch= $("#EmployerBranch").val();
+  var EmployerName = $("#EmpName").val();
+  var divsion = $("#divsion").val();
+debugger;
+ var url = '@Url.Action("branchexist", "EmployerMaster")';
+
+ $.post(url, { EmployerName: EmployerName,divsion:divsion },
+
+function (data) {
+           
+                if(data!=branch){    
+                   $("#Address1").removeAttr("disabled", "disabled" );
+                    $("#Address2").removeAttr("disabled", "disabled" );
+                    $("#Address3").removeAttr("disabled", "disabled" );
+                    $("#Country").removeAttr("disabled", "disabled" );
+                    $("#selState").removeAttr("disabled", "disabled" );
+                    $("#City").removeAttr("disabled", "disabled" );
+                    $("#Pincode").removeAttr("disabled", "disabled" );
+                    $("#LandlineCode").removeAttr("disabled", "disabled" );
+                    $("#LandlineNo").removeAttr("disabled", "disabled" );
+                    $("#EmailId").removeAttr("disabled", "disabled" );
+                    $("#btnBranch").show();
+              
+}
+});
+
+       
+});*@

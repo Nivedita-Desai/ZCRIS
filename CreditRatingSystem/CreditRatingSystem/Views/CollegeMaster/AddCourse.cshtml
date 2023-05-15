@@ -1,0 +1,308 @@
+﻿@model CreditRatingModel.Model.CollegeMaster_Metadata
+
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+<br />
+<div class="container">
+    <div class="panel panel-primary ">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Course Master </label>
+        </div>
+        @Html.HiddenFor(model => model.id)
+        <div class="panel-body">
+
+            @using (Html.BeginForm("Course", "CollegeMaster", FormMethod.Post,
+                            new { enctype = "multipart/form-data", id = "Course" }))
+            {     <fieldset class="scheduler-border">
+                @Html.HiddenFor(model => model.id)
+
+                <br />
+                <div class="row">
+
+                    <div class="col-xs-4">
+                        <div class="form-group">
+
+                            <label id="" class="filter-col control-label label1">Stream   </label>
+                            @Html.DropDownListFor(model => model.StreamField, ViewBag.StreamFields as SelectList, "Select  Stream", new { @class = "form-control dropdown" })
+
+                        </div>
+
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+
+                            <label id="lblStream" class="filter-col control-label label1">Course Category    </label>
+                            @Html.DropDownListFor(model => model.CategoryId, ViewBag.category as SelectList, "Select Course Category", new { @class = "form-control dropdown" })
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-xs-4">
+                        <div class="form-group">
+
+                            <label id="lblCourse" class="filter-col control-label label1">Course Name   </label>
+                            @Html.TextBoxFor(model => model.CourseName, new { @id = "txtCourse", @class = "form-control" })
+
+                        </div>
+
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label id="CourseType" class="filter-col control-label label1">Course Type  </label>
+                            @{
+                List<SelectListItem> ListItems = new List<SelectListItem>();
+                ListItems.Add(new SelectListItem
+                {
+                    Text = "Full Time ",
+                    Value = "Full Time"
+                });
+                ListItems.Add(new SelectListItem
+                {
+                    Text = "Part Time",
+                    Value = "Part Time",
+
+                });
+
+                            }
+
+                            @Html.DropDownListFor(model => model.CourseType, ListItems, "Select Course Type", new { @class = "form-control dropdown" })
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+                <div id="txStart" class="row">
+
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label id="" class="filter-col control-label label1">Start Date </label>
+                            @Html.TextBoxFor(model => model.Startdate, new { @id = "edfStart", @type = "date", @class = "form-control" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="edStart" class="row">
+
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label id="lblStart" class="filter-col control-label label1">Start Date </label>
+                            @Html.EditorFor(model => model.Startdate, new { @type = "date", @class = "form-control", @disabled = true })
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div id="" class="row">
+                    <div class="col-xs-4">
+                        <div class="form-group">
+
+                            <label id="lblduration" class="filter-col control-label label1">Course Duration</label>
+                            @Html.TextBoxFor(model => model.duration, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "20" })
+
+                        </div>
+
+                    </div>
+                    <div id="Morethan1yrs" class="col-xs-4">
+                        <div class="form-group">
+
+                            <label id="" class="filter-col control-label label1" style="visibility: hidden"></label>
+
+                            <label class="checkbox-inline">@Html.CheckBoxFor(model => model.Morethan1yr)If less than 1 year?</label>
+
+                        </div>
+                    </div>
+                    <div  id="durationperiods" class="col-xs-4">
+                        <div class="form-group">
+
+                            <label id="" class="filter-col control-label label1">Duration Period(In Months)   </label>
+                            @Html.TextBoxFor(model => model.durationperiod, new { @id = "txtdurationperiod", @class = "form-control" })
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-4">
+                        <div class="form-group">
+
+                            <label id="lblStatus" class="filter-col control-label label1">Status Of Course </label>
+
+                            <label class="checkbox-inline">@Html.CheckBoxFor(model => model.status)Active</label>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </fieldset>
+                <div class="row">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+
+
+                            <h4 style="text-align: center">
+                                <button id="btnAdd" type="submit" name="Save">Save</button>
+                            </h4>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-4"></div>
+
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $('#Morethan1yrs').hide();
+        $('#durationperiods').hide();
+        var s = '@(ViewBag.Start)';
+        if (s == "startDate") {
+            debugger;
+            var C = '@(ViewBag.C)';
+            if (C == "True")
+            {
+                debugger;
+                $('#Morethan1yr').prop("checked", true);
+
+
+            }
+
+
+            $('#edStart').show();
+            $('#txStart').hide();
+            $('#Morethan1yrs').show();
+            $('#durationperiods').show();
+            //$('#StreamField').attr("disabled", "disabled");
+            //$('#CategoryId').attr("disabled", "disabled");
+            //$('#txtCourse').attr("disabled", "disabled");
+            //$('#Startdate').attr("disabled", true);
+            //$('#duration').attr("disabled", "disabled");
+            //$('#durationperiod').attr("disabled", "disabled");
+            $('#btnAdd').click(function () {
+                var frmvalidator = new Validator("Course");
+                frmvalidator.EnableMsgsTogether();
+                frmvalidator.addValidation("CourseType", "req", "Please Enter Course Type");
+            });
+
+        }
+        else {
+            $('#edStart').hide();
+            $('#txStart').show();
+
+            $('#btnAdd').click(function () {
+                var frmvalidator = new Validator("Course");
+                frmvalidator.EnableMsgsTogether();
+                frmvalidator.addValidation("StreamField", "req", "Please Select Stream");
+                frmvalidator.addValidation("CategoryId", "req", "Please Select Course Category");
+                frmvalidator.addValidation("CourseName", "req", "Please Enter Course name");
+                frmvalidator.addValidation("CourseType", "req", "Please Enter Course Type");
+                frmvalidator.addValidation("duration", "req", "Please Enter Course Duration");
+
+                var s = $('#Startdate').val();
+                var e = $('#edfStart').val();
+                if (s == "" && e == "") {
+                    frmvalidator.addValidation("Startdate", "req", "Please Select  Start Date");
+                }
+
+
+
+            });
+        }
+
+    });
+    $('#duration').change(function () {
+        debugger
+        var d = $('#duration').val();
+        if (d == "1") {
+            $('#Morethan1yrs').show();
+
+        }
+        else {
+            $('#Morethan1yrs').hide();
+        }
+    });
+    $('#Morethan1yr').click(function () {
+    
+        if ($(this).is(":checked")) {
+
+            debugger
+            $('#durationperiods').show();
+
+        }
+       else {
+
+            debugger
+            $('#durationperiods').hide();
+            $('#durationperiod').val("");
+
+        }
+    });
+   
+    $('#txtCourse').change(function () {
+        var field = $('#StreamField').val();
+        debugger;
+        var course = $('#txtCourse').val();
+        if (field != "") {
+            var url = '@Url.Action("Courseexist", "CollegeMaster")';
+
+            $.post(url, { field: field, course: course },
+                function (data) {
+                    debugger;
+                    if (data != null) {
+
+
+                        alert("This Course is already exist")
+                        $('#txtCourse').val("");
+
+                    }
+
+
+                });
+        } else {
+            alert("First select Stream for Course")
+            $('#txtCourse').val("");
+
+        }
+    });
+    $(document).ready(function () {
+        debugger;
+        $("#CourseType").change(function () {
+            debugger;
+            var CourseName = $('#CourseName').val();
+            if (CourseName == "") {
+                alert("First Enter Course Name")
+            }
+
+        });
+    });
+
+
+
+</script>

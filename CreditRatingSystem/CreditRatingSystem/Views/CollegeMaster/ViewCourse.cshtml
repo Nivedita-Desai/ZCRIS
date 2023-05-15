@@ -1,0 +1,99 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+
+    var grid = new WebGrid(Model, canSort: true, canPage: true, rowsPerPage:10 );
+    grid.Pager(WebGridPagerModes.All);
+    
+}
+
+   <script src="@Url.Content("~/js/filter.js")"></script>
+
+<body>
+    <br/>
+    <div class="container">
+            <div class="panel panel-primary" >
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Course Master </label>  </div>
+                <div class="panel-body">
+        <div class="row">
+             <div class="col-xs-1">
+                           
+               </div>
+             <div class="col-xs-10">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Courses</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                    </div>
+                </div>
+             
+                    <table class="table">
+                        <thead>
+                            <tr class="filters">
+
+                                <th style="width:30px">
+                                    <input type="text" class="form-control" placeholder="Course Name" disabled>
+                                </th>
+                               
+                                <th style="width:27px">
+                                    <input type="text" class="form-control" placeholder="Stream" disabled>
+                                </th>
+                                  <th style="width:20px">
+                                    <input type="text" class="form-control"  placeholder="course Category" disabled>
+                                </th>
+                                <th style="width:15px">
+                                    <input type="hidden" class=" form-control" disabled></th>
+
+                                   <th style="width: 25px">
+                                    <input type="text" class="form-control" placeholder="Course Duration" disabled>
+                                </th>
+                                    <th style="width: 25px">
+                                    <input type="text" class="form-control" placeholder="Duration Period" disabled>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr class="filters">
+                                @grid.GetHtml(
+                tableStyle: "table",
+                headerStyle: "webgrid-header",
+                         //footerStyle: "webgrid-footer",
+                        
+                columns: grid.Columns(
+                  grid.Column(columnName: "courseName", style: "webgrid-fixColumn"),
+                
+                  grid.Column(columnName: "stream", style: "webgrid-fixColumn"),
+                         grid.Column(columnName: "courseCategory", style: "webgrid-fixColumn"),
+                            grid.Column(columnName: "duration", style: "webgrid-fixColumn"),
+                               grid.Column(columnName: "durationperiod", style: "webgrid-fixColumn"),
+                        grid.Column(columnName: "id", style: "webgrid-footer")
+
+                  @* grid.Column("", format: @<text>@Html.ActionLink("View", "CollegeDetails", "CollegeMaster", new { id = item.id }, null)</text>)))
+            *@        ))        </tr>
+                        </tbody>
+                    </table>
+            
+                </div>
+                 </div> 
+            <div class="col-xs-1">
+                           
+               </div>
+        </div>
+    </div>
+                </div>
+        </div>
+
+</body>
+
+<script type="text/javascript">
+    $(function () {
+        debugger;
+        $('tbody tr').hover(function () {
+            $(this).toggleClass('clickable');
+        }).on('click', function () {
+            location.href = '/CollegeMaster/AddCourse/' + $(this).find('td:last').text();
+        });
+    });
+
+</script>  

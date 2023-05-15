@@ -1,0 +1,314 @@
+﻿@model CreditRatingModel.Model.MenuRelation
+
+@{
+    ViewBag.Title = "RoleMenuRelation";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<style type="text/css">
+    .tree li {
+        margin: 0px 0;
+        list-style-type: none;
+        position: relative;
+        padding: 20px 5px 0px 5px;
+    }
+
+        .tree li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            right: auto;
+            left: -20px;
+            border-left: 1px solid #ccc;
+            bottom: 50px;
+        }
+
+        .tree li::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 25px;
+            height: 20px;
+            right: auto;
+            left: -20px;
+            border-top: 1px solid #ccc;
+        }
+
+        .tree li a {
+            display: inline-block;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #666;
+            font-family: 'Open Sans',sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+        }
+
+    /*Remove connectors before root*/
+    .tree > ul > li::before, .tree > ul > li::after {
+        border: 0;
+    }
+    /*Remove connectors after last child*/
+    .tree li:last-child::before {
+        height: 30px;
+    }
+
+    /*Time for some hover effects*/
+    /*We will apply the hover effect the the lineage of the element also*/
+    .tree li a:hover, .tree li a:hover + ul li a {
+        background: #dd4814;
+        color: #ffffff;
+        border: 1px solid #dd4814;
+    }
+        /*Connector styles on hover*/
+        .tree li a:hover + ul li::after,
+        .tree li a:hover + ul li::before,
+        .tree li a:hover + ul::before,
+        .tree li a:hover + ul ul::before {
+            border-color: #dd4814;
+        }
+
+    .tree-checkbox {
+        margin: 4px !important;
+    }
+
+
+    .tree:before {
+        border-left: 1px solid #ccc;
+        bottom: 16px;
+        content: "";
+        display: block;
+        left: 0;
+        position: absolute;
+        top: -21px;
+        width: 1px;
+        z-index: 1;
+    }
+
+    .tree ul:after {
+        border-top: 1px solid #ccc;
+        content: "";
+        height: 20px;
+        left: -29px;
+        position: absolute;
+        right: auto;
+        top: 37px;
+        width: 34px;
+    }
+
+    *:before, *:after {
+        box-sizing: border-box;
+    }
+
+    *:before, *:after {
+        box-sizing: border-box;
+    }
+
+    .tree {
+        overflow: auto;
+        padding-left: 0px;
+        position: relative;
+    }
+</style>
+<script type="text/javascript">
+
+    (function ($) {
+        function Tree() {
+            var $this = this;
+
+            function treeNodeClick() {
+                $(document).on('click', '.tree li a input[type="checkbox"]', function () {
+                    $(this).closest('li').find('ul input[type="checkbox"]').prop('checked', $(this).is(':checked'));
+                }).on('click', '.node-item', function () {
+                    var parentNode = $(this).parents('.tree ul');
+                    if ($(this).is(':checked')) {
+                        parentNode.find('li a .parent').prop('checked', true);
+                    } else {
+                        var elements = parentNode.find('ul input[type="checkbox"]:checked');
+                        if (elements.length == 0) {
+                            parentNode.find('li a .parent').prop('checked', false);
+                        }
+                    }
+                });
+            };
+
+            $this.init = function () {
+                treeNodeClick();
+            }
+        }
+        $(function () {
+            var self = new Tree();
+            self.init();
+        })
+    }(jQuery))
+
+
+ 
+
+
+</script>
+
+<form id="form1" action="~/MenuRelation/RoleMenuClick">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Role Menu Relation</label></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblRN" class="filter-col control-label">Role :</label>
+                            @*@Html.TextBoxFor(model => model.RoleId, new { @class = "form-control",@id = "RoleId"  })*@
+                            @Html.DropDownListFor(model => model.RoleId, ViewBag.Role as SelectList,"Select Role", new { @id = "ddlRoleId", @class = "form-control dropdown " })
+                            <div class="row-error">
+                                @Html.ValidationMessageFor(model => model.RoleId)
+                            </div>
+                            <span style="color: Red">*</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @if (ViewBag.Message != null)
+    {
+                        <script>
+
+            $(document).ready(function () {
+
+                var msg = '@ViewBag.Message';
+
+                if (msg == "A New Role has been created.") {
+
+                    $('#rl_mst_Name').val('');
+                    $('#rl_mst_RoleDescription').val('');
+
+                }
+
+                alert('@ViewBag.Message');
+
+            });
+
+
+           
+                        </script>
+
+    }
+
+
+
+
+@* <div class="col-xs-6">
+                                <div class="form-group">
+                               
+                                    <label id="lblFIN" class="filter-col control-label">Menu :</label>
+                                    @Html.TextBoxFor(model => model.MenuId, new { @class = "form-control" ,@id = "MenuId" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.MenuId)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>*@
+                    <div class="col-xs-6">
+                        <div class="form-group">
+
+                            <label id="lblFIN" class="filter-col control-label">Menu :</label>
+                            <div class="tree">
+                                @foreach (var item in Model.lstMainMenu)
+                { 
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+
+                                                <input type="checkbox" name="menuids"  checked="@item.Checked"  id="master_@item.MenuId"   value="@item.MenuId" class="tree-checkbox parent" />
+                                                <label>
+                                                    <strong>
+                                                        @Html.DisplayFor(model => item.Text)
+                                                    </strong>
+                                                </label>
+                                            </a>
+                                            <ul>
+
+                                                @foreach (var subitem in item.SubMenu)
+                                                {
+                                                    <li>
+                                                        <a href="#">
+                                                            <input type="checkbox" name="menuids"  checked="@subitem.Checked"  id="master_@subitem.MenuId"   value="@subitem.MenuId" class="tree-checkbox node-item" />
+                                                            <label>
+                                                                <strong>
+                                                                    @Html.Label(subitem.Text)
+                                                                </strong>
+                                                            </label>
+
+                                                        </a>
+
+                                                        <ul>
+                                                            @foreach (var submnuitem in subitem.SubMenuItem)
+                                                            {
+                                                                <li>
+                                                                    <a href="#">
+                                                                        <input type="checkbox" name="menuids"  checked="@submnuitem.Checked"  id="master_@submnuitem.MenuId"   value="@submnuitem.MenuId" class="tree-checkbox node-item" />
+                                                                        <label>
+                                                                            <strong>
+                                                                                @Html.Label(submnuitem.Text)
+                                                                            </strong>
+                                                                        </label>
+
+                                                                    </a>
+                                                                </li>
+                                    
+                                                            }
+                                                        </ul>
+                                                    </li>
+                                    
+                                                }
+                                            </ul>
+                                        </li>
+                                    </ul>  
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <input id="btnSAVE" type="submit" value="SAVE" formmethod="post" />
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $('#ddlRoleId').change(function () {
+        debugger;
+        var selectedRole = $('#ddlRoleId').val();
+        var url = '@Url.Action("EditRoleMenuRelation", "MenuRelation")';
+        $.ajax({
+            url: '/MenuRelation/EditRoleMenuRelation/',
+            type: 'GET',
+            data: { Role_Id: selectedRole },
+            success: function (result) {
+                debugger;
+                var b = JSON.stringify(result);
+                if (b != "true") {
+                    alert('This Loan Account No is already exists.');
+                    //$('#txtLoanAccNo').val('');
+                }
+            }
+        });
+   });
+</script>

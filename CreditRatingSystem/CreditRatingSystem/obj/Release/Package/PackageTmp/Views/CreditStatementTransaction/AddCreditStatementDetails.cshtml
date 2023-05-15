@@ -1,0 +1,245 @@
+﻿@model CreditRatingModel.Model.CreditStatementTransaction_Metadata
+
+@{
+    ViewBag.Title = "AddCreditStatementDetails";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<div class="row" style="height: 50px">
+</div>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Credit Card Statement Transaction</label>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("AddCreditStatementDetails", "CreditStatementTransaction", FormMethod.Post, new { id = "frmCreditStatementTransaction" }))
+            {
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblFinInst" class="filter-col control-label label2">Financial Institute:</label>
+                        @Html.TextBoxFor(model => model.FinantialInstituteName, new { @id = "txtBank", @class = "form-control input-sm", @readonly = "true" })
+                    </div>
+                </div>
+
+            </div>
+
+
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <label id="lblCardDetails" class="filter-col control-label label2">Credit Card Details :</label></legend>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblC1" class="filter-col control-label label1">Credit Card Account Number :</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblCardType" class="filter-col control-label label2">Card Type :</label>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.CrAccNo, new { @id = "txtCRAccNo", @class = "form-control input-sm", @maxlength = "19", @onkeypress = "return isNumber(event)" })
+                        </div>
+                    </div>
+                    @*<div class="col-xs-1">
+                        <div class="form-group">
+
+                            @Html.TextBoxFor(model => model.CRAccNo2, new { @id = "txtCRAccNo2", @class = "form-control input-sm", @maxlength = "4", @onkeypress = "return isNumber(event)" })
+                        </div>
+
+                    </div>
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.CRAccNo3, new { @id = "txtCRAccNo3", @class = "form-control input-sm", @maxlength = "4", @onkeypress = "return isNumber(event)" })
+                        </div>
+                    </div>
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.CRAccNo4, new { @id = "txtCRAccNo4", @class = "form-control input-sm", @maxlength = "4", @onkeypress = "return isNumber(event)" })
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                    </div>*@
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.CardType, new { @id = "txtCardType", @class = "form-control input-sm", @readonly = "true" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblCreditLimit" class="filter-col control-label label2">Credit Limit :</label>
+                            @Html.TextBoxFor(model => model.CreditLimit, new { @id = "txtCreditLimit", @class = "form-control input-sm", @readonly = "true", @maxlength="20" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblCashLimit" class="filter-col control-label label2">Cash Limit :</label>
+                            @Html.TextBoxFor(model => model.CashLimit, new { @id = "txtCashLimits", @class = "form-control input-sm", @readonly = "true", @maxlength="20" })
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">
+                    <label id="lblLoanDetails" class="filter-col control-label label2">Billing Details :</label></legend>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblBilCycleStartDt" class="filter-col control-label label1">Billing Cycle Start Date :</label>
+                            @Html.TextBoxFor(model => model.BillingCycleStartDate, new { @id = "txtBilCycleStartDt", @class = "form-control input-sm", @type = "date", @readonly="true"})
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblBilCycleEndDt" class="filter-col control-label label1">Billing Cycle End Date :</label>
+                            @Html.TextBoxFor(model => model.InstDate, new { @id = "txtBilCycleEndDt", @class = "form-control input-sm", @type = "date", @readonly = "true" })
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblBillAmt" class="filter-col control-label label1">Bill Amount :</label>
+                            @Html.TextBoxFor(model => model.InstAmount, new { @id = "txtBillAmt", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return isNumber(event)"})
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblMinDueAmt" class="filter-col control-label label1">Min Due Amount :</label>
+                            @Html.TextBoxFor(model => model.MinDueAmt, new { @id = "txtMinDueAmt", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return isNumber(event)" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblGracePeriod" class="filter-col control-label label1">Grace Period :</label>
+                            @Html.TextBoxFor(model => model.gracePeriod, new { @id = "txtgracePeriod", @class = "form-control input-sm", @maxlength = "20", @readonly = "true", @onkeypress = "return isNumber(event)" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblBillDueDt" class="filter-col control-label label1">Billing Due Date :</label>
+                            @Html.TextBoxFor(model => model.InstDueDate, new { @id = "txtInstDueDate", @class = "form-control input-sm", @type = "date" , @readonly = "true"})
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col-xs-6">
+                            @Html.HiddenFor(model=>model.InstCounter)
+                            @Html.HiddenFor(model=>model.LoanDisbursedId)
+                        </div> 
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="col-xs-5">
+                </div>
+                <div class="col-xs-7">
+                    <div class="form-group">
+                        <input id="btnAdd" type="submit" name="ADD" formmethod="post" />
+                        <input id="btnClear" type="reset" name="RESET" />
+                    </div>
+                </div>
+
+
+            </div>
+            }
+                </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var FiName = '@(ViewBag.FinancialInstituteName)';
+
+        $('#txtBank').val(FiName);
+
+    });
+
+    $('#txtCRAccNo').keypress(function (evt) {
+        debugger;
+        var NID = $('#txtCRAccNo').val();
+
+        var charcode = (evt.which) ? evt.which : event.keyCode;
+        if (charcode != 8) {
+            var chr = ValidateCreditCardNo(NID);
+            $('#txtCRAccNo').val(chr);
+        }
+
+    });
+
+    $('#txtCRAccNo').change(function () {
+        debugger;
+        var creditNo = $('#txtCRAccNo').val();
+        $.ajax({
+            url: '/CreditStatementTransaction/RetrieveLoanDetails',
+            type: 'GET',
+            data: { strLoanNo: creditNo },
+            success: function (Result) {
+                debugger;
+                //var result = JSON.stringify(Result);
+                if (Result != null) {
+                    debugger;
+                    $('#txtCardType').val(Result.CardType);
+                    $('#txtCreditLimit').val(Result.CreditLimit);
+                    $('#txtCashLimits').val(Result.CashLimit);
+                    $('#txtBilCycleStartDt').val(ToJavaScriptDate(Result.BillingStartDt));
+                    $('#txtBilCycleEndDt').val(ToJavaScriptDate(Result.BillingCycleEndDt));
+                    $('#txtInstDueDate').val(ToJavaScriptDate(Result.BillDueDt));
+                    $('#txtgracePeriod').val(Result.GracePeriod);
+                    $('#InstCounter').val(Result.InstCntr);
+                    $('#InstCounter').val(Result.InstCntr);
+                    $('#LoanDisbursedId').val(Result.Id);
+                }
+            },
+            error: function(Result){
+                alert("This Card No does not exist");
+               }
+        });
+    });
+
+    $('#btnAdd').click(function () {
+        debugger;
+        var frmvalidator = new Validator("frmCreditStatementTransaction");
+
+        debugger;
+        frmvalidator.clearAllValidations();
+        frmvalidator.EnableMsgsTogether();
+
+        
+        var BillAmt = $('#txtBillAmt').val();
+        var CrLimit = $('#txtCreditLimit').val();
+        var MinDueAmt = $('#txtMinDueAmt').val();
+        //cr4 = $('#txtCRAccNo4').val();
+        //if (cr1 == "" || cr2 == "" || cr3 == "" || cr4 == "")
+        if (Integer.ParseInt(BillAmt) > Integer.ParseInt(CrLimit)) {
+            var ErrorMsg = "Bill amount should not be greater than credit limit";
+        }
+        if (Integer.ParseInt(MinDueAmt) > Integer.ParseInt(BillAmt)) {
+            var ErrorMsg = "Minimum due amount should not be greater than bill amount";
+        }
+
+        frmvalidator.addValidation("btnAdd", "ViewBagError", ErrorMsg);
+
+        frmvalidator.addValidation("txtBank", "req", "You are not authorized to add Credit Statement Details.");
+        frmvalidator.addValidation("txtCRAccNo", "req", "Please enter credit card number");
+        frmvalidator.addValidation("txtBillAmt", "req", "Please enter bill amount");
+        frmvalidator.addValidation("txtMinDueAmt", "req", "Please enter minimum due amount");
+        
+        
+
+    });
+</script>

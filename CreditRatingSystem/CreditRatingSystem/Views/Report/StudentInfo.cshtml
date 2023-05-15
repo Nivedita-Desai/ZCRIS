@@ -1,0 +1,92 @@
+﻿@model CreditRatingModel.Model.ReportSS
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";   
+}
+
+  @*  @using (@Html.BeginForm("DepartmentMaster", "Master", FormMethod.Post, new { id = "frmReport" }))
+    {
+        *@
+<div class="row" style="height:50px">
+        </div>
+     
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Student Information</label>  </div>
+                <div class="panel-body">
+                        <fieldset class="scheduler-border">
+                        @*<legend class="scheduler-border">
+                            <label id="lblDepartmentMaster" class="filter-col control-label label2"> Department </label>
+                        </legend>*@
+                            <br/>
+                    <div class="row">
+                         <div class="col-xs-4">  
+                                    </div>
+                        <div class="col-xs-4">
+                            @Html.HiddenFor(model => model.Id)
+                            <div class="form-group">
+                                <label id="lblPanN" class="filter-col control-label label1">National Registration Code(NRC) :</label>
+                                          @Html.TextBoxFor(model => model.NID, new { @class = "form-control", @maxlength="13"})
+                            </div>
+                        </div>
+                         <div class="col-xs-4">
+                                    </div>
+                    </div>
+                         </fieldset>
+                      <div class="row">
+                                <div class="col-xs-5">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input type ="submit" formmethod="post" value="Generate Report" onclick="ViewReport(); return false; " />
+                                        @*<button id="btnSave" type="submit" name="save"  formmethod="post">Save</button>*@
+                                    </div>
+                           <div class="col-xs-3">
+                                    </div>
+                                </div>
+                </div>
+            </div>
+            </div>
+             
+                @*}*@
+<script type="text/javascript">
+
+
+    $("#NID").change(function () {
+        debugger;
+        var NID = $("#NID").val();
+        $.ajax({
+
+            url: '/Report/CheckNID',
+            type: 'POST',
+            data: { NID: NID },
+            success: function (data) {
+                debugger;
+                // var a = JSON.stringify(data);
+                if (data == "False") {
+                    alert("Invalid National Registration Code");
+                    $("#NID").val(' ');
+                }
+
+
+            }
+        });
+
+    });
+
+
+
+
+
+
+
+
+
+    function ViewReport() {
+        var id = $("#NID").val();
+
+        var url = '@Url.Action("StudentInfoData", "Report")' + '?user_id=' + id;
+        window.open(url);
+
+        return false;
+    }
+    </script>
+

@@ -1,0 +1,139 @@
+﻿@model CreditRatingModel.Model.Master
+
+@{
+    ViewBag.Title = "AcademicYear";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+    @using (@Html.BeginForm("AddAcademicYear", "Master", FormMethod.Post, new { id = "frmAcademicYear" }))
+    {
+        <div class="row" style="height:50px">
+        </div>
+            
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <label id="lblHeading" class="filter-col control-label labelHead">Academic Year Master</label>
+                </div>
+                <div class="panel-body">
+                    <fieldset class="scheduler-border">
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-4">
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblCountry" class="filter-col control-label label1">Country</label>
+                                    @Html.DropDownListFor(modelItem => modelItem.CountryId, ViewBag.Country as SelectList, "Select Country", new { @class = "form-control dropdown" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                            </div>
+                            <div class="col-xs-2">                                
+                                <div class="form-group">
+                                    <label id="lblfrom" class="filter-col control-label label1">From Date</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.AyFromDate, new { @id = "dtpFrom", @type="date" })
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="form-group">
+                                    <label id="lblto" class="filter-col control-label label1">To Date</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.AyToDate, new { @id = "dtpTo", @type = "date" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblFIN" class="filter-col control-label label2">Academic Year</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.AyId, new { @class = "form-control" , @id = "txtAYear", @readonly = "false" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                            </div>
+                        </div>                        
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#dtpTo').blur(function ()
+        {
+            if ($("#dtpFrom").val() != '')
+            {
+                var FromDate = new Date($("#dtpFrom").val());
+                var ToDate = new Date($("#dtpTo").val());
+
+                if (ToDate <= FromDate)
+                {
+                    alert("To Date must be greater than From Date");
+                    $("#dtpTo").val('');
+                }            
+                else
+                {
+                    //debugger;
+
+                    var FromDate = new Date($("#dtpFrom").val());
+                    var ToDate = new Date($("#dtpTo").val());
+
+                    $("#txtAYear").val(FromDate.getFullYear() + "-" + ToDate.getFullYear());
+                }            
+            }
+        });
+
+        $('#dtpFrom').change(function ()
+        {
+            if ($("#dtpTo").val() != '')
+            {            
+                //debugger;
+                var FromDate = new Date($("#dtpFrom").val());
+                var ToDate = new Date($("#dtpTo").val());
+
+                if (FromDate >= ToDate) {
+                    alert("From Date must be smaller than To Date");
+                    $("#dtpFrom").val('');
+                }
+                else {
+
+                    $("#txtAYear").val(FromDate.getFullYear() + "-" + ToDate.getFullYear());
+                }
+            }
+        });
+                
+        $('#btnSave').click(function () {
+            debugger;
+            var frmvalidator = new Validator("frmAcademicYear");
+            debugger;
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+            frmvalidator.addValidation("CountryId", "req", "Please Select Country");
+            frmvalidator.addValidation("dtpFrom", "req", "Please Select From Date");
+            frmvalidator.addValidation("dtpTo", "req", "Please Select To Date");
+            frmvalidator.addValidation("txtAYear", "req", "Please Give Academic Year");
+        });
+    });
+
+
+</script>

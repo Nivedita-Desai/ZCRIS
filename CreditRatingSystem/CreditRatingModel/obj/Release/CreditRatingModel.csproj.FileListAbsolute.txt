@@ -1,0 +1,44 @@
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.dll.config
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.dll
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.pdb
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Release\EntityFramework.dll
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Release\EntityFramework.xml
+D:\vishakha\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.dll
+D:\vishakha\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.pdb
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Release\System.Web.Mvc.dll
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Release\System.Web.Mvc.xml
+D:\vishakha\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.csprojResolveAssemblyReference.cache
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.dll.config
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.dll
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.pdb
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\EntityFramework.dll
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\System.Web.Mvc.dll
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\EntityFramework.xml
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\System.Web.Mvc.xml
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.csprojResolveAssemblyReference.cache
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.dll
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.pdb
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.dll.config
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.pdb
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\EntityFramework.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\System.Web.Mvc.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\EntityFramework.xml
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\System.Web.Mvc.xml
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.csprojAssemblyReference.cache
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.csproj.CoreCompileInputs.cache
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.csproj.CopyComplete
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.pdb
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.dll.config
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\CreditRatingModel.pdb
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\EntityFramework.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\System.Web.Mvc.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\EntityFramework.xml
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Release\System.Web.Mvc.xml
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.csprojAssemblyReference.cache
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.csproj.CoreCompileInputs.cache
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.csproj.CopyComplete
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Release\CreditRatingModel.pdb

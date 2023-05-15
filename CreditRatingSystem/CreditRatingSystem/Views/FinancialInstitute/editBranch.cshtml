@@ -1,0 +1,462 @@
+﻿@model CreditRatingModel.Model.FinancialInstituteModel
+
+@{
+    //ViewBag.Title = "CreateBranch";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @*<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />*@
+    <link href="@Url.Content("~/CSS/bootstrap-3.3.2.min.css")" rel="stylesheet" type="text/css"/>
+
+    <script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/js/bootstrap.min.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/js/bootstrap-3.3.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/myjquery.js")" type="text/javascript" ></script>
+
+</head>
+<body>
+
+    @using (Html.BeginForm("SaveEditBranch", "FinancialInstitute"))
+    {
+        @Html.AntiForgeryToken()
+      
+        <br />
+    @Html.HiddenFor(model=>model.Id1)
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <label id="lblHeading" class="filter-col control-label labelHead">Financial Institute Branch Master </label>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+
+                             <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblName" class="filter-col control-label label1">Finantial Institute </label>
+                                @Html.TextBoxFor(model => model.Name, new { @id = "txtName", @class = "form-control input-sm", @disabled = true })
+
+                            </div></div>
+                                 <div class="col-xs-6">
+                                     
+                            <div id="checklist" class="form-group">
+                                <label id="lblCredittype" class="filter-col control-label label1">Credit Type :</label>
+                                  @Html.DropDownListFor(model => model.FinancialInstituteCreditTypeId, ViewBag.CreditType as MultiSelectList, new { @id = "ddlCreditType", @class = "form-control dropdown ", @multiple = "multiple" })
+                               
+                                </div>
+                        
+                        </div>
+
+
+                        </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblBranchName" class="filter-col control-label label1">Branch Name</label>
+                                @Html.TextBoxFor(model => model.BranchName, new { @id = "txtBrName", @class = "form-control input-sm", @disabled = true })
+
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label id="lblBrCode" class="filter-col control-label label1">Branch Code </label>
+                            @Html.TextBoxFor(model => model.BranchCode, new { @id = "txtBrCode", @class = "form-control input-sm", @disabled = true })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                             <div class="col-xs-6">
+                            <div class="form-group">
+                                        <label id="lblIFSCCode" class="filter-col control-label label1">IFSC Code:</label>
+                                        @Html.TextBoxFor(model => model.IfscCode, new { @id = "txtIfscCode", @class = "form-control input-sm", @onkeypress = "return isAlphaNumeric(event)", @maxlength = "11" })
+                                       </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label id="lblSwiftCode" class="filter-col control-label label1">Swift Code :</label>
+                                    @Html.TextBoxFor(model => model.SwiftCode, new { @id = "txtSwiftCode", @class = "form-control input-sm", @onkeypress = "return isAlphaNumeric(event)", @maxlength = "11" })
+                            </div>
+                        </div>
+
+
+                      <fieldset class="scheduler-border">
+                         <legend class="scheduler-border"><label id="lblAddressDetails" class="filter-col control-label label2">Contact Details :</label></legend>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="" class="filter-col control-label label1">Address</label>
+                                @Html.TextBoxFor(model => model.Address1, new { @id = "txtAdd1", @class = "form-control input-sm", @onkeypress="return isAddress(event)", @maxlength="50" })
+
+                                @Html.TextBoxFor(model => model.Address2, new { @id = "txtAdd2", @class = "form-control input-sm", @onkeypress="return isAddress(event)", @maxlength="50" })
+
+                                @Html.TextBoxFor(model => model.Address3, new { @id = "txtAdd3", @class = "form-control input-sm", @onkeypress="return isAddress(event)", @maxlength="50" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="" class="filter-col control-label label1">Country </label>
+                                @Html.DropDownListFor(model => model.CountryId, ViewBag.CountryList as SelectList, new {@id="ddlCountry", @class = "form-control dropdown" })
+
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="" class="filter-col control-label label1">State </label>
+                                @Html.DropDownListFor(model => model.StateId,ViewBag.StateList1 as SelectList,"Select", new { @id = "selState",@class = "form-control dropdown" })
+                            
+
+                            </div>
+                        </div>
+                    </div>
+                      <div id="" class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+
+
+                                    <label id="lblCI" class="filter-col control-label label1">City </label>
+                                             @Html.DropDownListFor(model => model.cityid,ViewBag.CityList1 as SelectList,"Select City", new { @id = "selCity",@class = "form-control dropdown" })
+                                      </div>
+                            </div>
+                          <div class="col-xs-6">
+                            <div class="form-group">
+
+      
+                                <label id="lblArea" class="filter-col control-label label1">Area </label>
+                                @*    @Html.TextBoxFor(model => model.City, new { @class = "form-control",  @onkeypress  ="return  AllowAlphabet(event)",@maxlength="20" })*@
+                               @* @Html.DropDownList("selArea", new SelectList(string.Empty, "Value", "Text"), "Select", new { @class = "form-control dropdown" })*@
+                                 @Html.DropDownListFor(model => model.AreaId,ViewBag.AreaList as SelectList,"Select Area", new { @id = "selArea",@class = "form-control dropdown" })
+                                 @*@Html.DropDownList("selArea", new SelectList(string.Empty, "Value", "Text"), "Select", new {@id="selArea", @class = "form-control dropdown" })*@
+
+
+                                </div>
+                        </div> 
+
+                            
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblPIN" class="filter-col control-label label1">Pincode</label>
+                                    @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "6" })
+
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblPhoneNo" class="filter-col control-label label1">Financial Institute Contact No :</label>
+                            </div>
+                              <div class="col-xs-6">
+                                <label id="lblEmail" class="filter-col control-label label1">Financial Institute Email ID :</label>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Code, new { @class = "form-control", onkeypress = "return isNumber(event)", @maxlength = "4", @readonly = "true" })
+                                    <div class="row-error ErrorMessage">
+                                        @Html.ValidationMessageFor(model => model.Code)
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @onkeypress = "return isNumber(event)", onblur = "checkLengthForContact(this)", @maxlength = "10" })
+                                    <div class="row-error ErrorMessage">
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.FinancialInstituteEmailId1, new { @id = "txtEmailId", @class = "form-control input-sm", @onblur = "validateEmail(this)", @maxlength = "50" })
+                                   </div>
+                        </div>
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-6">
+                            </div>
+                        </div>
+                            
+                     </fieldset>
+                    
+                            <div class="row">
+                           
+                        </div>
+                         <div class="row">
+                        
+
+                                   </div>
+               
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                         
+                            <label id="lblContPersonDetails" class="filter-col control-label label2">Contact Person's Details :</label>
+                           
+                        </legend>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblPerson1Name" class="filter-col control-label label1">Person 1 Name :</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson1, new { @id = "txtPerson1name", @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)", @maxlength="50" })
+                                                               </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblPerson2Name" class="filter-col control-label label2">Person 2 Name :</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson2, new { @id = "txtPerson2name", @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)", @maxlength="50" })
+                                     </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblPerson1Contact" class="filter-col control-label label1">Person 1 Contact :</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblPerson2Contact" class="filter-col control-label label2">Person 2 Contact :</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                     @Html.TextBoxFor(model => model.Code, new { @id = "txtContryCode1", @class = "form-control input-sm", @readonly = "true" })
+                                </div> 
+                            </div> 
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    
+                                    @Html.TextBoxFor(model => model.ContactPerson1Mobile, new { @id = "txtPerson1Contact", @class = "form-control input-sm", @onkeypress = "return isNumber(event)",@maxlength = "10" })
+                                     </div>
+                            </div>
+                            <div class="col-xs-1">
+                                 @Html.TextBoxFor(model => model.Code, new { @id = "txtContryCode2", @class = "form-control input-sm", @readonly = "true" })
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    
+                                    @Html.TextBoxFor(model => model.ContactPerson2Mobile, new { @id = "txtPerson2Contact", @class = "form-control input-sm", @onkeypress = "return isNumber(event)",@maxlength = "10"})
+                                      </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblPerson1Email" class="filter-col control-label label1">Person 1 Email :</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson1EmailId, new { @id = "txtPerson1Email", @class = "form-control input-sm", @onblur = "validateEmail(this)" , @maxlength="40"})
+                                     </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblPerson2Email" class="filter-col control-label  label2">Person 2 Email :</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson2EmailId, new { @id = "txtPerson2Email", @class = "form-control input-sm",  @onblur = "validateEmail(this)" , @maxlength="40" })
+                                               </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                  <div class="row">
+                            <div class="col-xs-5">
+                            </div>
+                            <div class="col-xs-7">
+                                <input id="btnSave" type="submit" value="Save" formmethod="post" />
+                            </div>
+                        </div>
+                <div style="height:30px"> </div>
+            </div>
+            
+                           
+        </div>
+
+      
+    }
+
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $(function () {
+                 $('[id=ddlCreditType]').multiselect({
+                     includeSelectAllOption: true
+                 });
+             });          
+
+             var div = document.getElementById('checklist');
+
+             debugger;
+
+             $(div).find('input:checkbox').each(function () {
+                 alert($(this).val());
+                 alert(2);
+             });
+
+           
+
+
+          
+         });
+
+    </script>
+
+
+
+    <script type="text/javascript">
+     
+  $("#Country").change(function () {
+      var countryid = $("#ddlCountry").val();
+
+      var url = '@Url.Action("StateList", "FinancialInstitute")';
+
+    $.post(url, { CountryId: countryid }, function (data) {
+
+        //debugger;
+        $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+
+        $.each(data, function (Key, item) {
+            //debugger;
+            $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+        });
+    });
+});
+
+        $("#selCity").change(function () {
+            //alert('hello');
+            var cityid = $("#selCity").val();
+
+            var url = '@Url.Action("AreaList", "FinancialInstitute")';
+
+            $.post(url, { CityId: cityid }, function (data) {
+
+                //debugger;
+                $("#selArea").empty().append($("<option></option>").val(-1).html('Select'));
+
+                $.each(data, function (Key, item) {
+                    //debugger;
+                    $("#selArea").append($("<option></option>").val(item.Value).html(item.Text));
+                });
+            });
+        });
+
+$("#selState").change(function () {
+    var selState = $("#selState").val();
+
+    var url = '@Url.Action("CityList", "FinancialInstitute")';
+
+        $.post(url, { selState: selState }, function (data) {
+
+            $("#selCity").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+
+                $("#selCity").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+    });
+
+
+
+
+
+
+    //$(function () {
+    //    $('#selCity').change(function () {
+    //        var selCity = $("#selCity").val();
+    //        debugger;
+    //        $.ajax({
+    //            url: '/FinancialInstitute/CityCode/',
+    //            type: 'POST',
+    //            data: { selCity: selCity },
+    //            success: function (data) {
+
+    //                debugger;
+    //                if (data != null) {
+    //                    var vdata = data;
+    //                    $("#LandlineCode").val(vdata);
+
+    //                }
+    //            }
+
+
+
+    //        });
+    //    });
+    //});
+
+    $("#selCity").change(function () {
+        var selCity = $("#selCity").val();
+        debugger;
+        var url = '@Url.Action("AreaList", "FinancialInstitute")';
+
+        $.post(url, { selcity: selCity }, function (data) {
+
+            $("#selArea").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+
+                $("#selArea").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+           });
+    $(function () {
+        $('#selCity').change(function () {
+            var selCity = $("#selCity").val();
+            debugger;
+            $.ajax({
+                url: '/EmployerMaster/CityCode/',
+                type: 'POST',
+                data: { selCity: selCity },
+                success: function (data) {
+
+                    debugger;
+                    if (data != null) {
+                        var vdata = data;
+                        $("#Code").val(vdata);
+                        $("#txtContryCode1").val(vdata);
+                        $("#txtContryCode2").val(vdata);
+
+                    }
+                }
+
+
+
+            });
+        });
+    });
+
+    $(function () {
+        $('#ddlCountry').change(function () {
+            var countryid = $("#ddlCountry").val();
+            debugger;
+            $.ajax({
+                url: '/FinancialInstitute/CountryCode/',
+                type: 'POST',
+                data: { countryid: countryid },
+                success: function (data) {
+
+                    debugger;
+                    if (data != null) {
+                        var vdata = data;
+
+                        //$("#MobileCode").val(vdata);
+                        $("#txtContryCode").val(vdata);
+                        $("#txtContryCode1").val(vdata);
+                        $("#txtContryCode2").val(vdata);
+                    }
+                }
+
+            });
+        });
+
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+﻿@model CreditRatingModel.Model.Master
+@{
+    //ViewBag.Title = "AddDistributionType";
+     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@*<h2>AddDistributionType</h2>*@
+<div class="row" style="height:50px">
+
+        </div>
+
+
+@*@using (Html.BeginForm(FormMethod.Post, new { id = "frmAddDistributionType" }))
+{
+  *@
+<form id="frmAddDistributionType" method="post">
+<div class="container">
+         <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Distribution Type Master</label></div>
+               <div class="panel-body">
+                      <fieldset class="scheduler-border">
+                                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                         @*   @Html.HiddenFor(model => model.Id)*@
+                            <div class="form-group">
+                                <label id="lblName" class="filter-col control-label label1">Distribution Type:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.Name, new { @class = "form-control" ,@onkeypress = "return AllowAlphabet(event)"})                                                           
+                            </div>
+                        </div>
+                                   </div>
+
+                            <div class="row">
+                                  <div class="col-xs-4"></div>
+                          <div class="col-xs-4">
+                                 <div class="form-group">
+                                <label id="lblShortName" class="filter-col control-label label1">Short Name:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.ShortName, new { @class = "form-control",@onkeypress = "return AllowAlphabet(event)"})                                                           
+                            </div>
+                         </div>
+                                </div>
+                           <div class="row">
+                                 <div class="col-xs-4"></div>
+                          <div class="col-xs-4">
+                                 <div class="form-group">
+                                <label id="lblCopartner" class="filter-col control-label " style="display: block;font: 18px Arial;color: #000;margin-bottom: 15px;">Co-partner Name:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.CoPartner, new { @class = "form-control"})                                                           
+                            </div>
+                         </div>
+                               </div>
+                            </fieldset>
+
+                     <div class="row">
+                                <div class="col-xs-5">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        @*<button id="btnSave" type="" name="save"  formmethod="post">Save</button>*@
+                                        <input type="submit" id="btnSave" value="Save" />
+                                        
+                                    </div>
+                           <div class="col-xs-3">
+
+                              @Html.HiddenFor(model=>model.Id)
+                                    </div>
+                                </div>
+                    </div>
+                
+                     
+
+
+                   </div>
+
+
+
+
+
+             </div>
+    </form>
+@*}*@
+<script type="text/javascript" >
+
+    $('#btnSave').click(function () {
+        debugger;
+        var Id = $("#Id").val();
+        var Name = $("#Name").val();
+        var ShortName = $("#ShortName").val();
+        var CoPartner = $("#CoPartner").val();
+     
+
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+
+        if (Name == "" || ShortName == "") {
+            var frmvalidator = new Validator("frmAddDistributionType");
+            frmvalidator.EnableMsgsTogether();
+
+            frmvalidator.addValidation("Name", "req", "Please enter Distribution Type");
+
+            frmvalidator.addValidation("ShortName", "req", "Please enter Short Name.");
+        }
+
+        else {
+
+            debugger;
+            $.ajax({
+                
+                url: '/Master/AddDistributionType1/',
+                type: 'POST',
+                data: { Id : Id,Name : Name, ShortName: ShortName, CoPartner: CoPartner },
+                success: function (data) {
+                    debugger;
+                    var a = JSON.stringify(data);
+
+                    if (Id == "") {
+                        if (a == "true") {
+
+                            alert('Data save successfully');
+                            $("#Name").val('');
+                            $("#ShortName").val(''); 
+                            $("#CoPartner").val('');
+                            window.location.href ='/Master/AddDistributionType';
+                        }
+
+                    }
+                    else {
+
+
+                        if (a == "true") {
+
+                            alert('Data save successfully');
+                           
+                            window.location.href = '/Master/ViewDistributionType';
+                        }
+
+                    }
+
+                       
+                
+                    
+                   
+                   // $.ajax({
+
+                   //     url: '/Master/AddDistributionType/',
+                   //     type: 'GET',
+                   // });
+                   //// window.location.href = '/Master/AddDistributionType';
+                    //$("#Name").val("");
+                    // $("#ShortName").val("");
+                    // $("#CoPartner").val("");
+                }
+
+
+            });
+        }
+
+    });
+
+
+
+
+    $('#Name').change(function () {
+        var Id = $("#Id").val();
+        var Name = $('#Name').val();
+        debugger;
+
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        var url = '@Url.Action("Nameexist", "Master")';
+
+        $.post(url, {Id : Id,Name: Name },
+            function (result) {
+                debugger;
+                var R = JSON.stringify(result);
+                if (result=="N") {
+
+
+                    alert("This Disatribution Type already exist")
+                    $('#Name').val("");
+
+                }
+
+
+            });
+
+     });
+
+
+    $('#ShortName').change(function () {
+        debugger;
+
+        var Id = $("#Id").val();
+        var ShortName = $('#ShortName').val();
+        
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        var url = '@Url.Action("ShortNameexist", "Master")';
+
+        $.post(url, {Id:Id, ShortName: ShortName },
+            function (result) {
+                debugger;
+
+                var R = JSON.stringify(result);
+                if (result == "N") {
+
+
+                    alert("This ShortName already exist")
+                    $('#ShortName').val("");
+
+                }
+
+
+            });
+
+     });
+
+
+
+
+
+
+    $('#CoPartner').change(function () {
+        var Id = $("#Id").val();
+        var CoPartner = $('#CoPartner').val();
+        debugger;
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+
+        var url = '@Url.Action("CoPartnerexist", "Master")';
+
+        $.post(url, {Id : Id,CoPartner: CoPartner },
+            function (result) {
+                debugger;
+                var R = JSON.stringify(result);
+                if (result == "N") {
+
+
+                    alert("This CoPartner already exist")
+                    $('#CoPartner').val("");
+
+                }
+
+
+            });
+
+    });
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+

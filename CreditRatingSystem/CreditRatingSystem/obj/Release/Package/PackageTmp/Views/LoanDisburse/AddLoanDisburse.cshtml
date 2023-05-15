@@ -1,0 +1,603 @@
+﻿@model CreditRatingModel.Model.LoanDisburseTransaction_Metadata
+
+@{
+    ViewBag.Title = "AddLoanDisburse";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@using (Html.BeginForm("AddLoanDisburse", "LoanDisburse", FormMethod.Post, new { id = "frmLoanDisburse" }))
+{
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Loan/Credit Disburse Transaction</label>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblDBankName" class="filter-col control-label label1">Bank Name :</label>
+                        @Html.TextBoxFor(model => model.disbursedBankName, new { @id = "txtDBankName", @class = "form-control input-sm", @readonly = "true", @onkeypress = "return AllowAlphabet(event)" })
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblDBranchName" class="filter-col control-label label1">Branch Name :</label>
+                        @Html.TextBoxFor(model => model.disbursedBranchName, new { @id = "txtDBranchName", @class = "form-control input-sm", @readonly = "true", @onkeypress = "return AllowAlphabet(event)" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblLoanNo" class="filter-col control-label label1">Loan Application No :</label>
+                        @Html.TextBoxFor(model => model.LoanNo, new { @id = "txtLoanAppNo", @class = "form-control input-sm", maxlength = "15", @onkeypress = "return isNumber(event)" })
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblLoanDate" class="filter-col control-label label1">Loan Application Date :</label>
+                        @Html.TextBoxFor(model => model.LoanDate, new { @id = "txtLoanAppDate", @class = "form-control input-sm", @readonly = "true", @type = "date" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblPanNo" class="filter-col control-label label1">National ID :</label>
+                        @Html.TextBoxFor(model => model.Pancard, new { @id = "txtNID", @class = "form-control input-sm", @maxlength = "13", @readonly = "true" })
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblLoanType" class="filter-col control-label label1">Loan Type :</label>
+                        @Html.TextBoxFor(model => model.LoanType, new { @id = "txtLoanType", @class = "form-control input-sm", @readonly = "true" })
+                        @Html.HiddenFor(Model => Model.Category, new { @id = "Category" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lbldisDt" class="filter-col control-label label1">Disbursed Date :</label>
+                        @Html.TextBoxFor(model => model.LoanDisburseDate, new { @id = "txtDisDt", @class = "form-control input-sm", @type = "date" })
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblDisAmt" class="filter-col control-label label1">Disbursed Amount :</label>
+                        @*<label id="lblReqCredit" class="filter-col control-label label1">Require Credit Limit :</label>*@
+                        @Html.TextBoxFor(model => model.DisburseAmount, new { @id = "txtDisAmt", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return decimalOnly(event)" })
+                    </div>
+                </div>
+            </div>
+            <div id="LoanDetails">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">
+                        <label id="lblLoanDetails" class="filter-col control-label label2">Loan Disbursed Details :</label></legend>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblLoanAccNo" class="filter-col control-label label1">Loan Account No :</label>
+                                @Html.TextBoxFor(model => model.LoanAccNo, new { @id = "txtLoanAccNo", @class = "form-control input-sm", @maxlength = "15", @onkeypress = "return isNumber(event)" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblLoanAccCreateDt" class="filter-col control-label label1">Loan Account Create Date :</label>
+                                @Html.TextBoxFor(model => model.LoanAccCreateDate, new { @id = "txtLoanAccCreateDt", @class = "form-control input-sm", @type = "date", @readonly = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblInterestType" class="filter-col control-label label1">Interest Type :</label>
+                                @Html.DropDownListFor(model => model.InterestTypeId, ViewBag.InterestTypeLst as SelectList, "Select Interest Type", new { @id = "ddlInterestType", @class = "form-control dropdown " })
+                                @* <label id="lblEmi" class="filter-col control-label label1">EMI :</label>
+                            @Html.TextBoxFor(model => model.EMI, new { @id = "txtEmi", @class = "form-control input-sm",  maxlength = "20", @onkeypress = "return isNumber(event)" })*@
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblRateOfInterest" class="filter-col control-label label1">Rate Of Interest :</label>
+                                @Html.TextBoxFor(model => model.RateOfInterest, new { @id = "txtRateOfInterest", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return decimalOnly(event)" })
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblFInstDt" class="filter-col control-label label1">First Installment Date :</label>
+                                @Html.TextBoxFor(model => model.FirstInstallmentDate, new { @id = "txtFInstDt", @class = "form-control input-sm", @type = "date" })
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblTenure" class="filter-col control-label label1">Tenure (In Month) :</label>
+                                @Html.TextBoxFor(model => model.NoOfMonths, new { @id = "txtTenure", @class = "form-control input-sm", @maxlength = "6", @onkeypress = "return isNumber(event)" })
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblFInst" class="filter-col control-label label1">Installment Amount :</label>
+                                @Html.TextBoxFor(model => model.FirstInstallment, new { @id = "txtFInst", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return decimalOnly(event)" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblLInstDt" class="filter-col control-label label1">Last Installment Date :</label>
+                                @Html.TextBoxFor(model => model.LastInstallmentDate, new { @id = "txtLInstDt", @class = "form-control input-sm", @type = "date", @readonly = "true" })
+                                @*<label id="lblExDt" class="filter-col control-label label1">Expiry Date :</label>*@
+                                @*@Html.TextBoxFor(model => model.ExpiryDate, new { @id = "txtExDt", @class = "form-control input-sm", @type = "date" })*@
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblgrace" class="filter-col control-label label2">Grace Period (In Days) :</label>
+                                @Html.TextBoxFor(model => model.gracePeriod, new { @id = "txtGracePeriod", @class = "form-control input-sm", @maxlength = "6", @onkeypress = "return isNumber(event)" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblInstDueDt" class="filter-col control-label label2">Installment Due Date :</label>
+                                @Html.TextBoxFor(model => model.InstallmentDueDate, new { @id = "txtInstDueDt", @class = "form-control input-sm", @type = "date", @readonly = "true" })
+                                @* <label id="lblEmi" class="filter-col control-label label1">EMI :</label>
+                            @Html.TextBoxFor(model => model.EMI, new { @id = "txtEmi", @class = "form-control input-sm",  maxlength = "20", @onkeypress = "return isNumber(event)" })*@
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lbldownpayment" class="filter-col control-label label2">Downpayment :</label>
+                                @Html.TextBoxFor(model => model.Downpayment, new { @id = "txtDownpayment", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return decimalOnly(event)" })
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </fieldset>
+            </div>
+
+            <div id="CreditCard">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">
+                        <label id="lblCreditCardDetails" class="filter-col control-label label2">Credit Card Details :</label></legend>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblC1" class="filter-col control-label label1">Credit Card Account Number :</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblCardType" class="filter-col control-label label1">Card Type :</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.CRAccNo, new { @id = "txtCRAccNo1", @class = "form-control input-sm", @maxlength="19",@onkeypress = "return isNumber(event)" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.CardType, new { @id = "txtCardType", @class = "form-control input-sm", @readonly = "true" })
+                            </div>
+                        </div>
+                        @*<div class="col-xs-1">
+                            <div class="form-group">
+
+                                @Html.TextBoxFor(model => model.CRAccNo2, new { @id = "txtCRAccNo2", @class = "form-control input-sm", @maxlength = "4", @onkeypress = "return isNumber(event)" })
+                            </div>
+
+                        </div>
+                        <div class="col-xs-1">
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.CRAccNo3, new { @id = "txtCRAccNo3", @class = "form-control input-sm", @maxlength = "4", @onkeypress = "return isNumber(event)" })
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.CRAccNo4, new { @id = "txtCRAccNo4", @class = "form-control input-sm", @maxlength = "4", @onkeypress = "return isNumber(event)" })
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblCCIssueDt" class="filter-col control-label label1">Issue Date :</label>
+                                @Html.TextBoxFor(model => model.CreditCardIssueDate, new { @id = "txtCCIssueDt", @class = "form-control input-sm", @type = "date" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblCCExDt" class="filter-col control-label label1">Expiry Date :</label>
+                                @Html.TextBoxFor(model => model.CreditCardExpiryDate, new { @id = "txtCCExDt", @class = "form-control input-sm", @type = "date" })
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblCashLimit" class="filter-col control-label label1">Cash Limit :</label>
+                                @Html.TextBoxFor(model => model.CashLimit, new { @id = "txtCashLimit", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return decimalOnly(event)" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblCreditLimit" class="filter-col control-label label1">Credit Limit :</label>
+                                @Html.TextBoxFor(model => model.CreditLimit, new { @id = "txtCreditLimit", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return decimalOnly(event)" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblBilCycleStartDt" class="filter-col control-label label1">Billing Cycle Start Date :</label>
+                                @Html.TextBoxFor(model => model.BilCycleStartDt, new { @id = "txtBilCycleStartDt", @class = "form-control input-sm", @type = "date" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @*  <label id="lblBilCycleEndDt" class="filter-col control-label label1">Billing Cycle End Date :</label>
+                             @Html.TextBoxFor(model => model.CreditCardIssueDate, new { @id = "txtBilCycleEndDt", @class = "form-control input-sm", @type = "date" })*@
+                            </div>
+
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-5">
+                </div>
+                <div class="col-xs-7">
+                    <div class="form-group">
+                        <input id="btnAdd" type="submit" name="ADD" formmethod="post" />
+                        <input id="btnClear" type="reset" name="RESET" />
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+   
+  
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var FiName = '@(ViewBag.FinancialInstituteName)';
+        var FiBranchName = '@(ViewBag.FinancialInstituteBranchName)';
+        var AccountNo = '@(ViewBag.accno)';
+        if (AccountNo != "") {
+            debugger;
+            $('#txtLoanAppNo').val(AccountNo);
+            $('#txtLoanAppNo').change();
+            $("#txtLoanAppNo").attr('readonly', true);
+
+        }
+
+        debugger;
+        $('#txtDBankName').val(FiName);
+        $('#txtDBranchName').val(FiBranchName);
+        //$("#txtFInstDt").attr('min', Doj);
+        var todaysDate = new Date();
+        $('#txtDisDt').val(formatDate(todaysDate));
+        $('#txtLoanAccCreateDt').val(formatDate(todaysDate));
+        $("#txtFInstDt").attr('min', formatDate(todaysDate));
+
+
+
+    });
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
+    $('#txtLoanAccNo').change(function () {
+        var LoanNo = $('#txtLoanAccNo').val();
+        debugger;
+        $.ajax({
+            url: '/LoanDisburse/CheckLoanAccountNoExists/',
+            type: 'POST',
+            data: { ParamLoanNo: LoanNo },
+            success: function (result) {
+                debugger;
+                var b = JSON.stringify(result);
+                if (b != "true") {
+                    alert('This Loan Account No is already exists.');
+                    $('#txtLoanAccNo').val('');
+                }
+            }
+        });
+    });
+
+    $('#txtCRAccNo1').keypress(function (evt) {
+        debugger;
+        var NID = $('#txtCRAccNo1').val();
+
+        var charcode = (evt.which) ? evt.which : event.keyCode;
+        if (charcode != 8) {
+            var chr = ValidateCreditCardNo(NID);
+            $('#txtCRAccNo1').val(chr);
+        }
+
+    }); 
+
+    $('#txtFInstDt').change(function () {
+        debugger;
+        var FirstInstDt = $('#txtFInstDt').val();
+        var grace = parseInt($('#txtGracePeriod').val());
+        var NoOfMonth = parseInt($('#txtTenure').val());
+
+        if (grace > 0) {
+            debugger;
+            var d2 = new Date(FirstInstDt);
+            //var t1 = d1.getDate() + Tenure;
+            d2.setDate(d2.getDate() + grace);
+            // d1.addDays(grace);
+            //d1.setDate( d1.getDay() + Tenure);
+            $('#txtInstDueDt').val(formatDate(d2));
+        }
+
+        if (NoOfMonth > 0) {
+            debugger;
+            var d1 = new Date(FirstInstDt);
+            d1.setMonth(d1.getMonth() + NoOfMonth);
+            ////var d3 = month[d1.getMonth()];
+            $('#txtLInstDt').val(formatDate(d1));
+        }
+
+    });
+
+    $('#txtTenure').change(function () {
+        debugger;
+        //Calculate Last Installment Date
+        var Tenure = parseInt($('#txtTenure').val());
+        var FirstInstallmentDt = $('#txtFInstDt').val();
+        var d1 = new Date(FirstInstallmentDt);
+        d1.setMonth(d1.getMonth() + Tenure);
+        ////var d3 = month[d1.getMonth()];
+        $('#txtLInstDt').val(formatDate(d1));
+        
+
+        //Calculate Installment Amount
+        //var disburseAmt = $('#txtDisAmt').val();
+        //var InstAmt = disburseAmt / Tenure;
+        //$('#txtFInst').val(InstAmt);
+
+    });
+    $('#txtGracePeriod').change(function () {
+        debugger;
+        var grace = parseInt($('#txtGracePeriod').val());
+        var FirstInstallmentDt = $('#txtFInstDt').val();
+        var d1 = new Date(FirstInstallmentDt);
+        //var t1 = d1.getDate() + Tenure;
+        d1.setDate(d1.getDate() + grace);
+        // d1.addDays(grace);
+        //d1.setDate( d1.getDay() + Tenure);
+        $('#txtInstDueDt').val(formatDate(d1));
+
+    });
+
+    $('#txtCCIssueDt').change(function ()
+    {
+        debugger;
+        var Issuedt = $('#txtCCIssueDt').val();
+       // $("#CreditCardExpiryDate").attr('min', Issuedt);
+          $("#txtCCExDt").attr('min', formatDate(Issuedt));
+        $("#txtBilCycleStartDt").attr('min', formatDate(Issuedt));
+        
+        
+    });
+
+    $('#txtCCExDt').change(function () {
+        debugger;
+        var Expirydt = $('#txtCCExDt').val();
+       
+        $("#txtBilCycleStartDt").attr('max', formatDate(Expirydt));
+
+    });
+
+    $('#txtLoanAppNo').change(function () {
+        var LoanNo = $('#txtLoanAppNo').val();
+        //var result1;
+        debugger;
+
+        $.ajax({
+            url: '/LoanDisburse/CheckLoanNoExists/',
+            type: 'GET',
+            data: { LoanNo: LoanNo },
+            success: function (result) {
+                var a = JSON.stringify(result);
+                debugger;
+                if (a == "true") {
+                    alert('This Loan Already Disbursed.');
+                    //debugger; 
+                    $('#txtLoanAppNo').val('');
+                    $('#txtLoanAppDate').val('');
+                    $('#txtNID').val('');
+                    $('#txtLoanType').val('');
+                    //return false;
+                }
+                else {
+                    $.ajax({
+                        url: '/LoanDisburse/doesLoanNoExist/',
+                        type: 'GET',
+                        data: { LoanNo: LoanNo },
+                        //success: function (result) { alert(' That user name has already been taken'); }
+                        success: function (result) {
+                            var a = JSON.stringify(result);
+                            debugger;
+                            if (a == "true") {
+                                alert('Loan Application No Does Not Exists');
+                                $('#txtLoanAppNo').val('');
+                                $('#txtLoanAppDate').val('');
+                                $('#txtNID').val('');
+                                $('#txtLoanType').val('');
+                                //return false;
+                            }
+                            else {
+
+                                $.ajax({
+                                    url: '/LoanDisburse/RetrieveLoanDetails',
+                                    type: 'GET',
+                                    data: { strLoanNo: LoanNo },
+                                    success: function (result) {
+                                        if (result != null) {
+                                            $('#txtLoanAppDate').val(ToJavaScriptDate(result.LoanDate));
+                                            $('#txtNID').val(result.Pancard);
+                                            $('#txtLoanType').val(result.LoanType);
+                                            $('#Category').val(result.Category);
+                                            //$('#txtDisAmt').val(result.DisburseAmount);
+                                            var C = $('#Category').val();
+
+                                            if (C == "C") {
+                                                $('#txtDisAmt').val('');
+                                                $("#txtDisAmt").attr('readonly', true);
+                                                $('#txtCardType').val(result.CardType);
+                                                $('#txtCashLimit').val(result.CashLimit);
+                                                $('#txtCreditLimit').val(result.CreditLimit);
+                                                $('#LoanDetails').hide();
+                                                $('#CreditCard').show();
+                                            }
+                                            else {
+                                                $('#txtDisAmt').val(result.DisburseAmount);
+                                                $('#LoanDetails').show();
+                                                $('#CreditCard').hide();
+                                            }
+                                        }
+                                    },
+                                    error: function () {
+                                        alert("This Loan not approved");
+                                    }
+                                });
+                                //$.getJSON("/LoanDisburse/RetrieveLoanDetails",
+                                //{
+                                //    strLoanNo: LoanNo
+                                //},
+                                //  function (data) {
+                                //      //var a = JSON.stringify(data);
+                                //      debugger;
+                                //      if (data != null) {
+                                //          $('#txtLoanAppDate').val(ToJavaScriptDate(data.LoanDate));
+                                //          $('#txtNID').val(data.Pancard);
+                                //          $('#txtLoanType').val(data.LoanType);
+                                //          $('#Category').val(data.Category);
+                                //          $('#txtDisAmt').val(data.DisburseAmount);
+                                //          var C = $('#Category').val();
+                                //          if (C == "C") {
+                                //              $('#LoanDetails').hide();
+                                //              $('#CreditCard').show();
+                                //          }
+                                //          else {
+                                //              $('#LoanDetails').show();
+                                //              $('#CreditCard').hide();
+                                //          }
+                                //      }
+                                //      else {
+                                //          debugger;
+                                //          alert("This Loan not approved");
+                                //      }
+                                //  });
+                            }
+                        }
+
+
+                    });
+                }
+            }
+        });
+    });
+
+    $('#btnAdd').click(function () {
+        debugger;
+        var frmvalidator = new Validator("frmLoanDisburse");
+
+        debugger;
+        frmvalidator.clearAllValidations();
+        frmvalidator.EnableMsgsTogether();
+
+        frmvalidator.addValidation("txtDBankName", "req", "You are not authorized to disbursed Loan,Require Financial Institute Name");
+        frmvalidator.addValidation("txtDBranchName", "req", "You are not authorized to disbursed Loan,Require Financial Institute Branch Name");
+        frmvalidator.addValidation("txtLoanAppNo", "req", "Please enter Loan Application No");
+        frmvalidator.addValidation("txtDisDt", "req", "Please Select Loan Disbursed Date");
+
+        var C = $('#Category').val();
+
+        if (C == "L") {
+
+            frmvalidator.addValidation("txtLoanAccNo", "req", "Please enter Loan Account No");
+            frmvalidator.addValidation("txtLoanAccCreateDt", "req", "Please Select Loan Account Create Date");
+            frmvalidator.addValidation("txtFInst", "req", "Please enter first installment");
+            frmvalidator.addValidation("txtFInstDt", "req", "Please Select first installment Date");
+            frmvalidator.addValidation("txtTenure", "req", "Please enter Tenure");
+            frmvalidator.addValidation("txtLInstDt", "req", "Please Select last installment Date");
+            frmvalidator.addValidation("ddlInterestType", "dontselect=''", "Please select Interest Type");
+            frmvalidator.addValidation("txtRateOfInterest", "req", "Please select Rate Of Interest");
+            frmvalidator.addValidation("txtDisAmt", "req", "Please enter Disbursed Amount");
+            //frmvalidator.addValidation("txtInstDueDt", "req", "Please select Installment Date");
+
+        }
+        if (C == "C") {
+
+            //var cr1, cr2, cr3, cr4;
+            //cr1 = $('#txtCRAccNo1').val();
+            ////cr2 = $('#txtCRAccNo2').val();
+            ////cr3 = $('#txtCRAccNo3').val();
+            ////cr4 = $('#txtCRAccNo4').val();
+            ////if (cr1 == "" || cr2 == "" || cr3 == "" || cr4 == "")
+            //if (cr1 == "") {
+            //    var ErrorMsg = "Please entered credit card number";
+            //}txtCardType
+
+            frmvalidator.addValidation("btnAdd", "ViewBagError", ErrorMsg);
+            frmvalidator.addValidation("txtCardType", "req", "Credit card type required");
+            frmvalidator.addValidation("txtCRAccNo1", "req", "Please enter credit card Number");
+            frmvalidator.addValidation("txtCCIssueDt", "req", "Please select credit card issue date");
+            frmvalidator.addValidation("txtCCExDt", "req", "Please select credit card expiry date");
+            frmvalidator.addValidation("txtCashLimit", "req", "Please enter Cash Limit");
+            frmvalidator.addValidation("txtCreditLimit", "req", "Please enter Credit Limit");
+            frmvalidator.addValidation("txtBilCycleStartDt", "req", "Please select billing cycle start date");
+            //frmvalidator.addValidation("txtBilCycleEndDt", "req", "Please select billing cycle end date");
+        }
+
+    });
+
+</script>
+

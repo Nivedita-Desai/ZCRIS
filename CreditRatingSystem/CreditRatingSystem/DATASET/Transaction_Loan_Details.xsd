@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Transaction_Loan_Details" targetNamespace="http://tempuri.org/Transaction_Loan_Details.xsd" xmlns:mstns="http://tempuri.org/Transaction_Loan_Details.xsd" xmlns="http://tempuri.org/Transaction_Loan_Details.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Transaction_Loan_Details" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Transaction_Loan_Details" msprop:Generator_UserDSName="Transaction_Loan_Details">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TRANSACTIONLOANDETAILS" msprop:Generator_TableClassName="TRANSACTIONLOANDETAILSDataTable" msprop:Generator_TableVarName="tableTRANSACTIONLOANDETAILS" msprop:Generator_TablePropName="TRANSACTIONLOANDETAILS" msprop:Generator_RowDeletingName="TRANSACTIONLOANDETAILSRowDeleting" msprop:Generator_RowChangingName="TRANSACTIONLOANDETAILSRowChanging" msprop:Generator_RowEvHandlerName="TRANSACTIONLOANDETAILSRowChangeEventHandler" msprop:Generator_RowDeletedName="TRANSACTIONLOANDETAILSRowDeleted" msprop:Generator_UserTableName="TRANSACTIONLOANDETAILS" msprop:Generator_RowChangedName="TRANSACTIONLOANDETAILSRowChanged" msprop:Generator_RowEvArgName="TRANSACTIONLOANDETAILSRowChangeEvent" msprop:Generator_RowClassName="TRANSACTIONLOANDETAILSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionId" msprop:Generator_ColumnVarNameInTable="columnTransactionId" msprop:Generator_ColumnPropNameInRow="TransactionId" msprop:Generator_ColumnPropNameInTable="TransactionIdColumn" msprop:Generator_UserColumnName="TransactionId" type="xs:string" minOccurs="0" />
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LoanAccountNo" msprop:Generator_ColumnVarNameInTable="columnLoanAccountNo" msprop:Generator_ColumnPropNameInRow="LoanAccountNo" msprop:Generator_ColumnPropNameInTable="LoanAccountNoColumn" msprop:Generator_UserColumnName="LoanAccountNo" type="xs:string" minOccurs="0" />
+              <xs:element name="TransactionNo" msprop:Generator_ColumnVarNameInTable="columnTransactionNo" msprop:Generator_ColumnPropNameInRow="TransactionNo" msprop:Generator_ColumnPropNameInTable="TransactionNoColumn" msprop:Generator_UserColumnName="TransactionNo" type="xs:string" minOccurs="0" />
+              <xs:element name="RepayMode" msprop:Generator_ColumnVarNameInTable="columnRepayMode" msprop:Generator_ColumnPropNameInRow="RepayMode" msprop:Generator_ColumnPropNameInTable="RepayModeColumn" msprop:Generator_UserColumnName="RepayMode" type="xs:string" minOccurs="0" />
+              <xs:element name="RepaymentDate" msprop:Generator_ColumnVarNameInTable="columnRepaymentDate" msprop:Generator_ColumnPropNameInRow="RepaymentDate" msprop:Generator_ColumnPropNameInTable="RepaymentDateColumn" msprop:Generator_UserColumnName="RepaymentDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="BalanceAmount" msprop:Generator_ColumnVarNameInTable="columnBalanceAmount" msprop:Generator_ColumnPropNameInRow="BalanceAmount" msprop:Generator_ColumnPropNameInTable="BalanceAmountColumn" msprop:Generator_UserColumnName="BalanceAmount" type="xs:int" minOccurs="0" />
+              <xs:element name="EMIAmount" msprop:Generator_ColumnVarNameInTable="columnEMIAmount" msprop:Generator_ColumnPropNameInRow="EMIAmount" msprop:Generator_ColumnPropNameInTable="EMIAmountColumn" msprop:Generator_UserColumnName="EMIAmount" type="xs:short" minOccurs="0" />
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="NID" msprop:Generator_ColumnVarNameInTable="columnNID" msprop:Generator_ColumnPropNameInRow="NID" msprop:Generator_ColumnPropNameInTable="NIDColumn" msprop:Generator_UserColumnName="NID" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="bankName" msprop:Generator_ColumnVarNameInTable="columnbankName" msprop:Generator_ColumnPropNameInRow="bankName" msprop:Generator_ColumnPropNameInTable="bankNameColumn" msprop:Generator_UserColumnName="bankName" type="xs:string" minOccurs="0" />
+              <xs:element name="BranchName" msprop:Generator_ColumnVarNameInTable="columnBranchName" msprop:Generator_ColumnPropNameInRow="BranchName" msprop:Generator_ColumnPropNameInTable="BranchNameColumn" msprop:Generator_UserColumnName="BranchName" type="xs:string" minOccurs="0" />
+              <xs:element name="LoanAmount" msprop:Generator_ColumnVarNameInTable="columnLoanAmount" msprop:Generator_ColumnPropNameInRow="LoanAmount" msprop:Generator_ColumnPropNameInTable="LoanAmountColumn" msprop:Generator_UserColumnName="LoanAmount" type="xs:long" minOccurs="0" />
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" type="xs:string" minOccurs="0" />
+              <xs:element name="RepaymentAmount" msprop:Generator_ColumnVarNameInTable="columnRepaymentAmount" msprop:Generator_ColumnPropNameInRow="RepaymentAmount" msprop:Generator_ColumnPropNameInTable="RepaymentAmountColumn" msprop:Generator_UserColumnName="RepaymentAmount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

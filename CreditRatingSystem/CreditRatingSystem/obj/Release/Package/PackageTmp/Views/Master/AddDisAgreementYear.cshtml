@@ -1,0 +1,224 @@
+﻿@model CreditRatingModel.Model.Master 
+
+
+@{
+    //ViewBag.Title = "AddDisAgreementYear";
+     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@*<h2>AddDisAgreementYear</h2>*@
+
+<form id="frmAddDistributionType" method="post">
+    <div class="container">
+         <div class="panel panel-primary">
+             <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Distribution Agreement Year Master</label></div>
+               <div class="panel-body">
+              <fieldset class="scheduler-border">
+                  <div class="row">
+                      <br />
+                       <div class="col-xs-4"></div>
+                       <div id="txEffeDate" class="col-xs-4">
+                         @*   @Html.HiddenFor(model => model.Id)*@
+                            <div class="form-group">
+                                <label id="lblEffDate" class="filter-col control-label label1">Effective Date:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.EffectiveDate, new {@id="EdrEffeDate", @class = "form-control" , @type = "date"})                                                           
+                            </div>
+                            </div>
+                       <div id="EdEffeDate" class="col-xs-4">
+                             <div class="form-group">
+                                    <label id="lblfrom" class="filter-col control-label label1">Effective Date</label>
+                                    @Html.EditorFor(modelItem => modelItem.EffectiveDate, new {@type="date",@class = "form-control" })
+                                </div>
+                       </div>
+                  </div>
+                  <div class ="row">
+                        <div class="col-xs-4"></div>
+                       <div class="col-xs-4">
+                         @*   @Html.HiddenFor(model => model.Id)*@
+                            <div class="form-group">
+                                <label id="lblNaration" class="filter-col control-label" style="display: block;font: 18px Arial;color: #000;margin-bottom: 15px;">Remark:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.Naration, new { @class = "form-control"})                                                           
+                            </div>
+                        </div>
+
+                  </div>
+
+
+
+
+                </fieldset>
+                      <div class="row">
+                                <div class="col-xs-5">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        @*<button id="btnSave" type="" name="save"  formmethod="post">Save</button>*@
+                                        <input type="submit" id="btnSave" value="Save" />
+                                        
+                                    </div>
+                           <div class="col-xs-3">
+
+                              @Html.HiddenFor(model=>model.Id)
+                                    </div>
+                                </div>
+               </div>
+             </div>
+            </div></form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+
+        var s = '@(ViewBag.Start)';
+        if (s == "startDate") {
+
+            $('#EdEffeDate').show();
+            $('#txEffeDate').hide();
+        }
+        else {
+            $('#EdEffeDate').hide();
+            $('#txEffeDate').show();
+        }
+    });
+
+        </script>
+
+
+<script type="text/javascript" >
+
+    $('#btnSave').click(function () {
+        debugger;
+        var EffectiveDate;
+        var Id = $("#Id").val();
+
+        if (Id == "") {
+             EffectiveDate = $("#EdrEffeDate").val();
+        }
+        else {
+            EffectiveDate = $("#EffectiveDate").val();
+        }
+        if (EffectiveDate == "") {
+
+            alert('Please Select Effective Date.');
+        }
+
+        var Naration = $("#Naration").val();
+
+        if ($("#Id").val() == "") {
+            Id = 0;
+
+        }
+      
+        
+
+        debugger;
+        $.ajax({
+            url: '/Master/AddDisAgreementYear1/',
+            type: 'POST',
+            data: { Id: Id, EffectiveDate: EffectiveDate, Naration: Naration },
+            success: function (data) {
+                var a = JSON.stringify(data);
+
+
+                if (Id == "") {
+
+
+
+                    if (a == "true") {
+
+                        alert('Data save successfully');
+                        $("#EffectiveDate").val('');
+                        window.location.href = '/Master/AddDisAgreementYear';
+                    }
+
+                }
+                else {
+                    alert('Data save successfully');
+                    $("#EffectiveDate").val('');
+                    window.location.href = '/Master/ViewDisAgreementYear';
+                }
+            }
+
+
+        });
+
+    });
+
+
+
+    $('#EdrEffeDate').focusout(function () {
+        debugger;
+        var Id = $("#Id").val();
+        var EffectiveDate = $("#EdrEffeDate").val();
+
+        if (EffectiveDate =="") {
+            alert('Please select Effective Date');
+        }
+
+        var dateObj = new Date(EffectiveDate);
+        var year = dateObj.getFullYear();
+
+
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+
+        var url = '@Url.Action("DateValidation", "Master")';
+
+        $.post(url, { Id: Id, EffectiveDate: EffectiveDate, year: year },
+            function (result) {
+                debugger;
+
+                var R = JSON.stringify(result);
+                if (result == "N") {
+
+
+                    alert("Agreement For This year Is already Done.")
+                   
+                    $('#EdrEffeDate').val('');
+           
+
+                }
+
+
+            });
+
+    });
+
+
+    $('#EffectiveDate').focusout(function () {
+        debugger;
+        var Id = $("#Id").val();
+        var EffectiveDate = $("#EffectiveDate").val();
+
+        if (EffectiveDate == "") {
+
+            alert('Please Select Effective Date.');
+        }
+        var dateObj = new Date(EffectiveDate);
+        var year = dateObj.getFullYear();
+
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        var url = '@Url.Action("DateValidation", "Master")';
+
+        $.post(url, { Id : Id,EffectiveDate: EffectiveDate, year: year },
+            function (result) {
+                debugger;
+
+                var R = JSON.stringify(result);
+                if (result == "N") {
+
+
+                    alert("Agreement For This year Is already Done.")
+
+                    $('#EffectiveDate').val('');
+
+
+                }
+
+
+            });
+
+     });
+
+</script>

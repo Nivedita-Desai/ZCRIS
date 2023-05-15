@@ -1,0 +1,2054 @@
+﻿@model CreditRatingModel.Model.EducationLoanDisbursment_Metadata
+@using CreditRatingModel.Model
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<br />
+<link href="@Url.Content("~/CSS/bootstrap-3.3.2.min.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/CSS/bootstrap-multiselect.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/CSS/prettify.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")" type="text/javascript"></script>
+@*<script src="@Url.Content("~/js/bootstrap.min.js")" type="text/javascript"></script>*@
+<script src="@Url.Content("~/js/bootstrap-3.3.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/prettify.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/bootstrap-multiselect.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/js/myjquery.js")" type="text/javascript"></script>
+
+
+
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Education Loan Disbursement</label>
+        </div>
+        <div class="panel-body">
+            <div id="tabs">
+                @*       <div class="tabbable-panel">
+                        <div class="tabbable-line">*@
+                <ul>
+                    <li>
+                        <a href="#tabs-1" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Personal Details</a>
+                    </li>
+                    <li>
+                        <a href="#tabs-2" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Loan Details</a>
+                    </li>
+                    <li>
+                        <a href="#tabs-3" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Disbursement Details</a>
+
+                    </li>
+                </ul>
+                @* <div class="tab-content">*@
+                <div id="tabs-1" class="tab-pane">
+                    @*  @using (Html.BeginForm("AddStudentPersonalInfo", "EducationLoanDisbursment"))
+                                        {
+                                            *@
+                    <br />
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblPD" class="filter-col control-label label2">Personal Details </label>
+                        </legend>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblNID" class="filter-col control-label label1">National Registration Code(NRC) :</label>
+                                    @Html.TextBoxFor(model => model.NId, new { @class = "form-control input-sm", @onkeypress = "return isNRCNumber(event)", @onblur = " checkLengthForNRC(this)", @maxlength = "13" })
+                                    @Html.HiddenFor(Model => Model.Id)
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Title" class="row">
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label id="lblTitle" class="filter-col control-label label1">Title</label>
+                                    @Html.DropDownListFor(model => model.TitleId1, ViewBag.TitleId as SelectList, "Select Title", new { @class = "form-control dropdown" })
+                                    @Html.ValidationMessageFor(model => model.TitleId)
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-3">
+                                <div class="form-group">
+
+
+                                    <label id="lblFN" class="filter-col control-label label1">First Name</label>
+
+                                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)", @maxlength = "100" })
+                                    @Html.ValidationMessageFor(model => model.FirstName)
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label id="lblMiddle" class="filter-col control-label label1">Middle Name</label>
+                                    @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control", @onkeypress = " return  AllowAlphabet(event)", @maxlength = "100" })
+                                    @Html.ValidationMessageFor(model => model.MiddleName)
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label id="lblLast" class="filter-col control-label label1">Last Name</label>
+                                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @onkeypress = " return  AllowAlphabet(event)", @maxlength = "100" })
+                                    @Html.ValidationMessageFor(model => model.LastName)
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblDOB" class="filter-col control-label label1">Date Of Birth</label>
+                                    @Html.TextBoxFor(model => model.DateOfBirth, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })@*, @onblur = " ValidateDate(this)"*@
+                                </div>
+
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblGender" class="filter-col control-label label1">Gender</label>
+                                    @{
+                                        List<SelectListItem> listItems = new List<SelectListItem>();
+                                        listItems.Add(new SelectListItem
+                                        {
+                                            Text = "Male",
+                                            Value = "M"
+                                        });
+                                        listItems.Add(new SelectListItem
+                                        {
+                                            Text = "Female",
+                                            Value = "F",
+
+                                        });
+                                    }
+
+                                    @Html.DropDownListFor(model => model.Sex, listItems, "-- Select Gender --", new { @class = "form-control dropdown" })
+                                    @Html.ValidationMessageFor(model => model.Sex)
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblNa" class="filter-col control-label label1">Nationality :</label>
+                                    @Html.DropDownListFor(model => model.NationalityId, ViewBag.Nationality as SelectList, "Select Nationality", new { @class = "form-control dropdown" })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblConD" class="filter-col control-label label2">Contact Details </label>
+                        </legend>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblSAdd" class="filter-col control-label label1">Address:</label>
+                                    @*                                                        @Html.TextAreaFor(model => model.StudentAddress, new { @id = "txtSAdd", @class = "form-control input-sm", @onkeypress = "return isAlphaNumeric(event)", @maxlength = "300"})*@
+                                    @Html.TextBoxFor(model => model.Address1, new { @class = "form-control input-sm", @onkeypress = "return isAlphaNumeric(event)", @maxlength = "100" })
+                                    @Html.TextBoxFor(model => model.Address2, new { @class = "form-control input-sm", @onkeypress = "return isAlphaNumeric(event)", @maxlength = "100" })
+                                    @Html.TextBoxFor(model => model.Address3, new { @class = "form-control input-sm", @onkeypress = "return isAlphaNumeric(event)", @maxlength = "100" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblColCountryId" class="filter-col control-label label1">Country :</label>
+                                    @Html.DropDownListFor(model => model.CountryId1, ViewBag.Country as SelectList, "Select Country", new { @class = "form-control dropdown" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblState" class="filter-col control-label label1">Province :</label>
+                                    @Html.DropDownListFor(model => model.StateId1, ViewBag.Province as SelectList, "Select Province", new { @id = "selState", @class = "form-control dropdown" })
+                                    @*<select id="selState" name="selState" style="color: black" class="form-control dropdown"></select>*@
+                                    @*@Html.DropDownList("selState", new SelectList(string.Empty, "Value", "Text"), "Select Province", new { @class = "form-control dropdown" })*@
+                                    <div class="form-group input-field-wrap">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblCity" class="filter-col control-label label1">City :</label>
+                                    @Html.DropDownListFor(model => model.CityId1, ViewBag.City as SelectList, "Select City", new { @id = "selCity", @class = "form-control dropdown" })
+                                    @*<select id="selCity" name="selCity" style="color: black" class="form-control dropdown"></select>*@
+                                    @*@Html.DropDownList("selCity", new SelectList(string.Empty, "Value", "Text"), "Select City", new { @class = "form-control dropdown" })*@
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblPincode" class="filter-col control-label label1">Pincode :</label>
+                                    @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)", @onblur = "checkLengthForPincode(this)", @maxlength = "6" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblPhoneNo" class="filter-col control-label label1">Mobile No :</label>
+                            </div>
+                            <div class="col-xs-6">
+
+                                <label id="lblEmailId" class="filter-col control-label label1">Email Id :</label>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.code, new { @class = "form-control input-sm", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.StudentContactNo, new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)", @onblur = "checkLengthForContact(this)", @maxlength = "10" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.StudentEmailId, new { @class = "form-control input-sm", @onblur = "return validateEmail(this)", @maxlength = "50" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                @Html.HiddenFor(Model => Model.AddressChangedCount)
+                                <input type="button" id="btnAddChange" value="Change Address" hidden="hidden" />
+                            </div>
+                            <div class="col-xs-4">
+                            </div>
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblGarDet" class="filter-col control-label label2">Guardian Details </label>
+                        </legend>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblLGNID" class="filter-col control-label label1">Guardian NRC :</label>
+                                    @Html.TextBoxFor(model => model.GarNID, new { @class = "form-control input-sm", @onkeypress = "return isNRCNumber(event)", @onblur = " checkLengthForNRC(this)", @maxlength = "13" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblGName" class="filter-col control-label label1">Guardian Name :</label>
+                                    @Html.TextBoxFor(model => model.GarName, new { @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)", @maxlength = "100" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblGContact" class="filter-col control-label label1">Contact Detail :</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblGRe" class="filter-col control-label label1">Relationship :</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.code1, new { @class = "form-control input-sm", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.GarContact, new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)", @onblur = "checkLengthForContact(this)", @maxlength = "10" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(model => model.RelationShipId, ViewBag.Relationship as SelectList, "Select Relationship", new { @class = "form-control dropdown " })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-xs-5">
+                        </div>
+                        <div class="col-xs-4">
+                               &nbsp;&nbsp;
+                                          
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="btnNext" value="Next" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          
+                                          <input type="button" id="btnEdit" value="Edit" />
+                        </div>
+                        <div class="col-xs-3">
+                        </div>
+                    </div>
+                    @*   }*@
+                </div>
+                <div id="tabs-2" class="tab-pane">
+                    <br />
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblLoanType" class="filter-col control-label label2">Loan Details </label>
+                        </legend>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblLAcNo" class="filter-col control-label label1">Loan Account Number :</label>
+                                    @Html.TextBoxFor(model => model.LoanAccountNo, new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)", @maxlength = "20" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblLAY" class="filter-col control-label label1">Academic Year :</label>
+                                    @Html.DropDownListFor(model => model.AcademicYeaId1, ViewBag.AcademicYear as SelectList, "Select Academic Year", new { @id = "selAcademicYear", @class = "form-control dropdown" })
+                                    @*@Html.DropDownList("selAcademicYear", new SelectList(string.Empty, "Value", "Text"), "Select Academic Year", new { @class = "form-control dropdown" })*@
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblC" class="filter-col control-label label1">Course:</label>
+                                    @*@Html.DropDownList("selCourse", new SelectList(string.Empty, "Value", "Text"), "Select Course", new { @class = "form-control dropdown" })*@
+                                    @*@Html.TextArea("CourseName", new { @class = "form-control dropdown " })*@
+                                    @Html.DropDownListFor(model => model.CourseId, ViewBag.Course as SelectList, "Select Course", new { @id = "selCourse", @class = "form-control dropdown " })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblLC" class="filter-col control-label label1">College :</label>
+                                    @*@Html.DropDownList("selCollege", new SelectList(string.Empty, "Value", "Text"), "Select College", new { @class = "form-control dropdown" })*@
+                                    @Html.DropDownListFor(model => model.CollegeId, ViewBag.College as SelectList, "Select College", new { @id = "selCollege", @class = "form-control dropdown " })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblLFee" class="filter-col control-label label1">Fee :</label>
+                                    @Html.TextBoxFor(model => model.Fee, new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)", @maxlength = "20", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblLT" class="filter-col control-label label1">Loan Type:</label>
+                                    @Html.DropDownListFor(model => model.LoanTypeId, ViewBag.LoanType as SelectList, new { @class = "form-control dropdown ", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblLDt" class="filter-col control-label label1">Loan Date:</label>
+                                    @Html.TextBoxFor(model => model.LoanAccountDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblLAccNo" class="filter-col control-label label1">Loan Amount :</label>
+                                    @Html.TextBoxFor(model => model.LoanAmount, new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)", @maxlength = "20", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblDisAmt" class="filter-col control-label label1">Disburse Amount :</label>
+                                    @Html.TextBoxFor(model => model.DisburseAmount, new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)", @maxlength = "20", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblDisDt" class="filter-col control-label label1" style="display:none">Disburse Date:</label>
+                                    @Html.TextBoxFor(model => model.DisburseDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control",  style = "display: none;" })
+                                    <label id="lblBA" class="filter-col control-label label1">Balance Amount :</label>
+                                    @Html.TextBoxFor(model => model.BalanceAmount, new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)", @maxlength = "20", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                       @{
+                                        List<SelectListItem> listItems1 = new List<SelectListItem>();
+                                        listItems1.Add(new SelectListItem
+                                        {
+                                            Text = "Active",
+                                            Value = "A"
+                                        });
+                                        listItems1.Add(new SelectListItem
+                                        {
+                                            Text = "Close",
+                                            Value = "C",
+
+                                        });
+                                    }
+                                    <label id="lblStatus" class="filter-col control-label label1">Status :</label>
+                                    @Html.DropDownListFor(model => model.Status, listItems1, new { @class = "form-control dropdown" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                   <label id="lblCloDt" class="filter-col control-label label1">Closure Date:</label>
+                                    @Html.TextBoxFor(model => model.ClosureDate, new { @type = "date", @class = "form-control", @maxDate = "0D" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                     
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                             <label id="lblRemark" class="filter-col control-label label1">Remark :</label>
+                                @Html.TextAreaFor(model => model.Remark, new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+                    @*    }*@
+                    <div class="row">
+                        <div class="col-xs-5">
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnPrevious" value="Previous" style="display: none" />
+                            <input type="button" id="btnNext1" value="Next" />
+                            @*          <button id="btnSave" type="submit" name="ADD" formmethod="post">Save</button>*@
+                        </div>
+                        <div class="col-xs-3">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tabs-3" class="tab-pane">
+
+                    <br />
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblDisbursement" class="filter-col control-label label2">Disbursement Details </label>
+                        </legend>
+
+                        <div class="row">
+
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblAY" class="filter-col control-label label1">Academic year :</label>
+                                    @*@Html.DropDownListFor(model => model.AcademicYeaId, ViewBag as SelectList, new { @class = "form-control dropdown " })*@
+                                    @Html.DropDownList("selAY", new SelectList(string.Empty, "Value", "Text"), "Select Academic Year", new { @class = "form-control dropdown" })
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <div class="form-group">
+
+                                    <label id="lblCY" class="filter-col control-label label1">Course Year :</label>
+                                    @*@Html.DropDownListFor(model => model.AcademicYeaId, ViewBag. as SelectList, new { @class = "form-control dropdown " })*@
+
+                                    @Html.DropDownList("selCourseYear", new SelectList(string.Empty, "Value", "Text"), "Select Course Year", new { @class = "form-control dropdown" })
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblDFees" class="filter-col control-label label1">Disbursed Fee:</label>
+                                    @Html.TextBoxFor(model => model.DFees, new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)", @maxlength = "20" })
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <div class="form-group">
+
+                                    @{
+                                        List<SelectListItem> listItems2 = new List<SelectListItem>();
+                                        listItems2.Add(new SelectListItem
+                                        {
+                                            Text = "Select"
+
+                                        });
+                                        listItems2.Add(new SelectListItem
+                                        {
+                                            Text = "Cheque",
+                                            Value = "H"
+                                        });
+                                        listItems2.Add(new SelectListItem
+                                        {
+                                            Text = "Cash",
+                                            Value = "C",
+
+                                        });
+    
+                                    }
+
+                                    <label id="lblpaymode" class="filter-col control-label label1">Payment Mode :</label>
+                                    @Html.DropDownListFor(model => model.PayMode, listItems2, new { @class = "form-control dropdown " })
+
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblIssuedBy" class="filter-col control-label label1">Issued By :</label>
+                                    @Html.TextBoxFor(model => model.issuedBy, new { @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)" })
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblIssuedDate" class="filter-col control-label label1">Issued Date :</label>
+                                    @Html.TextBoxFor(model => model.issuedDate, new { @type = "date", @class = "form-control" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblTranNo" class="filter-col control-label label1">Transaction/Cheque No:</label>
+                                    @*@Html.DropDownListFor(model => model.BName, ViewBag.LoanType as SelectList, new { @class = "form-control dropdown " })*@
+                                    @Html.TextBoxFor(model => model.TranNo, new { @class = "form-control input-sm", @maxlength = "15" })
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblTranDate" class="filter-col control-label label1">Transaction/Cheque Date:</label>
+                                    @Html.TextBoxFor(model => model.TranDate, new { @type = "date", @class = "form-control" })
+
+
+                                    @*@Html.TextBoxFor(model => model.BrName,  new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)" })*@
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row" id="BankBranch">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblBankName" class="filter-col control-label label1">Bank Name:</label>
+                                    @Html.DropDownListFor(model => model.BName, ViewBag.BankName as SelectList, "Select", new { @class = "form-control dropdown " })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblBrName" class="filter-col control-label label1">Branch Name:</label>
+
+                                    @Html.DropDownList("selBranch", new SelectList(string.Empty, "Value", "Text"), "Select", new { @class = "form-control dropdown" })
+
+
+
+                                    @*@Html.DropDownListFor(model => model.BrName, ViewBag.LoanType as SelectList, new { @class = "form-control dropdown " })*@
+
+                                    @*@Html.TextBoxFor(model => model.BrName,  new { @class = "form-control input-sm", @onkeypress = "return isNumber(event)" })*@
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-5">
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="Button" id="btnaddNewEntry" value="New Entry" />
+                                <input type="Button" id="btnadd" value="Add" />
+
+
+                            </div>
+                            <div class="col-xs-3">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-5">
+                                &nbsp;
+                            </div>
+                            <div class="col-xs-4">
+                                &nbsp;
+                            </div>
+                            <div class="col-xs-3">
+                                &nbsp;
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div id="grid" class="panel panel-primary" style="overflow: auto; min-width: 100px" aria-readonly="true"></div>
+
+
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-5">
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <input type="button" id="btnPrevious1" value="Previous" style="display: none" />
+                                    @*<button id="btnSave" type="submit" name="ADD" formmethod="post">Save</button>*@
+                                    <input type="button" id="btnSave" value="Save" />
+
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                @Html.HiddenFor(model => model.Id)
+
+                                  @Html.HiddenFor(Model => Model.hfentrystatus)
+                            </div>
+
+                        </div>
+
+
+                    </fieldset>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+        $("#btnadd").hide();
+        debugger;
+
+        DisDetailsDisable();
+        FormDisable();
+
+        $('#selState').prop("disabled", true)
+        $('#selCity').prop("disabled", true)
+        $('#selAcademicYear').prop("disabled", true)
+        $('#selCourse').prop("disabled", true)
+        $('#selCollege').prop("disabled", true)
+
+        var MobileCode = '@(ViewBag.MobileCode)';
+        $('#code').val(MobileCode);
+        var MobileNo = '@(ViewBag.MobileNo)';
+        $('#StudentContactNo').val(MobileNo);
+
+        var MobileCode1 = '@(ViewBag.MobileCode1)';
+        $('#code1').val(MobileCode1);
+        var MobileNo1 = '@(ViewBag.MobileNo1)';
+         $('#GarContact').val(MobileNo1);
+
+         var CourseName = '@(ViewBag.CourseName)';
+         $('#CourseName').val(CourseName);
+
+         var today = new Date();
+
+         var date = formatDate(today);
+         $("#DateOfBirth").attr('max', date);
+         $("#issuedDate").attr('min', date);
+         $("#TranDate").attr('min', date);
+         $("#btnSave").hide();
+
+
+       
+       
+
+        var EducationId = $("#Id").val();
+        var url = '@Url.Action("EditDisbursementDetails", "EducationLoanDisbursment")';
+
+
+        $.post(url, { EducationId: EducationId }, function (data) {
+         //   $("#grid").empty();
+            debugger;
+            var intCount = data.length;
+            if (intCount <= "1") {
+                $("#hfentrystatus").val("E");
+                $("#btnSave").hide();
+                $("#btnEdit").show();
+            }
+            else {
+                $("#hfentrystatus").val("A");
+                $("#btnEdit").hide();
+            }
+
+        });
+
+        ////////////////////////////////////////////////////////////////////////////
+        var urlDisAmt = '@Url.Action("getDisbursementAmt", "EducationLoanDisbursment")';
+            $.post(urlDisAmt, { EducationId: EducationId }, function (data) {
+            //    $("#grid").empty();
+                debugger;
+                $("#DisburseAmount").val(data);
+                $("#BalanceAmount").val(data);
+
+            });
+
+      /////////////////////////////////////////////////////
+
+
+            var typ = "E";
+            GetDisbursementDetails(typ);
+
+    });
+
+    /////////////////////////////////////////////////////////////////////////////
+
+ 
+
+         
+
+
+
+
+
+    $("#CountryId1").change(function () {
+        countryChange();
+
+    });
+
+
+
+    $("#LoanAccountDate").focusout(function () {
+        debugger;
+        var dtplaon = $('#LoanAccountDate').val();
+        var dtpAcaYr = $('#selAcademicYear option:selected').text();
+
+        if (dtpAcaYr != "" && dtplaon != "") {
+            var data = dtpAcaYr.split('-');
+            var array = [];
+            array = array.concat(data)
+
+            var loandata = dtplaon.split('-');
+            var loanarray = [];
+            loanarray = loanarray.concat(loandata)
+
+            if (parseInt(loanarray[0]) < parseInt(array[0]) || parseInt(loanarray[0]) > parseInt(array[1])) {//
+                alert("Loan Account Date should be between Academic Year");
+                $("#LoanAccountDate").val(' ');
+            }
+        }
+    });
+
+
+
+    $("#selAcademicYear").change(function () {
+        AcdemicYearChange();
+    });
+
+
+    $("#selAcademicYear").focusout(function () {
+        AcdemicYearFocusOut();
+    });
+
+
+
+
+
+    $("#selCourse").change(function () {
+        CourseChange();
+    });
+
+    $("#selCollege").change(function () {
+        CollegeChange();
+    });
+
+
+    $("#LoanAccountDate").change(function () {
+        var LoanAccountDate = $("#LoanAccountDate").val();
+        debugger;
+        $('#DisburseDate').val(LoanAccountDate);
+
+    });
+
+
+    $("#btnEdit").click(function () {
+        FormEnable();
+     
+        $('#btnSave').show();
+        $('#btnEdit').hide();
+
+    });
+
+@*    $("#selCourseYear").change(function () {
+
+        var urlDisAmt = '@Url.Action("getcourse", "EducationLoanDisbursment")';
+            $.post(urlDisAmt, { AYID: AYID, course: course, college: college, CourseYear: CourseYear }, function (data) {
+                //    $("#grid").empty();
+                debugger;
+                $("#DFees").val(data);
+
+
+            });
+
+        });*@
+
+</script>
+<script type="text/javascript">
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+    function FormEnable() {
+        debugger;
+        $('#NId').attr("readonly", false)
+        $('#TitleId1').prop("disabled", false)
+        $('#FirstName').attr("readonly", false)
+        $('#MiddleName').attr("readonly", false)
+        $('#LastName').attr("readonly", false)
+        $('#DateOfBirth').attr("readonly", false)
+        $('#Sex').prop("disabled", false)
+        $('#NationalityId').prop("disabled", false)
+        $('#Address1').attr("readonly", false)
+        $('#Address2').attr("readonly", false)
+        $('#Address3').attr("readonly", false)
+        $('#CountryId1').prop("disabled", false)
+
+
+        ////$('#StateId1').prop("disabled", false)
+        ////$('#CityId1').prop("disabled", false)
+        $('#selState').prop("disabled", false)
+        $('#selCity').prop("disabled", false)
+
+        $('#Pincode').attr("readonly", false)
+        $('#StudentContactNo').attr("readonly", false)
+        $('#StudentEmailId').attr("readonly", false)
+        $('#GarNID').attr("readonly", false)
+        $('#GarName').attr("readonly", false)
+        $('#GarContact').attr("readonly", false)
+        $('#RelationShipId').prop("disabled", false)
+
+        //$('#AcademicYeaId1').prop("disabled", false)
+        //$('#CourseId').prop("disabled", false)
+        //$('#College').prop("disabled", false)
+
+     //   $('#selAcademicYear').prop("disabled", false)
+    //    $('#selCourse').prop("disabled", false)
+    //    $('#selCollege').prop("disabled", false)
+        $('#LoanAmount').attr("readonly", false)
+        $('#LoanAccountDate').attr("readonly", false)
+        $('#DisburseDate').attr("readonly", false)
+      //  $('#ClosureDate').attr("readonly", false)
+      //  $('#Status').prop("disabled", false)
+
+    }
+
+    function FormDisable() {
+        debugger;
+        $('#NId').attr("readonly", true)
+        $('#TitleId1').prop("disabled", true)
+        $('#FirstName').attr("readonly", true)
+        $('#MiddleName').attr("readonly", true)
+        $('#LastName').attr("readonly", true)
+        $('#DateOfBirth').attr("readonly", true)
+        $('#Sex').prop("disabled", true)
+        $('#NationalityId').prop("disabled", true)
+        $('#Address1').attr("readonly", true)
+        $('#Address2').attr("readonly", true)
+        $('#Address3').attr("readonly", true)
+        $('#CountryId1').prop("disabled", true)
+        $('#StateId1').prop("disabled", true)
+        $('#CityId1').prop("disabled", true)
+        $('#Pincode').attr("readonly", true)
+        $('#StudentContactNo').attr("readonly", true)
+        $('#StudentEmailId').attr("readonly", true)
+        $('#GarNID').attr("readonly", true)
+        $('#GarName').attr("readonly", true)
+        $('#GarContact').attr("readonly", true)
+        $('#RelationShipId').prop("disabled", true)
+        $('#AcademicYeaId1').prop("disabled", true)
+        $('#CourseId').prop("disabled", true)
+        $('#College').prop("disabled", true)
+        $('#LoanAccountDate').attr("readonly", true)
+        $('#DisburseDate').attr("readonly", true)
+        $('#ClosureDate').attr("readonly", true)
+        $('#Status').prop("disabled", true)
+        $('#LoanAccountNo').attr("readonly", true)
+
+    }
+
+    function DisDetailsEnable() {
+        $('#selAY').prop("disabled", false)
+        $('#selCourseYear').prop("disabled", false)
+        $('#DFees').attr("readonly", false)
+        $('#PayMode').prop("disabled", false)
+        $('#issuedBy').attr("readonly", false)
+        $('#issuedDate').attr("readonly", false)
+        $('#TranNo').attr("readonly", false)
+        $('#TranDate').attr("readonly", false)
+        $('#BName').prop("disabled", false)
+        $('#selBranch').prop("disabled", false)
+
+
+    }
+
+    function DisDetailsDisable() {
+        debugger;
+        $('#selAY').prop("disabled", true)
+        $('#selCourseYear').prop("disabled", true)
+        $('#DFees').attr("readonly", true)
+        $('#PayMode').prop("disabled", true)
+        $('#issuedBy').attr("readonly", true)
+        $('#issuedDate').attr("readonly", true)
+        $('#TranNo').attr("readonly", true)
+        $('#TranDate').attr("readonly", true)
+        $('#BName').prop("disabled", true)
+        $('#selBranch').prop("disabled", true)
+
+    }
+    function clearDisDetails() {
+
+        debugger;
+     
+        //$("#selAY").empty().append($("<option></option>").val(1).html('Select'));
+        //$("#selCourseYear").empty().append($("<option></option>").val(1).html('Select'));
+        //$("#PayMode").empty().append($("<option></option>").val(1).html('Select'));
+        //$("#BName").empty().append($("<option></option>").val(1).html('Select'));
+        //$("#selBranch").empty().append($("<option></option>").val(1).html('Select'));
+        $("#selAY").val(-1);
+        $("#selCourseYear").val(-1);
+        $("#PayMode").val(-1);
+        $("#selBranch").val(-1);
+        $("#DFees").val('');
+        $("#issuedBy").val('');
+        $("#issuedDate").val('');
+        $("#TranNo").val('');
+        $("#TranDate").val('');
+
+        $("#BName option").filter(function () {
+            return this.text == 'Select';
+        }).attr('selected', true);
+
+    }
+</script>
+<script type="text/javascript">
+    var currentTab = 0;
+    $(function () {
+        debugger;
+        $("#tabs").tabs({
+            disabled: [0, 1, 2],
+            select: function (e, i) {
+                currentTab = i.index;
+                return currentTab;
+            }
+        });
+    });
+    $("#btnNext").click(function () {
+        debugger;
+        var selectedTab = currentTab;
+        var b = selectedTab + 1;
+
+        var tabs = $('#tabs').tabs();
+        var c = $('#tabs').tabs("length");
+        currentTab = currentTab == (c - 1) ? currentTab : (currentTab + 1);
+        if (currentTab == (c - 1)) {
+            $("#btnNext").hide();
+            $("#btnPrevious").show();
+
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+
+
+            //tabs.tabs('select', currentTab);
+        } else {
+
+            $("#btnNext").show();
+            $("#btnPrevious").show();
+            //tabs.tabs('select', currentTab);
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+        }
+
+     @*   var AcdemicYearDisbursementid = $("#selAcademicYear option:selected").text();
+        var countryid = $("#CountryId1").val();
+        var ELD = $("#Id").val();
+        var url3 = '@Url.Action("AcademicYearListForDisbursment", "EducationLoanDisbursment")';
+        $.post(url3, { AcdemicYearDisbursementid: AcdemicYearDisbursementid, countryid: countryid, ELD: ELD }, function (data) {
+            debugger;
+            $("#selAY").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                $("#selAY").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });*@
+       
+
+
+    });
+
+
+
+    function GetDisbursementDetails(type) {
+        //$("#grid").empty();
+        debugger;
+        var EducationId = $("#Id").val();
+        var url = '@Url.Action("EditDisbursementDetails", "EducationLoanDisbursment")';
+
+        $.post(url, { EducationId: EducationId }, function (data) {
+         //   $("#grid").empty();
+            debugger;
+            var intCount = data.length;
+
+            //    var tableData = '<table id="tblFee" class="table" style="font-size:14px"><thead><tr><th>Year</th><th>Fee Amount</th></tr></thead>';
+
+
+            var tableData = '<table id="disburseAmt1" class="table"><tr>';
+            tableData += '<td width="10px"><label for="lblAY1" style="border: none;text-align:center; width: 150px;" >Academic Year</label></td>';
+            tableData += '<td width="10px"><label for="lblCourseYear1" style="border: none;text-align:center; width: 150px;">Course Year</label></td>';
+            tableData += '<td width="10px"><label for="lblDFee1" style="border: none;text-align:center; width: 150px;">Disbursed Fee</label></td>';
+            tableData += '<td width="10px"><label for="lblPM1" style="border: none;text-align:center; width: 150px;">Payment Mode</label></td>';
+            tableData += '<td width="10px"><label for="lblissueBy1" style="border: none;text-align:center; width: 150px;">Issue By</label></td>';
+            tableData += '<td width="10px"><label for="lblissueDate1" style="border: none;text-align:center; width: 150px;">Issue Date</label></td>';
+            tableData += '<td width="10px"><label for="lbltranno1" style="border: none;text-align:center; width: 200px;">Transaction/Cheque No</label></td>';
+            tableData += '<td width="10px"><label for="lbltranDate1" style="border: none;text-align:center; width: 200px;">Transaction/Cheque Date</label></td>';
+            tableData += '<td width="10px"><label for="lblBName1" style="border: none;text-align:center; width: 150px;">Bank Name</label></td>';
+            tableData += '<td width="10px"> <label for="lblBrName1" style="border: none;text-align:center; width: 150px;">Branch Name</label></td>';
+            tableData += '</tr>';
+
+            var tablerow = '';
+            if (intCount >= 0) {
+
+
+                if (type == "E") {
+                    for (var i = 0; i < intCount; i++) {
+
+                        //var date = ToJavaScriptDate(data[i].IssuedDate);
+
+                        tablerow += '<tr>';
+                        tablerow += '<td width="10px"><input  class ="tbl1" style="display: none;border: none; width: 10px" readonly="true" type="text" id="f' + [i] + '" value=' + data[i].Id + '><input  style="display: none; border: none; width: 10px" readonly="true" type="text" id="f' + [i] + '_DisId" value=' + data[i].EducationLoanDisburseId + '> <input  type="text" id="f' + [i] + '_AYID" style="display: none; border: none; text-align:center; width: 150px;"  readonly="true" value=' + data[i].AcademicYearId + '><input  type="text" id="f' + [i] + '_AY" style="border: none; text-align:center; width: 150px;"  readonly="true" value=' + data[i].AyId + '></td>';
+                        tablerow += '<td width="10px"> <input type="text" id="f' + [i] + '_Yr" style="border: none;text-align:center; width: 150px;" readonly="true"  value=' + data[i].Year + '></td>';
+                        tablerow += '<td width="10px"  class="numeric"> <input  type="text" id="f' + [i] + '_DisAmt" style="border: none;text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)" maxlength=20 value=' + data[i].DisbursementAmount + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_PayTypeID" style="display: none; border: none;text-align:center; width: 150px;"  readonly="true"  value=' + data[i].PYID + '><input  type="text" id="f' + [i] + '_PayType" style="border: none;text-align:center; width: 150px;"  readonly="true"  value=' + data[i].PaymentType + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_Issueby" style="border: none;text-align:center; width: 150px;"  readonly="true" value=' + data[i].IssuedBy + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_issueDate" style="border: none;text-align:center; width: 150px;"  readonly="true" value=' + ToJavaScriptDate(data[i].IssuedDate) + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_TNo" style="border: none;text-align:center; width: 150px;"  readonly="true" value=' + data[i].TranNo + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_TDate" style="border: none;text-align:center; width: 150px;"  readonly="true"  value=' + ToJavaScriptDate(data[i].TranDate) + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_FIid" style="display: none; border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)" value=' + data[i].FinancialInstitutionId + '><input type="text" id="f' + [i] + '_FIName" style="border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)" value=' + data[i].Name + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_FIBid" style="display: none; border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)"  value=' + data[i].FinancialInstitutionBranchId + '><input  type="text" id="f' + [i] + '_FIBName" style=" border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)"  value=' + data[i].BranchName + '></td>';
+                        tablerow += '</tr>';
+
+
+                     
+                    }
+                }
+                else {
+                    debugger;
+                    for (var i = 0; i < intCount; i++) {
+                  
+                        tablerow += '<tr>';
+                        tablerow += '<td width="10px"><input  class ="tbl1" style="display: none;border: none; width: 10px" readonly="true" type="text" id="f' + [i] + '" value=' + data[i].Id + '><input  style="display: none; border: none; width: 10px" readonly="true" type="text" id="f' + [i] + '_DisId" value=' + data[i].EducationLoanDisburseId + '> <input  type="text" id="f' + [i] + '_AYID" style="display: none; border: none; text-align:center; width: 150px;"  readonly="true" value=' + data[i].AcademicYearId + '><input  type="text" id="f' + [i] + '_AY" style="border: none; text-align:center; width: 150px;"  readonly="true" value=' + data[i].AyId + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_Yr" style="border: none;text-align:center; width: 150px;" readonly="true"  value=' + data[i].Year + '></td>';
+                        tablerow += '<td width="10px"  class="numeric"> <input  type="text" id="f' + [i] + '_DisAmt" style="border: none;text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)" maxlength=20 value=' + data[i].DisbursementAmount + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_PayTypeID" style="display: none; border: none;text-align:center; width: 150px;"  readonly="true"  value=' + data[i].PYID + '><input   type="text" id="f' + [i] + '_PayType" style="border: none;text-align:center; width: 150px;"  readonly="true"  value=' + data[i].PaymentType + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_Issueby" style="border: none;text-align:center; width: 150px;"  readonly="true" value=' + data[i].IssuedBy + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_issueDate" style="border: none;text-align:center; width: 150px;"  readonly="true" value=' + ToJavaScriptDate(data[i].IssuedDate) + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_TNo" style="border: none;text-align:center; width: 150px;"  readonly="true" value=' + data[i].TranNo + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_TDate" style="border: none;text-align:center; width: 150px;"  readonly="true"  value=' + ToJavaScriptDate(data[i].TranDate) + '></td>';
+
+
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_FIid" style="display: none; border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)" value=' + data[i].FinancialInstitutionId + '><input type="text" id="f' + [i] + '_FIName" style="border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)" value=' + data[i].Name + '></td>';
+                        tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_FIBid" style="display: none; border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)"  value=' + data[i].FinancialInstitutionBranchId + '><input  type="text" id="f' + [i] + '_FIBName" style=" border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)"  value=' + data[i].BranchName + '></td>';
+                        tablerow += '</tr>';
+                    }
+
+
+                    var AYID = $("#selAY").val();
+                    var AcdemicYear = $("#selAY option:selected").text();
+                    //   var courseYearID = $("#selCourseYear").val();
+                    var courseYear = $("#selCourseYear option:selected").text();
+
+                    var DFee = $("#DFees").val();
+                    var PayModeTYPE = $("#PayMode").val();
+                    var PayMode = $("#PayMode option:selected").text();
+                    var PM = $("#PayMode option:selected").text();
+                    var issuedBy = $("#issuedBy").val();
+                    var issuedDate = $("#issuedDate").val();
+                    var TranNo = $("#TranNo").val();
+                    var TranDate = $("#TranDate").val();
+                    if (PM == "Cheque") {
+                        var BNameID = $("#BName").val();
+                        var selBranchID = $("#selBranch").val();
+                        var BName = $("#BName option:selected").text();
+                        var selBranch = $("#selBranch option:selected").text();
+
+                    }
+                    else {
+                        BName = "-";
+                        selBranch = "-";
+                    }
+
+                    if (DFee == "0")
+                    {
+                        alert("Disbursement Fees Should Not Be Zero");
+                        return false;
+                    
+                    }
+
+
+
+
+
+                    if (BName == "Select") {
+                        BName = "-";
+                    }
+                    if (selBranch == "Select") {
+                        selBranch = "-";
+                    }
+
+                    if (AcdemicYear == "Select") {
+
+                        alert("Please Select Academic Year");
+                        return false;
+                    }
+                    if (courseYear == "Select") {
+                        alert("Please Select Course Year");
+                        return false;
+                    }
+
+                    if (DFee == "") {
+
+                        alert("Please Enter Disbursement Fees");
+                        return false;
+                    }
+                    if (PayMode == "") {
+                        alert("Please Select Payment Mode");
+                        return false;
+                    }
+                    if (issuedBy == "") {
+                        alert("Please Enter Issued By");
+                        return false;
+                    }
+                    if (issuedDate == "") {
+                        alert("Please Enter Issued Date");
+                        return false;
+                    }
+                    if (TranNo == "") {
+                        alert("Please Enter Transaction/Cheque No");
+                        return false;
+                    }
+                    if (TranDate == "") {
+                        alert("Please Enter Transaction/Cheque Date");
+                        return false;
+                    }
+                    if (PM == "Cheque") {
+                        if (BName == "") {
+                            alert("Please Select Bank Name");
+                            return false;
+                        }
+                        if (BName == "Select") {
+                            alert("Please Select Bank Name");
+                            return false;
+                        }
+                        if (BName == "") {
+                            alert("Please Select Branch Name");
+                            return false;
+                        }
+                        if (BName == "Select") {
+                            alert("Please Select Branch Name");
+                            return false;
+                        }
+
+
+
+                    }
+
+                    var newid = 0;
+                    debugger;
+
+                    tablerow += '<tr>';
+                    tablerow += '<td width="10px"><input  class ="tbl1" style="display: none;border: none; width: 10px" readonly="true" type="text" id="f' + [i] + '" value=' + newid + '><input  style="display: none; border: none; width: 10px" readonly="true" type="text" id="f' + [i] + '_DisId" value=' + EducationId + '> <input  type="text" id="f' + [i] + '_AYID" style="display: none; text-align:right; width: 150px;"  readonly="true" value=' + AYID + '><input  type="text" id="f' + [i] + '_AY" style="border: none; text-align:center; width: 150px;"  readonly="true" value="' + AcdemicYear + '"></td>';
+                    tablerow += '<td width="10px"> <input   type="text" id="f' + [i] + '_Yr" style="border: none;text-align:center; width: 150px;" readonly="true"  value=' + courseYear + '></td>';
+                    tablerow += '<td width="10px"  class="numeric"> <input  type="text" id="f' + [i] + '_DisAmt" style="border: none;text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)" maxlength=20 value=' + DFee + '></td>';
+                    tablerow += '<td width="10px"><input  type="text" id="f' + [i] + '_PayTypeID" style="display: none; border: none;text-align:center; width: 150px;"  readonly="true"  value=' + PayModeTYPE + '> <input  type="text" id="f' + [i] + '_PayType" style="border: none;text-align:center; width: 150px;"  readonly="true"  value="' + PayMode + '"></td>';
+                    tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_Issueby" style="border: none;text-align:center; width: 150px;"  readonly="true" value="' + issuedBy + '"></td>';
+                    tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_issueDate" style="border: none;text-align:center; width: 150px;"  readonly="true" value=' + issuedDate + '></td>';
+                    tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_TNo" style="border: none;text-align:center; width: 150px;"  readonly="true" value="' + TranNo + '"></td>';
+                    tablerow += '<td width="10px"> <input type="text" id="f' + [i] + '_TDate" style="border: none;text-align:center; width: 150px;"  readonly="true"  value=' + TranDate + '></td>';
+
+
+                    tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_FIid" style="display: none; border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)" value=' + BNameID + '><input type="text" id="f' + [i] + '_FIName" style="border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)" value="' + BName + '"></td>';
+                    tablerow += '<td width="10px"> <input  type="text" id="f' + [i] + '_FIBid" style="display: none; border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)"  value=' + selBranchID + '><input  type="text" id="f' + [i] + '_FIBName" style=" border: none; text-align:center; width: 150px;"  readonly="true" onkeypress = "return isNumber(event)"  value="' + selBranch + '"></td>';
+                    tablerow += '</tr>';
+
+
+
+                    //tablerow += '<tr><td><input  style="display: none;border: none; width: 10px" readonly="true" type="text" id="ChildId" value="0"><input  style="display: none; border: none; width: 10px" readonly="true" type="text" id="DisId" value=' + EducationId + '><input style="border: none; width: 10px" readonly="true" type="text" id="AYID" value="' + AcdemicYear + '"><input class ="tbl1" style="display: none; width: 10px" readonly="true" type="text" id="AcademicID" value="' + AYID + '"> </td>';
+                    //tablerow += '<td> <input class ="tbl1"  style="border: none; width: 10px" readonly="true" type="text" id="lblCY12" value="' + courseYear + '"> </td>';
+                    //tablerow += '<td> <input class ="tbl1"  style="border: none; width: 10px" readonly="true" type="text" id="lbldf" value="' + DFee + '"></td>';
+                    //tablerow += '<td> <input class ="tbl1" style="border: none; width: 10px" readonly="true" type="text" id="lblPayMode" value="' + PayMode + '"><input class ="tbl1" style="display: none; width: 10px" readonly="true" type="text" id="PAYID" value="' + PayModeTYPE + '"></td>';
+                    //tablerow += '<td> <input class ="tbl1" style="border: none; width: 10px" readonly="true" type="text" id="lblissuedBy" value="' + issuedBy + '"></td>';
+                    //tablerow += '<td> <input class ="tbl1" style="border: none; width: 10px" readonly="true" type="text" id="lblissuedDate" value="' + issuedDate + '"></td>';
+                    //tablerow += '<td> <input class ="tbl1" style="border: none; width: 10px" readonly="true" type="text" id="lblTranNo12" value="' + TranNo + '"></td>';
+                    //tablerow += '<td> <input class ="tbl1" style="border: none; width: 10px" readonly="true" type="text" id="lblTranDate12" value="' + TranDate + '"></td>';
+                    //tablerow += '<td> <input class ="tbl1" style="border: none; width: 10px" readonly="true" type="text" id="lblBName" value="' + BName + '"><input class ="tbl1" style="display: none; width: 10px" readonly="true" type="text" id="BNameID" value="' + BNameID + '"></td>';
+                    //tablerow += '<td> <input class ="tbl1"  style="border: none; width: 10px" readonly="true" type="text" id="lblselBranch" value="' + selBranch + '"><input class ="tbl1" style="display: none; width: 10px" readonly="true" type="text" id="selBranchID" value="' + selBranchID + '"></td>';
+                    //tablerow += '</tr>';
+
+
+
+
+                }
+
+
+                // newRow += '<tr><td> <input class ="tbl1" style="border: none; width: 10px" readonly="true" type="text" id="AYID" value="' + AcdemicYear + '"><input class ="tbl1" style="display: none; width: 10px" readonly="true" type="text" id="AcademicID" value="' + AYID + '"> </td>';
+
+
+
+            }
+            tableData += tablerow;
+            debugger;
+
+
+
+
+    
+
+
+            tableData += '</table>';
+            $("#grid").html(tableData);
+      
+
+            var CourseId = $("#selCourse").val();
+
+
+          @*  var urRepeat = '@Url.Action("getcourse", "EducationLoanDisbursment")';
+            $.post(urRepeat, {CourseId: CourseId}, function (data) {
+                debugger;
+                var rowCount = $('#disburseAmt1 tr').length;
+                if (rowCount > data) {
+                    $("#btnaddNewEntry").hide();
+                }
+                else {
+
+                    $("#btnaddNewEntry").show();
+                }
+            });*@
+
+          
+            $("#btnaddNewEntry").hide();
+
+            clearDisDetails();
+            DisDetailsDisable();
+            $("#btnadd").hide();
+           
+        
+
+        });
+
+
+    }
+
+
+    $("#selAY").change(function () {
+        debugger;
+        @*  var AcademicYearId = $("#selAY").val();
+        var url = '@Url.Action("CourseYear", "EducationLoanDisbursment")';
+        $.post(url, { AcademicYearId: AcademicYearId }, function (data) {
+            debugger;
+            $("#selCourseYear").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                $("#selCourseYear").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });*@
+
+        var CollegeId = $("#selCollege").val();
+        var CourseId = $("#selCourse").val();
+        var AcademicYearId = $("#selAY").val();
+        var EducationID = $("#Id").val();
+        var url = '@Url.Action("CourseYear", "EducationLoanDisbursment")';
+        $.post(url, { AcademicYearId: AcademicYearId, CollegeId: CollegeId, CourseId: CourseId, EducationID: EducationID }, function (data) {
+            debugger;
+            $("#selCourseYear").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                $("#selCourseYear").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+    });
+
+
+    $("#BName").change(function () {
+        debugger;
+        var BankId = $("#BName").val();
+        var url = '@Url.Action("BranchMaster", "EducationLoanDisbursment")';
+        $.post(url, { BankId: BankId }, function (data) {
+            debugger;
+            $("#selBranch").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                $("#selBranch").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+    });
+
+    $("#PayMode").change(function () {
+        debugger;
+        var paymode = $("#PayMode").val();
+        if (paymode == "C") {
+            $("#BankBranch").hide();
+        }
+        else {
+            $("#BankBranch").show();
+
+        }
+    });
+
+    $("#btnPrevious").click(function () {
+        debugger;
+        var selectedTab = currentTab;
+        var b = selectedTab - 1;
+        var tabs = $('#tabs').tabs();
+        var c = $('#tabs').tabs("length");
+        currentTab = currentTab == 0 ? currentTab : (currentTab - 1);
+
+
+        if (currentTab < (c - 1)) {
+            $("#btnNext").show();
+            $("#btnPrevious").show();
+
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+            //tabs.tabs('select', currentTab);
+        }
+
+        if (currentTab == 0) {
+            $("#btnNext").show();
+            $("#btnPrevious").hide();
+
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+            //tabs.tabs('select', currentTab);
+
+        }
+
+    });
+
+
+    $("#btnNext1").click(function () {
+        debugger;
+        var selectedTab = currentTab;
+        var b = selectedTab + 1;
+
+        var tabs = $('#tabs').tabs();
+        var c = $('#tabs').tabs("length");
+        currentTab = currentTab == (c - 1) ? currentTab : (currentTab + 1);
+        if (currentTab == (c - 1)) {
+            $("#btnNext1").hide();
+            $("#btnPrevious1").show();
+
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+        }
+        else {
+
+            $("#btnNext1").show();
+            $("#btnPrevious1").show();
+            //tabs.tabs('select', currentTab);
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+        }
+    });
+
+
+    $("#btnPrevious1").click(function () {
+        debugger;
+        var selectedTab = currentTab;
+        var b = selectedTab - 1;
+        var tabs = $('#tabs').tabs();
+        var c = $('#tabs').tabs("length");
+        currentTab = currentTab == 0 ? currentTab : (currentTab - 1);
+
+
+        if (currentTab < (c - 1)) {
+            $("#btnNext1").show();
+            $("#btnPrevious1").show();
+
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+            //tabs.tabs('select', currentTab);
+        }
+
+        if (currentTab == 0) {
+            $("#btnNext1").show();
+            $("#btnPrevious1").hide();
+
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+            //tabs.tabs('select', currentTab);
+
+        }
+
+    });
+
+    $("#BName").change(function () {
+        debugger;
+        var BankId = $("#BName").val();
+        var url = '@Url.Action("BranchMaster", "EducationLoanDisbursment")';
+        $.post(url, { BankId: BankId }, function (data) {
+            debugger;
+            $("#selBranch").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                $("#selBranch").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+    });
+
+
+    $("#btnaddNewEntry").click(function () {
+
+        debugger;
+        //var typ="A";
+        //GetDisbursementDetails(typ);
+        var AcdemicYearDisbursementid = $("#selAcademicYear option:selected").text();
+        var countryid = $("#CountryId1").val();
+        var ELD = $("#Id").val();
+        var url3 = '@Url.Action("AcademicYearListForDisbursment", "EducationLoanDisbursment")';
+        $.post(url3, { AcdemicYearDisbursementid: AcdemicYearDisbursementid, countryid: countryid, ELD: ELD }, function (data) {
+            debugger;
+            $("#selAY").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                $("#selAY").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+        $("#btnSave").show();
+        $("#btnadd").show();
+        DisDetailsEnable();
+        $("#btnaddNewEntry").hide();
+    });
+
+    $("#btnadd").click(function () {
+
+        //$("#hfentrystatus").val("A");
+
+
+
+
+        var typ = "A";
+        GetDisbursementDetails(typ);
+
+      
+        
+
+    });
+
+    $('#GarNID').focusout(function () {
+        debugger;
+        var NID = $("#NId").val().trim();
+        var GardianNID = $("#GarNID").val().trim();
+        if (NID != "") {
+            if (GardianNID != "") {
+                if (NID == GardianNID) {
+                    alert("Student National Registraion Code and Guardian National Registraion Code Should Be Different!");
+                    //  $("#NId").val(' ');
+                    $("#GarNID").val(' ');
+
+                    return false;
+                }
+            }
+
+        }
+
+    });
+
+    $('#NId').focusout(function () {
+        debugger;
+        var NID = $("#NId").val().trim();
+        var GardianNID = $("#GarNID").val().trim();
+        if (GardianNID != "") {
+            if (NID == GardianNID) {
+                alert("Student National Registraion Code and Guardian National Registraion Code Should Be Different!");
+                $("#NId").val(' ');
+                return false;
+            }
+        }
+    });
+
+    $("#selCourseYear").change(function () {
+        debugger;
+        AYID = $("#selAcademicYear").val();
+        course = $("#selCourse").val();
+        college = $("#selCollege").val();
+        CourseYear = $("#selCourseYear option:selected").text();
+        var urlDisAmt = '@Url.Action("getDefaultFees", "EducationLoanDisbursment")';
+        $.post(urlDisAmt, { AYID: AYID, course: course, college: college, CourseYear: CourseYear }, function (data) {
+            //    $("#grid").empty();
+            debugger;
+            $("#DFees").val(data);
+
+
+        });
+
+ });
+
+
+
+</script>
+<script type="text/javascript">
+    function countryChange() {
+        var countryid = $("#CountryId1").val();
+
+        var url = '@Url.Action("StateList", "EducationLoanDisbursment")';
+        $.post(url, { CountryId: countryid }, function (data) {
+            $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+        var url1 = '@Url.Action("AssignCountryCode", "EducationLoanDisbursment")';
+        $.post(url1, { CountryId: countryid }, function (data) {
+            debugger;
+            if (data != null) {
+                $("#code").val(data);
+                $("#code1").val(data);
+            }
+        });
+
+        var url2 = '@Url.Action("AcademicYearList", "EducationLoanDisbursment")';
+         $.post(url2, { CountryId: countryid }, function (data) {
+             $("#selAcademicYear").empty().append($("<option></option>").val(-1).html('Select'));
+             $.each(data, function (Key, item) {
+                 $("#selAcademicYear").append($("<option></option>").val(item.Value).html(item.Text));
+             });
+         });
+     }
+     function provinceChange() {
+         var Stateid = $("#selState").val();
+         //$('#CityId1').attr("disabled", false)
+         var url = '@Url.Action("CityList", "EducationLoanDisbursment")';
+            $.post(url, { Stateid: Stateid }, function (data) {
+                $("#selCity").empty().append($("<option></option>").val(-1).html('Select'));
+                $.each(data, function (Key, item) {
+                    $("#selCity").append($("<option></option>").val(item.Value).html(item.Text));
+                });
+            });
+        }
+        function AcdemicYearChange() {
+          
+            var url = '@Url.Action("CourseList", "EducationLoanDisbursment")';
+        $.post(url, function (data) {
+            $("#selCourse").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                $("#selCourse").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+
+
+    }
+
+    function AcdemicYearFocusOut() {
+        var AcdemicYearDisbursementid = $("#selAcademicYear option:selected").text();
+        var countryid = $("#CountryId1").val();
+        var ELD = $("#Id").val();
+        var url3 = '@Url.Action("AcademicYearListForDisbursment", "EducationLoanDisbursment")';
+        $.post(url3, { AcdemicYearDisbursementid: AcdemicYearDisbursementid, countryid: countryid, ELD: ELD }, function (data) {
+            debugger;
+            $("#selAY").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                $("#selAY").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+    }
+
+    function CourseChange() {
+        var CourseId = $("#selCourse").val();
+        var url = '@Url.Action("CollegeList", "EducationLoanDisbursment")';
+        $.post(url, { CourseId: CourseId }, function (data) {
+            $("#selCollege").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                $("#selCollege").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+        //var CourseId = $("#selCourse").val();
+        var CountryId = $("#CountryId1").val();
+        var Acdemicyear = $("#selAcademicYear").val();
+        var NID = $("#NId").val();
+
+        var urRepeat = '@Url.Action("checkRepeatLoan", "EducationLoanDisbursment")';
+            $.post(urRepeat, { CountryId: CountryId, CourseId: CourseId, Acdemicyear: Acdemicyear, NID: NID }, function (data) {
+                debugger;
+                var count = data;
+                if (count > 0) {
+                    alert("This Course Loan Already Exits");
+
+                }
+            });
+
+
+    }
+
+    function CollegeChange() {
+        var CollegeId = $("#selCollege").val();
+        var CourseId = $("#selCourse").val();
+        var url = '@Url.Action("Fee", "EducationLoanDisbursment")';
+        $.post(url, { CollegeId: CollegeId, CourseId: CourseId }, function (data) {
+            if (data != null) {
+                $("#Fee").val(data);
+                $("#LoanAmount").val(data);
+                //    $("#DisburseAmount").val(data);
+                //   $("#BalanceAmount").val(data);
+            }
+        });
+
+ 
+
+
+
+    }
+
+    function CheckRequiredField() {
+        debugger;
+        var NID = $("#NId").val();
+        var TitleId1 = $("#TitleId1").val();
+        var FirstName = $("#FirstName").val().trim();
+        var MiddleName = $("#MiddleName").val().trim();
+        var LastName = $("#LastName").val().trim();
+
+        var DateOfBirth = $("#DateOfBirth").val().trim();
+        var Sex = $("#Sex").val();
+        var NationalityId = $("#NationalityId").val().trim();
+        var Address1 = $("#Address1").val().trim();
+        //var Address2 = $("#Address2").val();  
+        //var Address3 = $("#Address3").val();
+        var CountryId1 = $("#CountryId1").val().trim();
+        var StateId1 = $("#selState").val().trim();
+        var CityId1 = $("#selCity").val().trim();
+        var Pincode = $("#Pincode").val().trim();
+        var StudentContactNo = $("#StudentContactNo").val().trim();
+        var StudentEmailId = $("#StudentEmailId").val().trim();
+        var GarNID = $("#GarNID").val().trim();
+        var GarName = $("#GarName").val().trim();
+        var GarContact = $("#GarContact").val().trim();
+        var RelationShipId = $("#RelationShipId").val().trim();
+
+        var AcademicYeaId1 = $("#selAcademicYear").val().trim();
+        var CourseId = $("#selCourse").val().trim();
+        var CollegeId = $("#selCollege").val().trim();
+        var Status = $("#Status").val().trim();
+        ///////////////////////////////////////////////
+        var Fee = $("#Fee").val().trim();
+        var LoanTypeId = $("#LoanTypeId").val().trim();
+        var LoanAccountDate = $("#LoanAccountDate").val().trim();
+        var LoanAmount = $("#LoanAmount").val().trim();
+        var DisburseAmount = $("#DisburseAmount").val().trim();
+     //   var DisburseDate = $("#DisburseDate").val();
+        var BalanceAmount = $("#BalanceAmount").val().trim();
+        var CheckValidation;
+        if (NID == "") {
+            alert("Please Enter National Registration Code.");
+            CheckValidation = false;
+            return false;
+
+        }
+        if (TitleId1 == null) {
+            alert("Please Select Title");
+            CheckValidation = false;
+            return false;
+        }
+        if (FirstName == "") {
+            alert("Please Enter First Name.");
+            CheckValidation = false;
+            return false;
+        }
+        if (MiddleName == "") {
+            alert("Please Enter Middle Name.");
+            CheckValidation = false;
+            return false;
+        }
+        if (LastName == "") {
+            alert("Please Enter last Name.");
+            CheckValidation = false;
+            return false;
+        }
+        if (DateOfBirth == "") {
+            alert("Please Select Date Of Birth.");
+            CheckValidation = false;
+            return false;
+        }
+        if (Sex == null) {
+            alert("Please Select Gender.");
+            CheckValidation = false;
+            return false;
+        }
+        if (NationalityId == "") {
+            alert("Please Select Natinality.");
+            CheckValidation = false;
+            return false;
+        }
+        if (Address1 == "") {
+            alert("Please Enter Address.");
+            CheckValidation = false;
+            return false;
+        }
+        if (CountryId1 == "") {
+            alert("Please Select Country.");
+            CheckValidation = false;
+            return false;
+        }
+        if (StateId1 == "") {
+            alert("Please Select Province.");
+            CheckValidation = false;
+            return false;
+        }
+        if (CityId1 == "") {
+            alert("Please Select City.");
+            CheckValidation = false;
+            return false;
+        }
+        if (Pincode == "") {
+            alert("Please Enter Pincode.");
+            CheckValidation = false;
+            return false;
+        }
+        if (StudentContactNo == "") {
+            alert("Please Enter StudentContactNo.");
+            CheckValidation = false;
+            return false;
+        }
+        if (StudentEmailId == "") {
+            alert("Please Enter StudentEmailId.");
+            CheckValidation = false;
+            return false;
+        }
+        if (GarNID == "") {
+            alert("Please Enter Guardian National Registration Code.");
+            CheckValidation = false;
+            return false;
+        }
+        if (GarName == "") {
+            alert("Please Enter Guardian Name.");
+            CheckValidation = false;
+            return false;
+        }
+        if (GarContact == "") {
+            alert("Please Enter Guardian Contact No.");
+            CheckValidation = false;
+            return false;
+        }
+        if (RelationShipId == "") {
+            alert("Please Select RelationShip.");
+            CheckValidation = false;
+            return false;
+        }
+        if (AcademicYeaId1 == "") {
+            alert("Please Select Academic Year.");
+            CheckValidation = false;
+            return false;
+        }
+        if (CourseId == "") {
+            alert("Please Select Course.");
+            CheckValidation = false;
+            return false;
+        }
+        if (CollegeId == -1) {
+            alert("Please Select College.");
+            CheckValidation = false;
+            return false;
+        }
+        if (Status == "") {
+            alert("Please Select Status.");
+            CheckValidation = false;
+            return false;
+
+        }
+        return CheckValidation;
+    }
+
+
+    $("#btnSave").click(function () {
+        debugger;
+        var CheckValidation = CheckRequiredField();
+        if (CheckValidation == false) {
+            return false;
+        }
+
+       var hfenteystatus= $("#hfentrystatus").val();
+
+ 
+
+    
+        var EID = $("#Id").val().trim();
+        var NId1 = $("#NId").val().trim();
+        var code1 = $("#code").val();
+        var StudentContactNo1 = $("#StudentContactNo").val();
+        var StudentEmailId1 = $("#StudentEmailId").val();
+        var GNID = $("#GarNID").val();
+        var GName = $("#GarName").val();
+        var GCode = $("#code1").val();
+        var GContact = $("#GarContact").val();
+        var AcdemicYID = $("#selAcademicYear").val();
+        var Course = $("#selCourse").val();
+        var College = $("#selCollege").val();
+        var AccStatus = $("#Status").val();
+       
+        var DAmount = $("#DisburseAmount").val();
+       // var DisDate = $("#DisburseDate").val();
+            
+        var LoanAcDate = $("#LoanAccountDate").val();
+        var LoanAmt = $("#LoanAmount").val();
+        var AutoGenNumber = $("#LoanAccountNo").val();
+       
+        var BalAmt = $("#BalanceAmount").val();
+        var RM = $("#Remark").val();
+        var RId = $("#RelationShipId").val();
+     
+       
+      
+        ///////ContactDetails//////
+        //var AddressCount = "1";
+        //   var AddressCount = $('#AddressChangedCount').val('1');
+        var Add1 = $("#Address1").val();
+        var Add2 = $("#Address2").val();
+        var Add3 = $("#Address3").val();
+        var ContryID = $("#CountryId1").val();
+        var sateID = $("#selState").val();
+        var cityID = $("#selCity").val();
+        var Pinc = $("#Pincode").val();
+        ///////////IndividualCustomerMasters///// 
+        var TitleId = $("#TitleId1").val();
+        var FName = $("#FirstName").val();
+        var MName = $("#MiddleName").val();
+        var LName = $("#LastName").val();
+        var Gender = $("#Sex").val();
+        var DOB = $("#DateOfBirth").val();   
+        var natinality = $("#NationalityId").val();
+        //////////////////////////////////////////////////
+        var ChildData = new Array;
+        var id_childId = 0, i = 0, id_DisId = 0, txt_AY = "", id_AY = 0, id_CYr = 0, Fees = 0, PayType = "", IssueBy = "", issueDate = "", TNo = "", TDate = "";
+        var FIid = 0, FIBid = 0, FIName = "", FIBName = "";
+        $('.tbl1').each(function () {
+            debugger;
+            id = $(this).attr('id');
+            id_childId = $("#" + id).val(); //childId
+            id_DisId = $("#" + id + "_DisId").val(); //DisbursementID
+            id_AY= $("#" + id + "_AYID").val(); //txtAY
+            txt_AY = $("#" + id + "_AY").val(); //idAY
+            id_CYr = $("#" + id + "_Yr").val(); //CourseYear
+            Fees = $("#" + id + "_DisAmt").val(); //Fees
+            PayType = $("#" + id + "_PayTypeID").val(); //PayModeType
+            //if (PayType == "C") {
+            //    BName = null;
+            //    selBranch = null;
+            //}
+            //else {
+
+
+            //}
+
+            
+            IssueBy = $("#" + id + "_Issueby").val(); //Issue By
+            issueDate = $("#" + id + "_issueDate").val(); //Issue Date
+            TNo = $("#" + id + "_TNo").val(); //Transcation No
+            TDate = $("#" + id + "_TDate").val(); //Transcation Date
+            FIid = $("#" + id + "_FIid").val(); //Bank Id
+            FIBid = $("#" + id + "_FIBid").val(); //Branch Id
+            FIName = $("#" + id + "_FIName").val(); //Bank Name
+            FIBName = $("#" + id + "_FIBName").val(); //Branch Name
+   
+
+
+
+            if (id_childId == "0") {
+                if (PayType = "C") {
+                    FIid = "0";
+                    FIBid = "0";
+                }
+
+
+                var P =
+                {
+                    DisbursementId: id_DisId,
+                    AcaYId: id_AY,
+                    courseyear: id_CYr,
+                    DFees: Fees,
+                    PayMode: PayType,
+                    issuedBy: IssueBy,
+                    issuedDate: issueDate,
+                    TranNo: TNo,
+                    TranDate: TDate,
+                    Bid: FIid,
+                    Brid: FIBid
+                }
+                ChildData[i] = P;
+
+            }
+            i++;
+          
+
+        });
+
+
+
+
+
+        var DisburseDetails = {
+            Id: EID,
+            NId: NId1,
+            code: code1,
+            StudentContactNo: StudentContactNo1,
+            StudentEmailId: StudentEmailId1,
+            CourseId: Course,
+            CollegeId: College,
+            DisburseAmount: DAmount,
+         //   DisburseDate: DisDate,
+            LoanAmount: LoanAmt,
+            AutoGenrateNumber: AutoGenNumber,
+            LoanAccountDate: LoanAcDate,
+            AcaYId: AcdemicYID,
+            BalanceAmount: BalAmt,
+            Remark: RM,
+            RelationId: RId,
+            GarName: GName,
+            GarNID: GNID,
+            code1: GCode,
+            GarContact: GContact,
+         //   AddressChangedCount: AddressCount,
+            Address1: Add1,
+            Address2: Add2,
+            Address3: Add3,
+            CountryId1: ContryID,
+            StateId1: sateID,
+            CityId1: cityID,
+            Pincode: Pinc,
+            FirstName: FName,
+            MiddleName: MName,
+            LastName: LName,
+            Sex: Gender,
+
+            DateOfBirth: DOB,
+            TitleId1: TitleId,
+            NationalityId: natinality,
+            AccountStatus: AccStatus
+           
+            //////////////////////
+
+          
+
+
+        }
+
+ 
+
+
+
+
+
+      
+        var EditDetails = JSON.stringify(DisburseDetails);
+        var NewChildData = JSON.stringify(ChildData);
+
+
+        //if (hfenteystatus == "A") {
+
+        //    EditDetails = "";
+
+        //}
+        var url = '@Url.Action("EditEduLoanDis", "EducationLoanDisbursment")';
+                $.ajax({
+                    url: url,
+                    data: { childData: EditDetails, EduLoanchildData: NewChildData },
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function (data) {
+
+                        var a = JSON.stringify(data);
+                        if (a == "true") {
+                            debugger
+                            alert('Data saved successfully!');
+                            window.location.href = '/EducationLoanDisbursment/ViewEducationLoanDisbursement';
+                        }
+
+                    },
+                    error: function (data) {
+                        alert("Data Saved Falied");
+                    }
+                });
+
+
+
+
+    });
+
+
+
+</script>

@@ -1,0 +1,412 @@
+﻿@model CreditRatingModel.Model.EmployerMaster_Metadata
+
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+ <br/>
+ <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Employer Details </label>
+            </div>
+            <div class="panel-body">
+                  @using (Html.BeginForm("Employeer", "EmployerMaster", FormMethod.Post,
+                            new { enctype = "multipart/form-data", id = "Employer" }))
+                  {
+                      
+                    <div id="tabs" >
+                       
+                            <ul>
+                                <li  >
+                                    <a href="#tabs-1" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Entry</a>
+                                </li>
+                                <li >
+                                    <a href="#tabs-2" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Contact Info</a>
+                                </li>
+                          
+                            </ul>
+                 <div id="tabs-1" class="tab-pane">
+                     
+                           <div id="cn" class="row">
+                               <div class="col-xs-4">
+                                   <div class="form-group">
+
+
+
+                                       <label id="lblCN" class="filter-col control-label label1">Employer Name</label>
+
+
+                                       @Html.TextBoxFor(model => model.EmployerName, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+
+                                   </div>
+                               </div>
+                               <div class="col-xs-4">
+                                   <div class="form-group">
+                                       <label id="lblBN" class="filter-col control-label label1">Employer Type</label>
+                                       @Html.TextBoxFor(model => model.EmployerType, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+
+                                   </div>
+
+
+                               </div>
+                               <div class="col-xs-4">
+                                   <div class="form-group">
+
+                                       <label id="lblCT" class="filter-col control-label label1">Branch Name</label>
+                                       @Html.TextBoxFor(model => model.EmployerBranch, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+
+                                   </div>
+                               </div>
+                           </div>
+                           
+                                <div id="ic" class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblID" class="filter-col control-label label1">Incorporation Date</label>
+                                            @Html.TextBoxFor(model => model.IncorporationDt, new { @type = "date", @class = "form-control" })
+                                      
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblCD" class="filter-col control-label label1">Commencement Date</label>
+                                            @Html.TextBoxFor(model => model.CommencementDt, new { @type = "date", @class = "form-control"})
+
+                                        </div>
+                                    </div>
+
+                           </div>
+                             <div id="" class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblPAN" class="filter-col control-label label1">National Identification Number (NRC)</label>
+                                            @Html.TextBoxFor(model => model.PanNo, new { @class = "form-control",  @onkeypress = "return  isNumber(event)",@maxlength = "15" })
+                                      
+                                        </div>
+
+                                    </div>
+                                </div>
+                           </div> 
+                      
+               
+                           <div id="tabs-2" class=" tab-pane">
+                               <div id="Address" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label class="filter-col control-label label1">Address 1</label>
+                                            @Html.TextBoxFor(model => model.Address1, new { @class = "form-control" })
+                                          
+                                            @Html.TextBoxFor(model => model.Address2, new { @class = "form-control"})
+                                         
+                                            @Html.TextBoxFor(model => model.Address3, new { @class = "form-control"})
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div id="CID" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+
+                                            <label id="lblC" class="filter-col control-label label1">Country</label>
+                                            @Html.DropDownListFor(model => model.CountryId, ViewBag.Country as SelectList, "select Country", new { @id = "Country", @class = "form-control dropdown" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label id="lblS" class="filter-col control-label label1">State</label>
+                                            @Html.DropDownList("selState", new SelectList(string.Empty, "Value", "Text"), "-- Please select a State --", new { @class = "form-control dropdown" })
+                                             <div class="form-group input-field-wrap">
+                        </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="CityPIN" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label id="lblCI" class="filter-col control-label label1">City </label>
+                                            @Html.TextBoxFor(model => model.City, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label id="lblPIN" class="filter-col control-label label1">PIN code</label>
+                                            @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "6" })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <label id="lblPhoneNo" class="filter-col control-label label1">Telephone number</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-1">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.LandlineCode, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "4" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-5">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.LandlineNo, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "10" })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                             
+
+
+
+
+
+                                <div id="email" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+                                            <label id="lblemail" class="filter-col control-label label1">Email Id</label>
+                                            @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control", @onblur = "validateEmail(this)"  })
+
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                    </div>
+                                    <div class="col-xs-4">        
+                                             <input type="submit" id="btnemp" value="Add Employeer" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                    </div>
+                                    </div>
+                            
+
+                    </div> 
+                          <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input type="button" id="btnPrevious" value="Previous" style="display: none" />
+                                        <input type="button" id="btnNext" value="Next" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                    </div>
+                                </div>
+                            </div>   
+       
+                    </div> 
+                      
+                  }
+                  
+
+
+        </div>         
+
+ </div>
+     </div>
+     <script type="text/javascript">
+
+
+
+  var currentTab = 0;
+   debugger;
+   
+        $(function () {
+         
+debugger;
+
+            $("#tabs").tabs({
+    
+                select: function (e, i) {
+  
+
+                    currentTab = i.index;
+
+        
+                }
+            });
+        });
+
+
+        $("#btnNext").live("click", function () {
+       $('#tabs-2').removeAttr("disabled");
+            debugger;
+            var tabs = $('#tabs').tabs();
+            var c = $('#tabs').tabs("length");
+            currentTab = currentTab == (c - 1) ? currentTab : (currentTab + 1);
+
+            if (currentTab == (c - 1)) {
+
+                $("#btnNext").hide();
+                $("#btnPrevious").show();
+             
+                tabs.tabs('select', currentTab);
+            } else {
+                $("#btnNext").show();
+                $("#btnPrevious").show();
+                   tabs.tabs('select', currentTab);
+            }
+        });
+        $("#btnPrevious").live("click", function () {
+            debugger;
+            var tabs = $('#tabs').tabs();
+            var c = $('#tabs').tabs("length");
+            currentTab = currentTab == 0 ? currentTab : (currentTab - 1);
+
+         
+            if (currentTab == 0) {
+                $("#btnNext").show();
+                $("#btnPrevious").hide();
+           
+                tabs.tabs('select', currentTab);
+
+            }
+            if (currentTab < (c - 1)) {
+                $("#btnNext").show();
+                $("#btnPrevious").show();
+                tabs.tabs('select', currentTab);
+            }
+        });
+    $("#Country").change(function () {
+        var countryid = $("#Country").val();
+
+        var url = '@Url.Action("StateList", "details")';
+
+        $.post(url, { CountryId: countryid }, function (data) {
+
+            //debugger;
+            $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+                //debugger;
+                $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+    });
+
+    $(function () {
+        $('#Country').change(function () {
+            var countryid = $("#Country").val();
+            debugger;
+            $.ajax({
+                url: '/details/CountryCode/',
+                type: 'POST',
+                data: { countryid: countryid },
+                success: function (data) {
+
+                    debugger;
+                    if (data != null) {
+                        var vdata = data;
+                        $("#MobileCode").val(vdata);
+
+                    }
+                }
+
+
+   
+            });
+        });
+    });
+$(function () {
+        $('#EmployerType').change(function () {
+             var EmployerName = $("#EmployerName").val();
+            var EmployerType = $("#EmployerType").val();
+            debugger;
+            $.ajax({
+                url: '/EmployerMaster/EmployerType/',
+                type: 'POST',
+                data: { EmployerType: EmployerType, EmployerName:EmployerName},
+                success: function (data) {
+
+                    debugger;
+             
+                    if (data!= null) {
+ debugger;
+         if(data == EmployerType)
+                      {
+ debugger;
+             
+                       alert("Employer Type already exists,Please enter another Type");
+              }
+                    }
+                }
+
+            });});});
+
+ $(function () {
+ debugger;
+            var frmvalidator = new Validator("Employer");
+            frmvalidator.EnableMsgsTogether();
+            debugger;
+          frmvalidator.addValidation("EmployerName", "req", "Please enter Employer Name ");
+             frmvalidator.addValidation("EmployerType", "req", "Please enter Employer Type ");
+            frmvalidator.addValidation("EmployerBranch", "req", "Please enter Employer Branch");
+                frmvalidator.addValidation("IncorporationDt", "req", "Please select Incorporation Date ");
+             frmvalidator.addValidation("CommencementDt", "req", "Please select Commencement Date ");
+              frmvalidator.addValidation("PanNo", "req", "Please enter National Identification Number   ");
+
+            frmvalidator.addValidation("Address1", "req", "Please enter Address");
+            frmvalidator.addValidation("Country", "req", "Please select country");
+            frmvalidator.addValidation("selState", "req", "Please select state");
+            frmvalidator.addValidation("Pincode", "req", "Please enter pin number");
+            frmvalidator.addValidation("MobileNo", "req", "Please enter mobile number ");
+            frmvalidator.addValidation("LandlineNo", "req", "Please enter landline number");
+
+            frmvalidator.addValidation("City", "req", "Please enter city");
+            frmvalidator.addValidation("EmailId", "req", "Please enter email id ");
+    
+         
+
+
+        });
+
+</script>
+ 
+@* $(function () {
+        $('#EmployerName').change(function () {
+            var EmployerName = $("#EmployerName").val();
+            debugger;
+            $.ajax({
+                url: '/EmployerMaster/EmployerName/',
+                type: 'POST',
+                data: { EmployerName: EmployerName },
+                success: function (data) {
+
+                    debugger;
+ debugger;
+                    if (data!= null) {
+                      if(data == EmployerName)
+                      {
+                       alert("Employer Name already exists,Please enter another name");
+              }
+                    }
+                }
+
+            });});});*@

@@ -1,0 +1,52 @@
+\\Soft09\d\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.dll.config
+\\Soft09\d\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.dll
+\\Soft09\d\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.pdb
+\\Soft09\d\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\EntityFramework.dll
+\\Soft09\d\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\EntityFramework.xml
+\\Soft09\d\vishakha\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.csprojResolveAssemblyReference.cache
+\\Soft09\d\vishakha\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.dll
+\\Soft09\d\vishakha\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.pdb
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.dll.config
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.dll
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.pdb
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\EntityFramework.dll
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\System.Web.Mvc.dll
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\EntityFramework.xml
+D:\vishakha\CreditRatingSystem\CreditRatingModel\bin\Debug\System.Web.Mvc.xml
+D:\vishakha\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.dll
+D:\vishakha\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.pdb
+D:\vishakha\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.csprojResolveAssemblyReference.cache
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.dll.config
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.dll
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.pdb
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\EntityFramework.dll
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\System.Web.Mvc.dll
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\EntityFramework.xml
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\System.Web.Mvc.xml
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.dll
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.pdb
+D:\Nivedita_CRS\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.csprojResolveAssemblyReference.cache
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.dll.config
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.pdb
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\EntityFramework.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\System.Web.Mvc.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\EntityFramework.xml
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\System.Web.Mvc.xml
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.csprojAssemblyReference.cache
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.csproj.CoreCompileInputs.cache
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.csproj.CopyComplete
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\19-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.pdb
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.dll.config
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\CreditRatingModel.pdb
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\EntityFramework.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\System.Web.Mvc.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\EntityFramework.xml
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\bin\Debug\System.Web.Mvc.xml
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.csprojAssemblyReference.cache
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.csproj.CoreCompileInputs.cache
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.csproj.CopyComplete
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.dll
+D:\Nivedita\Softlabs\Projects\ZCRIS\26-01-2022\Creadit Rating System\CreditRatingSystem\CreditRatingModel\obj\Debug\CreditRatingModel.pdb

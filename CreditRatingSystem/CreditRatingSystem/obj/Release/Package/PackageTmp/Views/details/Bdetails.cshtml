@@ -1,0 +1,980 @@
+﻿@model CreditRatingModel.Model.BorrowerDetails
+
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    
+ 
+}
+
+@*<html>*@
+
+
+
+
+@*  <link href="@Url.Content("~/CSS/Comman.css")" rel="stylesheet" type="text/css" />*@
+@*<script src="@Url.Content("~/js/ValidationJavaScript.js")" ></script>*@
+@*<link href="@Url.Content("~/Content/tabPanel.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/CSS/Comman.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery-ui.js")" ></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.3/themes/base/jquery-ui.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="~/Content/tabPanel.css" rel="stylesheet" />
+
+      <script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/js/bootstrap-3.3.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-2.0.3.js") " type="text/javascript"></script>*@
+
+ <script src="@Url.Content("~/js/ValidationJavaScript.js")"></script>
+    <script type="text/javascript">
+    var currentTab = 0;
+
+
+
+    $(document).ready(function () {
+
+        var activate = false,
+        tabLinks = $('.nav-tabs a');
+        tabContent = $('.tab-pane');
+
+        tabLinks.eq(0).addClass('active');
+        tabContent.eq(0).addClass('active');
+
+        tabLinks.click(function (e) {
+            e.preventDefault();
+            debugger;
+            if (activate === true) { // Only do something if button has been clicked
+                //debugger;
+                var target = this.hash,
+                    el = $(this);
+
+                if (target === "#tabs-1") {
+                    tabContent.eq(0).addClass('active');
+                    tabContent.eq(1).removeClass('active');
+                    tabContent.eq(2).removeClass('active');
+                }
+                else
+                    if (target === "#tabs-2") {
+                        tabContent.eq(1).addClass('active');
+                        tabContent.eq(0).removeClass('active');
+                        tabContent.eq(2).removeClass('active');
+                    }
+                    else {
+                        tabContent.eq(0).removeClass('active');
+                        tabContent.eq(1).removeClass('active');
+
+                        tabContent.eq(2).addClass('active');
+
+                    }
+                el.addClass('active');
+                tabContent.hide(); // Hide all
+                $(target).show(); // Show selected
+            }
+        });
+         var strTabTwo = '@(ViewBag.TabYN)';
+        var strTabThree = '@(ViewBag.TabYN1)';
+        debugger;
+        if (strTabTwo == 'N' && strTabThree == 'Y') {
+            currentTab = 0;
+        }
+        else
+            if (strTabTwo == 'Y') //'Y' means 2nd tab
+            {
+                currentTab = 1;
+                tabContent.eq(0).removeClass('active');
+                tabContent.eq(2).removeClass('active');
+                tabContent.eq(1).addClass('active');
+
+            }
+            else
+                if (strTabThree == 'N') //'Y' means 3nd tab
+                {
+
+                    currentTab = 2;
+
+                    tabContent.eq(0).removeClass('active');
+                    tabContent.eq(1).removeClass('active');
+
+                    tabContent.eq(2).addClass('active');
+                    debugger;
+
+
+                }
+                else {
+                    currentTab = 0;
+                }
+
+
+        $("#btnNext").click( function () {
+            debugger;
+              activate = true;
+            tabContent.eq(0).removeClass('active');
+            tabContent.eq(1).removeClass('active');
+
+            tabLinks.eq(2).addClass('active');
+
+            tabContent.eq(2).addClass('active');
+        });
+
+        $("#btnAdd").click( function () {
+            debugger;
+            activate = true;
+            tabContent.eq(0).removeClass('active');
+            tabLinks.eq(1).addClass('active');
+            tabContent.eq(1).addClass('active');
+
+        });
+    });
+
+//--------------- dropdown--------//
+
+
+    </script>
+
+    <script type="text/javascript">
+
+
+        function ReqStgBorrowerVali() {
+            debugger;
+            var CompanyName = $('#CompanyName').val();
+
+
+            var CompanyType = $('#CompanyType').val();
+            var IncorporationDate = $('#IncorporationDate').val();
+            var CommencementDate = $('#CommencementDate').val();
+
+            var BranchName = $('#BranchName').val();
+            var PAN = $('#PAN').val();
+
+
+
+            if (CompanyName == "") {
+                alert("Enter Company name");
+
+                $('#CompanyName').focus();
+                return false;
+                event.preventdefault();
+
+
+            }
+            else if (CompanyType == "") {
+                alert("Enter Company type");
+                $('#CompanyType').focus();
+                return false;
+                event.preventdefault();
+            }
+            else if (IncorporationDate == "") {
+                alert("Enter Incorporation Date ");
+
+                $('#IncorporationDate').focus();
+                return false;
+                event.preventdefault();
+            }
+            else if (CommencementDate == "") {
+                alert("Enter Commencement Date");
+                $('#CommencementDate').focus();
+                return false;
+                event.preventdefault();
+            }
+            else if (BranchName == "") {
+                alert("Enter Branch Name");
+                $('#BranchName').focus();
+                return false;
+                event.preventdefault();
+            }
+            else if (PAN == "") {
+                alert("Enter PAN number");
+                $('#PAN').focus();
+                return false;
+                event.preventdefault();
+            }
+
+
+        }
+
+
+
+
+
+    </script>
+
+    <script type="text/javascript">
+
+
+
+
+        function ReqStgBorrowerVali1() {
+            debugger;
+
+            var NID = $('#NID').val();
+            var FirstName = $('#FirstName').val();
+            var MiddleName = $('#MiddleName').val();
+            var LastName = $('#LastName').val();
+            var Sex = $('#Sex').val();
+            var NationalityId = $('#NationalityId').val();
+            var DateOfBirth = $('#DateOfBirth').val();
+            var PAN = $('#PAN').val();
+
+
+
+            if (NID == "") {
+                alert("Select  the title");
+
+                $('#NID').focus();
+                return false;
+                event.preventdefault();
+
+
+            }
+            else if (FirstName == "") {
+                alert("Enter First Name");
+                $('#FirstName').focus();
+                return false;
+                event.preventdefault();
+            }
+            else if (MiddleName == "") {
+                alert("Enter Middle name");
+
+                $('#MiddleName').focus();
+                return false;
+                event.preventdefault();
+            }
+            else if (LastName == "") {
+                alert("Enter Last Name");
+                $('#LastName').focus();
+                return false;
+                event.preventdefault();
+            }
+            else if (NationalityId == "") {
+                alert("Select the  Nationality ");
+                $('#NationalityId').focus();
+                return false;
+                event.preventdefault();
+            }
+            else if (Sex == "") {
+                alert("select the  gender");
+                $('#Sex').focus();
+                return false;
+                event.preventdefault();
+            }
+            else if (DateOfBirth == "") {
+                alert("select Date Of Birth");
+                $('#DateOfBirth').focus();
+                return false;
+                event.preventdefault();
+            }
+
+            else if (PAN == "") {
+                alert("enter the pan number");
+                $('#PAN').focus();
+                return false;
+                event.preventdefault();
+            }
+        }
+
+
+
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            debugger;
+            hidedata();
+
+
+        });
+
+
+        function hidedata() {
+            var b = '@(TempData["M"])';
+            var a = '@(TempData["details"])';
+            debugger;
+
+            if (a == b) {
+                debugger;
+
+               $('#NAME').hide();
+                $('#FN').hide();
+                $('#GD').hide();
+                $('#Title').hide();
+                $('#Nationality').hide();
+                debugger;
+                $("#btnAdd").click(function () {
+                    if (ReqStgBorrowerVali() == false) {
+                        return false;
+                    }
+
+
+                });
+
+
+
+            }
+            else {
+                    $('#ComNAME').hide();
+
+                $('#cn').hide();
+                $('#ic').hide();
+
+                $('#bn').hide();
+                debugger;
+                $("#btnAdd").click(function () {
+
+                    if (ReqStgBorrowerVali1() == false) {
+                        return false;
+                    }
+                });
+
+
+            }
+
+        }
+
+
+
+    </script>
+
+
+
+
+
+
+
+</head>
+
+<body>
+    <div style="height:50px">
+        </div>
+
+      <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead"> Borrower Details </label>  </div>
+                <div class="panel-body">
+
+
+
+
+
+    <div id="tabs">
+        <div class="tabbable-panel">
+            <div class="tabbable-line">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="#tabs-1" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Entry</a>
+                    </li>
+                    <li>
+                        <a href="#tabs-2" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Contact Info</a>
+                    </li>
+                    <li>
+                        <a href="#tabs-3" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Document</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tabs-1" class="tab-pane">
+
+
+                        @using (Html.BeginForm("btnAddClick", "details"))
+                        {
+
+                            @Html.ValidationSummary(true)
+                            <fieldset>
+
+                                <div id="Title" class="row">
+                                    <div class="col-xs-2">
+                                        <div class="form-group">
+                                            <label id="lblTitle" class="filter-col control-label label1">Title</label>
+                                            @Html.DropDownListFor(model => model.NID, ViewBag.Name as SelectList, "select title", new { @class = "form-control dropdown" })
+                                            @Html.ValidationMessageFor(model => model.NID)
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xs-3">
+                                        <div class="form-group">
+
+
+                                            <label id="lblFN" class="filter-col control-label label1">First Name</label>
+
+                                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @onkeypress="return  AllowAlphabet(event)"})
+                                            @Html.ValidationMessageFor(model => model.FirstName)
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="form-group">
+                                            <label id="lblMiddle" class="filter-col control-label label1">Middle Name</label>
+                                            @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control", @onkeypress = " return  AllowAlphabet(event)" })
+                                            @Html.ValidationMessageFor(model => model.MiddleName)
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="form-group">
+                                            <label id="lblLast" class="filter-col control-label label1">Last Name</label>
+                                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @onkeypress = " return  AllowAlphabet(event)" })
+                                            @Html.ValidationMessageFor(model => model.LastName)
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="GD" class="row">
+                                    <div class="col-xs-3">
+                                        <div class="form-group">
+                                            <label id="lblGender" class="filter-col control-label label1">Gender</label>
+                                            @{
+                            List<SelectListItem> listItems = new List<SelectListItem>();
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Male",
+                                Value = "M"
+                            });
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Female",
+                                Value = "F",
+
+                            });
+
+                                            }
+
+                                            @Html.DropDownListFor(model => model.Sex, listItems, "-- Select gender --", new { @class = "form-control dropdown" })
+                                            @Html.ValidationMessageFor(model => model.Sex)
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblNation" class="filter-col control-label label1">Nationality</label>
+                                            @Html.DropDownListFor(model => model.NationalityId, ViewBag.Nationality as SelectList, "Select Nationality", new { @class = "form-control dropdown" })
+                                            @Html.ValidationMessageFor(model => model.NationalityId)
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblDOB" class="filter-col control-label label1">Date Of Birth</label>
+                                            @Html.TextBoxFor(model => model.DateOfBirth, new { @type = "date", @class = "form-control",@onblur=" ValidateDate(this)" })
+                                            <div class="row-error ErrorMessage">
+                                                @Html.ValidationMessageFor(modelItem => modelItem.DateOfBirth)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cn" class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+
+
+
+                                            <label id="lblCN" class="filter-col control-label label1">Company Name</label>
+
+
+                                            @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+                                            @Html.ValidationMessageFor(model => model.CompanyName)
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+
+
+                                            <label id="lblCT" class="filter-col control-label label1">Sub-Division Name</label>
+                                            @Html.TextBoxFor(model => model.CompanyType, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+                                            @Html.ValidationMessageFor(model => model.CompanyType)
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblBN" class="filter-col control-label label1">Branch Name</label>
+                                            @Html.TextBoxFor(model => model.BranchName, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+                                            @Html.ValidationMessageFor(model => model.BranchName)
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div id="ic" class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblID" class="filter-col control-label label1">Incorporation Date</label>
+                                            @Html.TextBoxFor(model => model.IncorporationDate, new { @type = "date", @class = "form-control",})
+                                            @Html.ValidationMessageFor(model => model.IncorporationDate)
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblCD" class="filter-col control-label label1">Commencement Date</label>
+                                            @Html.TextBoxFor(model => model.CommencementDate, new { @type = "date", @class = "form-control", id = "Cdate" })
+
+                                            @Html.ValidationMessageFor(model => model.CommencementDate)
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="bn" class="row">
+                                </div>
+                                @*<div class="inner-wrap" style=" height:120px;width:1000px">
+                                    <div style="float:left; width: 425px">*@
+                                <div id="" class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblPAN" class="filter-col control-label label1">PAN Number</label>
+                                            @Html.TextBoxFor(model => model.PAN, new { @class = "form-control", @onblur = "ValidatePAN(this)", @maxlength = "10" })
+                                            @Html.ValidationMessageFor(model => model.PAN)
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div style="height: 50px" class="row">
+                                </div>
+
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                        </div>
+                                        <div class="col-xs-4">
+
+                                            <input type="submit" id="btnAdd" formmethod="post" name="ADD" />
+                                        </div>
+                                        <div class="col-xs-4">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </fieldset>
+                        }
+
+                    </div>
+
+                    <div id="tabs-2" class=" tab-pane">
+
+
+
+                        @using (Html.BeginForm("btnAddClick1", "details"))
+                        {
+
+                            @Html.ValidationSummary(true)
+
+                            <div id="Address" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+
+
+                                        <label class="filter-col control-label label1">Address 1</label>
+                                        @Html.TextBoxFor(model => model.Address1, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Address1)
+                                        @Html.TextBoxFor(model => model.Address2, new { @class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.Address2)
+                                        @Html.TextBoxFor(model => model.Address3, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AI.Address3)
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+
+                                        <label id="lblAT" class="filter-col control-label label1">Address Type</label>
+                                        @Html.DropDownListFor(model => model.Addressid, (IEnumerable<SelectListItem>)ViewBag.Address, new { @class = "form-control dropdown" })
+                                        @Html.ValidationMessageFor(model => model.Addressid)
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div id="CID" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+
+
+
+                                        <label id="lblC" class="filter-col control-label label1">Country</label>
+                                        @Html.DropDownListFor(model => model.CountryId, ViewBag.Country as SelectList, "select Country", new { @id = "Country", @class = "form-control dropdown" })
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+
+
+                                        <label id="lblS" class="filter-col control-label label1">State</label>
+                                        @Html.DropDownList("selState", new SelectList(string.Empty, "Value", "Text"), "-- Please select a State --", new { @class = "form-control dropdown" })
+
+                                        @*<select id="selState" style="color:black"></select>*@
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="City" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+
+
+                                        <label id="lblCI" class="filter-col control-label label1">City </label>
+                                        @Html.TextBoxFor(model => model.City, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+                                        @Html.ValidationMessageFor(model => model.AI.City)
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label id="lblPIN" class="filter-col control-label label1">PIN code</label>
+                                        @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "6" })
+                                        @Html.ValidationMessageFor(model => model.AI.Pincode)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label id="lblPhoneNo" class="filter-col control-label label1">Telephone number</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-1">
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(model => model.LandlineCode, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "4" })
+                                        @Html.ValidationMessageFor(model => model.AI.LandlineCode)
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-5">
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(model => model.LandlineNo, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.AI.LandlineNo)
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label id="lblmn" class="filter-col control-label label1">Mobile Number</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-1">
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(model => model.MobileCode, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "4" })
+                                        @Html.ValidationMessageFor(model => model.AI.MobileCode)
+                                    </div>
+                                </div>
+                                <div class="col-xs-5">
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.AI.MobileNo)
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+                            <div id="email" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+
+                                        <label id="lblemail" class="filter-col control-label label1">Email Id</label>
+                                        @Html.TextBoxFor(model => model.EmailId1, new { @class = "form-control", @onblur = "validateEmail(this)" })
+                                        @Html.ValidationMessageFor(model => model.EmailId1)
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label id="lblemail1">Alternate Email id</label>
+                                        @Html.TextBoxFor(model => model.EmailId2, new { @class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.EmailId2)
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            @Html.HiddenFor(model=>model.cname)
+                            @Html.HiddenFor(model=>model.PAN)
+
+
+                            @Html.HiddenFor(model=>model.fullname)
+
+
+
+ 
+                            <div style="height: 50px" class="row">
+                            </div>
+   
+
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                    </div>
+                                    <div class="col-xs-4">
+
+                                        <input type="submit" id="btnNext" formmethod="post" name="Next" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+            }
+
+                    </div>
+
+                    <div id="tabs-3" class="tab-pane">
+
+                        @using (Html.BeginForm("upload", "details", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+                            {
+                            @Html.ValidationSummary(true)
+
+                            <div id="PAN" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label id="">PAN Number</label>
+                                        @Html.TextBoxFor(model => model.PAN, new { @class = "form-control", @readonly = "true", @onblur = "ValidatePAN(this)", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.PAN)
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div id="ComNAME" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label id="">Name</label>
+                                        @Html.TextBoxFor(model => model.cname, new { @class = "form-control", @readonly = "true", @onkeypress = "return  AllowAlphabet(event)" })
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="NAME" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label id="">Full Name</label>
+                                        @Html.TextBoxFor(model => model.fullname, new { @class = "form-control", @readonly = "true", @onkeypress = "return  isAlphaNumeric(event)" })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label id="" class="filter-col control-label label1">Documemt</label>
+                                        @Html.DropDownListFor(model => model.DOC, ViewBag.DOC as SelectList, new { @class = "form-control dropdown" })
+                                        @Html.ValidationMessageFor(model => model.DOC)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="doc" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label id="" class="filter-col control-label label1">Document Number</label>
+                                        @Html.TextBoxFor(model => model.docid, new { @class = "form-control", @onkeypress = "return  isAlphaNumeric(event)" })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="IssueDate" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label id="" class="filter-col control-label label1">Issue Date</label>
+                                        @Html.TextBoxFor(model => model.IssueDate, new { @type = "date", @class = "form-control",@onblur=" Validateissuedate(this)" })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="Expirydate" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label id="" class="filter-col control-label label1">Expiry date</label>
+                                        @Html.TextBoxFor(model => model.Expirydate, new { @type = "date", @class = "form-control", @onblur=" Validateexpirydate(this)" })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="upload" class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="file" class="filter-col control-label label1">Upload Image:</label>
+                                        <input type="file" id="fileToUpload" name="file" style="height: 50px; width: 550px" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div style="height: 50px" class="row">
+                            </div>
+          
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                    </div>
+                                    <div class="col-xs-4">
+
+                                        <input type="submit" id="btnUpload" formmethod="post" name="Next" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+     }
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+       $(function () {
+
+    $('#document').ready(function () {
+            debugger;
+               $.ajax({
+                   url: '/details/FullName/',
+                   type: 'POST',
+                   data: {  },
+                   success: function (data) {
+
+                       debugger;
+                       if (data != null) {
+                           var vdata = data;
+                           $("#fullname").val(vdata);
+
+                       }
+                   }
+
+               });
+           });
+       });
+</script>
+
+<script type="text/javascript">
+       $(function () {
+
+    $('#document').ready(function () {
+            debugger;
+               $.ajax({
+                   url: '/details/ComName/',
+                   type: 'POST',
+                   data: {  },
+                   success: function (data) {
+
+                       debugger;
+                       if (data != null) {
+                           var vdata = data;
+                           $("#cname").val(vdata);
+
+                       }
+                   }
+
+               });
+           });
+       });
+</script>
+<script type="text/javascript">
+
+    $('#DOC').change(function () {
+debugger;
+
+       
+
+        var value = $('#DOC').val();
+        if (value == '1') {
+            $('#Expirydate').hide();
+             var pan=$('#PAN').val();
+            var docid=pan;  
+   $('#docid').val(docid);
+         
+   $('#docid').attr("readonly",true)
+     
+
+        } else {
+
+            $('#Expirydate').show();
+    var i =  " ";
+ $('#docid').val(i);
+   $('#docid').attr("readonly",false)
+
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+    $("#Country").change(function () {
+        var countryid = $("#Country").val();
+
+        var url = '@Url.Action("StateList", "details")';
+
+        $.post(url, { CountryId: countryid }, function (data) {
+
+            debugger;
+            $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+                debugger;
+                $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+    });
+  
+       $(function () {
+           $('#Country').change(function () {
+               var countryid = $("#Country").val();
+               debugger;
+               $.ajax({
+                   url: '/details/CountryCode/',
+                   type: 'POST',
+                   data: { countryid: countryid },
+                   success: function (data) {
+
+                       debugger;
+                       if (data != null) {
+                           var vdata = data;
+                           $("#MobileCode").val(vdata);
+
+                       }
+                   }
+
+               });
+           });
+       });
+       
+</script>

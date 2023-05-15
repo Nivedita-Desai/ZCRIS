@@ -1,0 +1,68 @@
+﻿@{
+    var grid = new WebGrid(ViewBag.List, canSort: true, canPage: true, rowsPerPage: 9);    
+    grid.Pager(WebGridPagerModes.All);
+    @Html.AntiForgeryToken()
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Loan Application Details</label>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-1">
+            </div>
+            <div class="col-xs-10">
+
+                <div class="panel panel-primary filterable">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Loan Application Details</h3>
+                        <div class="pull-right">
+                            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>Filter</button>
+                        </div>
+                    </div>
+                    <div style="overflow-x: auto; height: 500px">
+                        <table class="table">
+                            <thead>
+                                <tr class="filters">
+                                    <th width="10px"><input type="text" placeholder="NID / CIN" disabled></th>
+                                    <th width="10px"><input type="text" placeholder="Loan App No" disabled></th>                                    
+                                    <th width="10px"><input type="text" placeholder="Loan App Date" disabled></th>
+                                    <th width="10px"><input type="text" placeholder="Loan Type" disabled></th>
+                                    <th width="10px"><input type="text" placeholder="Loan Applicant Name" disabled></th>                                    
+                                    <th width="10px"><input type="text" placeholder="Guaranter/Director Name" disabled></th>
+                                    <th width="10px"><input type="text" placeholder="Customer Type" disabled></th>                                    
+                                    <th width="15px"><input type="hidden" disabled></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table">
+                                <tr class="filters">
+                                    @grid.GetHtml(
+                tableStyle: "table",
+                headerStyle: "webgrid-header",
+                columns: grid.Columns(
+                                grid.Column(columnName: "Pan", style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "LoanApplicationNo", style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "LoanApplicationDate", format: item => ((item.LoanApplicationDate == null) ? "" : item.LoanApplicationDate.ToString("dd/MMM/yyyy")), style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "LoanType", style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "Name", style: "webgrid-fixColumn"),                                                                
+                                grid.Column(columnName: "GDName", style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "Type", style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "Id", style: "webgrid-hide"),
+                                grid.Column(columnName: "LIRId", style: "webgrid-hide"),
+                                grid.Column("", format: @<text>@Html.ActionLink("View", "EditLoanApplication", "LoanApplication", new { intId = item.LIRId }, null)</text>)
+                                ))
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1">
+            </div>
+        </div>
+    </div>
+</div>

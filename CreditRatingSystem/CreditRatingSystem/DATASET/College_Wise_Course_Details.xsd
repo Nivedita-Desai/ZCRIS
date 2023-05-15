@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="College_Wise_Course_Details" targetNamespace="http://tempuri.org/College_Wise_Course_Details.xsd" xmlns:mstns="http://tempuri.org/College_Wise_Course_Details.xsd" xmlns="http://tempuri.org/College_Wise_Course_Details.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="softlabsgroup_creditratingConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="softlabsgroup_creditratingConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.softlabsgroup_creditratingConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="College_Wise_Course_Details" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="College_Wise_Course_Details" msprop:Generator_UserDSName="College_Wise_Course_Details">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CollegeWiseCourseDetails" msprop:Generator_TableClassName="CollegeWiseCourseDetailsDataTable" msprop:Generator_TableVarName="tableCollegeWiseCourseDetails" msprop:Generator_TablePropName="CollegeWiseCourseDetails" msprop:Generator_RowDeletingName="CollegeWiseCourseDetailsRowDeleting" msprop:Generator_RowChangingName="CollegeWiseCourseDetailsRowChanging" msprop:Generator_RowEvHandlerName="CollegeWiseCourseDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="CollegeWiseCourseDetailsRowDeleted" msprop:Generator_UserTableName="CollegeWiseCourseDetails" msprop:Generator_RowChangedName="CollegeWiseCourseDetailsRowChanged" msprop:Generator_RowEvArgName="CollegeWiseCourseDetailsRowChangeEvent" msprop:Generator_RowClassName="CollegeWiseCourseDetailsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CollegeName" msprop:Generator_ColumnVarNameInTable="columnCollegeName" msprop:Generator_ColumnPropNameInRow="CollegeName" msprop:Generator_ColumnPropNameInTable="CollegeNameColumn" msprop:Generator_UserColumnName="CollegeName" type="xs:string" minOccurs="0" />
+              <xs:element name="AyId" msprop:Generator_ColumnVarNameInTable="columnAyId" msprop:Generator_ColumnPropNameInRow="AyId" msprop:Generator_ColumnPropNameInTable="AyIdColumn" msprop:Generator_UserColumnName="AyId" type="xs:string" minOccurs="0" />
+              <xs:element name="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn" msprop:Generator_UserColumnName="CourseName" type="xs:string" minOccurs="0" />
+              <xs:element name="Stream" msprop:Generator_ColumnVarNameInTable="columnStream" msprop:Generator_ColumnPropNameInRow="Stream" msprop:Generator_ColumnPropNameInTable="StreamColumn" msprop:Generator_UserColumnName="Stream" type="xs:string" minOccurs="0" />
+              <xs:element name="CourseCategory_Description" msprop:Generator_ColumnVarNameInTable="columnCourseCategory_Description" msprop:Generator_ColumnPropNameInRow="CourseCategory_Description" msprop:Generator_ColumnPropNameInTable="CourseCategory_DescriptionColumn" msprop:Generator_UserColumnName="CourseCategory_Description" type="xs:string" minOccurs="0" />
+              <xs:element name="CourseType" msprop:Generator_ColumnVarNameInTable="columnCourseType" msprop:Generator_ColumnPropNameInRow="CourseType" msprop:Generator_ColumnPropNameInTable="CourseTypeColumn" msprop:Generator_UserColumnName="CourseType" type="xs:string" minOccurs="0" />
+              <xs:element name="Fees" msprop:Generator_ColumnVarNameInTable="columnFees" msprop:Generator_ColumnPropNameInRow="Fees" msprop:Generator_ColumnPropNameInTable="FeesColumn" msprop:Generator_UserColumnName="Fees" type="xs:double" minOccurs="0" />
+              <xs:element name="Duration" msprop:Generator_ColumnVarNameInTable="columnDuration" msprop:Generator_ColumnPropNameInRow="Duration" msprop:Generator_ColumnPropNameInTable="DurationColumn" msprop:Generator_UserColumnName="Duration" type="xs:string" minOccurs="0" />
+              <xs:element name="CourseStartDate" msprop:Generator_ColumnVarNameInTable="columnCourseStartDate" msprop:Generator_ColumnPropNameInRow="CourseStartDate" msprop:Generator_ColumnPropNameInTable="CourseStartDateColumn" msprop:Generator_UserColumnName="CourseStartDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

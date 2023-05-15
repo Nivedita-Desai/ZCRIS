@@ -1,0 +1,172 @@
+﻿@model CreditRatingModel.Model.Master
+
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    //ViewBag.Title = "AddDisAgreementDetails";
+}
+
+@*<h2>EditDisAgreementDetails</h2>*@
+
+
+
+<div class="row" style="height: 50px">
+    </div>
+
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Distribution Agreement Details</label>
+        </div>
+        <div class="panel-body">
+            <fieldset class="scheduler-border">
+                <br />
+                <div class="row">                   
+                    <div class="col-xs-3">
+                        <div class="form-group">
+                            <label id="lblCountry" class="filter-col control-label">Date :</label>
+                            @Html.TextBoxFor(modelItem => modelItem.DisAgreementYearId, new { @class = "form-control" ,@disabled = "disabled"})
+                        </div>
+                    </div>
+  </div>
+                <div class="row">
+                    <div class="col-xs-9">.
+                        <div class="form-group" >
+                            <div id="grid" class="panel panel-primary" style="overflow: auto; max-width: 800px"></div>
+                        </div>
+                        <div class="col-xs-3"></div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
+                    <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                    <div class="col-xs-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+   // $("#ddDistributionTypeId").change(function () {
+    // debugger;
+    $(document).ready(function () {
+        debugger;
+       
+      GetDisAgreement();
+  
+    });
+    function GetDisAgreement() {
+
+        debugger;
+       
+       var url = '@Url.Action("GetEditDistributionInfo","Master")';
+        var Id = @ViewBag.YearId
+        $.post(url, { Id: Id }, function (data) {
+            debugger;
+            $("#grid").empty();
+            debugger;
+            var intCount = data.length;
+            document.getElementById('grid').style.display = "block";    //display grid
+          
+            var tableData = '<table id="tbldis" class="table" style="font-size:14px"><thead><tr><th></th><th>Distribution Type</th><th>Percent</th></tr></thead>';
+
+            var tablerow = '';
+            if (intCount > 0) {
+             
+                for (var i = 0; i < intCount; i++) {
+                    var Year = data[i].DisAgreementYearId;
+                  
+                    date = ToJavaScriptDate(Year);
+                    
+
+                    $("#DisAgreementYearId").val(date);
+                    //<td width="10px"> <input  style="border: none; width: 100px" readonly="true" type="text" id="f' + [i] + '_year" value=' + data[i].DisAgreementYearId + '></td>
+                    tablerow += '<tr><td width="10px"></td><td width="10px"> <input class ="tbl1" style="border: none; width: 100px" readonly="true" type="text" id="f' + [i] + '" value=' + data[i].DistributionTypeId + '></td><td width="10px" class="numeric" > <input type="text" id="f' + [i] + '_fees" value=' + data[i].Percentage + ' style="text-align:right; width: 150px;" onkeypress = "return isNumber(event)"> <input type="hidden" id="f' + [i] + '_PId" value=' + data[i].Id + '></td><input type="hidden" id="f' + [i] + '_DisTypeId" value=' + data[i].DisTypeId + '></td></tr>';
+                }
+            }
+            tableData += tablerow;
+            tableData += '</table>';
+            $("#grid").html(tableData);
+        });
+ }
+       
+  
+
+    $("#btnSave").click(function () {
+        debugger;
+       
+        var total = 0;
+        var strResult = '';
+        var Data1 = new Array;
+        var i = 0;
+        var DisAgreementYearId = @ViewBag.YearId
+        $('.tbl1').each(function () {
+            debugger;
+            var id = $(this).attr('id');
+            var id_fees = $("#" + id + "_fees").val();
+            var Id = $("#" + id + "_PId").val();
+            var disId = $("#" + id + "_DisTypeId").val();
+            total = +total + +id_fees;
+           
+
+
+            //var DisAgreementYearId = $("#ddDistributionTypeId").val();
+            
+            if (id_fees != 0) {
+
+                var data = {
+                   
+                    DistributionTypeId: disId,
+                    DisAgreementYearId: DisAgreementYearId,
+                    Percentage: id_fees,
+                    Id : Id
+                }
+            }
+            if (data != null) {
+                Data1[i] = data;
+                i++;
+                strResult = "Y"
+            }
+            
+
+
+        });
+        if (total == 100) {
+
+             if (strResult == "Y") {
+                debugger;
+
+                var Details = JSON.stringify(Data1);
+                var url = '@Url.Action("SaveData", "Master")';
+                var url_index = '@Url.Action("ViewDisAgreementDetails", "Master")';
+               $.ajax({
+                   url: url,
+                   data: { SaveData: Details },
+                   dataType: 'json',
+                   type: 'POST',
+                   success: function (data) {
+                       alert("Data Saved Successfully");
+                       window.location.href = url_index;
+                   },
+                   error: function (data) {
+                       alert("Data Saved Falied");
+                   }
+               });
+               return false;
+           }
+
+
+
+        }
+        else {
+            alert('Total Distribution should be 100%');
+        }
+
+    });
+</script>
+
+

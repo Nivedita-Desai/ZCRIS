@@ -1,0 +1,136 @@
+﻿@model CreditRatingModel.Model.Master 
+
+@{
+    ViewBag.Title = "AddTransaction";
+     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@*<h2>AddTransaction</h2>*@
+
+
+<div class="row" style="height:50px">
+
+        </div>
+
+
+
+<form id="frmAddDistributionType" method="post">
+<div class="container">
+         <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Transaction Master</label></div>
+               <div class="panel-body">
+                      <fieldset class="scheduler-border">
+                          <br />
+                                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                         @*   @Html.HiddenFor(model => model.Id)*@
+                            <div class="form-group">
+                                <label id="lblName" class="filter-col control-label label1">TransactionType:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.TransactionType, new { @class = "form-control" })                                                           
+                            </div>
+                        </div>
+                                   </div>
+
+                            <div class="row">
+                                  <div class="col-xs-4"></div>
+                          <div class="col-xs-4">
+                                 <div class="form-group">
+                                <label id="lblShortName" class="filter-col control-label label1">Points:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.points, new { @class = "form-control"})                                                           
+                            </div>
+                         </div>
+                                </div>
+                         
+                            </fieldset>
+
+                     <div class="row">
+                                <div class="col-xs-5">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        @*<button id="btnSave" type="" name="save"  formmethod="post">Save</button>*@
+                                        <input type="button" id="btnSave" value="Save" />
+                                        
+                                    </div>
+                           <div class="col-xs-3">
+
+                              @Html.HiddenFor(model=>model.Id)
+                                    </div>
+                                </div>
+                    </div>
+                
+                     
+
+
+                   </div>
+
+
+
+
+
+             </div>
+    </form>
+
+
+<script type="text/javascript" >
+
+    $('#btnSave').click(function () {
+
+        debugger;
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        var TransactionType = $("#TransactionType").val();
+        var Points = $("#points").val();
+    
+        if (TransactionType == "") {
+            alert('Please Enter Transaction Type.');
+            return false;
+        }
+
+        if (Points == "") {
+            alert('Please Enter Points.');
+            return false;
+        }
+
+    $.ajax({
+
+        url: '/Master/AddTransaction1/',
+        type :'POST',
+        data: { Id: Id, TransactionType: TransactionType, points: Points },
+        success: function (data) {
+            var a = JSON.stringify(data);
+            if (Id == "") {
+
+                if (a == "true") {
+
+                    alert('Record saved successfully!');
+                    $("#TransactionType").val('');
+                    $("#points").val('');
+                }
+                else if (a == "false") {
+
+                    alert('Transaction Type already Exits!');
+                    $("#TransactionType").val("");
+                    $("#points").val('');
+                }
+
+            }
+            else {
+                if (a == "true") {
+                    alert('Record saved successfully!');
+                    window.location.href = '/Master/ViewTransaction';
+                }
+                else if (a == "false") {
+
+                    alert('Transaction Type already Exits');
+                    $("#TransactionType").val("");
+
+                }
+
+            }
+        }
+      });
+   });
+</script>

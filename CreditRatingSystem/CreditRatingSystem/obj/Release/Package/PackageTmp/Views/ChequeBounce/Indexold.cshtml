@@ -1,0 +1,149 @@
+﻿@model CreditRatingModel.Model.ChequeBounce_Metadata
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ChequeBounce_Metadata</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankCode)
+            @Html.ValidationMessageFor(model => model.BankCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BranchCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BranchCode)
+            @Html.ValidationMessageFor(model => model.BranchCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankName)
+            @Html.ValidationMessageFor(model => model.BankName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BranchName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BranchName)
+            @Html.ValidationMessageFor(model => model.BranchName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Pancard)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pancard)
+            @Html.ValidationMessageFor(model => model.Pancard)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FavourAccountNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FavourAccountNo)
+            @Html.ValidationMessageFor(model => model.FavourAccountNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FavourOfName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FavourOfName)
+            @Html.ValidationMessageFor(model => model.FavourOfName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ChequeNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ChequeNo)
+            @Html.ValidationMessageFor(model => model.ChequeNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ChequeDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ChequeDate)
+            @Html.ValidationMessageFor(model => model.ChequeDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ChequeAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ChequeAmount)
+            @Html.ValidationMessageFor(model => model.ChequeAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransDate)
+            @Html.ValidationMessageFor(model => model.TransDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FrAccNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FrAccNo)
+            @Html.ValidationMessageFor(model => model.FrAccNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FrAccName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FrAccName)
+            @Html.ValidationMessageFor(model => model.FrAccName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ChTypeId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ChTypeId)
+            @Html.ValidationMessageFor(model => model.ChTypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Reason)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Reason)
+            @Html.ValidationMessageFor(model => model.Reason)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

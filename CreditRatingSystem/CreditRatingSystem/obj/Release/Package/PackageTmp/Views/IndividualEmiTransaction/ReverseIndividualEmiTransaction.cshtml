@@ -1,0 +1,265 @@
+﻿@model CreditRatingModel.Model.IndividualEmiTransaction_Metadata
+@using CreditRatingModel.Model;
+
+@{
+    ViewBag.Title = "ReverseIndividualEmiTransaction";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label id="lblHeading" class="filter-col control-label labelHead">Reverse Repayment Transaction</label></div>
+            <div class="panel-body">
+
+                
+                 
+                     
+                            
+                @using (Html.BeginForm("ReverseIndividualEmiTransaction", "IndividualEmiTransaction", FormMethod.Post, new { id = "frmReverseIndEmiTransaction" }))
+                {
+
+                    <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblNationalId" class="filter-col control-label label1">Transaction ID :</label>
+                            @Html.TextBoxFor(model => model.TranId, new { @id = "txtTranId", @class = "form-control input-sm",@maxlength = "20" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblLoanNo" class="filter-col control-label label1">Loan A/C No :</label>
+                             @Html.TextBoxFor(model => model.LoanAccountNo, new { @id = "txtLoanAccountNo", @class = "form-control input-sm", @readonly="true" })
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblFullName" class="filter-col control-label label1">Full Name :</label>
+                            @Html.TextBoxFor(model => model.FullName, new { @id = "txtFullName", @class = "form-control input-sm", @readonly = "true" })
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblGender" class="filter-col control-label label1">Gender :</label>
+                        @*    @{
+                    List<SelectListItem> GenderlistItems = new List<SelectListItem>();
+                    GenderlistItems.Add(new SelectListItem
+                    {
+                        Text = "Male",
+                        Value = "M"
+                    });
+                    GenderlistItems.Add(new SelectListItem
+                    {
+                        Text = "Female",
+                        Value = "F",
+
+                    });
+                            }
+                          
+                                   @Html.DropDownListFor(model => model.Gender, GenderlistItems, "", new { @id = "ddlGender", @class = "form-control dropdown", @disabled = "true" })
+                              *@             
+                            @*@Html.TextBoxFor(model => model.BranchName, new { @id = "txtBrName", @class = "form-control input-sm", @readonly = "true" })*@
+                              @Html.TextBoxFor(model => model.Gender, new { @id="txtGender", @class = "form-control input-sm", @readonly = "true" })
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblPanNo" class="filter-col control-label label1">Loan Amount :</label>
+                            @Html.TextBoxFor(model => model.LoanAmt, new { @id = "txtLoanAmt", @class = "form-control input-sm", @readonly = "true" })
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            
+                            @*@Html.TextBoxFor(model => model.ChequeNo, new { @id = "txtChNo", @class = "form-control input-sm", @onkeypress = "return isNumber(event)", maxlength = "6"  })*@
+                              <label id="lblDisAmt" class="filter-col control-label label1">Disburse Amount :</label>
+                            @Html.TextBoxFor(model => model.DisAmt, new { @id = "txtDisAmt", @class = "form-control input-sm", @onkeypress = "return decimalOnly(event)", @readonly = "true" })
+                            
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                             <label id="lblBalAmt" class="filter-col control-label label1">Balance Amount :</label>
+                            @Html.TextBoxFor(model => model.BalAmt, new { @id = "txtBalAmt", @class = "form-control input-sm", @onkeypress = "return decimalOnly(event)", @readonly = "true" })
+
+                         
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                          @*@Html.HiddenFor(model => model.TranId, new { @id="hfTransId"})*@
+                        </div>
+                    </div>
+                </div>
+
+
+                    <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblRepayMode" class="filter-col control-label label1">Repay Mode :</label>
+                            @Html.TextBoxFor(model => model.RepayMode, new { @id="txtRepayMode", @class = "form-control input-sm", @readonly = "true" })
+                          @*   @{
+                    List<SelectListItem> RepayModelistItems = new List<SelectListItem>();
+                    RepayModelistItems.Add(new SelectListItem
+                    {
+                        Text = "Cash",
+                        Value = "C"
+                    });
+                    RepayModelistItems.Add(new SelectListItem
+                    {
+                        Text = "Cheque",
+                        Value = "H",
+                    });
+                            }
+                            @Html.DropDownListFor(model => model.RepayMode, RepayModelistItems, "-- Select Payment Mode --", new { @id = "ddlRepayMode", @class = "form-control dropdown" })
+                            *@
+                          
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                              <label id="lblRepayAmt" class="filter-col control-label label1">Repayment Amount :</label>
+                            @Html.TextBoxFor(model => model.RepayAmt, new { @id = "txtRepayAmt", @class = "form-control input-sm", @onkeypress = "return decimalOnly(event)" , @maxlength="20", @readonly = "true"})
+                           
+
+                            
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                               <label id="lblTranNo" class="filter-col control-label label1">Cheque No :</label>
+                            @Html.TextBoxFor(model => model.TranNo, new { @id = "txtTranNo", @class = "form-control input-sm",@maxlength = "6", @readonly = "true" })
+
+                           
+                           
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                         
+                              <label id="lblChqDt" class="filter-col control-label label1">Cheque/Transaction Date :</label>
+                            @Html.TextBoxFor(model => model.ChqDt, new { @id = "txtChqDt", @class = "form-control input-sm", @type = "date" , @readonly = "true"})
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+
+                     <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblBankName" class="filter-col control-label label1">Bank :</label>
+                            @Html.TextBoxFor(model => model.BankName, new { @id = "txtBankName", @class = "form-control input-sm", @readonly = "true" })
+                             @*@Html.DropDownListFor(model => model.BankId, ViewBag.BankNameList as SelectList, "Select Bank", new { @id = "ddlBankName", @class = "form-control dropdown" })*@
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblFrAccName" class="filter-col control-label label1">Branch :</label>
+                            @Html.TextBoxFor(model => model.BranchName, new { @id = "txtBranchName", @class = "form-control input-sm", @readonly = "true" })
+                            @*<select id="selBranch" name="selBranch" style="color: black" class="form-control dropdown"></select>*@
+                            @*@Html.DropDownListFor(model => model.BranchName, ViewBag.BranchNameList as SelectList, "Select Branch", new { @id = "ddlBranchName", @class = "form-control dropdown" })*@
+                            @*@Html.TextBoxFor(model => model.FrAccName, new { @id = "txtFrAccName", @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)" })*@
+                            
+                        </div>
+                    </div>
+                </div>
+                     <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                             <label id="lblRemark" class="filter-col control-label label2">Remark :</label>
+                            @Html.TextAreaFor(model => model.Remark, new { @id = "txtRemark", @class = "form-control input-sm" , @readonly = "true" })
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="container">
+                      <div class="row">
+                    <div class="col-xs-4">
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="form-group">
+                            <input  id="btnAdd" type="submit" value="Reverse" formmethod="post"/>
+                              <input id="btnClear" type="reset" value="Reset"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                      
+                    </div>
+                </div>
+                 </div> 
+                 
+                     }
+
+                   
+                   
+             
+
+               
+            </div>
+        
+        </div>
+        </div> 
+
+<script type="text/javascript">
+
+    $("#txtTranId").change(function () {
+        debugger;
+        var strTransactionId = $("#txtTranId").val();
+       // var url = '@Url.Action("EmiTransactionList", "IndividualEmiTransaction")';
+        $.ajax({
+            url: '/IndividualEmiTransaction/EmiTransactionList/',
+            type: 'GET',
+            data: { TransactionId: strTransactionId },
+            success: function (Result) {
+                debugger;
+               
+                if (Result != null) {
+                    debugger;
+                    $('#txtLoanAccountNo').val(Result.LoanAccountNo);
+                    $('#txtFullName').val(Result.FullName);
+                    $('#txtGender').val(Result.Gender);
+                    $('#txtLoanAmt').val(Result.LoanAmt);
+                    $('#txtDisAmt').val(Result.DisAmt);
+                    $('#txtBalAmt').val(Result.BalAmt);
+                    $('#txtRepayMode').val(Result.RepayMode);
+                    $('#txtRepayAmt').val(Result.RepayAmt);
+                    $('#txtTranNo').val(Result.TranNo);
+                    $('#txtChqDt').val(ToJavaScriptDate(Result.ChqDt));
+                    $('#txtBankName').val(Result.BankName);
+                    $('#txtBranchName').val(Result.BranchName);
+                    $('#txtRemark').val(Result.Remark);
+                    //    $('#txtLoanAccountNo').val(result.LoanAccountNo);
+                  //  $('#txtLoanPaidAmt').val(result.TotalPaidInst);
+                   // $('#txtBalAmt').val(result.TotalBalInst);
+                }
+                else {
+                    alert('This Transaction does not exist');
+                }
+            },
+            error: function (result) { alert('This Transaction does not exist'); }
+        });
+    });
+    $('#btnAdd').click(function () {
+        debugger;
+        var frmvalidator = new Validator("frmReverseIndEmiTransaction");
+        debugger;
+        frmvalidator.clearAllValidations();
+        frmvalidator.EnableMsgsTogether();
+        frmvalidator.addValidation("txtTranId", "req", "Please enter transaction ID");
+    });
+</script>
+
+
+

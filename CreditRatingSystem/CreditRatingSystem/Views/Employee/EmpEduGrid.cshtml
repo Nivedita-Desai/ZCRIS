@@ -1,0 +1,21 @@
+﻿  
+@{var grid = new WebGrid(Model);
+    //var grid = new WebGrid(ViewBag.grid);
+      grid.Pager(WebGridPagerModes.All);
+                                    }
+
+                                @grid.GetHtml(
+                tableStyle: "table",
+                headerStyle: "webgrid-header",  
+                columns: grid.Columns(
+                                   grid.Column(columnName: "CollegeName", style: "webgrid-fixColumn"),
+                                          grid.Column(columnName: "CourseName", style: "webgrid-fixColumn"),
+                                        grid.Column(columnName: "DisburseDate", format: item => ((item.DisburseDate == null) ? "" : item.DisburseDate.ToString("dd/MMM/yyyy")), style: "webgrid-fixColumn"),
+                                       grid.Column(columnName: "DisburseAmount", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "LoanAccountNo", style: "webgrid-fixColumn"),
+                    grid.Column(columnName: "LoanAccountDate", format: item => ((item.LoanAccountDate == null) ? "" : item.LoanAccountDate.ToString("dd/MMM/yyyy")), style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "LoanAmount", style: "webgrid-fixColumn"),         
+                              grid.Column(columnName: "Id", style: "webgrid-hide")
+                  //grid.Column("", format: @<text>@Html.ActionLink("View", "EmployeeDetails", "Employee", new { id = item.Id },null)</text>)
+                            ))
+                          

@@ -1,0 +1,79 @@
+﻿@model CreditRatingModel.Model.EmployerMaster_Metadata
+@{
+    ViewBag.Title = "AddEmployerDivision";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@using (Html.BeginForm("EditEmployerDivision", "EmployerMaster", FormMethod.Post, new { id = "EmployerDivision" }))
+{ 
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label id="lblHeading" class="filter-col control-label labelHead">Employer Division</label></div>
+            <div class="panel-body">
+                 <div class="row">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label id="lblTitle" class="filter-col control-label label1">Employer</label>
+                            @Html.DropDownListFor(model => model.EmployerID, ViewBag.EmployerId as SelectList, "Select Employer", new { @class = "form-control dropdown",@Disabled=true})
+
+                        </div>
+                    </div>
+                    <div class="col-xs-4"></div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label id="lblNID" class="filter-col control-label label1">Employer Division</label>
+                            @Html.TextBoxFor(model => model.EmployerType, new { @class = "form-control input-sm", @maxlength = "50" })
+                        </div>
+                    </div>
+                    <div class="col-xs-4"></div>
+
+
+
+                </div>
+                   <div class="row">
+                                    <div class="col-xs-5">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input type="Submit" id="btnSave" value="Save" />
+                                    </div>
+                                    <div class="col-xs-3">
+                                    </div>
+                                </div>
+</div>
+        </div>
+        </div>
+}
+  <script type="text/javascript">
+      var v = '@(ViewBag.Div)';
+      $('#EmployerID').val(v);
+      $(function () {
+          var frmvalidator = new Validator("EmployerDivision");
+          frmvalidator.clearAllValidations();
+          frmvalidator.EnableMsgsTogether();
+          debugger;
+          frmvalidator.addValidation("EmployerID", "req", "Please select Employer");
+          frmvalidator.addValidation("EmployerType", "req", "Please enter Employer Division");
+      });
+      $('#EmployerType').change(function () {
+          var EmployerType = $('#EmployerType').val();
+          //
+          $.ajax({
+              url: '/EmployerMaster/doesEmployerTypeExist/',
+              type: 'POST',
+              data: { EmployerType: EmployerType },
+              success: function (result) {
+                  var a = JSON.stringify(result);
+                  //debugger;
+                  if (a == "false") {
+                      alert(' That Employer Division has already exits');
+                      $('#EmployerType').val('');
+                  }
+                }
+          });
+      });
+                </script>

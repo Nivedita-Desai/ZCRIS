@@ -1,0 +1,375 @@
+﻿@model CreditRatingModel.Model.CollegeMaster_Metadata
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+ 
+
+
+
+<div style="height:30px"></div>
+ <div class="container">
+        <div class="panel panel-primary" style="width:1100px" >
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">College Details </label>
+            </div>
+            <div class="panel-body" style="width:1100px;overflow-y:auto">
+                      @using (Html.BeginForm("editclg", "CollegeMaster", FormMethod.Post,
+                            new { enctype = "multipart/form-data", id = "Employer" }))
+                      {
+                              @Html.HiddenFor(model => model.id) 
+                         <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblColName" class="filter-col control-label label1">College Name :</label>
+                            @Html.TextBoxFor(model => model.CollegeName, new { @id = "txtCollegeName", @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)" })
+                        </div>
+                    </div>
+                    
+                </div>@*
+                          <div class="row" >
+<div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblCourse" class="filter-col control-label" style="font: 18px Arial">Selected Courses:</label>
+                           
+                            @Html.DropDownList("Courses",null, new {@style="overflow:auto;height:120px", @id = "selectedlist",@disabled="disabled", @class = "form-control dropdown ", @multiple = "multiple" })
+                            
+                              <select id="selCourse" name="selCourse" style="color: black" class="form-control dropdown" multiple="multiple"></select>
+                        </div>
+                    </div>
+<div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="" class="filter-col control-label label1">Add More Courses:</label>
+                           
+                            @Html.DropDownListFor(model => model.CourseListId,ViewBag.Course1 as SelectList, new { @id = "selCourse", @class = "form-control dropdown ", @multiple = "multiple" })
+                            
+                              <select id="selCourse" name="selCourse" style="color: black" class="form-control dropdown" multiple="multiple"></select>
+                        </div>
+                    </div>
+
+
+                          </div>*@
+                                <div id="Address" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label class="filter-col control-label label1">Address </label>
+                                            @Html.TextBoxFor(model => model.Address1, new {@maxlength="100", @class = "form-control" })
+                                          
+                                            @Html.TextBoxFor(model => model.Address2, new {@maxlength="100", @class = "form-control"})
+                                         
+                                            @Html.TextBoxFor(model => model.Address3, new {@maxlength="100", @class = "form-control"})
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                          
+                          @*
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblColAddress" class="filter-col control-label label1">Address :</label>
+                            @Html.TextAreaFor(model => model.ColAddress, new { @id = "txtColAddress", @class = "form-control input-sm" })
+                        </div>
+                    </div>
+                </div>*@
+
+                 <div id="CID" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+
+                                            <label id="lblC" class="filter-col control-label label1">Country</label>
+                                            @Html.DropDownListFor(model => model.CountryId,   ViewBag.CountryList as SelectList, "select Country", new {  @class = "form-control dropdown" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label id="lblS" class="filter-col control-label label1">Province</label>
+                                            @Html.DropDownListFor(model => model.stateId,ViewBag.StateList1 as SelectList,"Select", new { @id = "selState",@class = "form-control dropdown" })
+                              <div class="form-group input-field-wrap">
+                        </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblCity" class="filter-col control-label label1">City :</label>
+                    @*        @Html.TextBoxFor(model => model.city, new {@maxlength="20", @id = "txtCity", @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)" })
+    *@                     @Html.DropDownListFor(model => model.cityID,ViewBag.CityList1 as SelectList,"Select", new { @id = "selCity",@class = "form-control dropdown" })
+      
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblPincode" class="filter-col control-label label1">Pincode :</label>
+                            @Html.TextBoxFor(model => model.pincode, new { @maxlength = "6" , @id = "txtPincode", @class = "form-control input-sm", @onkeypress = "return isNumber(event)", @onblur = "checkLengthForPincode(this)" })
+                  
+                             </div>
+                    </div>
+                </div>
+
+          <div class="row">
+                    <div class="col-xs-6">
+                        <label id="lblPhoneNo" class="filter-col control-label label1">Telephone No :</label>
+                    </div>
+                    <div class="col-xs-6">
+
+                        <label id="lblEmailId" class="filter-col control-label label1">College Email Id :</label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.code, new { @maxlength="4",@id = "txtContryCode", @class = "form-control input-sm", @readonly = "true" })
+                        </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.ContactNo, new { @id = "txtPhoneNo", @maxlength="10",@class = "form-control input-sm", @onkeypress = "return isNumber(event)", @onblur = "checkLengthForContact(this)" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.CEmailId, new { @id = "txtEmailId",@maxlength="20", @onblur = "return validateEmail(this)", @class = "form-control input-sm" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblwebsite" class="filter-col control-label label2">College Website :</label>
+                            @Html.TextBoxFor(model => model.website, new { @id = "txtWebsite", @class = "form-control input-sm" })
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <fieldset class="scheduler-border">
+
+                    <legend class="scheduler-border">
+                        <label id="lblContPersonDetails" class="filter-col control-label label2">Contact Person Details :</label>
+                    </legend>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label id="lblPersonName" class="filter-col control-label label1">Person Name :</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <label id="lblPersonContact" class="filter-col control-label label1">Person Contact No :</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @*<label id="lblPersonName" class="filter-col control-label label1">Person Name :</label>*@
+                                @Html.TextBoxFor(model => model.ContactPersonName, new { @id = "txtPerson1name", @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)" })
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.code, new { @maxlength="4", @id = "txtPersonContryCode", @class = "form-control input-sm", @readonly = "true"  })
+                            </div>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="form-group">
+                                @*<label id="lblPersonContact" class="filter-col control-label label1">Contact No :</label>*@
+                                @Html.TextBoxFor(model => model.ContactPersonMobile, new {@id = "txtPersonContact", @maxlength="10",@class = "form-control input-sm", @onkeypress = "return isNumber(event)" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblPerson1Name" class="filter-col control-label label1">Person Email Id :</label>
+                                @Html.TextBoxFor(model => model.ContactPersonEmail, new { @id = "txtPersonEmail", @class = "form-control input-sm", @onblur = "return validateEmail(this)" })
+                            </div>
+                        </div>
+                  
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblPersonDesign" class="filter-col control-label label1">Person Designation :</label>
+                                @Html.DropDownListFor(model => model.ConPersonDesignation,ViewBag.desig as SelectList,"Select Designation", new { @id = "txtPersonDesn", @class = "form-control input-sm" })
+                            </div>
+                        </div>
+                    </div>
+                </fieldset> 
+
+              @*     <div class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <button id="btnSave" type="submit" name="Edit" formmethod="post">Save </button>
+                      <button id="btnEdit" type="button" style="background: #2A88AD; padding: 8px 20px 8px 20px; border-radius: 5px; color: #fff;font: normal 50px Arial; border: 1px solid #257C9E;
+       font-size: 20px; width: auto; height: 40px;" name="Edit" formmethod="post" >Edit Details</button>
+                    </div>
+                </div>
+               
+                <div class="col-xs-4">                  
+                </div>
+            </div>*@
+                        <div class="row">
+                             <div class="col-xs-12">
+                                 <div class="form-group">
+                                     <h4 style="text-align: center">
+                                         <button id="btnSave" type="submit" name="Save">Save</button>                                         
+                                     </h4>
+                                 </div>
+                             </div>
+                         </div>    
+                          
+                      }           
+                       </div>
+        
+
+            </div>       
+     </div>  
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+
+        $('#selCourse').multiselect({
+
+            includeSelectAllOption: true
+        });
+
+        var ContactCode = '@(ViewBag.ContactCode)';
+        $('#txtContryCode').val(ContactCode);
+        var ContactNo = '@(ViewBag.ContactNo)';
+        $('#txtPhoneNo').val(ContactNo);
+        var Mobilecode = '@(ViewBag.Mobilecode)';
+        $('#txtPersonContryCode').val(Mobilecode);
+        var Mobileno = '@(ViewBag.Mobileno)';
+        $('#txtPersonContact').val(Mobileno);
+
+        //    $("#txtCollegeName").attr("disabled", "disabled");
+        //    $("#selectedlist").attr("disabled", true);
+        //    $("#CourseListId").attr("disabled", true);
+        //    $("#txtColAddress").attr("disabled", "disabled");
+        //    $("#Country").attr("disabled", "disabled");
+        //    $("#selState").attr("disabled", "disabled");
+        //    $("#txtCity").attr("disabled", "disabled");
+        //    $("#txtPincode").attr("disabled", "disabled");
+        //    $("#code").attr("disabled", "disabled");
+        //    $("#txtPhoneNo").attr("disabled", "disabled");
+        //    $("#txtEmailId").attr("disabled", "disabled");
+        //    $("#txtWebsite").attr("disabled", "disabled");
+
+        //$("#btnSave").hide();
+    });
+    //        $("#btnEdit").click(function(){
+    //            $("#txtCollegeName").removeAttr("disabled", "disabled");
+    //            $("#selCourse").removeAttr("disabled", "disabled");
+    //            $("#txtColAddress").removeAttr("disabled", "disabled");
+    //            $("#Country").removeAttr("disabled", "disabled");
+    //            $("#selState").removeAttr("disabled", "disabled");
+    //            $("#txtCity").removeAttr("disabled", "disabled");
+    //            $("#txtPincode").removeAttr("disabled", "disabled");
+    //            $("#code").removeAttr("disabled", "disabled");
+    //            $("#txtPhoneNo").removeAttr("disabled", "disabled");
+    //            $("#txtEmailId").removeAttr("disabled", "disabled");
+    //            $("#txtWebsite").removeAttr("disabled", "disabled");
+
+    //    $("#btnSave").show();
+    //   $("#btnEdit").hide();
+
+    //});
+
+    debugger;
+
+    $("#CountryId").change(function () {
+        var countryid = $("#CountryId").val();
+        debugger;
+        var url = '@Url.Action("StateList", "CollegeMaster")';
+
+        $.post(url, { CountryId: countryid }, function (data) {
+
+            debugger;
+         
+                $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+                $("#selCity").empty().append($("<option></option>").val(-1).html('Select'));
+            
+                $.each(data, function (Key, item) {
+                    debugger;
+                    $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+
+                });
+            
+            $("#selCity").empty();
+        });
+    });
+
+    $(function () {
+        $('#CountryId').change(function () {
+            var countryid = $("#CountryId").val();
+            debugger;
+            $.ajax({
+                url: '/CollegeMaster/CountryCode/',
+                type: 'POST',
+                data: { countryid: countryid },
+                success: function (data) {
+
+                    debugger;
+                    if (data != null) {
+                        var vdata = data;
+                        $("#MobileCode").val(vdata);
+
+                    }
+                }
+
+            });
+        });
+    });
+    $("#selState").change(function () {
+        var selState = $("#selState").val();
+        //var countryid = $("#selCity").val();
+        var url = '@Url.Action("CityList", "CollegeMaster")';
+
+        $.post(url, { selState: selState }, function (data) {
+          
+                $("#selCity").empty().append($("<option></option>").val(-1).html('Select'));
+            
+            $.each(data, function (Key, item) {
+
+                $("#selCity").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+    });
+    $("#selCity").change(function () {
+        var selCity = $("#selCity").val();
+        var url1 = '@Url.Action("AssignCountryCode", "CollegeMaster")';
+
+        $.post(url1, { selCity: selCity }, function (data) {
+            debugger;
+            if (data != null) {
+
+                $("#txtContryCode").val(data);
+                $("#txtPersonContryCode").val(data);
+
+            }
+        });
+        });
+    
+</script>  

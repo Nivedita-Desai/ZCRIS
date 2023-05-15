@@ -1,0 +1,232 @@
+﻿@model CreditRatingModel.Model.CheckClearance
+
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+                            //var grid = new WebGrid(ViewBag.CheckClearanceList);
+                            //grid.Pager(WebGridPagerModes.All);
+}
+@*<script src="/js/bootstrap.min.js"></script>*@
+<br />
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Check Clearance</label>
+        </div>
+        <div class="panel-body">
+            @*@using (Html.BeginForm("CheckClearanceCheck", "CheckClearance", FormMethod.Post,
+                            new { id = "frmCheckClearance" }))
+                  {
+                      *@
+            <div class="row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-5">
+                    <div class="form-group">
+                        <label id="lblNRC" class="filter-col control-label label1">National Registration Code(NRC)</label>
+                        @Html.TextBoxFor(model => model.NRC, new { @class = "form-control", @onkeypress = "return  isNRCNumber(event)", @maxlength = "13", @onblur = "checkLengthForNRC(this)" })
+
+                    </div>
+                </div>
+                 <div class="col-xs-5">
+                    <div class="form-group">
+                        <label id="lblCN" class="filter-col control-label label1">Cheque No.</label>
+                        @Html.TextBoxFor(model => model.ChequeNo, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)", @maxlength = "6" })
+
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                </div>
+            </div>
+            @* <div id="grid">  
+                        <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Check Clearance</h3>
+                    <div class="pull-right">
+            
+                    </div>
+                </div>
+                <div class="panel panel-primary" style=" overflow:auto">  
+                            <table class="table">
+                                 <thead>
+                              <tr class="filters">
+                             <th width="10px">  <input type="text"  placeholder="NRC" disabled> </th>
+                            <th width="10px">   <input type="text"  placeholder="Name" disabled> </th>
+                            <th width="10px">   <input type="text"  placeholder="Loan No." disabled> </th>
+                             <th width="10px">  <input type="text"  placeholder="Check No." disabled> </th>
+                            <th width="10px">   <input type="text"  placeholder="Bank Name" disabled> </th>
+                            <th width="10px"> <input type="text"  placeholder="Branch Name" disabled> </th>
+                             <th width="10px"> <input type="text"  placeholder="Cheque Date" disabled> </th>
+                            <th width="10px">   <input type="text"  placeholder="Check Amount" disabled> </th>  
+                        </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="filters">
+                                       
+                                        @grid.GetHtml(
+                                         tableStyle: "table" ,
+                                         footerStyle: "webgrid-footer",
+                                         displayHeader: false,
+                                         columns: grid.Columns(
+                                         grid.Column(columnName:"Id",style:"webgrid-hide"),
+                                         grid.Column(columnName:"NId",style:"webgrid-fixColumn"),
+                                         grid.Column(columnName:"StudentName", style: "webgrid-fixColumn"),
+                                         grid.Column(columnName:"LoanAccountNo",style:"webgrid-fixColumn"),
+                                         grid.Column(columnName:"TransactionNo",style:"webgrid-fixColumn"),
+                                         grid.Column(columnName:"Name",style:"webgrid-fixColumn"),
+                                         grid.Column(columnName:"BranchName",style:"webgrid-fixColumn"),
+                                        grid.Column(columnName:"TransactionDate",format: item => ((item.TransactionDate == null) ? "" : item.TransactionDate.ToString("dd/MMM/yyyy")),style:"webgrid-fixColumn"),
+                                         grid.Column(columnName:"RepaymentAmount",style:"webgrid-fixColumn")
+                                         ))
+                                    </tr>
+                                </tbody>
+
+                            </table>    
+                   
+                    </div>
+ 
+                </div>
+                    </div>*@
+            <div id="grid1" class="panel panel-primary" style="overflow: auto; min-width: 200px"></div>
+            <div class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
+                    <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                    <input type="hidden" id="PId" value="" />
+                    <div class="col-xs-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        debugger;
+        GetCheckList();
+    });
+    function GetCheckList() {
+        debugger;
+        $("#grid1").empty();
+        var NRC = $('#NRC').val();
+        if (NRC == '') {
+            NRC = 0;
+        }
+        var ChequeNo = $('#ChequeNo').val();
+        if (ChequeNo == '') {
+            ChequeNo = 0;
+        }
+        var url = '@Url.Action("GetCheckClrList", "CheckClearance")';
+        $.post(url, { NRC: NRC, ChequeNo: ChequeNo }, function (data) {
+                var intCount = data.length;
+                var tableData = '<table id="tblCourse" class="table" style="font-size:14px"><thead><tr><th>Select Check(s)</th><th>NRC</th><th>Name</th><th>Loan No.</th><th>Check No.</th><th>Bank Name</th><th>Branch Name</th><th>Check Date</th><th>Check Amount</th><th>Check Clearance Date</th></tr></thead>';
+                var tablerow = '';
+                var tableId = '';
+                var tablePKey = '';
+                debugger;
+                if (intCount > 0) {
+                    for (var i = 0; i < intCount; i++) {
+
+                        if (parseInt(data[i].Id) > 0) {
+                            //    tableId = tableId + data[i].CourseId + ',';
+                            tablePKey = tablePKey + data[i].Id + ',';
+                        }
+                        tablerow += '<tr><td> <input class ="tbl1" type="checkbox" width="90px" id="d' + [i] + '" value=' + data[i].Id + '> <td width="900px">' + data[i].NId + '</td><td width="900px">' + data[i].StudentName + '</td><td width="900px">' + data[i].LoanAccountNo + '</td><td width="900px">' + data[i].TransactionNo + '</td><td width="900px">' + data[i].Name + '</td><td width="900px">' + data[i].BranchName + '</td><td> <input type=text style="border: none; width: 90px"  id="d' + [i] + '_TDate" value=' + ToJavaScriptDate(data[i].TransactionDate) + '><td width="900px">' + data[i].RepaymentAmount + '</td><td> <input  type="date" width="90px" id="d' + [i] + '_Date" value=' + ToJavaScriptDate(data[i].ChequeClearanceDate) + ' name="d' + [i] + '_Date"><td></tr>';
+                    }
+                }
+
+                if (tableId != '') {
+                    tableId = tableId.substring(0, tableId.length - 1);
+                }
+
+                if (tablePKey != '') {
+                    tablePKey = tablePKey.substring(0, tablePKey.length - 1);
+                }
+                $("#PId").val(tablePKey);
+                tableData += tablerow;
+                tableData += '</table>';
+                $("#grid1").html(tableData);
+
+            });
+
+        }
+        $('#NRC').change(function () {
+            var NRC = $('#NRC').val();
+            GetCheckList();
+        });
+        $('#ChequeNo').change(function () {
+            var ChequeNo = $('#ChequeNo').val();
+            GetCheckList();
+        });
+
+        $('#btnSave').click(function () {
+            debugger;
+            var NRC = $("#NRC").val();
+
+            var Data1 = new Array;
+            var PKData = new Array;
+
+            var i = 0, j = 0, id_date, id_Tdate;
+            var C="Y";
+            //alert($("#d0_Date").val());
+            //alert($("d0_Date").val());
+            //alert($('input[name=d0_Date]').val());
+
+            $('.tbl1').each(function () {
+                debugger;
+                id = $(this).attr('id');
+                id_val = $("#" + id).val();
+                id_Tdate = $("#" + id + "_TDate").val();
+                id_date = $("#" + id + "_Date").val();
+               
+               
+                if ($("#" + id).is(':checked')) {
+                    if (id_date < id_Tdate) {
+                        alert("Please Select Correct Check Clearance date");
+                        C = "N";
+                        return false;
+                    }
+                    debugger;
+                    var P =
+                   {
+                       CheckId: id_val,
+                       CheckClearanceDate: id_date
+                   }
+                    Data1[i] = P;
+                    i++;
+                }
+            });
+            if (C == "Y") {
+                if (i == 0) {
+                    alert("Please Select Atleast ");
+                    C = "N";
+                    return false;
+                }
+            }
+            if (C == "Y") {
+                debugger;
+                var Details = JSON.stringify(Data1);
+                var PKDetails = $("#PId").val();
+
+                var url = '@Url.Action("SaveData", "CheckClearance")';
+                var Rurl = '@Url.Action("CheckClearance", "CheckClearance")';
+                $.ajax({
+                    url: url,
+                    data: { SaveCheckClearance: Details },
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function (data) {
+                        alert("Data Saved Successfully");
+                        window.location.href = Rurl;
+                    },
+                    error: function (data) {
+                        alert("Data Saved Falied");
+                    }
+                });
+                return false;
+            }
+    });
+ 
+   
+</script>

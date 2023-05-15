@@ -1,0 +1,113 @@
+﻿@model CreditRatingModel.Model.Master
+@{
+    ViewBag.Title = "AddArea";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<div class="row" style="height: 50px">
+</div>
+
+<form id="frmAddArea" method="post">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Area Master</label></div>
+            <div class="panel-body">
+                <fieldset class="scheduler-border">
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="lblName" class="filter-col control-label label1">Select City:</label>
+                                @Html.DropDownListFor(modelItem => modelItem.CityId, ViewBag.CityList as SelectList, "Select City", new { @class = "form-control dropdown", @id = "ddCityId"})
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="lblShortName" class="filter-col control-label label1">Area Name:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.Name, new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <div class="row">
+                    <div class="col-xs-5">
+                    </div>
+                    <div class="col-xs-4">                        
+                        <input type="button" id="btnSave" value="Save" />
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.HiddenFor(model=>model.Id)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+
+    $('#btnSave').click(function () {
+        debugger;
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        var AreaName = $("#Name").val();
+        var CityId = $("#ddCityId").val();
+      
+        if (CityId == '') {
+            alert("Please enter City");
+            return false;
+        }
+        
+        if (AreaName == '')
+        {
+            alert("Please Enter Area");
+            return false;
+        }
+    $.ajax({
+
+        url: '/Master/AddArea1/',
+        type :'POST',
+        data: { Id: Id, Name: AreaName, CityId: CityId },
+        success: function (data) {
+            var a = JSON.stringify(data);
+            if (Id == "") {
+                if (a == "true") {
+                    alert('Record saved successfully!');
+                    $("#Name").val('');          
+                    $("#ddCityId option").filter(function () {
+                        return this.text == 'Select City';
+                    }).attr('selected', true);
+                }
+                else if (a == "false") {
+                    alert('Area already Exits!');
+                    $("#Name").val("");
+                    $("#ddCityId option").filter(function () {
+                        return this.text == 'Select City';
+                    }).attr('selected', true);
+                }
+            }                
+            else {
+                if (a == "true") {
+                    alert('Record saved successfully!');
+                    window.location.href = '/Master/ViewArea';
+                }
+                else if (a == "false") {
+                    alert('Area already Exits');
+                    $("#Name").val("");
+                }
+            }
+        }
+      });
+   });
+</script>
+

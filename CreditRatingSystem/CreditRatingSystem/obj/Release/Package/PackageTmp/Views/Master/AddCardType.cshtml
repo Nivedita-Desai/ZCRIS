@@ -1,0 +1,227 @@
+﻿@model CreditRatingModel.Model.Master
+
+@{
+    ViewBag.Title = "AddCardType";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+<div class="row" style="height: 50px">
+</div>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Credit Card Type Master</label>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblCategory" class="filter-col control-label label1">Financial Institute:</label>
+                       <div id="finance"> @Html.DropDownListFor(model => model.FinantialInstituteId, ViewBag.BankList as SelectList, "select Bank", new { @id = "ddlBank", @class = "form-control dropdown", @disabled = "False", @style="visible:false"})</div> 
+                        @Html.TextBoxFor(model => model.FinantialInstituteName, new { @id="txtBankName", @class = "form-control dropdown", @disabled = "False"})
+                    </div>
+                </div>
+                
+            </div>
+            <fieldset class="scheduler-border">
+
+                <legend class="scheduler-border">
+                    <label id="lblStreamMaster" class="filter-col control-label label2">Card Details</label>
+                </legend>
+               
+
+                <div class="row">
+                
+                <div class="col-xs-6">
+
+                    <div class="form-group">
+                        <label id="lblCardType" class="filter-col control-label label1">Card Type:</label>
+                        @Html.TextBoxFor(model => model.CardType, new { @id="txtCardType", @class = "form-control input-sm", @maxlength = "25", @onkeypress = "return  AllowAlphabet(event)"})
+                    </div>
+                </div>
+                
+            </div>
+                 <div class="row">
+                
+                <div class="col-xs-6">
+
+                    <div class="form-group">
+                        <label id="lblDueDays" class="filter-col control-label label1">Due Days:</label>
+                        @Html.TextBoxFor(model => model.DueDays, new { @id="txtDueDays", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return isNumber(event)"})
+                    </div>
+                </div>
+                      <div class="col-xs-6">
+
+                    <div class="form-group">
+                        <label id="lblGracePeriod" class="filter-col control-label label1">Grace Period:</label>
+                        @Html.TextBoxFor(model => model.Graceperiod, new { @id="txtGraceperiod", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return isNumber(event)"})
+                    </div>
+                </div>
+                
+            </div>
+
+                <div class="row">
+                
+                <div class="col-xs-6">
+
+                    <div class="form-group">
+                        <label id="lblCreditLimit" class="filter-col control-label label1">Credit Limit:</label>
+                        @Html.TextBoxFor(model => model.CreditLimit, new { @id="txtCreditLimit", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return isNumber(event)"})
+                    </div>
+                </div>
+                      <div class="col-xs-6">
+
+                    <div class="form-group">
+                        <label id="lblCashLimit" class="filter-col control-label label1">Cash Limit:</label>
+                        @Html.TextBoxFor(model => model.CashLimit, new { @id="txtCashLimit", @class = "form-control input-sm", @maxlength = "20", @onkeypress = "return isNumber(event)"})
+                    </div>
+                </div>
+                
+            </div>
+            </fieldset>
+            <div class="row">
+                <div class="col-xs-5">
+                </div>
+                <div class="col-xs-4">
+                    @*<button id="btnSave" type="" name="save"  formmethod="post">Save</button>*@
+                    <input type="button" id="btnSave" value="Save" />
+
+                </div>
+                <div class="col-xs-3">
+                    @Html.HiddenFor(model => model.Id)
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //var AccountNo = '@(ViewBag.loanacno)';
+        //if (AccountNo != "") {
+
+            debugger;
+            var FinanceInstName = $('#ddlBank option:selected').text();
+            $('#txtBankName').val(FinanceInstName);
+            $('#finance').hide();
+            //$("#txtBankName").attr('visible', false);
+
+        //}
+    });
+
+    $('#btnSave').click(function () {
+        //alert($("#Id").val())
+        debugger;
+        var CardTypeId = $("#Id").val();
+        var url = '/Master/EditAction/';
+        if ($("#Id").val() == "") {
+            CardTypeId = 0;
+            url = '/Master/SaveCardType/'
+        }
+
+        var FinanceInstId1 = $('#ddlBank').val();
+        var CardType1 = $('#txtCardType').val();
+        var DueDays1 = $('#txtDueDays').val();
+        var GracePeriod1 = $('#txtGraceperiod').val();
+        var CreditLimit1 = $('#txtCreditLimit').val();
+        var CashLimit1 = $('#txtCashLimit').val();
+        if (FinanceInstId1 == "") {
+            alert('Please select the bank')
+        }
+
+        
+        else if (CardType1=="") {
+            alert('Please Enter The Card Type')
+            $('#txtCardType').focus();
+        }
+        else if (DueDays1 == "") {
+            alert('Please Enter Due Days')
+        }
+        else if (GracePeriod1 == "") {
+            alert('Please Enter Grace Period')
+        }
+        else if (CreditLimit1 == "") {
+            alert('Please Enter Credit Limit')
+        }
+        else if (CashLimit1 == "") {
+            alert('Please Enter Cash Limit')
+        }
+        else {
+        }
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            data: { FinancialInstituteId: FinanceInstId1, CardType: CardType1, DueDay: DueDays1, GracePeriod: GracePeriod1, CreditLimit: CreditLimit1, CashLimit: CashLimit1, intid: CardTypeId },
+            success: function (data) {
+                debugger;
+                var a = JSON.stringify(data);
+                if (CardTypeId == "") {
+                    debugger;
+                    if (a == "true") {
+
+                        alert('Data Saved Successfully!');
+                        //$("#ddlBank").val('');
+                        $("#txtCardType").val('');
+                        $("#txtDueDays").val('');
+                        $("#txtGraceperiod").val('');
+                        $("#txtCreditLimit").val('');
+                        $("#txtCashLimit").val('');
+                    }
+                    else if (a == "false") {
+
+                        alert('Data Saved Failed!');
+
+                    }
+
+                }
+                else {
+                    debugger;
+                    if (a == "true") {
+
+                        alert('Data Saved Successfully!');
+                        //$("#ddlBank").val('');
+                        //$("#txtCardType").val('');
+                        //$("#txtDueDays").val('');
+                        //$("#txtGraceperiod").val('');
+                        //$("#txtCreditLimit").val('');
+                        //$("#txtCashLimit").val('');
+                        window.location.href = '/Master/CardTypeList';
+                    }
+                    else if (a == "false") {
+
+                        alert('Data Saved Failed!');
+
+                    }
+                }
+                //else {
+                //    if (a == "true") {
+                //        alert('Record saved successfully!');
+                //        window.location.href = '/Master/ViewFinancialInstitutionCategory';
+                //    }
+                //    else if (a == "false") {
+
+                //        alert('Financial Institution Category already Exits!');
+                //    }
+
+                //}
+
+            }
+            //,
+            //error: function (data) {
+            //    alert(data);
+            //}
+
+        });
+    });
+
+
+</script>
+
+
+
+

@@ -1,0 +1,136 @@
+﻿body
+{
+    font-size: .85em;
+    font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+
+}
+@font-face {
+    font-family: 'DroidSansBold';
+    src: url('../fonts/droidsans-bold-webfont.eot');
+    src: url('../fonts/droidsans-bold-webfont.eot?#iefix') format('eot'),
+         url('../fonts/droidsans-bold-webfont.woff') format('woff'),
+         url('../fonts/droidsans-bold-webfont.ttf') format('truetype'),
+         url('../fonts/droidsans-bold-webfont.svg#webfontYxZG9krR') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'DroidSansRegular';
+    src: url('../fonts/droidsans-webfont.eot');
+    src: url('../fonts/droidsans-webfont.eot?#iefix') format('eot'),
+         url('../fonts/droidsans-webfont.woff') format('woff'),
+         url('../fonts/droidsans-webfont.ttf') format('truetype'),
+         url('../fonts/droidsans-webfont.svg#webfontHBhj4MQT') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+.nscroller
+{
+    padding: inherit;
+    }
+
+header, footer, nav, section
+{
+    display: block;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset
+{
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend
+{
+    font-size: 13px;
+
+}
+
+textarea
+{
+    min-height: 75px;
+}
+
+
+.editor-label {
+    float: left;
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.editor-field
+{
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #f00;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+
+.b-iframe
+{
+    height: 100%;
+    width: 100%;
+}
+
+
+
+span.action-button
+{
+    background-color: #0b6385;
+   
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    padding: 4px 8px;
+    margin-bottom:2px;
+    text-align: center;
+    text-decoration: none;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.action-button:hover
+{
+    background-color: #1383af;
+}
+
+.ui-jqgrid-view{width:100% !important;}

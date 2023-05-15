@@ -1,0 +1,125 @@
+﻿@{
+
+    var grid = new WebGrid(Model, canSort: true, canPage: true, rowsPerPage:8);
+    grid.Pager(WebGridPagerModes.All);
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@*<script src="~/js/filter.js"></script>*@
+<br/>
+ <div class="container">
+      <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">City Details</label>  </div>    
+            <div class="row" >
+                 <div class="col-xs-1">
+                           
+               </div>
+            <div class="col-xs-10">
+                           
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h3 class="panel-title">City</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                    </div>
+                </div>
+                <div style=" overflow-x:auto;height:500px" >
+                <table class="table">
+                    <thead>
+                        <tr class="filters">
+                             <th width="10px"> <input type="text"  placeholder="Province" disabled> </th>
+                            <th width="10px">  <input type="text"  placeholder="City" disabled> </th>
+                            <th width="10px">   <input type="text" placeholder="City Code" disabled> </th>                          
+                             <th width="15px">  <input type="hidden" disabled></th>
+
+                            @* </div>*@
+
+                        </tr>
+                    </thead>
+                    <tbody class="table">
+                        <tr class="filters">
+                            @grid.GetHtml(
+                tableStyle: "table",
+                headerStyle: "webgrid-header",
+                columns: grid.Columns(
+                   grid.Column(columnName: "State", style: "webgrid-fixColumn"),
+                  grid.Column(columnName: "City", style: "webgrid-fixColumn"),
+                  grid.Column(columnName: "CityCode", style: "webgrid-fixColumn"),
+                   grid.Column(columnName: "Id", style: "webgrid-hide")
+                 ))
+                        </tr>
+                    </tbody>
+                </table>
+                    </div>
+                </div>
+</div>
+                 <div class="col-xs-1">
+                           
+               </div>
+        </div>
+    </div>
+     </div>
+
+<script type="text/javascript">
+    $(function () {
+        debugger;
+        $('tbody tr').hover( function(){
+            $(this).toggleClass('clickable');
+        }).on('click', function(){
+            location.href = '/Master/EditCity/' + $(this).find('td:last').text();
+        }); 
+    });
+</script>  
+<script type="text/javascript">
+  @*  $("#btnSearch").change(function () {
+        var url = '@Url.Action("SearchList", "FinancialInstitute")';
+    });*@
+
+    $('.filterable .btn-filter').click(function () {
+        debugger;
+        var $panel = $(this).parents('.filterable'),
+        $filters = $panel.find('.filters input'),
+        $tbody = $panel.find('.table tbody');
+        if ($filters.prop('disabled') == true) {
+            debugger;
+            $filters.prop('disabled', false);
+            $filters.first().focus();
+        } else {
+            debugger;
+            $filters.val('').prop('disabled', true);
+            $tbody.find('.no-result').remove();
+            $tbody.find('tr').show();
+        }
+    });
+
+    $('.filterable .filters input').keyup(function (e) {
+        /* Ignore tab key */
+        debugger;
+        var code = e.keyCode || e.which;
+        if (code == '9') return;
+        /* Useful DOM data and selectors */
+        debugger;
+        var $input = $(this),
+        inputContent = $input.val().toLowerCase(),
+        $panel = $input.parents('.filterable'),
+        column = $panel.find('.filters th').index($input.parents('th')),
+        $table = $panel.find('.table'),
+        $rows = $table.find('tbody tr');
+        /* Dirtiest filter function ever ;) */
+        var $filteredRows = $rows.filter(function () {
+            var value = $(this).find('td').eq(column).text().toLowerCase();
+            return value.indexOf(inputContent) === -1;
+        });
+        debugger;
+        /* Clean previous no-result if exist */
+        $table.find('tbody .no-result').remove();
+        /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+        $rows.show();
+        $filteredRows.hide();
+        /* Prepend no-result row if all rows are filtered */
+        if ($filteredRows.length === $rows.length) {
+            debugger;
+            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="' + $table.find('.filters th').length + '">No result found</td></tr>'));
+        }
+    });
+    </script>

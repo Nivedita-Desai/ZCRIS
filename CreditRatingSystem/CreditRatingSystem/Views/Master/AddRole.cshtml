@@ -1,0 +1,173 @@
+﻿@model CreditRatingModel.Model.Master
+@{
+    ViewBag.Title = "AddRole";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@*<h2>AddRole</h2>*@
+<div class="row" style="height: 50px">
+</div>
+
+<form id="frmAddUserType" method="post">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Role Master</label></div>
+            <div class="panel-body">
+                <fieldset class="scheduler-border">
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            @*   @Html.HiddenFor(model => model.Id)*@
+                            <div class="form-group">
+                                <label id="lblName" class="filter-col control-label label1">Role :</label>
+                                @Html.TextBoxFor(modelItem => modelItem.Role, new { @class = "form-control",@onkeypress = "return AllowAlphabet(event)", @id="txtRole"})
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="lblShortName" class="filter-col control-label label1">Description:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.RoleDescription, new { @class = "form-control",@onkeypress = "return AllowAlphabet(event)"})
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </fieldset>
+
+                     <div class="row">
+                         <div class="col-xs-5">
+                         </div>
+                         <div class="col-xs-4">
+                             @*<button id="btnSave" type="" name="save"  formmethod="post">Save</button>*@
+                             <input type="button" id="btnSave" value="Save" />
+                         </div>
+                         <div class="col-xs-3">
+                             @Html.HiddenFor(model=>model.Id)
+                         </div>
+                     </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+
+    $('#btnSave').click(function () {
+        debugger;
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "")
+        {
+            Id = 0;
+        }
+        var Role = $("#txtRole").val();     
+        var RoleDescription = $("#RoleDescription").val();
+    
+        if (Role == "") {
+            alert('Please Enter Role.');
+            return;
+        }
+
+        if (RoleDescription == "") {
+            alert('Please Enter Description.');
+            return;
+        }
+
+    $.ajax({
+
+        url: '/Master/AddRole1/',
+        type :'POST',
+        data: { Id: Id, Role: Role, RoleDescription: RoleDescription },
+        success: function (data) {
+            var a = JSON.stringify(data);
+            if (Id == "") {
+                debugger;
+                if (a == "true") {
+
+                    alert('Data saved successfully!');
+                    $("#txtRole").val('');
+                    $("#RoleDescription").val('');
+                    //$("#CityId").val('');
+                }            
+            }
+            else {
+                if (a == "true") {
+                    alert('Data saved successfully!');
+                    window.location.href = '/Master/ViewRole';
+                }           
+            }
+        }
+      });
+    });
+        
+    $('#Role').focusout(function () {
+        debugger;
+        var Role = $("#Role").val();
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        $.ajax({
+            
+            url: '/Master/ChkRole/',
+            type: 'POST',
+            data: { Id: Id, Role: Role },
+            success: function (data) {
+                //var a = JSON.stringify(data);
+                if (Id == "") {
+                    debugger;
+                    if (data == "N") {
+
+                        alert('Role already Exits!');
+                        $("#Role").val('');                   
+                }
+                }
+                else {
+                    if (data == "N") {
+                        alert('Role already Exits!');
+                        //window.location.href = '/Master/ViewUserType';
+                        $("#Role").val('');
+                    }
+                }
+            }
+        });
+    });
+
+
+    $('#RoleDescription').focusout(function () {
+        debugger;
+        var RoleDescription = $("#RoleDescription").val();
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        $.ajax({
+
+            url: '/Master/ChkRoleDescription/',
+            type: 'POST',
+            data: { Id: Id, RoleDescription: RoleDescription },
+            success: function (data) {
+               // var a = JSON.stringify(data);
+                if (Id == "") {
+                    debugger;
+                    if (data == "N") {
+                        alert('Role Description already Exits!');
+                        $("#RoleDescription").val('');
+                    }
+                }
+                else {
+                    if (data == "N") {
+                        alert('Role Description already Exits!');
+                       // window.location.href = '/Master/ViewUserType';
+                        $("#RoleDescription").val('');
+                    }
+                }
+            }
+        });
+
+    });
+    
+</script>

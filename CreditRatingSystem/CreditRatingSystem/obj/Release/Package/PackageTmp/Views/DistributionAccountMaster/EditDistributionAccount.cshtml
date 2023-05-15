@@ -1,0 +1,238 @@
+﻿@model CreditRatingModel.Model.DistributionAccountMaster_Metadata
+@using CreditRatingModel.Model;
+@{
+    ViewBag.Title = "EditDistributionAccount";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<br />
+
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Distribution Account Master</label>
+        </div>
+        <div class="panel-body">
+              
+
+            @* @using (Html.BeginForm("EditDistributionAccount", "DistributionAccountMaster", FormMethod.Post, new { id = "frmAddDistAccountDetails" }))
+             {
+           
+            *@
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblAcName" class="filter-col control-label label1">Account Name :</label>
+                         @Html.TextBoxFor(model => model.AccountName, new { @id = "txtAccountName", @class = "form-control input-sm", @onkeypress = "return  AllowAlphabet(event)", @readonly="true"})
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblShortName" class="filter-col control-label label1">Short Name :</label>
+                        @Html.TextBoxFor(model => model.AccountShortName, new { @id = "txtAccountShortName", @class = "form-control input-sm", @onkeypress = "return  AllowAlphabet(event)", @readonly="true"})
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblAcType" class="filter-col control-label label1">Account Type :</label>
+                         @Html.DropDownListFor(model => model.AccountType, ViewBag.AccountTypeList as SelectList, "Select Account Type", new { @id = "ddlAccountTypeList", @class = "form-control dropdown",  @disabled="disabled"})
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblDistibutionType" class="filter-col control-label label1">Distribution Type :</label>
+                         @*<select id="selEmployerDivision" name="selEmployerDivision" style="color: black" class="form-control dropdown"></select>*@
+                        @Html.DropDownListFor(model => model.DistributionTypeId, ViewBag.DistributionTypeList as SelectList, "Select Distribution Type", new { @id = "ddlDistributionTypeList", @class = "form-control dropdown", @disabled="disabled"})
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblBank" class="filter-col control-label label1">Bank :</label>
+                        @Html.DropDownListFor(model => model.FinancialInstitutionId, ViewBag.BankNameList as SelectList, "Select Bank", new { @id = "ddlBankNameList", @class = "form-control dropdown" , @disabled="disabled"})
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblBranch" class="filter-col control-label label1">Branch :</label>
+                         @Html.DropDownListFor(model => model.FinancialInstitutionBranchId, ViewBag.BranchNameList as SelectList, "Select Bank", new { @id = "ddlBranchNameList", @class = "form-control dropdown" , @disabled="disabled"})
+                         @*<select id="selBranch" name="selBranch" style="color: black" class="form-control dropdown"></select>*@
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblBankAcNo" class="filter-col control-label label1">Bank A/C No :</label>
+                        @Html.TextBoxFor(model => model.AccountNo, new { @id = "txtAccountNo", @class = "form-control input-sm", @maxlength="15", @onkeypress = "return isNumber(event)", @readonly="true"})
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblIfscCode" class="filter-col control-label label1">IFSC Code :</label>
+                        @Html.TextBoxFor(model => model.IFSCCode, new { @id = "txtIFSCCode", @class = "form-control input-sm", @maxlength="15", @onkeypress = "return isAlphaNumeric(event)", @readonly="true"})
+                    </div>
+                </div>
+            </div>
+                  @*</fieldset>*@
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label id="lblNarration" class="filter-col control-label label2">Narration :</label>
+                         @Html.TextAreaFor(model => model.Narration, new { @id = "txtNarration", @class = "form-control input-sm" , @readonly="true"})
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                       <label id="lblStatus" class="filter-col control-label label1">Status :</label>
+                        @Html.CheckBoxFor(model => model.status , new { @id="chkstatus", @value="true", @readonly="true"})
+                    </div>
+                </div>
+            </div>
+            
+
+            @*<div class="row">
+                    <div class="col-xs-4">
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="form-group">
+                            <input  id="btnAdd" type="submit" value="Edit" formmethod="post"/>
+                              <input id="btnClear" type="reset" value="Reset"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                      
+                    </div>
+                </div>*@
+             @*}*@
+        </div>
+    </div>
+</div>
+<div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Back to List", "ViewDistributionAccount", "DistributionAccountMaster")
+    </div>
+<script type="text/javascript">
+
+    
+@*    $("#ddlEmployer").change(function () {
+        var EmployerId = $("#ddlEmployer").val();
+
+        var url = '@Url.Action("DivisionList", "DistributionAccountMaster")';
+
+        $.post(url, { employerId: EmployerId }, function (data) {
+
+            $("#selEmployerDivision").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+
+                $("#selEmployerDivision").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+    });*@
+
+    $("#ddlBankNameList").change(function () {
+        var bankId = $("#ddlBankNameList").val();
+
+        var url = '@Url.Action("BranchList", "DistributionAccountMaster")';
+
+        $.post(url, { bankId: bankId }, function (data) {
+
+            $("#selBranch").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+
+                $("#selBranch").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+
+    });
+
+    //$("#chkstatus").click(function () {
+    //    debugger;
+    //    //$("#chkstatus").val('False');
+    //    if ($().checked == true) {
+    //        alert("please select status");
+    //    } 
+        
+    //});
+    $("#txtAccountNo").change(function () {
+        debugger;
+        var AcNo = $("#txtAccountNo").val();
+        var url;
+        url = '@Url.Action("CheckAccNO", "DistributionAccountMaster")';
+
+        $.post(url, { accountNo: AcNo }, function (data) {
+            debugger;
+            if (data != "") {
+                debugger;
+                alert(data);
+                $("#txtAccountNo").val('');
+            }
+        });
+
+    });
+
+
+    $("#txtAccountName").change(function () {
+        debugger;
+        var AcName = $("#txtAccountName").val();
+        var url;
+        url = '@Url.Action("CheckAccName", "DistributionAccountMaster")';
+
+        $.post(url, { accountName: AcName }, function (data) {
+            debugger;
+            if (data != "") {
+                debugger;
+                alert(data);
+                $("#txtAccountName").val('');
+            }
+        });
+
+    });
+
+    $("#txtAccountShortName").change(function () {
+        debugger;
+        var AcShortName = $("#txtAccountShortName").val();
+        var url;
+        url = '@Url.Action("CheckAccShortName", "DistributionAccountMaster")';
+
+        $.post(url, { accountShortName: AcShortName }, function (data) {
+            debugger;
+            if (data != "") {
+                debugger;
+                alert(data);
+                $("#txtAccountShortName").val('');
+            }
+        });
+
+     });
+
+    $("#btnAdd").click(function () {
+        debugger;
+        //var chval=$("#chkstatus").val();
+        var frmvalidator = new Validator("frmAddDistAccountDetails");
+        frmvalidator.clearAllValidations();
+        frmvalidator.EnableMsgsTogether();
+
+        //frmvalidator.addValidation("ddlEmployer", "req", "Please select Employer");
+        frmvalidator.addValidation("ddlDistributionTypeList", "req", "Please select Distribution Type");
+        frmvalidator.addValidation("txtAccountName", "req", "please Enter Account Name");
+        frmvalidator.addValidation("txtAccountShortName", "req", "Please enter Short Name for account");
+        frmvalidator.addValidation("ddlAccountTypeList", "req", "Please select Account Type");
+        frmvalidator.addValidation("ddlBankNameList", "req", "Please select Bank");
+        frmvalidator.addValidation("selBranch", "req", "Please select Branch");
+        frmvalidator.addValidation("txtAccountNo", "req", "Please enter Account Number");
+        frmvalidator.addValidation("txtIFSCCode", "req", "Please enter IFSC code");
+        frmvalidator.addValidation("chkstatus", "shouldselchk=true", "Please select account status wheather it is active or not");
+
+        frmvalidator.addValidation("txtAccountShortName", "neelmnt=txtAccountName", "Short Name is same as account name");
+    });
+
+</script>
+

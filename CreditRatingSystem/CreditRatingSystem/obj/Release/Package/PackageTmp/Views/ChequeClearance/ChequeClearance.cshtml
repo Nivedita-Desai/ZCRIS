@@ -1,0 +1,203 @@
+﻿@model CreditRatingModel.Model.ChequeClearance
+
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+                            //var grid = new WebGrid(ViewBag.ChequeClearanceList);
+                            //grid.Pager(WebGridPagerModes.All);
+}
+@*<script src="/js/bootstrap.min.js"></script>*@
+<br />
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Cheque Clearance</label>
+        </div>
+        <div class="panel-body">
+            @*@using (Html.BeginForm("chequeClearancecheque", "chequeClearance", FormMethod.Post,
+                            new { id = "frmchequeClearance" }))
+                  {
+                      *@
+            <div class="row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-5">
+                    <div class="form-group">
+                        <label id="lblNRC" class="filter-col control-label label1">National Registration Code(NRC)</label>
+                        @Html.TextBoxFor(model => model.NRC, new { @class = "form-control", @onkeypress = "return  isNRCNumber(event)", @maxlength = "13", @onblur = "checkLengthForNRC(this)" })
+
+                    </div>
+                </div>
+                 <div class="col-xs-5">
+                    <div class="form-group">
+                        <label id="lblCN" class="filter-col control-label label1">Cheque No.</label>
+                        @Html.TextBoxFor(model => model.ChequeNo, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "8" })
+
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                </div>
+            </div>  
+            <div id="grid1" class="panel panel-primary" style="overflow: auto; min-width: 200px"></div>
+            <div id="gri" class="row" style="overflow: auto; min-width: 200px;min-height:50px">
+               
+                 <div class="col-xs-12">
+                    <div class="form-group">
+                        @Html.TextArea("Message", new { @class = "form-control",@Style="text-align:center;font-size:25px;border:none" })
+                        </div>
+                    </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
+                    <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                    <input type="hidden" id="PId" value="" />
+                    <div class="col-xs-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $("#gri").hide();
+        debugger;
+        GetchequeList();
+    });
+    function GetchequeList() {
+        debugger;
+        $("#grid1").empty();
+        var NRC = $('#NRC').val();
+        if (NRC == '') {
+            NRC = 0;
+        }
+        var ChequeNo = $('#ChequeNo').val();
+        if (ChequeNo == '') {
+            ChequeNo = 0;
+        }
+        var url = '@Url.Action("GetChequeClrList", "ChequeClearance")';
+        $.post(url, { NRC: NRC, ChequeNo: ChequeNo }, function (data) {
+                var intCount = data.length;
+                var tableData = '<table id="tblCourse" class="table" style="font-size:14px"><thead><tr><th>Select</th><th>NRC</th><th>Name</th><th>Loan No.</th><th>cheque No.</th><th>Bank Name</th><th>Branch Name</th><th>cheque Date</th><th>cheque Amount</th><th>cheque Clearance Date</th></tr></thead>';
+                var tablerow = '';
+                var tableId = '';
+                var tablePKey = '';
+                $("#grid1").show();
+                $("#gri").hide();
+                debugger;
+                if (intCount > 0) {
+                    for (var i = 0; i < intCount; i++) {
+
+                        if (parseInt(data[i].Id) > 0) {
+                            //    tableId = tableId + data[i].CourseId + ',';
+                            tablePKey = tablePKey + data[i].Id + ',';
+                        }
+                        tablerow += '<tr><td> <input class ="tbl1" type="checkbox" width="90px" id="d' + [i] + '" value=' + data[i].Id + '> <td width="900px">' + data[i].NId + '</td><td width="900px">' + data[i].StudentName + '</td><td width="900px">' + data[i].LoanAccountNo + '</td><td width="900px">' + data[i].TransactionNo + '</td><td width="900px">' + data[i].Name + '</td><td width="900px">' + data[i].BranchName + '</td><td> <input type=text style="border: none; width: 90px"  id="d' + [i] + '_TDate" value=' + ToJavaScriptDate(data[i].TransactionDate) + '><td width="900px">' + data[i].RepaymentAmount + '</td><td> <input  type="date" width="90px" id="d' + [i] + '_Date" value=' + ToJavaScriptDate(data[i].ChequeClearanceDate) + ' name="d' + [i] + '_Date"><td></tr>';
+                    }
+                }
+                else {
+                    $("#grid1").hide();
+                    $("#gri").show();
+                    $("#btnSave").hide();
+                    $("#Message").val("No Data Found.......");
+                    $('#Message').attr("readonly", true)
+                }
+                if (tableId != '') {
+                    tableId = tableId.substring(0, tableId.length - 1);
+                }
+
+                if (tablePKey != '') {
+                    tablePKey = tablePKey.substring(0, tablePKey.length - 1);
+                }
+                $("#PId").val(tablePKey);
+                tableData += tablerow;
+                tableData += '</table>';
+                $("#grid1").html(tableData);
+
+            });
+
+        }
+        $('#NRC').change(function () {
+            var NRC = $('#NRC').val();
+            debugger;
+            GetchequeList();
+        });
+        $('#ChequeNo').change(function () {
+            var ChequeNo = $('#ChequeNo').val();
+            GetchequeList();
+        });
+
+        $('#btnSave').click(function () {
+            debugger;
+            var NRC = $("#NRC").val();
+
+            var Data1 = new Array;
+            var PKData = new Array;
+
+            var i = 0, j = 0, id_date, id_Tdate;
+            var C="Y";
+            //alert($("#d0_Date").val());
+            //alert($("d0_Date").val());
+            //alert($('input[name=d0_Date]').val());
+
+            $('.tbl1').each(function () {
+                debugger;
+                id = $(this).attr('id');
+                id_val = $("#" + id).val();
+                id_Tdate = $("#" + id + "_TDate").val();
+                id_date = $("#" + id + "_Date").val();
+               
+               
+                if ($("#" + id).is(':checked')) {
+                    if (id_date < id_Tdate) {
+                        alert("Please Select Valid Cheque Clearance date");
+                        C = "N";
+                        return false;
+                    }
+                    
+                    debugger;
+                    var P =
+                   {
+                       CheckId: id_val,
+                       CheckClearanceDate: id_date
+                   }
+                    Data1[i] = P;
+                    i++;
+                }
+            });
+            if (C == "Y") {
+                if (i == 0) {
+                    alert("Please Select Atleast one Cheque ");
+                    C = "N";
+                    return false;
+                }
+            }
+            if (C == "Y") {
+                debugger;
+                var Details = JSON.stringify(Data1);
+                var PKDetails = $("#PId").val();
+
+                var url = '@Url.Action("SaveData", "ChequeClearance")';
+                var Rurl = '@Url.Action("ChequeClearance", "ChequeClearance")';
+                $.ajax({
+                    url: url,
+                    data: { SaveChequeClearance: Details },
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function (data) {
+                        alert("Data Saved Successfully");
+                        window.location.href = Rurl;
+                    },
+                    error: function (data) {
+                        alert("Data Saved Falied");
+                    }
+                });
+                return false;
+            }
+    });
+ 
+   
+</script>

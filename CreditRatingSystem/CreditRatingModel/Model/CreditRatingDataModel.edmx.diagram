@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="90d5339a805249d290c52288bb1c6cde" Name="Diagram1" ShowGrid="false" ZoomLevel="54">
+        <EntityTypeShape EntityType="creditratingModel.AccountStatusMaster" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.AddressTypeMaster" Width="1.5" PointX="5.25" PointY="48.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.BorrowerCompanyTypeMaster" Width="1.5" PointX="9.625" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.BorrowerCreditRelation" Width="1.5" PointX="15.75" PointY="42.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.ChequeTypeMaster" Width="1.5" PointX="11.25" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.ContactRelation" Width="1.5" PointX="7.5" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.CountryMaster" Width="1.5" PointX="1.25" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.CreditCardChild" Width="1.5" PointX="20.25" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.CreditCardHead" Width="1.5" PointX="18" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.CreditTypeMaster" Width="1.5" PointX="13.5" PointY="48" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.DocumentTypeMaster" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.FinancialInstitutionCategoryMaster" Width="1.5" PointX="1.5" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.FinancialInstitutionCreditTypeMaster" Width="1.5" PointX="6.125" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.FinancialInstitutionCreditTypeRelation" Width="3" PointX="8.25" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.FinancialInstitutionMaster" Width="1.5" PointX="3.625" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.IndividualCustomerLog" Width="1.5" PointX="8.25" PointY="46.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.InstallmentTransaction" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.InterestTypeMaster" Width="1.5" PointX="5.375" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.LoanDetailsChild" Width="1.5" PointX="20.25" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.LoanDetailsHead" Width="1.5" PointX="18" PointY="44.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.LoanTypesMaster" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.NameTitleMaster" Width="1.5" PointX="3" PointY="47" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.NationalityMaster" Width="1.5" PointX="3" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.ReasonMaster" Width="1.5" PointX="11.25" PointY="47.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.StateMaster" Width="1.5" PointX="3" PointY="43.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.UserTypeMaster" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="creditratingModel.FK_ContactRelation_AddressTypeMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_BorrowerCreditRelation_CreditTypeMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_BorrowerCreditRelation_FinancialInstitutionMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_CreditCardHead_BorrowerCreditRelation" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_LoanDetailsHead_BorrowerCreditRelation" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_NationalityMaster_CountryMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_StateMaster_CountryMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_CreditCardChild_CreditCardHead" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_FinancialInstitutionMaster_FinancialInstitutionCategoryMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_FinancialInstitutionCreditTypeRelation_FinancialInstitutionCreditTypeMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_FinancialInstitutionCreditTypeRelation_FinancialInstitutionMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="creditratingModel.FK_LoanDetailsChild_LoanDetailsHead" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="creditratingModel.TempInstallmentTransaction" Width="1.5" PointX="8.5" PointY="13.125" />
+        <EntityTypeShape EntityType="creditratingModel.EMITransaction" Width="1.5" PointX="2.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.LoanIndividualRelation" Width="1.5" PointX="12.625" PointY="7.875" />
+        <EntityTypeShape EntityType="creditratingModel.Menu" Width="1.5" PointX="4.375" PointY="11.625" />
+        <EntityTypeShape EntityType="creditratingModel.RoleMenuRelation" Width="1.5" PointX="6.22462954848289" PointY="26.6872883712348" />
+        <EntityTypeShape EntityType="creditratingModel.UserRoleRelation" Width="1.5" PointX="9.125" PointY="17" />
+        <EntityTypeShape EntityType="creditratingModel.CreditScoreParameter" Width="1.5" PointX="10.875" PointY="50.625" />
+        <EntityTypeShape EntityType="creditratingModel.EmployerBranchMaster" Width="1.5" PointX="11.165456145613202" PointY="19.223430970322077" />
+        <EntityTypeShape EntityType="creditratingModel.EmployerDivisionMaster" Width="1.5" PointX="3.625" PointY="27.375" />
+        <EntityTypeShape EntityType="creditratingModel.EmployerMaster" Width="1.5" PointX="9.125" PointY="4.75" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerBranchMaster_EmployerMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerBranchMaster_EmployerTypeMaster" />
+        <EntityTypeShape EntityType="creditratingModel.CreditRatingRejectionReason" Width="1.5" PointX="0.036903871240515196" PointY="14.21253953045818" />
+        <EntityTypeShape EntityType="creditratingModel.EmployeeDetailsLog" Width="1.5" PointX="2.2902004748071545" PointY="30.110738485171805" IsExpanded="true" />
+        <EntityTypeShape EntityType="creditratingModel.TempDocumentCustomerRelation" Width="1.5" PointX="10.125" PointY="7.5" />
+        <EntityTypeShape EntityType="creditratingModel.CityMaster" Width="1.5" PointX="8.875" PointY="26.75" />
+        <EntityTypeShape EntityType="creditratingModel.DepartmentMaster" Width="1.5" PointX="5.625" PointY="9.5" />
+        <EntityTypeShape EntityType="creditratingModel.DesignationMaster" Width="1.5" PointX="10.38392986281958" PointY="0.71380515429834146" />
+        <EntityTypeShape EntityType="creditratingModel.StreamMaster" Width="1.5" PointX="14" PointY="30.5" />
+        <EntityTypeShape EntityType="creditratingModel.AcademicYear" Width="1.5" PointX="6" PointY="14.875" />
+        <EntityTypeShape EntityType="creditratingModel.EmployeeDetail" Width="1.5" PointX="7.125" PointY="2.875" />
+        <EntityTypeShape EntityType="creditratingModel.Relationship" Width="1.5" PointX="1.625" PointY="11.875" />
+        <EntityTypeShape EntityType="creditratingModel.CourseCategory" Width="2.5" PointX="0.5" PointY="105" />
+        <EntityTypeShape EntityType="creditratingModel.EducationLoanTransaction" Width="1.5" PointX="4.9887242116912844" PointY="0.05243150892315037" />
+        <EntityTypeShape EntityType="creditratingModel.MonthlySalaryTransaction" Width="1.5" PointX="2.8816605987407549" PointY="9.28851986363927" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerTypeMaster_EmployerMaster" />
+        <EntityTypeShape EntityType="creditratingModel.SlabMaster" Width="1.5" PointX="9.96951919327002" PointY="21.350022519635978" />
+        <EntityTypeShape EntityType="creditratingModel.EduThresholdMaster" Width="1.5" PointX="5.1868305155946084" PointY="23.398709010052826" />
+        <EntityTypeShape EntityType="creditratingModel.MonthlySalaryHead" Width="1.5" PointX="5.9208999601755758" PointY="23.774538781388912" />
+        <EntityTypeShape EntityType="creditratingModel.EMIApprovalChild" Width="1.5" PointX="14.375" PointY="10.5" />
+        <EntityTypeShape EntityType="creditratingModel.EMIApprovalHead" Width="1.5" PointX="11.746969325350117" PointY="21.241538355705114" />
+        <EntityTypeShape EntityType="creditratingModel.CourseMaster" Width="1.5" PointX="4.6051305367635242" PointY="24.858656671298043" />
+        <EntityTypeShape EntityType="creditratingModel.FeesDetail" Width="1.5" PointX="7.0439775935579" PointY="21.698713938565326" />
+        <EntityTypeShape EntityType="creditratingModel.FeesDetailsHistory" Width="1.5" PointX="4.8679876741338468" PointY="30.773253976727489" />
+        <EntityTypeShape EntityType="creditratingModel.DisAgreementYear" Width="1.5" PointX="16.625" PointY="15" />
+        <EntityTypeShape EntityType="creditratingModel.AccountTypeMaster" Width="1.5" PointX="6.4639214121102917" PointY="11.781920662048236" />
+        <EntityTypeShape EntityType="creditratingModel.CourseCollegeRelation" Width="1.5" PointX="4.4546200374395681" PointY="21.421339730462684" />
+        <EntityTypeShape EntityType="creditratingModel.CourseCollegeRelHistory" Width="1.5" PointX="10.95545883800623" PointY="28.649635492195205" />
+        <AssociationConnector Association="creditratingModel.FK_CourseCollegeRelation_CourseMaster" />
+        <EntityTypeShape EntityType="creditratingModel.CompMonthlyDistributionHead" Width="1.5" PointX="12.125" PointY="10" />
+        <EntityTypeShape EntityType="creditratingModel.DisAgreementDetail" Width="1.5" PointX="8.1623612829308776" PointY="5.9743641344711014" />
+        <EntityTypeShape EntityType="creditratingModel.TransactionMaster" Width="1.5" PointX="10.839068808983578" PointY="7.0622099968894432" />
+        <EntityTypeShape EntityType="creditratingModel.RatingRangeMaster" Width="1.5" PointX="0.641214782670706" PointY="14.017603165478262" />
+        <EntityTypeShape EntityType="creditratingModel.AreaMaster" Width="1.5" PointX="5.85433017548841" PointY="24.835227277518822" />
+        <EntityTypeShape EntityType="creditratingModel.DistributionAccountMaster" Width="1.5" PointX="11" PointY="2.875" />
+        <EntityTypeShape EntityType="creditratingModel.CompMonthlyDistributionChild" Width="1.5" PointX="7.36412993975176" PointY="24.830300297974748" />
+        <AssociationConnector Association="creditratingModel.FK_AcademicYear_CountryMaster" />
+        <AssociationConnector Association="creditratingModel.FK_FeesDetails_AcademicYear" />
+        <AssociationConnector Association="creditratingModel.FK_CityMaster_StateMaster" />
+        <AssociationConnector Association="creditratingModel.FK_CompMonthlyDistributionChild_CompMonthlyDistributionHead" />
+        <AssociationConnector Association="creditratingModel.FK_CompMonthlyDistributionHead_EmployerBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_CompMonthlyDistributionHead_EmployerDivisionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_CompMonthlyDistributionHead_EmployerMaster" />
+        <AssociationConnector Association="creditratingModel.FK_FeesDetails_CourseMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeDetails_DepartmentMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeDetails_DesignationMaster" />
+        <AssociationConnector Association="creditratingModel.FK_DisAgreementDetails_DisAgreementYear" />
+        <AssociationConnector Association="creditratingModel.FK_DistributionAccountMaster_FinancialInstitutionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EducationLoanTransaction_FinancialInstitutionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeDetails_EmployerBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeDetails_EmployerDivisionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeDetails_EmployerMaster" />
+        <AssociationConnector Association="creditratingModel.FK_MonthlySalaryTransaction_EmployeeDetails" />
+        <AssociationConnector Association="creditratingModel.FK_MonthlySalaryHead_EmployerBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_MonthlySalaryHead_EmployerDivisionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_MonthlySalaryHead_EmployerMaster" />
+        <AssociationConnector Association="creditratingModel.FK_RoleMenuRelation_Menu" />
+        <AssociationConnector Association="creditratingModel.FK_MonthlySalaryTransaction_MonthlySalaryHead" />
+        <EntityTypeShape EntityType="creditratingModel.EmployerContactDetail" Width="1.5" PointX="7.7555372136437981" PointY="28.415545268177773" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerContactDetails_CityMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerContactDetails_CountryMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerContactDetails_EmployerBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerContactDetails_EmployerDivisionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerContactDetails_EmployerMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerContactDetails_StateMaster" />
+        <EntityTypeShape EntityType="creditratingModel.ContactDetailsMaster" Width="1.5" PointX="6.7244911448678426" PointY="23.523599367366916" />
+        <AssociationConnector Association="creditratingModel.FK_ContactDetailsMaster_CityMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ContactDetailsMaster_CountryMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ContactDetailsMaster_StateMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ContactRelation_ContactDetailsMaster" />
+        <EntityTypeShape EntityType="creditratingModel.EducationLoanDisbursment" Width="1.5" PointX="7.5037643106206158" PointY="15.729967094832084" />
+        <AssociationConnector Association="creditratingModel.FK_EducationLoanDisbursment_CourseMaster" />
+        <EntityTypeShape EntityType="creditratingModel.CollegeMaster" Width="1.5" PointX="4.0253588985769824" PointY="3.4583039895902874" />
+        <EntityTypeShape EntityType="creditratingModel.ContactDetail" Width="1.5" PointX="17.625" PointY="15.125" />
+        <EntityTypeShape EntityType="creditratingModel.EmployerAccountMaster" Width="1.5" PointX="3.06032961004429" PointY="12.582466682690413" />
+        <EntityTypeShape EntityType="creditratingModel.FinancialInstitutionContactMaster" Width="1.5" PointX="13.375" PointY="3.25" />
+        <AssociationConnector Association="creditratingModel.FK_CollegeMaster_CityMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ContactDetails_CityMaster" />
+        <AssociationConnector Association="creditratingModel.FK_FinancialInstitutionContactMaster_CityMaster" />
+        <AssociationConnector Association="creditratingModel.FK_CollegeMaster_CountryMaster" />
+        <AssociationConnector Association="creditratingModel.FK_CollegeMaster_StateMaster" />
+        <AssociationConnector Association="creditratingModel.FK_CourseCollegeRelation_CollegeMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EducationLoanDisbursment_CollegeMaster" />
+        <AssociationConnector Association="creditratingModel.FK_FeesDetails_CollegeMaster" />
+        <AssociationConnector Association="creditratingModel.FK_CompMonthlyDistributionChild_EmployerAccountMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ContactDetails_CountryMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ContactDetails_StateMaster" />
+        <AssociationConnector Association="creditratingModel.FK_FinancialInstitutionContactMaster_CountryMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerAccountMaster_EmployerDivisionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerAccountMaster_EmployerMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerAccountMaster_FinancialInstitutionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_FinancialInstitutionContactMaster_FinancialInstitutionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_FinancialInstitutionContactMaster_StateMaster" />
+        <EntityTypeShape EntityType="creditratingModel.User_Details" Width="1.5" PointX="1.486657888389499" PointY="20.850826466852254" />
+        <AssociationConnector Association="creditratingModel.FK_MonthlySalaryHead_User_Details" />
+        <AssociationConnector Association="creditratingModel.FK_User_Details_UserTypeMaster" />
+        <AssociationConnector Association="creditratingModel.FK_UserRoleRelation_User_Details" />
+        <EntityTypeShape EntityType="creditratingModel.Role" Width="1.5" PointX="0.33279620685279193" PointY="29.048243163641654" />
+        <EntityTypeShape EntityType="creditratingModel.EduLoanDisbusementChild" Width="1.5" PointX="14.5" PointY="19.5" />
+        <AssociationConnector Association="creditratingModel.FK_EduLoanDisbusementChild_AcademicYear" />
+        <AssociationConnector Association="creditratingModel.FK_EduLoanDisbusementChild_EducationLoanDisbursment" />
+        <AssociationConnector Association="creditratingModel.FK_EduLoanDisbusementChild_FinancialInstitutionMaster" />
+        <EntityTypeShape EntityType="creditratingModel.IndividualCustomerMaster" Width="1.5" PointX="0.625" PointY="10.375" />
+        <AssociationConnector Association="creditratingModel.FK_ContactDetailsMaster_IndividualCustomerMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ContactRelation_IndividualCustomerMaster" />
+        <AssociationConnector Association="creditratingModel.FK_IndividualCustomerMaster_NameTitleMaster" />
+        <AssociationConnector Association="creditratingModel.FK_IndividualCustomerMaster_NationalityMaster" />
+        <AssociationConnector Association="creditratingModel.FK_LoanIndividualRelation_IndividualCustomerMaster" />
+        <EntityTypeShape EntityType="creditratingModel.MaritalStatusMaster" Width="1.5" PointX="4.125" PointY="11.5" />
+        <EntityTypeShape EntityType="creditratingModel.FinancialInstitutionBranchMaster" Width="1.5" PointX="3.6314334271622046" PointY="0.97364933834115475" />
+        <AssociationConnector Association="creditratingModel.FK_FinancialInstitutionBranchMaster_AreaMaster" />
+        <AssociationConnector Association="creditratingModel.FK_DistributionAccountMaster_FinancialInstitutionBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EducationLoanTransaction_FinancialInstitutionBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EduLoanDisbusementChild_FinancialInstitutionBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployerAccountMaster_FinancialInstitutionBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_FinancialInstitutionBranchMaster_FinancialInstitutionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_FinancialInstitutionContactMaster_FinancialInstitutionBranchMaster" />
+        <EntityTypeShape EntityType="creditratingModel.ChequeBounceTransaction" Width="1.5" PointX="0.5" PointY="26.75" />
+        <AssociationConnector Association="creditratingModel.FK_ChequeBounceTransaction_ChequeTypeMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ChequeBounceTransaction_FinancialInstitutionBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ChequeBounceTransaction_FinancialInstitutionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ChequeBounceTransaction_ReasonMaster" />
+        <EntityTypeShape EntityType="creditratingModel.CompanyTypeMaster" Width="1.5" PointX="12.125" PointY="4" />
+        <EntityTypeShape EntityType="creditratingModel.PackageMaster" Width="1.5" PointX="4.5" PointY="15.75" />
+        <EntityTypeShape EntityType="creditratingModel.DistributionHead" Width="1.5" PointX="7.125" PointY="5.875" />
+        <AssociationConnector Association="creditratingModel.FK_DistributionHead_FinancialInstitutionBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_DistributionHead_FinancialInstitutionMaster" />
+        <EntityTypeShape EntityType="creditratingModel.CountResult" Width="1.5" PointX="0.6284593365287684" PointY="7.668125185960962" />
+        <EntityTypeShape EntityType="creditratingModel.CompanyDirectorRelation" Width="1.5" PointX="7.3843194187545773" PointY="9.3737506910105" />
+        <AssociationConnector Association="creditratingModel.FK_CompanyDirectorRelation_IndividualCustomerMaster" />
+        <EntityTypeShape EntityType="creditratingModel.BorrowerTypeMaster" Width="1.5" PointX="4.685326267352945" PointY="2.5230806928701144" />
+        <EntityTypeShape EntityType="creditratingModel.DistributionChild" Width="1.5" PointX="0.51156373345831585" PointY="2.0410533705917437" />
+        <EntityTypeShape EntityType="creditratingModel.LoanDisbursedInstallment" Width="1.5" PointX="4.2228056863987842" PointY="20.306814784326971" />
+        <EntityTypeShape EntityType="creditratingModel.EmployeeHistoryDetail" Width="1.5" PointX="2.3224309041734932" PointY="15.549317635385933" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeHistoryDetails_EmployeeDetails" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeHistoryDetails_EmployerBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeHistoryDetails_EmployerDivisionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeHistoryDetails_EmployerMaster" />
+        <EntityTypeShape EntityType="creditratingModel.PaymentMode" Width="1.5" PointX="10.052247487964223" PointY="31.151014118991334" />
+        <AssociationConnector Association="creditratingModel.FK_EduLoanDisbusementChild_PaymentMode" />
+        <EntityTypeShape EntityType="creditratingModel.BorrowerCompanyMaster" Width="1.5" PointX="3.3631280583157803" PointY="4.1945753564101533" />
+        <AssociationConnector Association="creditratingModel.FK_BorrowerCompanyTypeMaster_BorrowerCompanyMaster" />
+        <AssociationConnector Association="creditratingModel.FK_CompanyDirectorRelation_BorrowerCompanyMaster" />
+        <EntityTypeShape EntityType="creditratingModel.BorrowerCompanyBranchMaster" Width="1.5" PointX="11.651804264472707" PointY="23.53540221952619" />
+        <AssociationConnector Association="creditratingModel.FK_BorrowerCompanyBranchMaster_BorrowerCompanyMaster" />
+        <AssociationConnector Association="creditratingModel.FK_BorrowerCompanyBranchMaster_BorrowerCompanyTypeMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ContactDetailsMaster_BorrowerCompanyBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_BorrowerCompanyMaster_BorrowerCompanyMaster" />
+        <EntityTypeShape EntityType="creditratingModel.DocumentMaster" Width="1.5" PointX="10.444314032068622" PointY="4.9258624487211291" />
+        <AssociationConnector Association="creditratingModel.FK_DocumentMaster_DocumentTypeMaster" />
+        <EntityTypeShape EntityType="creditratingModel.DocumentCustomerRelation" Width="1.5" PointX="8.7696932669587859" PointY="5.8199292150418875" />
+        <AssociationConnector Association="creditratingModel.FK_DocumentCustomerRelation_BorrowerCompanyTypeMaster" />
+        <AssociationConnector Association="creditratingModel.FK_DocumentCustomerRelation_DocumentMaster" />
+        <AssociationConnector Association="creditratingModel.FK_DocumentCustomerRelation_DocumentTypeMaster" />
+        <AssociationConnector Association="creditratingModel.FK_DocumentCustomerRelation_IndividualCustomerMaster" />
+        <EntityTypeShape EntityType="creditratingModel.TempUploadDocument" Width="1.5" PointX="9.6470643773894125" PointY="31.821390584028041" />
+        <EntityTypeShape EntityType="creditratingModel.EmployeeLoanDetail" Width="1.5" PointX="0.5189234076621585" PointY="19.329131329119733" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeLoanDetails_EducationLoanDisbursment" />
+        <AssociationConnector Association="creditratingModel.FK_EmployeeLoanDetails_EmployeeDetails" />
+        <EntityTypeShape EntityType="creditratingModel.AnnualIncrementDetail" Width="1.5" PointX="8.0648660641465639" PointY="20.994218523145754" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_AnnualIncrement" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_AnnualIncrementDetails" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_DepartmentMaster" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_DesignationMaster" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_DesignationMaster1" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_EmployeeDetails" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_EmployerBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_EmployerDivisionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_SlabMaster" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_SlabMaster1" />
+        <EntityTypeShape EntityType="creditratingModel.AnnualIncrement" Width="1.5" PointX="4.5050781948981236" PointY="27.677087737096979" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrement_EmployerBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrement_EmployerDivisionMaster" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrement_EmployerMaster" />
+        <AssociationConnector Association="creditratingModel.FK_AnnualIncrementDetails_AnnualIncrement1" />
+        <EntityTypeShape EntityType="creditratingModel.CardTypeMaster" Width="1.5" PointX="3.2846577760226361" PointY="5.27687821037922" />
+        <EntityTypeShape EntityType="creditratingModel.LoanApplicationTransaction" Width="1.5" PointX="11.440359983332623" PointY="3.1139119878010413" />
+        <AssociationConnector Association="creditratingModel.FK_LoanApplicationTransaction_CardTypeMaster" />
+        <AssociationConnector Association="creditratingModel.FK_LoanApplicationTransaction_LoanTypesMaster" />
+        <AssociationConnector Association="creditratingModel.FK_LoanIndividualRelation_LoanApplicationTransaction" />
+        <EntityTypeShape EntityType="creditratingModel.LoanDisburseTransaction" Width="1.5" PointX="2.0726027647371419" PointY="7.5155622845122414" />
+        <AssociationConnector Association="creditratingModel.FK_LoanDisburseTransaction_LoanApplicationTransaction" />
+        <EntityTypeShape EntityType="creditratingModel.BorrowerDetailsMaster" Width="1.5" PointX="0.866978528381781" PointY="20.477115759848207" />
+        <AssociationConnector Association="creditratingModel.FK_BorrowerDetailsMaster_BorrowerCompanyBranchMaster" />
+        <AssociationConnector Association="creditratingModel.FK_BorrowerDetailsMaster_BorrowerCompanyTypeMaster" />
+        <AssociationConnector Association="creditratingModel.FK_BorrowerDetailsMaster_IndividualCustomerMaster" />
+        <AssociationConnector Association="creditratingModel.FK_ContactRelation_BorrowerDetailsMaster" />
+        <AssociationConnector Association="creditratingModel.FK_DocumentCustomerRelation_BorrowerDetailsMaster" />
+        <AssociationConnector Association="creditratingModel.FK_LoanApplicationTransaction_BorrowerDetailsMaster" />
+        <EntityTypeShape EntityType="creditratingModel.CreditRatingScoreTran" Width="1.5" PointX="1.7785690658626003" PointY="13.897760397707" />
+        <AssociationConnector Association="creditratingModel.FK_LoanTypeId" />
+        <AssociationConnector Association="creditratingModel.FK_TransactionTypeId" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

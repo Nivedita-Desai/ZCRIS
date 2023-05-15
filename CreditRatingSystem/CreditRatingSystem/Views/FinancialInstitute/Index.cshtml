@@ -1,0 +1,549 @@
+﻿@model CreditRatingModel.Model.FinancialInstituteModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<h2>Financial Institution</h2>
+
+<!DOCTYPE html> 
+ <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/tabPanel.css")" rel="stylesheet" type="text/css" />
+ @*   <link href="@Url.Content("~/Content/bootstrap-responsive.min.css")" rel="stylesheet" type="text/css" />*@
+
+    @*    <script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")" type="text/javascript" ></script>*@
+    <script src="@Url.Content("~/Scripts/js/myjquery.js")" type="text/javascript" ></script>
+
+    @*<script src="~/Scripts/jquery-1.7.1.min.js"></script>*@
+    @*    <script src="~/Scripts/jquery.validate.min.js"></script>*@
+    @*    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+    <script src="~/Scripts/js/myjquery.js"></script>
+
+ @*validations*@
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.3/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.8.3/jquery-ui.js"></script>
+<script type="text/javascript">
+    var currentTab = 0;
+    $(function () {
+        $("#tabs").tabs({
+            select: function (e, i) {
+                currentTab = i.index;
+            }
+        });
+    });
+    $("#btnNext").live("click", function () {
+        var tabs = $('#tabs').tabs();
+        var c = $('#tabs').tabs("length");
+        currentTab = currentTab == (c - 1) ? currentTab : (currentTab + 1);
+        tabs.tabs('select', currentTab);
+        $("#btnPrevious").show();
+        if (currentTab == (c - 1)) {
+            $("#btnNext").hide();
+        } else {
+            $("#btnNext").show();
+        }
+    });
+    $("#btnPrevious").live("click", function () {
+        var tabs = $('#tabs').tabs();
+        var c = $('#tabs').tabs("length");
+        currentTab = currentTab == 0 ? currentTab : (currentTab - 1);
+        tabs.tabs('select', currentTab);
+        if (currentTab == 0) {
+            $("#btnNext").show();
+            $("#btnPrevious").hide();
+        }
+        if (currentTab < (c - 1)) {
+            $("#btnNext").show();
+        }
+    });
+</script>
+
+
+
+ <form id="form1"  action="~/FinancialInstitute/btnAddClick">
+        @using (Html.BeginForm())
+        {      
+            @Html.ValidationSummary(true,"Please fill all required fields Thank You.")
+<div id="tabs">
+   <ul >
+                    <li><a href="#tabs-1">Info</a></li>
+                    <li><a href="#tabs-2">Contact Info</a></li>
+                </ul>
+    <div id="tabs-1">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                               
+                                    <label id="lblFIN" class="filter-col control-label">Financial Institute Name :</label>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" ,@id = "Name" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.Name)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblRN" class="filter-col control-label">Registration No. :</label>
+                                    @Html.TextBoxFor(model => model.RegistrationNo, new { @class = "form-control",@id = "RegistrationNo"  })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.RegistrationNo)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblCATE" class="filter-col control-label">Category :</label>                               
+                                     @*@Html.DropDownListFor(model => model.CategoryId ,new SelectList(Model.CategoryItem, "Value", "Text") ,new { @class = "form-control dropdown" })*@
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblBRA" class="filter-col control-label">Branch :</label>
+                                    @Html.TextBoxFor(model => model.BranchName, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.BranchName)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                        </div>
+                             <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblCT" class="filter-col control-label">Credit Type :</label>
+                                   
+    <label class="checkbox-inline ">
+      <input Name="CreditType1" type="checkbox" value="1">Credit Card
+    </label>
+    <label class="checkbox-inline">
+      <input Name="CreditType1" type="checkbox" value="2">Loan
+    </label>
+                       
+                                   @*@Html.DropDownList("example-getting-started", ViewBag.CreditType as SelectList ,new { @class = "form-control" ,Multiple="Multiple"})*@                                  
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.CreditTypeId)
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    <label id="lblAdd1" class="filter-col control-label">Address:</label>
+                                   
+                                    <div >
+                                        @Html.ValidationMessageFor(model => model.Address1)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">                                   
+                                    @Html.TextBoxFor(model => model.Address1, new { @class = "form-control" })                                
+                                    @Html.TextBoxFor(model => model.Address2, new { @class = "form-control" })                                         
+                                     @Html.TextBoxFor(model => model.Address3, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.Address2)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">    
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblAdd3" class="filter-col control-label">Address 3 :</label>
+                                  @*  @Html.TextBoxFor(model => model.Address3, new { @class = "form-control" })*@
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.Address3)
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblCountry" class="filter-col control-label">Country :</label>
+
+                                    @* @Html.DropDownList("", ViewBag.CountryList as SelectList, ,new { @id = "Country" })*@
+                                    @*@Html.DropDownListFor(model => model.country, new SelectList(Model.country, "Value", "Text"), new { @id = "Country" })*@
+         @*@Html.DropDownListFor(model => model.CountryId, new SelectList(Model.CountryItem, "Value", "Text"), new { @id = "Country",@class = "form-control dropdown" })*@
+                                    @*@Html.DropDownListFor(model => model.country,  ViewBag.CountryList as SelectList,"Select Country", new { @id = "Country" })*@
+
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.CountryId)
+                                    </div>
+                                    <span style="color: Red">*</span>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblState" class="filter-col control-label">State :</label>
+                                    <select id="selState" name="selState" style="color: black" class = "form-control dropdown"></select>
+                            
+                                    @*@Html.DropDownList("selState", ViewBag.StateList1 as SelectList, @Html.DisplayFor(modelItem => item.State))*@
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.StateId)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblCity" class="filter-col control-label">City :</label>
+                                    @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.City)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblPincode" class="filter-col control-label">Pincode :</label>
+                                    @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.Pincode)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblPFN" class="filter-col control-label">Person's Full Name :</label>
+                                    @Html.TextBoxFor(model => model.PersonFullName, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.PersonFullName)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblUN" class="filter-col control-label">User Name :</label>
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control",@id = "UserName" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.UserName)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblP" class="filter-col control-label">Password :</label>
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control",@id = "Password" } )
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.Password)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblRP" class="filter-col control-label">Re-enter Password :</label>
+                                    <input id="txtReenterPassword" class="form-control input-sm" type="password" />
+                                </div>
+                                <span style="color: Red">*</span>
+                            </div>
+                        </div>
+                         <div style="float: left; width: 100%; margin-top: 15px;">
+                            <tr>
+                                <td width="45%"></td>
+                                <td width="5%" align="center">
+                                  @*  <input id="btnNext" type="button" value="Next" />*@
+                                    @*<input type="submit" value="Create" />*@
+                                </td>
+                            </tr>
+                        </div>                    
+                    </div>               
+                </div>
+
+    <div id="tabs-2">
+   
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label id="lblPhoneNo" class="filter-col control-label">Contact No :</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Code, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.Code)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.ContactNo)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                            </div>
+                            <div class="col-xs-6">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label id="lblEmail" class="filter-col control-label">Email ID :</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                @Html.TextBoxFor(model => model.FinancialInstituteEmailId1, new { @class = "form-control" })
+                                <div class="row-error">
+                                    @Html.ValidationMessageFor(model => model.FinancialInstituteEmailId1)
+                                </div>
+                                <span style="color: Red">*</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label id="lblCPD" class="filter-col control-label">Contact Person Details :</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblCP1" class="filter-col control-label">Person 1 Name :</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson1, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.ContactPerson1)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblCP2" class="filter-col control-label">Person 2 Name :</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson2, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.ContactPerson2)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblP1C" class="filter-col control-label">Person 1 Contact :</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson1Mobile, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.ContactPerson1Mobile)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblP2C" class="filter-col control-label">Person 2 Contact :</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson2Mobile, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.ContactPerson2Mobile)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblP1E" class="filter-col control-label">Person 1 Email :</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson1EmailId, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.ContactPerson1EmailId)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblP2E" class="filter-col control-label">Person 2 Email :</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson2EmailId, new { @class = "form-control" })
+                                    <div class="row-error">
+                                        @Html.ValidationMessageFor(model => model.ContactPerson2EmailId)
+                                    </div>
+                                    <span style="color: Red">*</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="float: left; width: 100%; margin-top: 15px;">
+                            <tr>
+                                <td width="45%"></td>
+                                <td width="5%" align="center">
+                                   @* <input id="btnPrevious" type="button" value="Previous" />*@
+                                    <button id="btnRegister" type="submit" name="Register" formmethod="post">Register</button>
+                                    @*<input type="submit" value="Create" />*@
+                                </td>
+                            </tr>
+                        </div>
+
+                    </div>              
+    </div> 
+     <div class="container">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                </div>
+                            <div class="col-xs-6">
+                              <input type="button" id="btnPrevious" value="Previous" style = "display:none"/>
+                                 <input type="button" id="btnNext" value="Next" /> 
+                            </div>
+                        </div>
+         </div>
+</div>
+               }
+    </form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("form :input:enabled:visible:first").focus();
+        $("form :input:enabled:visible:first").select();
+        $(".input-validation-error").first().focus();
+        $(".input-validation-error").first().select();
+    });
+
+    $(document).ready(function () {
+        $("#Country").change(function () {
+            var countryid = $("#Country").val();
+            //alert(countryid);
+            var url = '@Url.Action("StateList", "FinancialInstitute")';
+            //alert(url);
+            $.post(url, { CountryId: countryid }, function (data) {
+                //alert(countryid);
+                debugger;
+                //alert(data);
+                //$("#selState").html('');
+                //$("#selState").append($("<option></option>").val(0).html('Select'));
+                $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+
+                $.each(data, function (Key, item) {
+                    //alert(data.d);
+                    //alert(Key);
+                    //alert(item.Id);
+                    //alert(item.State);
+
+                    debugger;
+                    $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+                });
+            });
+        });
+    });
+    $(function () {
+        $('#Name').change(function () {
+            var Name = $('#Name').val();
+            //
+            $.ajax({
+                url: '/FinancialInstitute/doesNameExist/',
+                type: 'POST',
+                data: { Name: Name },
+                //success: function (result) { alert(' That user name has already been taken'); }
+                success: function (result) {
+                    var a = JSON.stringify(result);
+                    //debugger;
+                    if (a == "false") {
+
+                        alert(' That name has already been taken');
+                        $('#Name').val('');
+                    }
+                    else {
+                    }
+                }
+
+            });
+        });
+    });
+    $(function () {
+        $('#RegistrationNo').change(function () {
+            var RegistrationNo = $('#RegistrationNo').val();
+            //
+            $.ajax({
+
+                url: '/FinancialInstitute/doesRegistrationNoExist/',
+                type: 'POST',
+                data: { RegistrationNo: RegistrationNo },
+                //success: function (result) { alert(' That user name has already been taken'); }
+                success: function (result) {
+                    var a = JSON.stringify(result);
+                    //debugger;
+                    if (a == "false") {
+                        alert(' That RegistrationNo has already been taken');
+                        $('#RegistrationNo').val('');
+                    }
+                    else {
+                    }
+                }
+
+            });
+        });
+    });
+    $(function () {
+        $('#UserName').change(function () {
+            var UserName = $('#UserName').val();
+            //
+            $.ajax({
+                url: '/FinancialInstitute/doesUserNameExist/',
+                type: 'POST',
+                data: { UserName: UserName },
+                //success: function (result) { alert(' That user name has already been taken'); }
+                success: function (result) {
+                    var a = JSON.stringify(result);
+                    //debugger;
+                    if (a == "false") {
+                        alert(' That user name has already been taken');
+                        $('#UserName').val('');
+                    }
+                    else {
+                    }
+                }
+
+            });
+        });
+    });
+    $(function () {
+        $("#txtReenterPassword").change(function () {
+            if ($("#Password").val() != $("#txtReenterPassword").val()) {
+                alert('Please enter the same password as above');
+                $("#txtReenterPassword").addClass("input-validation-error");
+                return false;
+            }
+        });
+    });
+</script>

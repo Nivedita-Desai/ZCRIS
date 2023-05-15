@@ -1,0 +1,197 @@
+﻿@model CreditRatingModel.Model.BorrowerDetailscs
+@{
+   
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+    @using (@Html.BeginForm("NameChangedEdit","BorrowerDetails", FormMethod.Post, new { id = "frmNameChange" }))
+    {
+        <div class="row" style="height:50px">
+        </div>
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Change Borrower Name </label>  </div>
+                <div class="panel-body">
+                    
+                    <div class="row">
+                        <div class="col-xs-6">
+                            @Html.HiddenFor(model => model.Id)
+                            <div class="form-group">
+                                <label id="lblPanN" class="filter-col control-label label1"> Pancard No.:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.Pan, new { @class = "form-control", @id = "Pan", onblur = "ValidatePAN(this)", maxlength = "10" })
+                                <div class="row-error ErrorMessage">
+                                    @Html.ValidationMessageFor(modelItem => modelItem.Pan)
+                                </div>
+                                @*<span style="color: Red">*</span>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblFIN" class="filter-col control-label label1">Old First Name :</label>
+                                @Html.TextBoxFor(modelItem =>modelItem.FirstName , new { @class = "form-control" ,@id = "FirstName",@readonly="true" })
+                                <div class="row-error ErrorMessage">
+                                    @Html.ValidationMessageFor(modelItem => modelItem.FirstName)
+                                </div>
+                                @*<span style="color: Red">*</span>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblMIN" class="filter-col control-label label1">Old Middle Name :</label>
+                                @Html.TextBoxFor(modelItem =>modelItem.MiddleName , new { @class = "form-control" ,@id = "MiddleName" ,@readonly="true"})
+                                <div class="row-error ErrorMessage">
+                                    @Html.ValidationMessageFor(modelItem => modelItem.MiddleName)
+                                </div>
+                                @*<span style="color: Red">*</span>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblLIN" class="filter-col control-label label1">Old Last Name :</label>
+                                @Html.TextBoxFor(modelItem =>modelItem.LastName , new { @class = "form-control" ,@id = "LastName",@readonly="true" })
+                                <div class="row-error ErrorMessage">
+                                    @Html.ValidationMessageFor(modelItem => modelItem.LastName)
+                                </div>
+                                @*<span style="color: Red">*</span>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblNFIN" class="filter-col control-label label1">New First Name :</label>
+                                @Html.TextBoxFor(modelItem =>modelItem.FirstName1 , new { @class = "form-control" ,@id = "FirstName1" })
+                                <div class="row-error ErrorMessage">
+                                    @Html.ValidationMessageFor(modelItem => modelItem.FirstName1)
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblNMIN" class="filter-col control-label label1">New Middle Name :</label>
+                                @Html.TextBoxFor(modelItem =>modelItem.MiddleName1 , new { @class = "form-control" ,@id = "MiddleName1" })
+                                <div class="row-error ErrorMessage">
+                                    @Html.ValidationMessageFor(modelItem => modelItem.MiddleName1)
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label id="lblNLIN" class="filter-col control-label label1">New Last Name :</label>
+                                @Html.TextBoxFor(modelItem =>modelItem.LastName1 , new { @class = "form-control" ,@id = "LastName1" })
+                                <div class="row-error ErrorMessage">
+                                    @Html.ValidationMessageFor(modelItem => modelItem.LastName1)
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5">
+                        </div>
+                        <div class="col-xs-7">
+                            <button id="btnEdit" type="submit" name="Edit" formmethod="post">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+                }
+
+   <script type="text/javascript">
+  $(function () {
+        $('#Pan').change(function () {
+            var Pan = $('#Pan').val();
+            debugger;
+            $.ajax({
+                url: '/BorrowerDetails/doesPanExist/',
+                type: 'POST',
+                data: { Pan: Pan },
+                //success: function (result) { alert(' That user name has already been taken'); }
+                success: function (result) {
+                    var a = JSON.stringify(result);
+                    debugger;
+                    if (a == "true") {
+                        alert('That Pan Number has No such Records');
+                        $('#Pan').val('');
+                    }
+                    else {
+                    }
+                }
+
+            });
+        });
+  });
+
+  //$(function () {
+  //    $('#Pan').change(function () {
+  //        var Pan = $("#Pan").val();
+  //        debugger;
+  //        $.ajax({
+  //            url: '/BorrowerIndividualDetails/NameChanged/',
+  //            type: 'POST',
+  //            data: { Pan: Pan },
+  //            success: function (result) {
+  //                var a = JSON.stringify(result);
+  //                debugger;
+  //                if (a == "false") {
+  //                    alert('That Pan Number has No such Records');
+  //                    $('#Pan').val('');
+  //                }
+  //                    //var vdata = data;
+  //                    //$("#FirstName").val(vdata);
+
+  //                }
+              
+
+  //        });
+  //    });
+       //});
+
+  $('#Pan').change(function () {
+      debugger;
+      var Pan = this.value;
+      $.getJSON("/BorrowerDetails/NameChanged1",
+
+        {
+            Pan: Pan
+        },
+        function (data) {
+            debugger;
+            $('#FirstName').val(data.FirstName);
+            $('#MiddleName').val(data.MiddleName);
+            $('#LastName').val(data.LastName);
+        });
+});
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnEdit').click(function () {
+            debugger;
+            var frmvalidator = new Validator("frmNameChange");
+            debugger;
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+            frmvalidator.addValidation("Pan", "req", "Please enter Pancard Number");
+            frmvalidator.addValidation("FirstName", "req", "Please enter FirstName");
+            frmvalidator.addValidation("MiddleName", "req", "Please enter MiddleName");
+            frmvalidator.addValidation("LastName", "req", "Please enter LastName");
+            frmvalidator.addValidation("FirstName1", "req", "Please enter new First Name");
+            frmvalidator.addValidation("MiddleName1", "req", "Please enter new Middle Name");
+            frmvalidator.addValidation("LastName1", "req", "Please enter new Last Name");
+        });
+    });
+  </script>

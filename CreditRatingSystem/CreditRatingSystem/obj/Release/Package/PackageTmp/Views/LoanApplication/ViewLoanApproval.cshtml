@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "ViewLaonApproval";
+    var grid = new WebGrid(Model, canSort: true, canPage: true, rowsPerPage: 6);
+    grid.Pager(WebGridPagerModes.All);
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    
+   
+</head>
+<body>
+    <br/>
+    <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Loan / Credit Approval Details</label>  </div>
+                <div class="panel-body">
+        <div class="row">
+             <div class="col-xs-1">
+                           
+               </div>
+             <div class="col-xs-10">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Loan / Credit Approval</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                    </div>
+                </div>                
+                <div class="panel panel-primary" style=" overflow:auto;height:500px; ">                                        
+                <table class="table">
+                    <thead>
+                             <tr class="filters" style="width:500px">                            
+                            <th width="10px"><input type="text" placeholder="NID" disabled></th>
+                            <th width="10px"><input type="text" placeholder="Loan Status" disabled></th>
+                            <th width="10px"><input type="text" placeholder="Loan Application No" disabled></th>                                   
+                            <th width="10px"><input type="text" placeholder="Loan Application Date" disabled></th>
+                            <th width="10px"><input type="text" placeholder="Applicant Name" disabled></th>
+                            <th width="10px"><input type="text" placeholder="Loan Amount" disabled></th>
+                            <th width="10px"><input type="text" placeholder="Loan Type" disabled></th>
+                            <th width="10px"><input type="text" placeholder="Fin Inst Name" disabled></th>
+                            <th width="10px"><input type="text" placeholder="Fin Inst Branch Name" disabled></th>
+                            <th width="5px">  <input type="hidden" disabled></th>
+                        </tr>
+                    </thead>                   
+                    <tbody>
+                        <tr class="filters">
+                            @grid.GetHtml(
+                tableStyle: "table",
+                headerStyle: "webgrid-header",                       
+                columns: grid.Columns(                                 
+                                grid.Column(columnName: "PanL", style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "LoanStatus", style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "LoanApplicationNo", style: "webgrid-fixColumn"),                                
+                                grid.Column(columnName: "LoanApplicationDate",format: item => ((item.LoanApplicationDate == null) ? "" : item.LoanApplicationDate.ToString("dd-MMM-yyyy")), style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "ApplicantName", style: "webgrid-fixColumn"),                      
+                                grid.Column(columnName: "LoanAmount", style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "Type", style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "FinancialInstitution", style: "webgrid-fixColumn"),
+                                grid.Column(columnName: "FinancialInstitutionBranch", style: "webgrid-fixColumn"),
+                               grid.Column(columnName: "Id", style: "webgrid-hide")
+                 ))
+              </tr>
+                    </tbody>
+                </table>
+            </div>
+                </div>
+                 </div> 
+            <div class="col-xs-1">
+                           
+               </div>
+        </div>
+    </div>
+                </div>
+        </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function ()
+    {          
+        $('#drpStatus').change(function () {
+            var StatusId = $("#drpStatus").val();
+            debugger;
+            $.ajax({
+                url: '/LoanApplication/ViewLoanApproval/',
+                type: 'POST',
+                data: { StatusId: StatusId },
+                success: function (data)
+                {
+                    debugger;
+                    if (data != null) {
+                        var vdata = data;
+                        $("#txtLandCode").val(vdata);
+                    }
+                }
+            });
+        });
+
+        $(function () {
+            debugger;
+            $('tbody tr').hover(function () {
+                $(this).toggleClass('clickable');
+            }).on('click', function () {
+                debugger;
+                location.href = '/LoanApplication/LoanApproval/' + $(this).find('td:last').text();
+            });
+        });
+
+    });
+</script>  
+
+  

@@ -1,0 +1,390 @@
+﻿@model CreditRatingModel.Model.IndividualEmiTransaction_Metadata
+@using CreditRatingModel.Model;
+
+@{
+    ViewBag.Title = "AddIndividualEmiTransactionOnline";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+<br />
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Individual EMI Transaction</label></div>
+        <div class="panel-body">
+
+
+            <div id="tabs">
+
+                <ul>
+                    <li>
+                        <a href="#tabs-1" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Pay Online EMI</a>
+                    </li>
+                    <li>
+                        <a href="#tabs-2" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Paid EMI Transaction Details</a>
+                    </li>
+                </ul>
+                @using (Html.BeginForm("SaveIndividualEmiTransaction", "IndividualEmiTransaction", FormMethod.Post, new { id = "frmAddIndEmiTransaction" }))
+                {
+                    <div id="tabs-1" class="tab-pane">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblNationalId" class="filter-col control-label label1">National ID :</label>
+                                    @Html.TextBoxFor(model => model.NationalId, new { @id = "txtNationalId", @class = "form-control input-sm", @onkeypress = "return isNRCNumber(event)", @onblur = "checkLengthForNRC(this)", @maxlength = "13" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblLoanNo" class="filter-col control-label label1">Loan A/C No :</label>
+                                    <select id="selLoanNo" name="selLoanNo" style="color: black" class="form-control dropdown"></select>
+                                    @*@Html.DropDownListFor(model=>model.LoanNoList as SelectList)*@
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblFullName" class="filter-col control-label label1">Full Name :</label>
+                                    @Html.TextBoxFor(model => model.FullName, new { @id = "txtFullName", @class = "form-control input-sm", @readonly = "true" })
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblGender" class="filter-col control-label label1">Gender :</label>
+                                    @{
+                    List<SelectListItem> GenderlistItems = new List<SelectListItem>();
+                    GenderlistItems.Add(new SelectListItem
+                    {
+                        Text = "Male",
+                        Value = "M"
+                    });
+                    GenderlistItems.Add(new SelectListItem
+                    {
+                        Text = "Female",
+                        Value = "F",
+
+                    });
+                                    }
+                                    @Html.DropDownListFor(model => model.Gender, GenderlistItems, "-- Select gender --", new { @id = "ddlGender", @class = "form-control dropdown", @disabled = "true" })
+
+                                    @*@Html.TextBoxFor(model => model.BranchName, new { @id = "txtBrName", @class = "form-control input-sm", @readonly = "true" })*@
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblPanNo" class="filter-col control-label label1">Loan Amount :</label>
+                                    @Html.TextBoxFor(model => model.LoanAmt, new { @id = "txtLoanAmt", @class = "form-control input-sm", @readonly = "true" })
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+
+                                    @*@Html.TextBoxFor(model => model.ChequeNo, new { @id = "txtChNo", @class = "form-control input-sm", @onkeypress = "return isNumber(event)", maxlength = "6"  })*@
+                                    <label id="lblDisAmt" class="filter-col control-label label1">Disburse Amount :</label>
+                                    @Html.TextBoxFor(model => model.DisAmt, new { @id = "txtDisAmt", @class = "form-control input-sm", @onkeypress = "return decimalOnly(event)", @readonly = "true" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblBalAmt" class="filter-col control-label label1">Balance Amount :</label>
+                                    @Html.TextBoxFor(model => model.BalAmt, new { @id = "txtBalAmt", @class = "form-control input-sm", @onkeypress = "return decimalOnly(event)", @readonly = "true" })
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                      <label id="lblRemark" class="filter-col control-label label2">Remark :</label>
+                                    @Html.TextAreaFor(model => model.Remark, new { @id = "txtRemark", @class = "form-control input-sm" })
+                                    @*@Html.HiddenFor(model => model.TranId)*@
+                                </div>
+                            </div>
+                        </div>
+
+
+                       
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @*<label id="lblTranNo" class="filter-col control-label label1">Cheque/Transaction No :</label>*@
+                                    @*@Html.TextBoxFor(model => model.TranNo, new { @id = "txtTranNo", @class = "form-control input-sm",@maxlength = "15" })*@
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+
+                                    @*<label id="lblChqDt" class="filter-col control-label label1">Cheque/Transaction Date :</label>*@
+                                    @*@Html.TextBoxFor(model => model.ChqDt, new { @id = "txtChqDt", @class = "form-control input-sm", @type = "date" })*@
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @*<label id="lblBankName" class="filter-col control-label label1">Bank Name:</label>*@
+                                    @*@Html.DropDownListFor(model => model.BankId, ViewBag.BankNameList as SelectList, "Select Bank", new { @id = "ddlBankName", @class = "form-control dropdown" })*@
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @*<label id="lblFrAccName" class="filter-col control-label label1">Branch :</label>*@
+                                    @*<select id="selBranch" name="selBranch" style="color: black" class="form-control dropdown"></select>*@
+                                    @*@Html.DropDownListFor(model => model.BranchName, ViewBag.BranchNameList as SelectList, "Select Branch", new { @id = "ddlBranchName", @class = "form-control dropdown" })*@
+                                    @*@Html.TextBoxFor(model => model.FrAccName, new { @id = "txtFrAccName", @class = "form-control input-sm", @onkeypress = "return AllowAlphabet(event)" })*@
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                  
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                </div>
+                                <div class="col-xs-1">
+                                    <div class="form-group">
+                                        @*<button id="btnAddOnline" type="button" name="ADD">Proceed to payment</button>*@
+                                        <input id="btnAddOnline" type="button" value="Proceed to payment" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-6">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> 
+                }
+                <div id="tabs-2" class="tab-pane">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblELD" class="filter-col control-label label2">EMI Transactions</label>
+                        </legend>
+
+
+                    </fieldset>
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    var currentTab = 0;
+    $(function () {
+        debugger;
+        $("#tabs").tabs({
+            disabled: [0, 1, 2],
+            select: function (e, i) {
+                currentTab = i.index;
+                return currentTab;
+            }
+        });
+    });
+
+    $("#txtNationalId").change(function () {
+        var NationalId = $("#txtNationalId").val();
+        var url = '@Url.Action("LoanAccountList", "IndividualEmiTransaction")';
+        $.post(url, { NationalId: NationalId }, function (data) {
+            $("#selLoanNo").empty().append($("<option></option>").val(-1).html('Select'));
+            $.each(data, function (Key, item) {
+                debugger;
+                $("#selLoanNo").append($("<option></option>").val(item.Text).html(item.Text));
+            });
+
+            if (data.length == 0) {
+                alert('Invalid National ID');
+                $("#txtFullName").val('');
+                $("#ddlGender").val('');
+                $("#txtLoanAmt").val('');
+                $("#txtDisAmt").val('');
+                $("#txtBalAmt").val('');
+            }
+
+        });
+
+    });
+
+    $('#txtNationalId').keypress(function (evt) {
+        debugger;
+        var NID = $('#txtNationalId').val();
+
+        var charcode = (evt.which) ? evt.which : event.keyCode;
+        if (charcode != 8) {
+            var chr = ValidateNID(NID);
+            $('#txtNationalId').val(chr);
+        }
+
+    });
+
+
+    $("#txtRepayAmt").change(function () {
+        debugger;
+        var RepayAmt = $("#txtRepayAmt").val();
+        var BalAmt = $("#txtBalAmt").val();
+        var url = '@Url.Action("greaterAmount", "IndividualEmiTransaction")';
+            $.post(url, { Rangefrom: BalAmt, RangeTo: RepayAmt }, function (data) {
+                if (data == false) {
+                    alert('Repayment amount should be less than balance amount.');
+                }
+            });
+            //if (RepayAmt > BalAmt) {
+            //    alert('Repayment amount should be less than balance amount.');
+            //    $("#txtRepayAmt").val('');
+            //}
+
+
+        });
+
+        $('#selLoanNo').change(function () {
+            debugger;
+            var url = '@Url.Action("LoanDetails", "IndividualEmiTransaction")';
+            var SelectedLoanId = $("#selLoanNo").val();
+            $.post(url, { LoanAccNo: SelectedLoanId }, function (data) {
+                debugger;
+                $("#txtFullName").val(data.FullName);
+                $("#ddlGender").val(data.Gender);
+                $("#txtLoanAmt").val(data.LoanAmt);
+                $("#txtDisAmt").val(data.DisAmt);
+                $("#txtBalAmt").val(data.BalAmt);
+            });
+
+            var url = '@Url.Action("GenerateTransactionNo", "IndividualEmiTransaction")';
+        $.post(url, function (data) {
+            $("#TranId").val(data);
+        });
+
+        });
+
+    $("#ddlBankName").change(function () {
+        var bankId = $("#ddlBankName").val();
+
+        var url = '@Url.Action("BranchList", "IndividualEmiTransaction")';
+
+            $.post(url, { bankId: bankId }, function (data) {
+
+                $("#selBranch").empty().append($("<option></option>").val(-1).html('Select'));
+
+                $.each(data, function (Key, item) {
+
+                    $("#selBranch").append($("<option></option>").val(item.Value).html(item.Text));
+                });
+            });
+
+        });
+
+
+        $('#ddlRepayMode').change(function () {
+            debugger;
+            var url = '@Url.Action("onRepaymentModeSelection", "IndividualEmiTransaction")';
+            var SelectedRepayVal = $("#ddlRepayMode").val();
+            var TransNo = $("#TranId").val();
+            if (SelectedRepayVal == 'C') {
+                debugger;
+                $("#txtTranNo").attr('readonly', true);
+                $("#txtChqDt").attr('readonly', true);
+                $("#ddlBankName").attr('disabled', true);
+                $("#selBranch").attr('disabled', true);
+                $("#ddlBankName").val('');
+                $("#selBranch").val('');
+
+                $.post(url, function (data) {
+                    debugger;
+
+                    // $("#txtTranNo").val(data.TranNo);
+                    $("#txtTranNo").val(TransNo);
+                    $("#txtChqDt").val(ToJavaScriptDate(data.ChqDt));
+                    //$("#txtLoanAmt").val(data.LoanAmt);
+                    //$("#txtDisAmt").val(data.DisAmt);
+                    //$("#txtBalAmt").val(data.BalAmt);
+                });
+            }
+            if (SelectedRepayVal == 'H') {
+                $("#txtTranNo").attr('readonly', false);
+                $("#txtChqDt").attr('readonly', false);
+                $("#ddlBankName").attr('disabled', false);
+                $("#selBranch").attr('disabled', false);
+
+                $("#txtTranNo").val('');
+                $("#txtChqDt").val('');
+            }
+
+        });
+
+
+        function ToJavaScriptDate(value) {
+            debugger;
+            var pattern = /Date\(([^)]+)\)/;
+            var results = pattern.exec(value);
+            var dt = new Date(parseFloat(results[1]));
+            var d = new Date(dt),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+        $("#btnAddOnline").click(function () {
+            var frmvalidator = new Validator("frmAddIndEmiTransaction");
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+
+            frmvalidator.addValidation("txtNationalId", "req", "Please enter National Registration No.");
+            frmvalidator.addValidation("selLoanNo", "req", "Please select Loan Acoount Number ");
+            frmvalidator.addValidation("ddlRepayMode", "req", "Please select Repayment Mode ");
+            frmvalidator.addValidation("txtRepayAmt", "req", "Please enter Repayment Amount");
+            debugger;
+            var SelectedRepayVal = $("#ddlRepayMode").val();
+            if (SelectedRepayVal == 'H') {
+                frmvalidator.addValidation("txtChqDt", "req", "Please enter cheque Date");
+                frmvalidator.addValidation("ddlBankName", "req", "Please select Bank Name");
+                frmvalidator.addValidation("selBranch", "req", "Please enter Branch Name");
+                frmvalidator.addValidation("txtTranNo", "req", "Please enter Cheque Number");
+            }
+        });
+
+
+
+
+
+
+</script>

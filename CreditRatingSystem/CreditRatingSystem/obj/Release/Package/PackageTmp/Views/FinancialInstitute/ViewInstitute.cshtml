@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "ViewInstitute";
+    var grid = new WebGrid(Model, canSort: true, canPage: true, rowsPerPage: 6);
+    grid.Pager(WebGridPagerModes.All);
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    
+   
+</head>
+<body>
+    <br/>
+    <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Financial Institute Details </label>  </div>
+                <div class="panel-body">
+        <div class="row">
+             <div class="col-xs-1">
+                           
+               </div>
+             <div class="col-xs-10">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Financial Institute</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                    </div>
+                </div>
+                <div class="panel panel-primary" style=" overflow:auto;height:500px; ">
+                <table class="table">
+                    <thead>
+                        <tr class="filters" style="width:500px">
+
+                            <th width="10px">  <input type="text"  placeholder="Name" disabled> </th>
+                            <th width="10px">   <input type="text"  placeholder="Bank Code" disabled> </th>
+                              <th width="10px"> <input type="text"  placeholder="Category" disabled> </th>
+                           <th width="10px">  <input type="text"  placeholder="Swift Code" disabled> </th>
+                         
+                            <th width="10px">   <input type="text"  placeholder="Registration No." disabled> </th>
+                            <th width="5px">  <input type="hidden" disabled></th>
+
+                            @* </div>*@
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="filters">
+                            @grid.GetHtml(
+                tableStyle: "table",
+                headerStyle: "webgrid-header",
+                       
+                columns: grid.Columns(
+                                 
+            grid.Column(columnName: "Name", style: "webgrid-fixColumn"),
+            grid.Column(columnName: "BankCode", style: "webgrid-fixColumn"),
+                    grid.Column(columnName: "Category", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "SwiftCode", style: "webgrid-fixColumn"),
+                      //grid.Column(columnName: "BranchCode", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "RegistrationNo", style: "webgrid-fixColumn"),
+                              grid.Column(columnName: "Id", style: "webgrid-hide")
+                 ))
+              </tr>
+                    </tbody>
+                </table>
+            </div>
+                </div>
+                 </div> 
+            <div class="col-xs-1">
+                           
+               </div>
+        </div>
+    </div>
+                </div>
+        </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $("#btnSearch").change(function () {
+            var url = '@Url.Action("SearchList", "FinancialInstitute")';
+        });
+</script>
+<script type="text/javascript">
+    $(function () {
+        debugger;
+        $('tbody tr').hover(function () {
+            $(this).toggleClass('clickable');
+        }).on('click', function () {
+            location.href = '/FinancialInstitute/ViewDetails/' + $(this).find('td:last').text();
+        });
+    });
+</script>  
+

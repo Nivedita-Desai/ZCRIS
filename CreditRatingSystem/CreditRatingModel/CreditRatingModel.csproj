@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5F0EF0E8-38F8-4A91-B4EB-F474DFDB5150}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CreditRatingModel</RootNamespace>
+    <AssemblyName>CreditRatingModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Model\AddInfo.cs" />
+    <Compile Include="Model\BorrowerCompanyBranchMasters.cs" />
+    <Compile Include="Model\BorrowerCompanyType.cs" />
+    <Compile Include="Model\BorrowerDetails.cs" />
+    <Compile Include="Model\BorrowerDetailscs.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\ChequeBounce_Metadata.cs" />
+    <Compile Include="Model\ChequeClearance.cs" />
+    <Compile Include="Model\CollegeMaster_Metadata.cs" />
+    <Compile Include="Model\CollegewiseCourse.cs" />
+    <Compile Include="Model\CompanyDirectorRelations.cs" />
+    <Compile Include="Model\ContactDetailsMasters.cs" />
+    <Compile Include="Model\CreditRatingDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditRatingDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CreditStatementTransaction_Metadata.cs" />
+    <Compile Include="Model\DistributionAccountMaster_Metadata.cs" />
+    <Compile Include="Model\EducationLoanDisbursment_Metadata.cs" />
+    <Compile Include="Model\EmployeeMaster.cs" />
+    <Compile Include="Model\EmployeeMonthlySalary.cs" />
+    <Compile Include="Model\EmployerAccountMaster_Metadata.cs" />
+    <Compile Include="Model\EmployerMaster_Metadata.cs" />
+    <Compile Include="Model\FeeDetails.cs" />
+    <Compile Include="Model\FinancialInstituteModel.cs" />
+    <Compile Include="Model\FinancialInstitutionBranchMaster_Metadata.cs" />
+    <Compile Include="Model\FinancialInstitutionCategoryRelation_Metadata.cs" />
+    <Compile Include="Model\FinancialInstitutionContactMaster_Metadata.cs" />
+    <Compile Include="Model\FinancialInstitutionMaster_Metadata.cs" />
+    <Compile Include="Model\grid.cs" />
+    <Compile Include="Model\IndividualCustomerMasters.cs" />
+    <Compile Include="Model\IndividualEmiTransaction_Metadata.cs" />
+    <Compile Include="Model\InsertBorrowerCompanyBranch.cs" />
+    <Compile Include="Model\InsertBorrowerCompanyType.cs" />
+    <Compile Include="Model\InsertInfo.cs" />
+    <Compile Include="Model\installment.cs" />
+    <Compile Include="Model\InstituteBranch_CRUD_Operation.cs" />
+    <Compile Include="Model\LoanApplication.cs" />
+    <Compile Include="Model\LoanDisburseTransaction_Metadata.cs" />
+    <Compile Include="Model\login.cs" />
+    <Compile Include="Model\Master.cs" />
+    <Compile Include="Model\MenuRelation.cs" />
+    <Compile Include="Model\Reg.cs" />
+    <Compile Include="Model\ReportSS.cs" />
+    <Compile Include="Model\user.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model\CreditRatingDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CreditRatingDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Model\CreditRatingDataModel.edmx.diagram">
+      <DependentUpon>CreditRatingDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

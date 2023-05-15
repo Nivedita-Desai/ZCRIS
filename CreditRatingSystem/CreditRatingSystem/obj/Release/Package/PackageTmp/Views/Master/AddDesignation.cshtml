@@ -1,0 +1,128 @@
+﻿@model CreditRatingModel.Model.Master
+
+@{
+  
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@using (@Html.BeginForm("AddDesignation", "Master", FormMethod.Post, new { id = "frmDesignation" }))
+{
+        
+    <div class="row" style="height: 50px">
+    </div>
+       
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Designation Master</label>
+            </div>
+            <div class="panel-body">
+                <fieldset class="scheduler-border">
+                    @*   <legend class="scheduler-border">
+                            <label id="lblDesignationMaster" class="filter-col control-label label2"> Designation</label>
+                        </legend>*@
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                               @Html.HiddenFor(model => model.Id1)
+                            <div class="form-group">
+                                <label id="lblPanN" class="filter-col control-label label1">Designation Name:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.DesignationName, new { @class = "form-control", @onkeypress = " return  AllowAlphabet(event)", @maxlength = "100" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                    <div class="row">
+ <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="lblGender" class="filter-col control-label label1">Designation Type :</label>
+                                @{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "Employee",
+        Value = "E"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "College",
+        Value = "C",
+
+    });
+
+                                }
+
+                                @Html.DropDownListFor(model => model.DesignationType, listItems, "Select Designation Type ", new { @class = "form-control dropdown" })
+
+                            </div>
+                        </div>
+                         <div class="col-xs-4">
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row">
+                    <div class="col-xs-5">
+                    </div>
+                    <div class="col-xs-4">
+                        <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                    </div>
+                    <div class="col-xs-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnSave').click(function () {
+            debugger;
+            var frmvalidator = new Validator("frmDesignation");
+            debugger;
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+            frmvalidator.addValidation("DesignationName", "req", "Please Enter Designation Name");
+            frmvalidator.addValidation("DesignationType", "req", "Please Select Designation Type");
+        });
+    });
+
+    $(function () {
+        $('#DesignationName').focusout(function () {
+            debugger;
+            var DesignationName = $('#DesignationName').val();
+            var Id = $('#Id1').val();
+            if ($('#Id1').val()=="") {
+                Id = 0;
+            }
+
+            $.ajax({
+
+                url: '/Master/doesDesignation/',
+                type: 'POST',
+                data: { Id: Id, DesignationName: DesignationName },
+                success: function (data) {
+                    //var a = JSON.stringify(result);
+                    if (Id == "") {
+                        if (data == "N") {
+                            alert(' That Designation already exits');
+                            $('#DesignationName').val('');
+                        }
+                    }
+                    else {
+                        if (data == "N") {
+                            alert('Designation already exits');
+                            $('#DesignationName').val('');
+                        }
+                    }
+                    
+                }
+            });
+        });
+    });
+</script>

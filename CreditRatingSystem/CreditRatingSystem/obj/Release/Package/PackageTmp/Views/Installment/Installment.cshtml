@@ -1,0 +1,107 @@
+﻿@{
+   Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    //@ViewBag.a;
+    //var grid = new WebGrid(ViewBag.grid);
+    //grid.Pager(WebGridPagerModes.All);
+   
+}
+
+@*<script type="text/javascript" >
+   
+   debugger;       
+         $("#btnUpload").click(function () {
+
+           $('#grid').append(@(Html.Partial("Installment1",ViewBag.a)));
+         });
+  
+  </script>*@
+<div style="height: 50px">
+</div>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">
+                file upload for installment  
+            </label>
+        </div>
+
+
+
+        @using (Html.BeginForm("Installment", "Installment", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+        {
+         
+            <div style="height: 20px">
+            </div>        
+       
+            <div id="upload" class="row">
+                <div class="col-xs-4" style="width: 125px;height:35px">
+                        <label for="file" style="width:80px" >Upload file:</label>
+                </div>
+                <div class="col-xs-4" style="width:225px ;height:35px">
+                    <div class="form-group">
+                    
+                        <input type="file" id="fileToUpload" name="file" style="height: 35px; width: 350px" />
+                        
+                    </div>
+                </div>
+           <div class="col-xs-4" style="width:200px;height:35px" >
+                   <input type="submit" id="btnUpload" value="Show Grid"  name="" style="width:150px;height:35px" />
+                </div>
+            </div>
+              <div style="height: 30px">
+</div>
+
+                     
+            <div id="" class="row">
+              
+           
+  
+
+      
+            <div class="col-xs-12" style="height: 200px">
+
+
+             @Html.Partial("Installment1",@ViewData["a"])
+            </div>
+
+         
+          
+
+    
+    </div>
+
+        } 
+        @*  @using (Html.BeginForm("up", "InstallmentTrans", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+         {
+               <div class="col-xs-4" style="width:200px;height:35px" >
+                   <input type="submit" id="btngrid" value="show grid"  name="" style="width:150px;height:35px" />
+                </div>
+              
+          }*@
+         @using (Html.BeginForm("upload", "Installment", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+         {
+                   <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                    </div>
+                                    <div class="col-xs-4">
+
+                                        <input type="submit" id="btnADD" formmethod="post" value="UPLOAD" name="upload" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+                 <div style="height: 50px" class="row">
+            </div>
+          
+         }
+    </div> 
+    </div> 
+
+
+ 

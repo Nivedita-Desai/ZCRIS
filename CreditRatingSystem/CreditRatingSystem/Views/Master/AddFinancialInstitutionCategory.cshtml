@@ -1,0 +1,104 @@
+﻿@model CreditRatingModel.Model.Master 
+@{
+    ViewBag.Title = "AddFinancialInstitutionCategory";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@*<h2>AddFinancialInstitutionCategory</h2>*@
+
+<div class="row" style="height:50px">
+
+        </div>
+        
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Financial Institution Category Master</label>  </div>
+                <div class="panel-body">
+                     <fieldset class="scheduler-border">
+                       @* <legend class="scheduler-border">
+                            <label id="lblStreamMaster" class="filter-col control-label label2"> Stream Master</label>
+                        </legend>*@
+                         <br/>
+                    <div class="row">
+                         <div class="col-xs-4">
+                                    </div>
+                        <div class="col-xs-4">
+                         @*   @Html.HiddenFor(model => model.Id)*@
+                            <div class="form-group">
+                                <label id="lblAccType" class="filter-col control-label label1">Category Name:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.Category, new { @class = "form-control"})                                                           
+                            </div>
+                        </div>
+                          <div class="col-xs-4">
+                                    </div>
+                    </div>
+                                   </fieldset> 
+                      <div class="row">
+                                <div class="col-xs-5">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        @*<button id="btnSave" type="" name="save"  formmethod="post">Save</button>*@
+                                        <input type="button" id="btnSave" value="Save" />
+                                        
+                                    </div>
+                           <div class="col-xs-3">
+                               @Html.HiddenFor(model => model.Id)
+
+                                    </div>
+                                </div>
+                </div>
+            </div>
+            </div>
+
+
+
+<script type="text/javascript" >
+
+    $('#btnSave').click(function () {
+
+        debugger;
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        var Category = $("#Category").val();
+    debugger;
+    $.ajax ({
+
+        url: '/Master/AddFinancialInstitutionCategory1/',
+        type :'POST',
+        data: { Id: Id, Category: Category },
+        success: function (data) {
+            debugger;
+            var a = JSON.stringify(data);
+            if (Id == "") {
+
+                if (a == "true") {
+
+                    alert('Data saved successfully!');
+                    $("#Category").val('');
+                }
+                else if (a == "false") {
+
+                    alert('Category already Exits!');
+                    $("#Category").val("");
+                }
+
+            }
+            else {
+                if (a == "true") {
+                    alert('Data saved successfully!');
+                    window.location.href = '/Master/ViewFinancialInstitutionCategory';
+                }
+                else if (a == "false") {
+
+                    alert('Category already Exits');
+                    $("#Category").val("");
+                }
+
+            }
+        }
+      });
+   });
+</script>
+

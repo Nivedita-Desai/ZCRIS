@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "ViewBorrower";
+    var gridborrow = new WebGrid(Model, canSort: true, canPage: true, rowsPerPage:10);
+    gridborrow.Pager(WebGridPagerModes.All);
+
+    var grid = new WebGrid(ViewBag.List, canSort: true, canPage: true, rowsPerPage: 10);
+    grid.Pager(WebGridPagerModes.All);
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+   <script src="@Url.Content("~/js/filter.js")"></script>
+
+
+<div class="container">
+         <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Borrower Details</label></div>
+                <div class="panel-body">
+<div id="tabs">
+    <div class="tabbable-panel">
+        <div class="tabbable-line">
+            <ul class="nav nav-tabs">
+
+                <li>
+                    <a href="#tabs-1" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold" class="active">Borrower Company Details</a>
+                </li>
+                <li>
+                    <a href="#tabs-2" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Borrower Individual Customer Details</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="tabs-1" class="tab-pane active">
+                    <div class="container">
+                        <div class="row">
+                               <div class="col-xs-1">                          
+                                </div>
+                               <div class="col-xs-10">
+                            <div class="panel panel-primary filterable">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Borrower Details</h3>
+                                    <div class="pull-right">
+                                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>Filter</button>
+                                    </div>
+                                </div>
+                                   <div class="panel panel-primary" style=" overflow:auto;height:500px">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="filters">
+                                            <th width="108px" >
+                                                <input type="text" placeholder="Company Name" disabled>
+                                            </th>
+                                            <th width="100px" >
+                                                <input type="text"  placeholder="Sub Division Name" disabled>
+                                            </th>
+                                            <th width="90px" >
+                                                <input type="text"  placeholder="Branch Name" disabled>
+                                            </th>
+                                            <th width="80px" >
+                                                <input type="text"  placeholder="Incorporation Date" disabled>
+                                            </th>
+                                            <th width="85px" >
+                                                <input type="text"  placeholder="Commencement Date" disabled>
+                                            </th>
+
+                                            @*<th > <input type="text"  placeholder="Organization" disabled> </th>
+                                    <th > <input type="text"  placeholder="Company Name" disabled> </th>
+                                    <th > <input type="text"  placeholder="Branch Name"  disabled> </th>
+                                    <th > <input type="text"  placeholder="Incorporation Date" disabled> </th>
+                                    <t@h > <input type="text"  placeholder="Commencement Date" disabled> </th>  *@
+
+
+                                            <th width="10px" >
+                                                <input type="hidden" class=" form-control" disabled>
+                                            </th>
+                                            <th width="45px" ></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="filters">
+
+
+                                            @gridborrow.GetHtml(
+                            tableStyle: "table",
+                            headerStyle: "webgrid-header",
+                            //footerStyle: "webgrid-footer",
+
+
+                            columns: gridborrow.Columns(
+                                                    //add columns headings for grid
+                                gridborrow.Column(columnName: "CompanyName", header: "Organization", style: "GridCellStyle"),
+                                gridborrow.Column(columnName: "CompanyType", header: "Company Name", style: "GridCellStyle"),
+                                gridborrow.Column(columnName: "BranchName", header: "Branch Name", style: "GridCellStyle"),
+
+                                gridborrow.Column("Incorporation Date", format: item => ((item.IncorporationDate == null) ? "" : item.IncorporationDate.ToString("dd-MMM-yyyy")), style: "GridCellStyle"),
+                                gridborrow.Column("Commencement Date", format: item => ((item.CommencementDate == null) ? "" : item.CommencementDate.ToString("dd-MMM-yyyy")), style: "GridCellStyle"),
+
+                                         gridborrow.Column(columnName: "Id", style: "webgrid-hide"),
+
+                                //Added View button. after clicking on it will open another form
+                                gridborrow.Column("", format: @<text>@Html.ActionLink("View", "EditBorrowerCompany", "Borrower", new { id = item.Id }, null)</text>)))
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                               <div class="col-xs-1">                
+               </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tabs-2" class="tab-pane">
+                    <div class="container">
+                        @*<h1>Borrower Individual Details</h1>*@
+                        <div class="row">
+                               <div class="col-xs-1">                         
+               </div>
+                               <div class="col-xs-10">
+                            <div class="panel panel-primary filterable">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Individual Details</h3>
+                                    <div class="pull-right">
+                                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>Filter</button>
+                                    </div>
+                                </div>
+                                   <div class="panel panel-primary" style=" overflow:auto;height:500px">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="filters">
+                                            <th width="85px">
+                                                <input type="text"  placeholder="PanCard No." disabled>
+                                            </th>
+                                            <th width="75px">
+                                                <input type="text"  placeholder="First Name" disabled>
+                                            </th>
+                                            <th width="75px">
+                                                <input type="text"  placeholder="Middle Name" disabled>
+                                            </th>
+                                            <th width="75px">
+                                                <input type="text"  placeholder="Last Name" disabled>
+                                            </th>
+                                            <th width="85px">
+                                                <input type="text"  placeholder="Date Of Birth" disabled>
+                                            </th>
+                                            <th width="85px">
+                                                <input type="text"  placeholder="Nationality" disabled>
+                                            </th>
+                                            <th width="15px">
+                                                <input type="hidden" class=" form-control" disabled>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="filters">
+
+
+
+
+                                            @grid.GetHtml(
+                tableStyle: "table",
+                headerStyle: "webgrid-header",
+                         //footerStyle: "webgrid-footer",
+                                                    //alternatingRowStyle: "webgrid-alternating-row",
+                                                    //rowStyle: "webgrid-row-style",
+                columns: grid.Columns(
+                                                    //here i will add column for serial no
+                                                    //grid.Column(columnName: "Date", format: (item) => Html.ActionLink(((string)item.Date), "Edit", new { id = item.id })),
+                                                    //grid.Column(columnName:"Id", header:"ID", format: (item) => (item.Id)),
+                                                    //grid.Column(columnName: "Pan", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "Pan", style: "webgrid-fixColumn"),
+                                                    //grid.Column(columnName: "FirstName",style:"webgrid-fixColumn"),
+                     grid.Column(columnName: "FirstName", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "MiddleName", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "LastName", style: "webgrid-fixColumn"),
+                              grid.Column(columnName: "DateOfBirth", format: item => ((item.DateOfBirth == null) ? "" : item.DateOfBirth.ToString("dd-MMM-yyyy")), style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "Nationality", style: "webgrid-fixColumn"),
+                                       grid.Column(columnName: "Id", style: "webgrid-hide"),
+                  grid.Column("", format: @<text>@Html.ActionLink("View", "EditBorrowerCustomer", "Borrower", new { id = item.Id }, null)</text>)))
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                               <div class="col-xs-1">
+                               </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $("#btnSearch").change(function () {
+        var url = '@Url.Action("SearchList", "Borrower")';
+    });
+</script>
+

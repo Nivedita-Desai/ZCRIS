@@ -1,0 +1,124 @@
+@charset "utf-8";
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,blockquote,a,pre,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,sub,sup,tt,var,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,caption,tbody,tfoot,thead,th,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{
+	list-style: none;
+	margin-left: 25px;
+}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+Default values for button effects
+.clearfix:after { clear: both; }
+
+
+/* Header Style */
+.main,
+.container > header {
+	margin: 0 auto;
+	padding: 2em;
+}
+
+.container > header {
+	text-align: center;
+}
+
+.container > header span {
+	display: block;
+	font-size: 60%;
+	opacity: 0.5;
+	padding: 0 0 0.6em 0.1em;
+}
+
+/* To Navigation Style */
+.codrops-top {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.6);
+	text-transform: uppercase;
+	width: 100%;
+	font-size: 0.69em;
+	line-height: 2.2;
+}
+
+.codrops-top a {
+	padding: 0 1em;
+	letter-spacing: 0.1em;
+	color: #888;
+	display: inline-block;
+}
+
+.codrops-top a:hover {
+	background: rgba(255,255,255,0.95);
+	color: #333;
+}
+
+.codrops-top span.right {
+	float: right;
+}
+
+.codrops-top span.right a {
+	float: left;
+	display: block;
+}
+
+.codrops-icon:before {
+	font-family: 'codropsicons';
+	margin: 0 4px;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+.codrops-icon-drop:before {
+	content: "\e001";
+}
+
+.codrops-icon-prev:before {
+	content: "\e004";
+}
+
+.codrops-icon-archive:before {
+	content: "\e002";
+}
+
+.codrops-icon-next:before {
+	content: "\e000";
+}
+
+.codrops-icon-about:before {
+	content: "\e003";
+}
+
+.container {
+	height: 100%;
+	position: relative;
+}
+
+.container > section {
+	margin: 0 auto;
+	padding: 5em 3em;
+	text-align: center;
+	color: #fff;
+}
+
+.container > section p {
+	position: relative;
+	margin: 0;
+	padding: 1em;
+	z-index: 1;
+}
+
+.container > section p.text {
+	font-size: 1.4em;
+}
+
+.no-touch .note-touch {
+	display: none;
+}
+@media screen and (max-width: 25em) {
+
+	.codrops-icon span {
+		display: none;
+	}
+
+}

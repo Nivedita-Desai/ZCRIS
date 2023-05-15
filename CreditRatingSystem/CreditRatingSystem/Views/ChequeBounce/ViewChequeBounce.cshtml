@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "ViewChequeBounce";
+    var grid = new WebGrid(Model, canSort: true, canPage: true, rowsPerPage: 10);
+    grid.Pager(WebGridPagerModes.All);
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+ <div class="container">
+      <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Cheque Bounce Details</label>  </div>
+    
+            <div class="row" >
+                 <div class="col-xs-1">
+                           
+               </div>
+            <div class="col-xs-10">
+                           
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h3 class="panel-title"></h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                    </div>
+                </div>
+             
+                <div style=" overflow-x: auto;height:500px">
+                <table class="table">
+                    <thead>
+                        <tr class="filters">
+                             <th width="10px"> <input type="text"  placeholder="PanCard No" disabled> </th>
+                            <th width="10px">  <input type="text"  placeholder="Name" disabled> </th>
+                            <th width="10px">   <input type="text" placeholder="Bank Code" disabled> </th>
+                            <th width="10px">  <input type="text"  placeholder="Branch Name" disabled> </th>
+                            <th width="10px">   <input type="text"  placeholder="Branch Code" disabled> </th>
+                            <th width="10px">   <input type="text"  placeholder="Cheque Number" disabled> </th>
+                             <th width="10px">  <input type="text"  placeholder="Cheque Date" disabled> </th>
+                            <th width="10px">   <input type="text"  placeholder="Cheque Amount" disabled> </th>
+                            <th width="10px"> <input type="text"  placeholder="In Favour Of" disabled> </th>
+                            <th width="10px">  <input type="text"  placeholder="From Account No" disabled> </th>
+                            <th width="10px">   <input type="text"  placeholder="To Account No" disabled> </th>
+                          <th width="10px"> <input type="text"  placeholder="Reason" disabled> </th>
+                            <th width="10px">  <input type="text"  placeholder="Cheque Type" disabled> </th>
+                            <th width="10px">   <input type="text"  placeholder="Transaction Date" disabled> </th>
+                               <th width="15px">  <input type="hidden" disabled></th>
+
+                            @* </div>*@
+
+                        </tr>
+                    </thead>
+                    <tbody class="table">
+                        <tr class="filters">
+                           @grid.GetHtml(
+                tableStyle: "table",
+                headerStyle: "webgrid-header",
+                       //  footerStyle: "webgrid-footer",
+                                    //alternatingRowStyle: "webgrid-alternating-row",
+                                    //rowStyle: "webgrid-row-style",
+                columns: grid.Columns(
+                                    //here i will add column for serial no
+                                    //grid.Column(columnName: "Date", format: (item) => Html.ActionLink(((string)item.Date), "Edit", new { id = item.id })),
+                                    //grid.Column(columnName:"Id", header:"ID", format: (item) => (item.Id)),
+            grid.Column(columnName: "Pan", style: "webgrid-fixColumn"),
+            grid.Column(columnName: "Name", style: "webgrid-fixColumn"),
+                    grid.Column(columnName: "BankCode", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "BranchName", style: "webgrid-fixColumn"),
+                      grid.Column(columnName: "BranchCode", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "ChequeNo", style: "webgrid-fixColumn"),
+                      grid.Column(columnName: "ChequeDate", style: "webgrid-fixColumn"),
+            grid.Column(columnName: "ChequeAmount", style: "webgrid-fixColumn"),
+                    grid.Column(columnName: "InFavourOf", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "FromAccountNo", style: "webgrid-fixColumn"),
+                      grid.Column(columnName: "ToAccountNo", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "Reason", style: "webgrid-fixColumn"),
+                      grid.Column(columnName: "ChequeType", style: "webgrid-fixColumn"),
+                     grid.Column(columnName: "TransactionDate", style: "webgrid-fixColumn"),     
+                     grid.Column(columnName: "Id", style: "webgrid-hide"),
+                   grid.Column("", format: @<text>@Html.ActionLink("View", "ViewDetails1", "user", new { id = item.Id }, null)</text>)
+                            ))
+                        </tr>
+                    </tbody>
+                </table>
+                    </div>
+                </div>
+</div>
+                 <div class="col-xs-1">
+                           
+               </div>
+        </div>
+    </div>
+     </div>
+@*<script type="text/javascript">
+    $(function () {
+        debugger;
+        $('tbody tr').hover( function(){
+            $(this).toggleClass('clickable');
+        }).on('click', function(){
+            location.href = '/ChequeBounce/ViewDetails1/' + $(this).find('td:last').text();
+        }); 
+    });
+</script>  *@

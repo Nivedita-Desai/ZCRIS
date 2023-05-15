@@ -1,0 +1,60 @@
+﻿
+@model CreditRatingModel.Model.Master
+@{
+ Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@using (@Html.BeginForm("AddRelationship", "Master", FormMethod.Post, new { id = "frmRelationship" }))
+{
+        
+    <div class="row" style="height: 50px">
+    </div>
+       
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Relationship Master</label>
+            </div>
+            <div class="panel-body">
+                <fieldset class="scheduler-border">
+                   @Html.HiddenFor(model=>model.Id)
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                               <div class="form-group">
+                                <label id="lblPanN" class="filter-col control-label label1">Relationship : </label>
+                                @Html.TextBoxFor(modelItem => modelItem.relation, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                    
+                </fieldset>
+                <div class="row">
+                    <div class="col-xs-5">
+                    </div>
+                    <div class="col-xs-4">
+                        <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                    </div>
+                    <div class="col-xs-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnSave').click(function () {
+            debugger;
+            var frmvalidator = new Validator("frmRelationship");
+            debugger;
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+            frmvalidator.addValidation("relation", "req", "Please Enter  Relationship");
+             });
+    });
+</script>

@@ -1,0 +1,335 @@
+﻿@model CreditRatingModel.Model.Master
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@using (@Html.BeginForm("Slab", "Master", FormMethod.Post, new { id = "frmSlab" }))
+{
+        
+    <div class="row" style="height: 50px">
+    </div>
+       
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Slab Master</label>
+            </div>
+            <div class="panel-body">
+                <fieldset class="scheduler-border">
+
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="" class="filter-col control-label label1">Range From  </label>
+                                @Html.TextBoxFor(modelItem => modelItem.Rangefrom, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "20" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="" class="filter-col control-label label1">Range To  </label>
+                                @Html.TextBoxFor(modelItem => modelItem.RangeTo, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "20" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label id="" class="filter-col control-label label1">Slab Percentage  </label>
+                                @Html.TextBoxFor(modelItem => modelItem.SlabPercentage, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "3" })
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="row">
+                    <div class="col-xs-5">
+                    </div>
+                    <div class="col-xs-4">
+                        <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                    </div>
+                    <div class="col-xs-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+}
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        var Id = $("#Id").val();
+        if (Id != 0) {
+
+            $("#Rangefrom").attr("readonly",true)
+        }
+
+
+
+        $('#btnSave').click(function () {
+            debugger;
+            var frmvalidator = new Validator("frmSlab");
+            debugger;
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+            frmvalidator.addValidation("Rangefrom", "req", "Please Enter Starting of  Range ");
+            frmvalidator.addValidation("RangeTo", "req", "Please Enter End of  Range");
+            frmvalidator.addValidation("SlabPercentage", "req", "Please Enter  Slab Percentage");
+
+
+
+        });
+
+    });
+
+
+    function smallerRate() {
+        debugger;
+        var Rangefrom = $('#Rangefrom').val();
+        var RangeTo = $('#RangeTo').val();
+
+        if (RangeTo != "" && Rangefrom > RangeTo) {
+            $.ajax({
+                url: '/Master/SlabsmallerRate/',
+                type: 'POST',
+                data: { Rangefrom: Rangefrom, RangeTo: RangeTo },
+                success: function (data) {
+                    debugger;
+                    var R = JSON.stringify(data);
+                    if (R == "false") {
+                        debugger;
+                        alert("Please enter smaller value  than " + RangeTo)
+                        $('#Rangefrom').val("");
+                        return false;
+                    }
+
+
+                }
+            });
+        }
+        else {
+            Exists();
+        }
+
+    }
+
+
+
+
+    function greaterRate() {
+        debugger;
+        var Rangefrom = $('#Rangefrom').val();
+        var RangeTo = $('#RangeTo').val();
+        debugger;
+        if (Rangefrom != "") {
+            $.ajax({
+                url: '/Master/slabgreaterRate/',
+                type: 'POST',
+                data: { Rangefrom: Rangefrom, RangeTo: RangeTo },
+                success: function (data) {
+                    var R = JSON.stringify(data);
+                    if (R == "false") {
+                        debugger;
+                        alert("Please enter greater value  than " + Rangefrom)
+                        $('#RangeTo').val("");
+                        return false;
+                    }
+
+                }
+            });
+        }
+        else {
+            alert("Please  first enter value for Range from")
+            $('#RangeTo').val("");
+        }
+
+    }
+
+
+
+    function FromExists() {
+        debugger;
+        var Rangefrom = $('#Rangefrom').val();
+        var RangeTo = $('#RangeTo').val();
+        debugger;
+
+        $.ajax({
+            url: '/Master/slabFromexist/',
+            type: 'POST',
+            data: { Rangefrom: Rangefrom },
+            success: function (data) {
+                //var R = JSON.stringify(data);
+                if (data != 0) {
+
+                    var S = data;
+                    var T = S + 1;
+                    if (T != Rangefrom) {
+                        alert("Please enter number with value " + " " + T);
+                        $('#Rangefrom').val("");
+
+                    }
+
+                }
+
+            }
+        });
+  }
+
+    function Exists() {
+        debugger;
+
+        var Rangefrom = $('#Rangefrom').val();
+        var RangeTo = $('#RangeTo').val();
+        var Id = $("#Id").val();
+        if (Id == "") {
+            Id = 0;
+        }
+        $.ajax({
+            url: '/Master/slabChkFrom/',
+            type: 'POST',
+            data: { Id: Id, Rangefrom: Rangefrom },
+            success: function (data) {
+                //var R = JSON.stringify(data);
+                debugger;
+                if (Id == 0) {
+                    FromExists();
+                    if (data == "N") {
+                        alert("From value already exits ");
+                        $('#Rangefrom').val("");
+                    }
+                }
+                else {
+                    debugger;
+                    if (data == "N") {
+                        alert("From value already exits ");
+                        $('#Rangefrom').val("");
+                    }
+
+                }
+
+            }
+        });
+
+    }
+
+
+    function PercentageExists() {
+        debugger;
+
+        var SlabPercentage = $('#SlabPercentage').val();
+      
+        var Id = $("#Id").val();
+        if (Id == "") {
+            Id = 0;
+        }
+        $.ajax({
+            url: '/Master/PercentageExits/',
+            type: 'POST',
+            data: { Id: Id, SlabPercentage: SlabPercentage },
+            success: function (data) {
+                //var R = JSON.stringify(data);
+                debugger;
+                if (Id == 0) {
+                   if (data == "N") {
+                        alert("Percentage already exits ");
+                        $('#SlabPercentage').val("");
+                    }
+                }
+                else {
+                    debugger;
+                    if (data == "N") {
+                        alert("Percentage already exits ");
+                        $('#SlabPercentage').val("");
+                    }
+
+                }
+
+            }
+        });
+
+    }
+
+    function ChkToValue() {
+        debugger;
+
+        var RangeTo = $('#RangeTo').val();
+
+        var Id = $("#Id").val();
+        if (Id == "") {
+            Id = 0;
+        }
+        $.ajax({
+            url: '/Master/ChkToValue/',
+            type: 'POST',
+            data: { Id : Id , RangeTo: RangeTo },
+            success: function (data) {
+                //var R = JSON.stringify(data);
+                debugger;
+               
+                    if (data == "N") {
+                        alert("you cannot edit");
+                        $('#RangeTo').val("");
+                    }
+             }
+        });
+
+    }
+
+
+
+
+
+    $('#Rangefrom').focusout(function () {
+        debugger;
+        var RangeFrom = $('#Rangefrom').val();
+        var Id = $("#Id").val();
+        if (Id == 0) {
+            smallerRate();
+        }
+
+        
+    });
+
+    $('#RangeTo').focusout(function () {
+
+        debugger;
+        var Id = $("#Id").val();
+        if (Id == 0) {
+            greaterRate();
+          
+        }
+        else {
+            greaterRate();
+            ChkToValue();
+        }
+       
+    });
+
+    $('#SlabPercentage').focusout(function () {
+
+        debugger;
+        PercentageExists();
+    });
+  
+
+</script>
+
+

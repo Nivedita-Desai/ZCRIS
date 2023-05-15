@@ -1,0 +1,201 @@
+﻿@model CreditRatingModel.Model.EmployerMaster_Metadata
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+ <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Employer Details </label>
+            </div>
+            <div class="panel-body">
+                      @using (Html.BeginForm("editemp", "EmployerMaster", FormMethod.Post,
+                            new { enctype = "multipart/form-data", id = "Employer" }))
+                  {
+                              @Html.HiddenFor(model => model.Id)
+                             <div id="cn" class="row">
+                               <div class="col-xs-4">
+                                   <div class="form-group">
+
+
+
+                                       <label id="lblCN" class="filter-col control-label label1">Employer Name</label>
+
+
+                                       @Html.TextBoxFor(model => model.EmployerName, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+
+                                   </div>
+                               </div>
+                               <div class="col-xs-4">
+                                   <div class="form-group">
+                                       <label id="lblBN" class="filter-col control-label label1">Employer Type</label>
+                                       @Html.TextBoxFor(model => model.EmployerType, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+
+                                   </div>
+
+
+                               </div>
+                               <div class="col-xs-4">
+                                   <div class="form-group">
+
+                                       <label id="lblCT" class="filter-col control-label label1">Branch Name</label>
+                                       @Html.TextBoxFor(model => model.EmployerBranch, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+
+                                   </div>
+                                   </div></div>
+                                    <div id="ic" class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblID" class="filter-col control-label label1">Incorporation Date</label>
+                                            @Html.EditorFor(model => model.IncorporationDt, new { @class = "form-control" })
+                                      
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblCD" class="filter-col control-label label1">Commencement Date</label>
+                                            @Html.EditorFor(model => model.CommencementDt, new { @class = "form-control"})
+
+                                                  </div>
+                                        </div>
+                                          <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblPAN" class="filter-col control-label label1">National Identification Number (NRC)</label>
+                                            @Html.TextBoxFor(model => model.PanNo, new { @class = "form-control",  @onkeypress = "return  isNumber(event)",@maxlength = "15" ,disabled="disabled"})
+                                      
+                                        </div>
+
+                                    </div>
+                              
+
+                           </div>
+                             <div id="" class="row">
+                                  
+                                </div>
+                          
+                         
+                               <div id="Address" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label class="filter-col control-label label1">Address 1</label>
+                                            @Html.TextBoxFor(model => model.Address1, new { @class = "form-control" })
+                                          
+                                            @Html.TextBoxFor(model => model.Address2, new { @class = "form-control"})
+                                         
+                                            @Html.TextBoxFor(model => model.Address3, new { @class = "form-control"})
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div id="CID" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+
+                                            <label id="lblC" class="filter-col control-label label1">Country</label>
+                                            @Html.DropDownListFor(model => model.CountryId,   ViewBag.CountryList as SelectList, "select Country", new { @id = "Country", @class = "form-control dropdown" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label id="lblS" class="filter-col control-label label1">State</label>
+                                            @Html.DropDownListFor(model => model.StateId,ViewBag.StateList1 as SelectList,"--select State--", new { @id = "selState",@class = "form-control dropdown" })
+                              <div class="form-group input-field-wrap">
+                        </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="CityPIN" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+
+                                            <label id="lblCI" class="filter-col control-label label1">City </label>
+                                            @Html.TextBoxFor(model => model.City, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label id="lblPIN" class="filter-col control-label label1">PIN code</label>
+                                            @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control", @onkeypress = "return  isNumber(event)", @maxlength = "6" })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <label id="lblPhoneNo" class="filter-col control-label label1">Telephone number</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-1">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.LandlineCode, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "4" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-5">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.LandlineNo, new { @class = "form-control", @onkeypress = "return isNumber(event)", @maxlength = "10" })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                      
+
+
+
+
+
+                                <div id="email" class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+
+                                            <label id="lblemail" class="filter-col control-label label1">Email Id</label>
+                                            @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control", @onblur = "validateEmail(this)"  })
+
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                                           
+
+                   <div class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-2">
+                    <div class="form-group">
+                        <button id="btnEdit" type="submit" name="Edit" formmethod="post">Edit</button>
+          
+                    </div>
+                </div>
+                <div class="col-xs-2">
+   
+                </div>
+                <div class="col-xs-4">                  
+                </div>
+            </div>
+                      }           
+                       </div>
+        
+
+            </div>            

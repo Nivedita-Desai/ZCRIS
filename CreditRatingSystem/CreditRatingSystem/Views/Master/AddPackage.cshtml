@@ -1,0 +1,151 @@
+﻿
+@model CreditRatingModel.Model.Master
+@using CreditRatingModel.Model;
+@{
+    ViewBag.Title = "AddPackage";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label id="lblHeading" class="filter-col control-label labelHead">Packages</label>
+            </div>
+            <div class="panel-body">
+                       
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblPackagename" class="filter-col control-label label1">Package Name :</label>
+                            @Html.TextBoxFor(model => model.packagename, new {@class = "form-control input-sm"})
+                        
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblPacakgeCode" class="filter-col control-label label2">Package Code :</label>
+                            @Html.TextBoxFor(model => model.packagecode, new {@class = "form-control input-sm"})
+                          
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblPackageCredits" class="filter-col control-label label1">Package Credits :</label>
+                          
+                             @Html.TextBoxFor(model => model.packagecredit, new {@class = "form-control input-sm" , @onkeypress = "return  isNumber(event)"})
+                        
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label id="lblPackageAmt" class="filter-col control-label label1">Package Amount :</label>
+                             @Html.TextBoxFor(model => model.packageamt, new {@class = "form-control input-sm" , @onkeypress = "return  isNumber(event)", @maxlength = "20" })
+                        </div>
+                    </div>
+
+                </div>
+
+                         <div class="row">
+             
+                    <div class="col-xs-12">
+                       <center>  <input type="button" id="btnsave" value="Save" /></center>
+                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+
+    $("#btnsave").click(function () {
+        debugger;
+        var CheckValidation = Checkvalidate();
+        if (CheckValidation == false) {
+            return false;
+        }
+        var packagename = $("#packagename").val();
+        var packagecode = $("#packagecode").val();
+        var packagecredit = $("#packagecredit").val();
+        var packageamt = $("#packageamt").val();
+
+        var url = '@Url.Action("SavePackage", "Master")';
+        $.ajax({
+            url: url,
+            data: { packagename: packagename, packagecode: packagecode, packagecredit: packagecredit, packageamt: packageamt },
+            dataType: 'json',
+            type: 'POST',
+            success: function (data) {
+
+                var a = JSON.stringify(data);
+                if (a == "true") {
+                    debugger
+                    alert('Data saved successfully!');
+                    window.location.href = '/Master/AddPackage';
+                }
+
+            },
+            error: function (data) {
+                alert("Data Saved Falied");
+            }
+        });
+
+    });
+
+    function Checkvalidate()
+    {
+        var packagename = $("#packagename").val();
+        var packagecredit = $("#packagecredit").val();
+        var packageamt = $("#packageamt").val();
+        var Validate;
+
+        if (packagename == "") {
+            alert("Please Enter Package Name");
+            Validate = false;
+            return false;
+        }
+
+        if (packagecredit == "") {
+            alert("Please Enter Package Credits");
+            Validate = false;
+            return false;
+        }
+
+        if (packagecredit == "") {
+            alert("Please Enter Package Amount");
+            Validate = false;
+            return false;
+        }
+        return Validate;
+    }
+
+    $("#packagename").focusout(function () {
+        debugger
+        var packagename = $("#packagename").val();
+        if (packagename != "") {
+            var url = '@Url.Action("GetPkgName", "Master")';
+            $.post(url, { packagename: packagename }, function (data) {
+                debugger;
+                if (data != "false") {
+                    debugger
+                    alert('Package Name Already Exits');
+                    $("#packagename").val('');
+                }
+            });
+        }
+      
+
+
+
+    });
+
+
+</script>

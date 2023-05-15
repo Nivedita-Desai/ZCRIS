@@ -1,0 +1,1024 @@
+﻿@model CreditRatingModel.Model.LoanApplication
+@using CreditRatingModel.Model;
+
+@{
+    ViewBag.Title = "Edit Loan Application";
+    @Html.AntiForgeryToken()
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<link href="@Url.Content("~/CSS/bootstrap-3.3.2.min.css")" rel="stylesheet" type="text/css"/>
+<link href="@Url.Content("~/CSS/bootstrap-multiselect.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/CSS/prettify.css")" rel="stylesheet" />
+<link href="@Url.Content("~/js/jquery-ui.css")" rel="stylesheet" />
+<link href="@Url.Content("~/CSS/Comman.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/bootstrap-3.3.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/bootstrap-multiselect.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/prettify.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/ValidationJavaScript.js")"></script>
+<script src="@Url.Content("~/js/gen_validatorv4.js")"></script>
+
+<html>
+<body>
+    <div>
+        <div class="row" style="height: 50px"></div>
+    </div>
+
+    @using (Html.BeginForm("EditAction", "LoanApplication", FormMethod.Post, new { id = "frmLoanApplication" }))
+    {  
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <label id="lblHeading" class="filter-col control-label labelHead">Edit Loan / Credit Application</label>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <label id="lblBType" class="filter-col control-label label1">Borrower Type</label>
+                            @Html.DropDownListFor(modelItem => modelItem.BorrowerTypeId, ViewBag.BorrowerType as SelectList, "Select Borrower Type", new { @class = "form-control", @id = "drpBorrowerType", @disabled = "disabled" })
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblLoanDetails" class="filter-col control-label label2">Loan / Credit Details</label>
+                        </legend>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblFinIntName" class="filter-col control-label label2">Financial Institute Name</label>
+                                    @Html.TextBoxFor(model => model.FinancialInstitutionId, new { @id = "drpFinInt", @class = "form-control myclass", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblFinIntBrName" class="filter-col control-label label2">Financial Institute Branch Name</label>
+                                    @Html.TextBoxFor(model => model.FinancialInstitutionBranchId, new { @id = "drpfinIntBranch", @class = "form-control myclass", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblPan" class="filter-col control-label label1"></label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblAppName" class="filter-col control-label label2">Applicant Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.PanL, new { @class = "form-control myclass", @readonly = "true", @id = "txtPan1", @onkeypress = "return isNRCNumber(event)" })
+
+                                    @Html.TextBoxFor(modelItem => modelItem.Id, new { @id = "Id", @hidden = "hidden" })
+                                    @Html.TextBoxFor(modelItem => modelItem.LIRId, new { @id = "LIRId", @hidden = "hidden" })
+                                    @Html.TextBoxFor(modelItem => modelItem.ICM.Id, new { @id = "ICMId", @hidden = "hidden" })
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.Id, new { @id = "CDMId", @hidden = "hidden" })
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.ContRelId, new { @id = "ContRelId", @hidden = "hidden" })
+                                    @Html.TextBoxFor(modelItem => modelItem.CDR.Id, new { @id = "CDRId", @hidden = "hidden" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                @Html.TextBoxFor(modelItem => modelItem.ApplicantName, new { @class = "form-control", @readonly = "true", @id = "txtAppName" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblLoaNno" class="filter-col control-label label1">Loan / Credit Application No</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblLoanDt" class="filter-col control-label label1">Loan / Credit Application Date</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.LoanApplicationNo, new { @class = "form-control", @onkeypress = "return isNumber(event)", maxlength = "15", @id = "txtLoanNo", @readonly = "true" })
+                                    @Html.TextBoxFor(modelItem => modelItem.LoanApplicationNo, new { @id = "txtHideAppNo", @hidden = "hidden" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <span id="dtpLoanDate">
+                                        @Html.EditorFor(modelItem => modelItem.LoanApplicationDate, new { @type = "date" }) </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label id="lblLoanType" class="filter-col control-label label1">Loan Type</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <label id="lblCardType" class="filter-col control-label label1">Card Type</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <label id="lblLoanAmt" class="filter-col control-label label1">Loan / Credit Amount</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.LoanTypesId, ViewBag.LoanType as SelectList, "Select Loan Type", new { @class = "form-control", @id = "drpLoanType", @disabled = "disabled" })
+                                </div>
+                            </div>
+                             <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.CardTypeId, ViewBag.CardType as SelectList, "Select Card Type", new { @class = "form-control", @id = "drpCardType", @disabled = "disabled" })                                    
+                                    @*@Html.TextBoxFor(modelItem => modelItem.Category, new { @id = "Category", @hidden = "hidden" })*@
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.LoanAmount, new { @class = "form-control", @onkeypress = "return decimalOnly(event)", @id = "txtLoanAmt", maxlength = "20", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <h4 style="text-align: center">
+                                    <input id="btnAddG" type="button" value="Add Guarantor" />
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    @* ********************** Guarantor's Details ***********************  *@
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblContPersonDetails" class="filter-col control-label label2">Guarantor's Details</label>
+                        </legend>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblPanno" class="filter-col control-label label1">National ID</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblCustType" class="filter-col control-label label1">Customer Type</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.ICM.Pan, new { @class = "form-control myclass", @onkeypress = "return isNRCNumber(event)", maxlength = "13", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.Type, new List<SelectListItem> { new SelectListItem { Text = "Director", Value = "D" }, new SelectListItem { Text = "Guarantor", Value = "G" } }, "Select Customer Type", new { @id = "Type" , @class = "form-control dropdown", @disabled = "disabled" })                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div id="DirInfo" hidden="hidden">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label id="lblComp" class="filter-col control-label label1">Company Name</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label id="lblDtJoin" class="filter-col control-label label1">Date of Joining</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.DropDownListFor(modelItem => modelItem.CDR.CompanyId, ViewBag.CompName as SelectList, "Select Company Name", new { @id = "drpCompany", @class = "form-control dropdown", @disabled = "disabled" })
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(modelItem => modelItem.CDR.DateOfJoining, new { @type = "date", @id = "dtpJoin", @readonly = "true" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <label id="lblTitle" class="filter-col control-label label1">Title</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <label id="lblName" class="filter-col control-label label1">Name </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.ICM.TitleId, ViewBag.NmTitle as SelectList, "Select Title", new { @class = "form-control", @placeholder = "Title", @id = "drpTitle", @disabled = "disabled" })
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.ICM.FirstName, new { @class = "form-control", @placeholder = "First Name", @id = "txtFirstName", maxlength = "100", onkeypress = "return AllowAlphabet(event)", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.ICM.MiddleName, new { @class = "form-control", @placeholder = "Middle Name", @id = "txtMiddleName", maxlength = "100", onkeypress = "return AllowAlphabet(event)", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.ICM.LastName, new { @class = "form-control", @placeholder = "Last Name", @id = "txtLastName", maxlength = "100", onkeypress = "return AllowAlphabet(event)", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <label id="lblSex" class="filter-col control-label label1">Gender</label>
+                            </div>
+                            <div class="col-xs-3">
+                                <label id="lblMaritalSt" class="filter-col control-label label1">Marital Status</label>
+                            </div>
+                            <div class="col-xs-3">
+                                <label id="lblBirthDt" class="filter-col control-label label1">Date of Birth</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.ICM.Sex, new List<SelectListItem> { new SelectListItem { Text = "Male", Value = "M" }, new SelectListItem { Text = "Female", Value = "F" } }, "Select Gender", new { id = "drpSex", @class = "form-control dropdown", @disabled = "disabled" })
+                                    @Html.TextBoxFor(modelItem => modelItem.ICM.Sex, new { @id = "txtSex", @hidden = "hidden" })
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.ICM.MaritalStatusId, ViewBag.MaritalStatus as SelectList, "Select Marital Status", new { @class = "form-control", @id = "drpMarStatus", @disabled = "disabled" })
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <span id="dtpBirth">
+                                        @Html.EditorFor(modelItem => modelItem.ICM.DateOfBirth, new { @type = "date", @onblur = "ValidateDate(this)" }) </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblAddType" class="filter-col control-label label1">Address Type</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblAdd" class="filter-col control-label label1">Address </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.CDM.AddressTypeId, ViewBag.AddressType as SelectList, "Select Address Type", new { @class = "form-control", @id = "drpAddType", @disabled = "disabled" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.Address1Cont, new { @class = "form-control", @id = "txtAdd1", maxlength = "100", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblNationality" class="filter-col control-label label1">Nationality</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.Address2Cont, new { @class = "form-control", @id = "txtAdd2", maxlength = "100", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                @Html.DropDownListFor(modelItem => modelItem.ICM.NationalityId, ViewBag.Nationality as SelectList, "Select Nationality", new { @class = "form-control", @id = "drpNational", @disabled = "disabled" })
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.Address3Cont, new { @class = "form-control", @id = "txtAdd3", maxlength = "100", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblCountry" class="filter-col control-label label1">Country </label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblState" class="filter-col control-label label1">Province </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.CDM.ContCountryId, ViewBag.LoanCounName as SelectList, "Select Country", new { @class = "form-control dropdown", @id = "txtCountry", @disabled = "disabled" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <select id="selState" name="selState" style="color: black" class="form-control dropdown" disabled="disabled"></select>
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.StateId, new { @id = "StateId", @hidden = "hidden" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblCity" class="filter-col control-label label1">City </label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblPin" class="filter-col control-label label1">Pin Code </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <select id="selCity" name="selCity" style="color: black" class="form-control dropdown" disabled="disabled"></select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.Pincode, new { @class = "form-control", @onkeypress = "return isNumber(event)", @id = "txtPin", maxlength = "6", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblTel" class="filter-col control-label label2">Telephone No</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblMob" class="filter-col control-label label1">Mobile No</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.LandlineCode, new { @class = "form-control", @id = "txtLandCode", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.LandlineNo, new { @class = "form-control", @onkeypress = "return isNumber(event)", onblur = "checkLengthForContact(this)", maxlength = "10", @id = "txtLandNo", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.MobileCode, new { @class = "form-control", @id = "txtMobileCode", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.MobileNo, new { @class = "form-control", @onkeypress = "return isNumber(event)", onblur = "checkLengthForContact(this)", maxlength = "10", @id = "txtMobileNo", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblEmailId" class="filter-col control-label label1">Email Id</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblAltEmail" class="filter-col control-label label2">Alternate Email Id</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.EmailId1, new { @class = "form-control", @onblur = "return validateEmail(this)", @id = "txtEmailId1", maxlength = "50", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.CDM.EmailId2, new { @class = "form-control", @onblur = "return validateEmail(this)", @id = "txtEmailId2", maxlength = "50", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <h4 style="text-align: center">
+                                    <input id="btnEdit" type="button" value="Edit" />
+                                    <button id="btnESave" type="submit" name="Save" hidden="true">Save </button>
+                                    <input id="btnCancel" type="button" value="Cancel" />
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    }
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () { $('#dtpLoanDate :input').attr("readonly", "true"); });
+</script>
+
+<script type="text/javascript">
+    $(function () { $('#dtpBirth :input').attr("readonly", "true"); });
+</script>
+
+
+<script type="text/javascript">
+
+    $('#btnCancel').click(function () {
+        window.location.href = "@Url.Action("ViewLoanApplication", "LoanApplication")";
+    });
+
+    $('#txtCountry').change(function () {
+        var countryid = $("#txtCountry").val();
+        debugger;
+        $.ajax({
+            url: '/LoanApplication/CountryCode/',
+            type: 'POST',
+            data: { countryid: countryid },
+            success: function (data) {
+                debugger;
+                if (data != null) {
+                    var vdata = data;
+                    $("#txtMobileCode").val(vdata);
+                }
+            }
+        });
+    });
+
+    $('#selCity').change(function () {
+        var cityid = $("#selCity").val();
+        debugger;
+        $.ajax({
+            url: '/LoanApplication/CityCode/',
+            type: 'POST',
+            data: { cityid: cityid },
+            success: function (data) {
+                debugger;
+                if (data != null) {
+                    var vdata = data;
+                    $("#txtLandCode").val(vdata);
+                }
+            }
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        ShowLoanDetails();
+
+        var FinIntid = '@(ViewBag.Financial_Id)';                                                          //Financial Comp Id
+        var FinIntBId = '@(ViewBag.FinancialBr_Id)';                                                   //Financial Comp Branch Id
+        var strFinName = '@(ViewBag.FinancialInstituteName)';                              //Financial Comp Name
+        var strFinBranchName = '@(ViewBag.FinancialInstituteBranchName)';     //Financial Comp Branch Name
+        
+        $('#drpFinInt').val(strFinName);
+        $('#drpfinIntBranch').val(strFinBranchName);
+
+
+        function ShowLoanDetails() {
+            if ($('#drpBorrowerType').val() == "1") {
+                $('#lblPan').html("TPIN");
+            }
+            else if ($('#drpBorrowerType').val() == "2") {
+                $('#lblPan').html('National ID');
+            }
+        };
+
+        function test() {
+            CheckLoanApprove(function (d) {
+                //processing the data
+                console.log(d);
+            });
+        }
+
+        function CheckLoanApprove(callback) {
+            var Id = $("#Id").val();
+            var strCheckLoanApprove;
+            var StrType = "A";
+
+            debugger;
+            $.ajax({
+                url: '/LoanApplication/CheckLoanApproved/',
+                type: 'POST',
+                data: { Id: Id, StrType: StrType },
+                success: function (data) {
+                    debugger;
+
+                    if (data != 0) {
+                        strCheckLoanApprove = false;
+                        alert("Please note you cannot edit the data as Loan is Approved");
+                        callback(strCheckLoanApprove);
+                    }
+                    else {
+                        strCheckLoanApprove = true;
+                        callback(strCheckLoanApprove);
+                    }
+                },
+                error: function (data) {
+                    strCheckLoanApprove = false;
+                    callback(strCheckLoanApprove);
+                    alert("No Data found");
+                }
+            });
+        }
+
+        $('#drpLoanType').change(function () {
+            debugger;
+            var intLoanTypeId = $("#drpLoanType").val();
+
+            debugger;
+            $.ajax({
+                url: '/LoanApplication/GetCreditCardList/',
+                type: 'POST',
+                data: { intLoanTypeId: intLoanTypeId },
+                success: function (data) {
+                    debugger;
+                    if (data == "C") {
+                        $('#drpCardType').attr("disabled", false);
+                        strLoanCategory = "C";
+                    }
+                    else {
+                        $('#drpCardType').val('');
+                        $('#txtLoanAmt').val('');
+                        strLoanCategory = '';
+                        $('#drpCardType').attr("disabled", true);
+                    }
+                }
+            });
+        });
+
+        $('#drpCardType').change(function () {
+            debugger;
+            var intCardTypeId = $("#drpCardType").val();
+
+            debugger;
+            $.ajax({
+                url: '/LoanApplication/GetCardAmt/',
+                type: 'POST',
+                data: { intCardTypeId: intCardTypeId },
+                success: function (data) {
+                    debugger;
+                    if (data != null) {
+                        $('#txtLoanAmt').val(data);
+                    }
+                }
+            });
+        });
+
+        $('#btnEdit').click(function () {
+            debugger;
+
+            CheckLoanApprove(function (strCheckLoanApprove) {
+                if (strCheckLoanApprove == true) {
+                    FieldsEnabled();
+                    $('#btnESave').show();
+                    $('#btnEdit').hide();
+                    $('#btnAddG').prop('disabled', true);
+                }
+            });
+        });
+             
+
+        $("#btnAddG").click("click", function () {
+            debugger;
+            CheckLoanApprove(function (strCheckLoanApprove) {
+                if (strCheckLoanApprove == true)
+                {
+                   // debugger;
+                    ClearFields();
+                    FieldsEnabled();
+                    FieldsDisabled();
+                    $('#btnESave').show();
+                    $('#btnEdit').hide();
+                    debugger;
+                    if ($("#drpBorrowerType").val() == 2) {
+                        $('#Type').val("G");
+                        $('#Type').prop("disabled", true);
+                    }
+                    else if ($("#drpBorrowerType").val() == 1) {       
+                        $('#Type').prop("disabled", false);
+                    }
+                }
+            });
+        });
+
+        $(function () {
+            //debugger;            
+            if ($('#Type').val() != 'D') {
+                $('#DirInfo').hide();
+            }
+            else if ($('#Type').val() == 'D') {
+                $('#DirInfo').show();
+            }
+        });
+
+        $(function () {
+            debugger;
+            if ($('#Type').val() == 'D') {
+                debugger;
+                var Id = $('#LIRId').val();
+                $.ajax({
+                    url: '/LoanApplication/GetEditCompanyDirectorInfo/',
+                    type: 'POST',
+                    data: { Id: Id },
+                    success: function (data) {
+                        debugger;
+                        if (data != null) {
+                            debugger;
+                            $('#drpCompany').val(data.CompanyId);
+                            $('#dtpJoin').val(ToJavaScriptDate(data.DateOfJoining));
+                            $('#CDRId').val(data.Id);
+                        }
+                    }
+                });
+            }
+        });
+
+        $(function () {
+            //debugger;
+            var countryid = $("#txtCountry").val();
+            var url = '@Url.Action("LoanStateList", "LoanApplication")';
+            $.post(url, { CountryId: countryid }, function (data) {
+                $.each(data, function (Key, item) {
+                    //debugger;
+                    $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+                });
+            });
+        });
+
+        $(function () {
+            //debugger;
+            var stateid = $("#StateId").val();
+            var url = '@Url.Action("GetCityList", "LoanApplication")';
+            $.post(url, { StateId: stateid }, function (data) {
+                $.each(data, function (Key, item) {
+                    //debugger;
+                    $("#selCity").append($("<option></option>").val(item.Value).html(item.Text));
+                });
+            });
+        });
+
+        //debugger;        
+        $("#txtCountry").change(function () {
+            //debugger;
+            var countryid = $("#txtCountry").val();
+            var url = '@Url.Action("LoanStateList", "LoanApplication")';
+
+            $.post(url, { CountryId: countryid }, function (data) {
+                //debugger;                
+                $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+
+                $.each(data, function (Key, item) {
+                    //debugger;
+                    $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+                });
+            });
+        });
+
+        $("#selState").change(function () {
+            //debugger;
+            var stateid = $("#selState").val();
+            var url = '@Url.Action("GetCityList", "LoanApplication")';
+
+            $.post(url, { StateId: stateid }, function (data) {
+                //debugger;                
+                $("#selCity").empty().append($("<option></option>").val(-1).html('Select'));
+
+                $.each(data, function (Key, item) {
+                    //debugger;
+                    $("#selCity").append($("<option></option>").val(item.Value).html(item.Text));
+                });
+            });
+        });
+
+        $(function () {
+            //debugger;
+            $('#Type').change(function () {
+                if ($('#Type').val() != 'D') {
+                    $('#DirInfo').hide();
+                }
+                else if ($('#Type').val() == 'D') {
+                    $('#DirInfo').show();
+                }
+            });
+        });
+
+        $(function () {
+            debugger;
+            $('#Type').change(function () {
+                if ($('#Type').val() == 'D') {
+                    debugger;
+                    var Pan = $('#ICM_Pan').val();
+                    $.ajax({
+                        url: '/LoanApplication/GetCompanyDirectorInfo/',
+                        type: 'POST',
+                        data: { Pan: Pan },
+                        success: function (data) {
+                            debugger;
+                            if (data != null) {
+                                debugger;
+                                $('#drpCompany').val(data.CompanyId);
+                                $('#dtpJoin').val(ToJavaScriptDate(data.DateOfJoining));
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        function FieldsDisabled() {     
+            $('#drpLoanType').attr("disabled", true);
+            //$('#drpCardType').attr("disabled", true);
+            $("#drpBorrowerType").attr("disabled", true);
+
+            $('#txtLoanNo').attr("readonly", true);
+            $('#txtLoanAmt').attr("readonly", true);
+
+            $('#dtpLoanDate :input').attr("readonly", true);
+        }
+
+        function FieldsEnabled() {
+            $('#drpMarStatus').attr("disabled", false);
+            $('#drpLoanType').attr("disabled", false);           
+            $('#drpTitle').attr("disabled", false);
+            $('#drpTitle').attr("disabled", false);
+            $('#drpNational').attr("disabled", false);
+            $('#Type').attr("disabled", false);
+            $('#drpSex').attr("disabled", false);
+            $('#dtpBirth').attr("disabled", false);
+            $('#drpAddType').attr("disabled", false);
+            $('#drpCompany').attr("disabled", false);
+            $('#txtCountry').attr("disabled", false); //Drop Down
+            $('#selState').attr("disabled", false);   //Drop Down
+            $('#selCity').attr("disabled", false);   //Drop Down
+
+            $('#txtLoanNo').attr("readonly", false);
+            $('#txtLoanAmt').attr("readonly", false);
+            $('#ICM_Pan').attr("readonly", false);
+            $('#txtFirstName').attr("readonly", false);
+            $('#txtMiddleName').attr("readonly", false);
+            $('#txtLastName').attr("readonly", false);
+            $('#txtAdd1').attr("readonly", false);
+            $('#txtAdd2').attr("readonly", false);
+            $('#txtAdd3').attr("readonly", false);
+            $('#txtPin').attr("readonly", false);
+            $('#txtLandNo').attr("readonly", false);
+            $('#txtMobileNo').attr("readonly", false);
+            $('#txtEmailId1').attr("readonly", false);
+            $('#txtEmailId2').attr("readonly", false);
+
+            $('#dtpJoin').attr("readonly", false);
+
+            $(function () { $('#dtpBirth :input').attr("readonly", false); })
+            $(function () { $('#dtpLoanDate :input').attr("readonly", false); })
+                  
+            if ($('#drpCardType').val() != '')
+            {
+                $('#drpCardType').attr("disabled", false);
+            }
+        }
+
+        function ClearFields() {
+            $("#ICM_Pan").val('');
+            $('#drpTitle').val('');
+            $('#Type').val('');
+            $('#drpCompany').val('');
+            $('#dtpJoin').val('');
+            $('#drpNational').val('');
+            $('#txtFirstName').val('');
+            $('#txtMiddleName').val('');
+            $('#txtLastName').val('');
+            $('#drpSex').val('');
+            $('#txtSex').val('');
+            $('#drpMarStatus').val('');
+            $('#ICM_DateOfBirth').val('');
+            $('#drpAddType').val('');
+            $('#txtAdd1').val('');
+            $('#txtAdd2').val('');
+            $('#txtAdd3').val('');
+            $('#txtCountry').val('');
+            $('#selState').empty();
+            $('#selCity').empty();
+
+            $('#txtPin').val('');
+            $('#txtLandCode').val('');
+            $('#txtLandNo').val('');
+            $('#txtMobileCode').val('');
+            $('#txtMobileNo').val('');
+            $('#txtEmailId1').val('');
+            $('#txtEmailId2').val('');
+            
+        };
+
+        $('#ICM_Pan').keypress(function (evt) {
+            debugger;
+            var NID = $('#ICM_Pan').val();
+
+            var charcode = (evt.which) ? evt.which : event.keyCode;
+            if (charcode != 8) {
+                var chr = ValidateNID(NID);
+                $('#ICM_Pan').val(chr);
+            }
+        });
+
+        $(function () {
+            $("#ICM_Pan").change(function () {
+                if ($("#txtPan1").val() == $("#ICM_Pan").val()) {
+                    alert('Please note both National ID are same.');
+                    $("#ICM_Pan").addClass("input-validation-error");
+                    $('#ICM_Pan').val('');
+                    return false;
+                }
+                else {           //1    
+                    var Pan = $('#ICM_Pan').val();
+                    var ApplicationNo = $('#txtLoanNo').val();
+                    var Id = $('#LIRId').val();
+                    debugger;
+                    $.ajax({
+                        url: '/LoanApplication/CheckSameGuarantorExistsForApplicant/',
+                        type: 'POST',
+                        data: { Pan: Pan, ApplicationNo: ApplicationNo, Id: Id },
+                        success: function (data) {   //2
+                            debugger;
+                            if (data == true) {
+                                alert('Please note this Guarantor already exists for this Applicant.');
+                                $("#ICM_Pan").addClass("input-validation-error");
+                                $('#ICM_Pan').val('');
+                            }
+                            else {
+                                debugger;
+                                $.ajax({
+                                    url: '/LoanApplication/GetGuarantorInfo/',
+                                    type: 'POST',
+                                    data: { Pan: Pan },
+                                    success: function (data) {
+                                        debugger;
+                                        if (data == "true") {
+                                            $('#drpTitle').val('');
+                                            $('#drpNational').val('');
+                                            $('#txtFirstName').val('');
+                                            $('#txtMiddleName').val('');
+                                            $('#txtLastName').val('');
+                                            $('#drpSex').val('');
+                                            $('#txtSex').val('');
+                                            $('#ICM_DateOfBirth').val('');
+                                            $('#drpAddType').val('');
+                                            $('#txtAdd1').val('');
+                                            $('#txtAdd2').val('');
+                                            $('#txtAdd3').val('');
+                                            $('#txtCountry').val('');
+                                            $('#selState').empty();
+                                            $('#selCity').empty();
+
+                                            $('#txtPin').val('');
+                                            $('#txtLandCode').val('');
+                                            $('#txtLandNo').val('');
+                                            $('#txtMobileCode').val('');
+                                            $('#txtMobileNo').val('');
+                                            $('#txtEmailId1').val('');
+                                            $('#txtEmailId2').val('');
+                                            $('#drpMarStatus').val('');
+                                        }
+                                        else {
+                                            debugger;
+                                            $('#ICM_DateOfBirth').val(ToJavaScriptDate(data.DateOfBirth));
+
+                                            $('#drpTitle').val(data.TitleId);
+                                            $('#drpAddType').val(data.AddressTypeId);
+                                            $('#drpNational').val(data.NationalityId);
+                                            $('#txtCountry').val(data.CountryId);
+
+                                            //debugger;
+                                            var countryid = $("#txtCountry").val(data.CountryId);
+
+                                            var url = '@Url.Action("LoanStateList", "LoanApplication")';
+                                            $("#selState").append($("<option></option>").val(data.StateId).html(data.State));
+
+                                            $('#selState').val(data.StateId);
+
+                                            var url = '@Url.Action("GetCityList", "LoanApplication")';
+                                            $("#selCity").append($("<option></option>").val(data.CityId).html(data.City));
+
+                                            $('#selCity').val(data.CityId);
+
+                                            $('#txtFirstName').val(data.FirstName);
+                                            $('#txtMiddleName').val(data.MiddleName);
+                                            $('#txtLastName').val(data.LastName);
+
+                                            $('#drpSex').val(data.Sex);
+                                            $('#txtSex').val(data.Sex);
+
+                                            $('#txtAdd1').val(data.Address1);
+                                            $('#txtAdd2').val(data.Address2);
+                                            $('#txtAdd3').val(data.Address3);
+                                            $('#txtPin').val(data.Pincode);
+                                            $('#txtLandCode').val(data.LandlineCode);
+                                            $('#txtLandNo').val(data.LandlineNo);
+                                            $('#txtMobileCode').val(data.MobileCode);
+                                            $('#txtMobileNo').val(data.MobileNo);
+                                            $('#txtEmailId1').val(data.EmailId1);
+                                            $('#txtEmailId2').val(data.EmailId2);
+                                            $('#drpMarStatus').val(data.MaritalStatusId);
+
+                                            $('#txtFirstName').attr("readonly", true);
+                                            $('#txtMiddleName').attr("readonly", true);
+                                            $('#txtLastName').attr("readonly", true);
+                                            $('#txtAdd1').attr("readonly", true);
+                                            $('#txtAdd2').attr("readonly", true);
+                                            $('#txtAdd3').attr("readonly", true);
+                                            $('#selCity').attr("readonly", true);
+                                            $('#txtPin').attr("readonly", true);
+                                            $('#txtLandNo').attr("readonly", true);
+                                            $('#txtMobileNo').attr("readonly", true);
+                                            $('#txtEmailId1').attr("readonly", true);
+                                            $('#txtEmailId2').attr("readonly", true);
+
+                                            $('#drpTitle').prop("disabled", true);
+                                            $('#drpNational').prop("disabled", true);
+                                            $('#drpSex').prop("disabled", true);
+                                            $('#drpAddType').prop("disabled", true);
+                                            $('#drpMarStatus').prop("disabled", true);
+                                            $('#txtCountry').prop("disabled", true);
+                                            $('#selState').prop("disabled", true);
+                                            $('#selCity').prop("disabled", true);
+                                            $('#ICM_DateOfBirth').attr("readonly", true);                                            
+                                        }
+                                    }
+                                });
+                            } //3    
+                        } //2
+                    }); //end ajax
+                }///end else 1
+            });
+        });
+
+        $(function () {
+            debugger;
+            $('#txtLoanNo').change(function () {
+                if ($('#txtHideAppNo').val() != $('#txtLoanNo').val()) {
+                    debugger;
+                    var Id = $('#Id').val();
+                    var LoanApplicationNo = $(this).val();
+                    var FinIntId = $('#drpFinInt').val();
+                    var FinIntBId = $('#drpfinIntBranch').val();
+                    $.ajax({
+                        url: '/LoanApplication/CheckLoanNoExists/',
+                        type: 'POST',
+                        data: { LoanApplicationNo: LoanApplicationNo, Id: Id, FinIntId: FinIntId, FinIntBId: FinIntBId },
+                        success: function (result) {
+                            var a = JSON.stringify(result);
+                            //debugger;
+
+                            if (a == "true") {
+                                alert('This Loan No is already Exists.');
+                                //debugger;
+                                $('#txtLoanNo').val('');
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        //***************** Validation *******************//
+        debugger;
+        var frmvalidator = new Validator("frmLoanApplication");
+        debugger;
+        frmvalidator.EnableMsgsTogether();
+        frmvalidator.addValidation("PanL", "req", "Please enter National ID  / TPIN");
+        frmvalidator.addValidation("LoanApplicationNo", "req", "Please enter Loan / Credit Application No");
+        frmvalidator.addValidation("LoanApplicationDate", "req", "Please enter Loan / Credit Application Date");
+        frmvalidator.addValidation("LoanTypesId", "req", "Please enter Loan Type");
+        frmvalidator.addValidation("LoanAmount", "req", "Please enter Loan / Credit Amount");
+        frmvalidator.addValidation("ICM.Pan", "req", "Please enter Guarantor National ID  / TPIN");
+        frmvalidator.addValidation("Type", "req", "Please enter Customer Type");
+        frmvalidator.addValidation("CDR.CompanyId", "req", "Please select Company",
+        "VWZ_IsListItemSelected(document.forms['frmLoanApplication'].elements['Type'],'D')");
+        frmvalidator.addValidation("CDR.DateOfJoining", "req", "Please enter Joining Date",
+        "VWZ_IsListItemSelected(document.forms['frmLoanApplication'].elements['Type'],'D')");
+        frmvalidator.addValidation("ICM.TitleId", "req", "Please select Title");
+        frmvalidator.addValidation("ICM.FirstName", "req", "Please enter First Name");
+        frmvalidator.addValidation("ICM.MiddleName", "req", "Please enter Middle Name");
+        frmvalidator.addValidation("ICM.LastName", "req", "Please enter Last Name");
+        frmvalidator.addValidation("ICM.Sex", "req", "Please select Gender");
+        frmvalidator.addValidation("ICM.MaritalStatusId", "req", "Please select Marital Status");
+        frmvalidator.addValidation("ICM.DateOfBirth", "req", "Please enter Birth Date");
+        frmvalidator.addValidation("CDM.AddressTypeId", "req", "Please select Address Type");
+        frmvalidator.addValidation("ICM.NationalityId", "req", "Please select Nationality");
+        frmvalidator.addValidation("CDM.Address1Cont", "req", "Please enter Address");
+        frmvalidator.addValidation("CDM.ContCountryId", "req", "Please select Country");   
+        frmvalidator.addValidation("selState", "dontselect=-1", "Please select Province");
+        frmvalidator.addValidation("selCity", "dontselect=-1", "Please select City");
+        frmvalidator.addValidation("CDM.Pincode", "req", "Please enter Pin Code");
+        frmvalidator.addValidation("CDM.MobileNo", "req", "Please enter Mobile No");
+        frmvalidator.addValidation("CDM.EmailId1", "req", "Please enter Email Id");
+    });
+</script>

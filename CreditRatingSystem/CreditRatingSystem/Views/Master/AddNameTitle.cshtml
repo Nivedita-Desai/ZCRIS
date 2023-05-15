@@ -1,0 +1,120 @@
+﻿@model CreditRatingModel.Model.Master
+
+@{
+    ViewBag.Title = "AddNameTitle";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<div class="row" style="height: 50px">
+</div>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Title Master</label>
+        </div>
+        <div class="panel-body">
+            <fieldset class="scheduler-border">
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label id="lblTitle" class="filter-col control-label label1">Title:</label>
+                            @Html.TextBoxFor(modelItem => modelItem.TitleName, new { @class = "form-control", @id="txtTitle" })
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="col-xs-5">
+                </div>
+                <div class="col-xs-4">
+                    <input type="button" id="btnSave" value="Save" />
+                </div>
+                <div class="col-xs-3">
+                    @Html.HiddenFor(model => model.Id)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $('#btnSave').click(function () {
+        debugger;
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        var TitleName = $("#txtTitle").val();
+
+        if (TitleName == "") {
+            alert("Please Enter Title");
+            return;
+        }
+        debugger;
+        $.ajax({
+
+            url: '/Master/AddNameTitle1/',
+            type: 'POST',
+            data: { Id: Id, TitleName: TitleName },
+            success: function (data) {
+                debugger;
+                var a = JSON.stringify(data);
+                if (Id == "") {
+                    if (a == "true") {
+                        alert('Record saved successfully!');
+                        $("#txtTitle").val('');
+                    }
+                }
+                else {
+                    if (a == "true") {
+                        alert('Data saved successfully!');
+                        window.location.href = '/Master/ViewNameTitle';
+                    }
+
+
+                }
+            }
+        });
+    });
+
+    $('#TitleName').focusout(function () {
+        debugger;
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        var TitleName = $("#TitleName").val();
+        debugger;
+        $.ajax({
+
+            url: '/Master/ChkNameTitle/',
+            type: 'POST',
+            data: { Id: Id, TitleName: TitleName },
+            success: function (data) {
+                debugger;
+                // var a = JSON.stringify(data);
+                if (Id == "") {
+                    debugger;
+                    if (data == "N") {
+                        alert('Title already Exits!');
+                        $("#TitleName").val('');
+                    }
+                }
+                else {
+                    if (data == "N") {
+                        alert('Title already Exits!');
+                        //window.location.href = '/Master/ViewUserType';
+                        $("#TitleName").val('');
+                    }
+                }
+            }
+        });
+    });
+
+</script>
+

@@ -1,0 +1,211 @@
+﻿@model CreditRatingModel.Model.Master 
+
+@{
+    ViewBag.Title = "AddUserType";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+@*<h2>AddUserType</h2>*@
+<div class="row" style="height:50px">
+
+        </div>
+
+
+
+<form id="frmAddUserType" method="post">
+<div class="container">
+         <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">UserType Master</label></div>
+               <div class="panel-body">
+                      <fieldset class="scheduler-border">
+                          <br />
+                                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                         @*   @Html.HiddenFor(model => model.Id)*@
+                            <div class="form-group">
+                                <label id="lblName" class="filter-col control-label label1">UserType :</label>
+                                 @Html.TextBoxFor(modelItem => modelItem.UserType, new { @class = "form-control",@onkeypress = "return AllowAlphabet(event)"})                                                           
+                            </div>
+                            </div>
+                        </div>
+                                 
+
+                            <div class="row">
+                                  <div class="col-xs-4"></div>
+                          <div class="col-xs-4">
+                                 <div class="form-group">
+                                <label id="lblShortName" class="filter-col control-label label1">Short Name:</label>
+                                @Html.TextBoxFor(modelItem => modelItem.UserTypeShortName, new { @class = "form-control",@onkeypress = "return AllowAlphabet(event)"})                                                           
+                            </div>
+                         </div>
+                                </div>
+                           </div>
+                            </fieldset>
+
+                     <div class="row">
+                                <div class="col-xs-5">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        @*<button id="btnSave" type="" name="save"  formmethod="post">Save</button>*@
+                                        <input type="button" id="btnSave" value="Save" />
+                                        
+                                    </div>
+                           <div class="col-xs-3">
+
+                              @Html.HiddenFor(model=>model.Id)
+                                    </div>
+                                </div>
+                    </div>
+                
+                     
+
+
+                   </div>
+      
+    </form>
+
+<script type="text/javascript" >
+
+    $('#btnSave').click(function () {
+
+        debugger;
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        var UserType = $("#UserType").val();
+        var UserTypeShortName = $("#UserTypeShortName").val();
+    
+        if (UserType == "") {
+            alert('Please Enter UserType.');
+            return;
+        }
+
+        if (UserTypeShortName =="") {
+            alert('Please Enter ShortName.');
+            return;
+        }
+
+
+
+    $.ajax({
+
+        url: '/Master/AddUserType1/',
+        type :'POST',
+        data: { Id: Id, UserType: UserType, UserTypeShortName: UserTypeShortName },
+        success: function (data) {
+            var a = JSON.stringify(data);
+            if (Id == "") {
+                debugger;
+                if (a == "true") {
+
+                    alert('Data saved successfully!');
+                    $("#UserType").val('');
+                    $("#UserTypeShortName").val('');
+                    //$("#CityId").val('');
+                }
+               
+
+            }
+            else {
+                if (a == "true") {
+                    alert('Data saved successfully!');
+                    window.location.href = '/Master/ViewUserType';
+                }
+               
+
+            }
+        }
+      });
+    });
+
+    
+    $('#UserType').focusout(function () {
+        debugger;
+        var UserType = $("#UserType").val();
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        $.ajax({
+            
+            url: '/Master/ChkUserType/',
+            type: 'POST',
+            data: { Id: Id, UserType: UserType },
+            success: function (data) {
+                //var a = JSON.stringify(data);
+                if (Id == "") {
+                    debugger;
+                    if (data == "N") {
+
+                        alert('User Type already Exits!');
+                        $("#UserType").val('');
+                      
+                        
+                    }
+
+
+                }
+                else {
+                    if (data == "N") {
+                        alert('User Type already Exits!');
+                        //window.location.href = '/Master/ViewUserType';
+                        $("#UserType").val('');
+                    }
+
+
+                }
+            }
+        });
+
+    });
+
+
+    $('#UserTypeShortName').focusout(function () {
+        debugger;
+        var UserTypeShortName = $("#UserTypeShortName").val();
+        var Id = $("#Id").val();
+        if ($("#Id").val() == "") {
+            Id = 0;
+        }
+        $.ajax({
+
+            url: '/Master/ChkUserTypeShortName/',
+            type: 'POST',
+            data: { Id: Id, UserTypeShortName: UserTypeShortName },
+            success: function (data) {
+               // var a = JSON.stringify(data);
+                if (Id == "") {
+                    debugger;
+                    if (data == "N") {
+
+                        alert('Short Name already Exits!');
+                        $("#UserTypeShortName").val('');
+
+
+                    }
+
+
+                }
+                else {
+                    if (data == "N") {
+                        alert('Short Name already Exits!');
+                       // window.location.href = '/Master/ViewUserType';
+                        $("#UserTypeShortName").val('');
+                    }
+
+
+                }
+            }
+        });
+
+    });
+
+
+</script>
+
+
+
+
+          

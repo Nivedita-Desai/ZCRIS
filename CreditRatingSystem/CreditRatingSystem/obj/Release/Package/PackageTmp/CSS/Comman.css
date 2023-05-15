@@ -1,0 +1,245 @@
+﻿body {
+}
+
+.textbox {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+    /*height:20px;
+ width:50px;*/
+}  
+ 
+
+.label1
+{
+     display: block;
+            font: 16px Arial;
+            color: #000;
+            margin-bottom: 15px;
+}
+
+
+
+.label1:after 
+{ content:  " *" ;
+  color:red;
+}
+
+.label2
+{
+     display: block;
+            font: 18px Arial;
+            color: #000;
+            margin-bottom: 15px;
+}
+
+.labelHead
+{
+     display: block;
+            font: bold 18px Arial;
+            color: #fff;
+            margin-bottom: 15px;
+            text-align:center; 
+            height:7px;
+
+}
+
+.ErrorMessage
+{
+     display: block;
+            font: 15px Arial;
+            color: red;
+            margin-bottom: 15px;
+}
+
+.row-error::after
+{
+     display: block;
+            font: 15px Arial;
+            color: red;
+            margin-bottom: 15px;
+}
+/*input[type="text"]
+{
+            display: block;
+            box-sizing: border-box;
+            /*width: 150px;
+            height:30px;*/
+            /*padding: 10px;
+            font-size: 16px;
+            border-radius: 3px;
+             font: arial;
+            border: 2px solid #27413E;
+        }*/
+ /*input[type="button"],*/
+         input[type="submit"] {
+            background: #012236;
+            padding: 8px 20px 8px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font: normal 50px Arial;
+            border: 1px solid #257C9E;
+           font-size: 16px;
+            width: auto; /*150px;*/
+            height:35px;
+            text-transform:capitalize;
+        }
+
+    input[type="button"] {
+            background: #012236;
+            padding: 8px 20px 8px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font: normal 50px Arial;
+            border: 1px solid #257C9E;
+            font-size: 16px;
+            width: auto; /*150px;*/
+            height:35px;
+        }
+        input[type="reset"] {
+            background: #012236;
+            padding: 8px 20px 8px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font: normal 50px Arial;
+            border: 1px solid #257C9E;
+            font-size: 16px;
+            width: auto; /*150px;*/
+            height:35px;
+             text-transform:capitalize;
+        }
+
+         button[type="submit"] {
+            background: #012236;
+            padding: 8px 20px 8px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font: normal 50px Arial;
+            border: 1px solid #257C9E;
+            font-size: 16px;
+            width: auto; /*150px;*/
+            height:35px;
+        }
+
+          button[type="reset"] {
+            background: #012236;
+            padding: 8px 20px 8px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font: normal 50px Arial;
+            border: 1px solid #257C9E;
+            font-size: 16px;
+            width: auto; /*150px;*/
+            height:35px;
+        }
+fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width:auto;
+        padding:0 10px;
+        border-bottom:none;
+    }
+   
+
+    /*grid Css*/
+
+        /*Here we will add css for style webgrid*/
+        .webgrid-table {
+            
+        }
+        
+        .webgrid-header {
+            display: none;
+            visibility: hidden;
+        }
+
+        .webgrid-hide
+        {
+             /*visibility: hidden;*/
+            display: none;
+        }
+
+        .webgrid-footer {
+            /*visibility:hidden;*/
+            display: none;
+        }
+
+        .form-style-10 {
+            width: 1200px;
+            padding: 30px;
+            margin: 40px auto;
+            background: #FFF;
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+            -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+            -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+        }
+
+            .form-style-10 h1 {
+                background: #012236;
+                padding: 20px 30px 15px 30px;
+                margin: -30px -30px 30px -30px;
+                border-radius: 10px 10px 0 0;
+                -webkit-border-radius: 10px 10px 0 0;
+                -moz-border-radius: 10px 10px 0 0;
+                color: #fff;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+                font: normal 30px 'Bitter', serif;
+                -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+                -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+                box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+                border: 1px solid #257C9E;
+            }
+
+        .webgridHSize {
+            position: inherit;
+        }
+
+        .webgrid-row-style {
+            text-align: center;
+        }
+
+        .webgrid-fixColumn {
+         min-width:200px;
+        }
+
+        .filterable {
+            margin-top: 15px;
+        }
+
+            .filterable .panel-heading .pull-right {
+                margin-top: -20px;
+            }
+
+            .filterable .filters input[disabled] {
+                background-color: transparent;
+                border: none;
+                cursor: auto;
+                box-shadow: none;
+                padding: 0;
+                height: auto;
+                /*width:50%;*/
+            }
+
+                .filterable .filters input[disabled]::-webkit-input-placeholder {
+                    color: #333;
+                }
+
+                .filterable .filters input[disabled]::-moz-placeholder {
+                    color: #333;
+                }
+
+                .filterable .filters input[disabled]:-ms-input-placeholder {
+                    color: #333;
+                }

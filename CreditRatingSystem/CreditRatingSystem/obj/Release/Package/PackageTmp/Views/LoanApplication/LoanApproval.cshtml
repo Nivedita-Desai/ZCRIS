@@ -1,0 +1,250 @@
+﻿@model CreditRatingModel.Model.LoanApplication
+@using CreditRatingModel.Model;
+
+@{
+    ViewBag.Title = "Loan Approval";
+    @Html.AntiForgeryToken()
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<script src="@Url.Content("~/js/ValidationJavaScript.js")"></script>
+<script src="@Url.Content("~/js/gen_validatorv4.js")"></script>
+
+<html>
+<body>
+    <div>
+        <div class="row" style="height: 50px"></div>
+    </div>
+    @using (Html.BeginForm("LoanApprovalUpdate", "LoanApplication", FormMethod.Post, new { id = "frmLoanApproval" }))
+    {  
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <label id="lblHeading" class="filter-col control-label labelHead">Loan / Credit Approval</label>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <label id="lblBType" class="filter-col control-label label1">Borrower Type</label>
+                            @Html.DropDownListFor(modelItem => modelItem.BorrowerTypeId, ViewBag.BorrowerType as SelectList, "Select Borrower Type", new { @class = "form-control", @id = "drpBorrowerType", @disabled = "disabled" })
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblLoanDetails" class="filter-col control-label label2">Loan / Credit Details</label>
+                        </legend>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblFinIntName" class="filter-col control-label label2">Financial Institute Name</label>
+                                    @Html.TextBoxFor(model => model.FinancialInstitutionId, new { @id = "drpFinInt", @class = "form-control myclass", @readonly = "true" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblFinIntBrName" class="filter-col control-label label2">Financial Institute Branch Name</label>
+                                    @Html.TextBoxFor(model => model.FinancialInstitutionBranchId, new { @id = "drpfinIntBranch", @class = "form-control myclass", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>               
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblPan" class="filter-col control-label label1">National ID / TPIN</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblAppName" class="filter-col control-label label2">Applicant Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.PanL, new { @class = "form-control myclass", @readonly = "false", @onkeypress = "return isNRCNumber(event)", maxlength = "13", @id = "txtPan1" })
+                                    @Html.TextBoxFor(modelItem => modelItem.Id, new { @id = "Id", @hidden = "hidden" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                @Html.TextBoxFor(modelItem => modelItem.ApplicantName, new { @class = "form-control", @readonly = "true", @id = "txtAppName" })
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblLoaNno" class="filter-col control-label label1">Loan Application No</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <label id="lblLoanDt" class="filter-col control-label label1">Loan Application Date</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.LoanApplicationNo, new { @class = "form-control", @readonly = "false", @onkeypress = "return isNumber(event)", maxlength = "15", @id = "txtLoanNo" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <span id="dtpLoanDate">
+                                        @Html.EditorFor(modelItem => modelItem.LoanApplicationDate, new { @type = "date" }) </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label id="lblLoanType" class="filter-col control-label label1">Loan Type</label>
+                            </div>
+                             <div class="col-xs-4">
+                                <label id="lblCardType" class="filter-col control-label label1">Card Type</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <label id="lblLoanAmt" class="filter-col control-label label1">Loan Amount</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.LoanTypesId, ViewBag.LoanType as SelectList, "Select Loan Type", new { @class = "form-control", @id = "drpLoanType", @disabled = "disabled" })
+                                    @Html.TextBoxFor(modelItem => modelItem.LoanTypesId, new { @id = "txtLoanType",  @hidden = "hidden"})
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.CardTypeId, ViewBag.CardType as SelectList, "Select Card Type", new { @class = "form-control", @id = "drpCardType", @disabled = "disabled" })                                                                        
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(modelItem => modelItem.LoanAmount, new { @class = "form-control", @onkeypress = "return decimalOnly(event)", @id = "txtLoanAmt", maxlength = "20", @readonly = "false" })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <label id="lblLoanStatus" class="filter-col control-label label2">Loan Status</label>
+                        </legend>
+
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <label id="lblSex" class="filter-col control-label label1">Loan Status</label>
+                            </div>
+                            <div class="col-xs-3" id="DirLS" hidden="hidden">
+                                <label id="lblMaritalSt" class="filter-col control-label label1">Reason for Rejected</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.LoanStatus, new List<SelectListItem> { new SelectListItem { Text = "Approved", Value = "A" }, new SelectListItem { Text = "Rejected", Value = "R" } }, "Select Loan Status", new { id = "drpLoanStatus", @class = "form-control dropdown" })
+                                    @Html.TextBoxFor(modelItem => modelItem.LoanStatus, new { @id = "txtLoanStatus", @hidden = "hidden" })
+                                </div>
+                            </div>
+                            <div class="col-xs-3" id="DirLStatus" hidden="hidden">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(modelItem => modelItem.ReasonId, ViewBag.Reason as SelectList, "Select Reason", new { @class = "form-control", @id = "drpReason" })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <h4 style="text-align: center">
+                                    <button id="btnLoanApp" type="submit" name="Save">Save</button>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    }
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        DisplayReason();
+
+        var FinIntid = '@(ViewBag.Financial_Id)';                                                          //Financial Comp Id
+        var FinIntBId = '@(ViewBag.FinancialBr_Id)';                                                   //Financial Comp Branch Id
+        var strFinName = '@(ViewBag.FinancialInstituteName)';                              //Financial Comp Name
+        var strFinBranchName = '@(ViewBag.FinancialInstituteBranchName)';     //Financial Comp Branch Name
+        
+        $('#drpFinInt').val(strFinName);
+        $('#drpfinIntBranch').val(strFinBranchName);
+
+        if ($('#drpLoanStatus').val != '')
+        {
+            debugger;          
+            CheckLoanApprove();
+        }
+        
+        function CheckLoanApprove() {
+            var Id = $("#Id").val();
+            var StrType = "L";            
+            debugger;
+            $.ajax({
+                url: '/LoanApplication/CheckLoanApproved/',
+                type: 'POST',
+                data: { Id: Id, StrType: StrType },
+                success: function (data) {
+                    debugger;                    
+                    if (data != 0)
+                    {   
+                        $('#drpLoanStatus').attr("disabled", true);                        
+                        $('#btnLoanApp').prop('disabled', true);
+                        alert("Please note you cannot edit the data as Loan is Disbursed");
+                    }
+                    else
+                    {
+                        $('#drpLoanStatus').attr("disabled", false);
+                        $('#btnLoanApp').prop('disabled', false);
+                    }
+                },
+                error: function (data)
+                {
+                    alert("No Data found");
+                }
+            });            
+        }
+
+        function DisplayReason()
+        {
+            if ($('#drpLoanStatus').val() != 'R') {
+                $('#DirLS').hide();
+                $('#DirLStatus').hide();
+            }
+            else if ($('#drpLoanStatus').val() == 'R') {
+                $('#DirLS').show();
+                $('#DirLStatus').show();
+            }
+        };
+
+        $('#drpLoanStatus').change(function () {
+            DisplayReason();      
+        });
+
+        $(function () { $('#dtpLoanDate :input').attr("readonly", "true"); });              
+
+    })
+
+    //***************** Validation *******************//
+            debugger;
+            var frmvalidator = new Validator("frmLoanApproval");
+            debugger;
+            frmvalidator.EnableMsgsTogether();
+            frmvalidator.addValidation("LoanStatus", "req", "Please Select Loan Status");
+            frmvalidator.addValidation("ReasonId", "req", "Please Select Reason for Rejected",
+              "VWZ_IsListItemSelected(document.forms['frmLoanApproval'].elements['drpLoanStatus'],'R')");
+              
+</script>

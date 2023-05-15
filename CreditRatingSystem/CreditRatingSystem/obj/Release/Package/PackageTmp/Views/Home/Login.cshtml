@@ -1,0 +1,365 @@
+﻿@model CreditRatingModel.Model.login
+@{
+    ViewBag.Title = "Login";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+	<link rel="stylesheet" href="~/Content/style.css" type="text/css" />
+	<link rel="stylesheet" href="~/Content/reset.css" type="text/css" />
+    @*<link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
+        
+    @*<link href="~/CSS/login.css" rel="stylesheet" id="bootstrap-css">*@
+    @*<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">*@
+    
+   <link href="~/CSS/font-awesome.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="~/js/gen_validatorv4.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body style="background-color:#334e5d">
+    <div class="error_msg">@ViewBag.LoginError</div>
+    @using (@Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "frmLogin" }))
+         {
+<div id="wrapper">
+	<div id="loginbg">
+        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+    	<div class="fldtext centeralign">
+    		<h1 class="whitebigheading">Credit Rating System</h1>
+           @* <h1 class="whitebigheading">CREDIT RATING SYSTEM</h1>*@
+        </div>
+        
+        <div class="fldtext graybg">
+    		<div class="fldtext centeralign">
+        		<h1 class="whitemedheading"><img src="~/Content/images/tick.png" width="25"/>LOGIN PAGE</h1>
+        	</div>
+    		<div class="fldtext centeralign">
+            	<div class="fld">
+                    @Html.TextBoxFor(a => a.USERNAME, new { style = "", @class = "form-control inputfld", @placeholder = "User ID", @id="LoginUsername", @name="LoginUsername" })
+                    @*<input type="text" class="inputfld" placeholder="User ID"/>*@</div> 
+        	</div>
+        	<div class="fldtext centeralign">
+            	<div class="fld">
+                    @Html.PasswordFor(a => a.PASSWORD, new { style = "", @class = "form-control inputfld", @placeholder = "Password", @id = "LoginPasswd", @name = "LoginPasswd" })
+                    @*<input type="text" class="inputfld" placeholder="Password"/>*@</div> 
+        	</div>
+         	<div class="btnarea centeralign">
+        		<div class="floatleft"><a><button type="submit" width="20" class="blue_button">LOGIN&nbsp;</button></a></div>
+            	<div class="floatright"><a><button type="reset" width="20" class="blue_button"> RESET &nbsp;</button></a></div> 
+        	</div>
+            <div class="fldtext centeralign">
+                @*Nivedita 18-01-2022*@
+        		<!--<h1 class="whitesmlheading">-->@*<img src="~/Content/images/tick.png" width="25"/>*@<!--<a href="#" class="whitelink">REGISTER HERE</a></h1>-->
+        	</div>
+        </div>
+        @**@
+    </div>
+    @*<div class="fldtext centeralign">
+            <p> &nbsp;</p>
+    		<h1 class="whitebigheading">by <i>Softlabs Group</i></h1>
+        </div>*@
+</div>
+    }
+    <script type="text/javascript">
+        var ErrorMsg = "";
+
+        $(document).ready(function () {
+
+
+            $('#RegUsername').change(function () {
+                debugger;
+                var USERNAME = $("#RegUsername").val();
+
+
+                var url = '/Home/doesUserNameExist';
+                $.get(url, { UserName: USERNAME }, function (data) {
+                    debugger;
+                    //alert(USERNAME);
+                    if (data != USERNAME) { alert(data); }
+
+                    // ErrorMsg = data;
+                });
+
+            });
+
+            $('#btnSave').click(function () {
+
+                var frmvalidator = new Validator("frmRegistration");
+
+                frmvalidator.clearAllValidations();
+                frmvalidator.EnableMsgsTogether();
+                frmvalidator.addValidation("Name", "req", "Please enter name");
+                frmvalidator.addValidation("RegUsername", "req", "Please enter username");
+                frmvalidator.addValidation("RegPASSWORD", "req", "Please enter password");
+                frmvalidator.addValidation("RegPASSWORD", "neelmnt=RegUsername", "The password should not be same as username");
+                frmvalidator.addValidation("ConfirmPasswd", "req", "Please enter confirm password");
+                frmvalidator.addValidation("ConfirmPasswd", "eqelmnt=RegPASSWORD", "The confirmed password is not same as password");
+                //frmvalidator.addValidation("UserTypeID", "req", "Please select user type");
+                frmvalidator.addValidation("btnSave", "ViewBagError", ErrorMsg);
+
+                if (ErrorMsg == "Invalid Password") {
+                    frmvalidator.addValidation("btnSave", "ViewBagError", "Invalid Password");
+                }
+
+            });
+
+            //Nivedita 18-01-2022
+            //$('#LoginPasswd').keyup(function () {
+
+            //    var USERNAME = $("#LoginUsername").val();
+            //    var PASSWORD = $("#LoginPasswd").val();
+
+            //    var url = '/Home/LoginValidation';
+            //    $.get(url, { username: USERNAME, passwd: PASSWORD }, function (data) {
+            //        debugger;
+            //        ErrorMsg = data;
+            //    });
+
+            //});
+
+            $('#btnLogin').click(function () {
+
+                var frmvalidatorLogin = new Validator("frmLogin");
+
+                frmvalidatorLogin.clearAllValidations();
+                frmvalidatorLogin.EnableMsgsTogether();
+
+                frmvalidatorLogin.addValidation("LoginUsername", "req", "Please enter Username");
+                frmvalidatorLogin.addValidation("LoginPasswd", "req", "Please enter Password");
+                frmvalidatorLogin.addValidation("btnLogin", "ViewBagError", ErrorMsg);
+
+                //ErrorMsg="";
+                // frmvalidatorLogin.setAddnlValidationFunction("CheckIsError");
+
+            });
+
+        });
+    @*</script>*@
+
+
+        //<script type="text/javascript">
+        function varticalCenterStuff() {
+
+            var windowHeight = $(window).height();
+            var loginBoxHeight = $('.login-box').innerHeight();
+            var welcomeTextHeight = $('.welcome-text').innerHeight();
+            var loggedIn = $('.logged-in').innerHeight();
+            var RegisterBoxHeight = $('.register1-box').innerHeight();
+
+            var mathLogin = (windowHeight / 2) - (loginBoxHeight / 2);
+            var mathWelcomeText = (windowHeight / 2) - (welcomeTextHeight / 2);
+            var mathLoggedIn = (windowHeight / 2) - (loggedIn / 2);
+            var mathRegister = (windowHeight / 2) - (RegisterBoxHeight / 2);
+
+            $('.login-box').css('margin-top', mathLogin);
+            $('.welcome-text').css('margin-top', mathWelcomeText);
+            $('.logged-in').css('margin-top', mathLoggedIn);
+            $('.register1-box').css('margin-top', mathRegister);
+        }
+        $(window).resize(function () {
+            varticalCenterStuff();
+        });
+        varticalCenterStuff();
+
+        // awesomeness
+        $('.btn-login').click(function () {
+            $(this).parent().fadeOut(function () {
+                //debugger;
+                $('.login-box').fadeIn();
+
+            })
+        });
+
+        $('.btn-register').click(function () {
+            $(this).parent().fadeOut(function () {
+                //debugger;
+                $('.register1-box').fadeIn();
+            })
+        });
+
+
+        $('.btn-cancel-action').click(function (e) {
+            e.preventDefault();
+            //debugger;
+
+            //   $(this).parent().parent().parent().fadeOut(function () {
+            //$(this).offsetParent().fadeOut(function () {
+            //debugger;
+            $('.login-box').css('display', 'none')
+            $('.register1-box').css('display', 'none')
+            $('.welcome-text').fadeIn();
+            // var url = '/Home/Login'
+            //$.get(url);
+            //$.ajax({
+            //    url: '/Home/Login',
+            //    type: 'GET'
+            //});
+            // });
+        });
+
+
+        // $('.btn-cancel-action').click(function (e) {
+        // e.preventDefault();
+        //$(this).parent().parent().parent().fadeOut(function () {
+        // $('.welcome-text').fadeIn();
+        //debugger;
+        // $.ajax({
+        // url:'/Home/Login',
+        // type:'GET'
+        // });
+        //$.post(url);
+        // });
+        //});
+
+
+
+
+        //$('.btn-login-submit').click(function (e) {
+        //    e.preventDefault();
+
+        //    var element = $(this).parent().parent().parent();
+
+        //    var usernameEmail = $('#a => a.USERNAME').val();
+        //    var password = $('#a => a.PASSWORD').val();
+
+
+        //    if (usernameEmail == '' || password == '') {
+
+        //        // wigle and show notification
+        //        // Wigle
+        //        var element = $(this).parent().parent().parent();
+        //        $(element).addClass('animated rubberBand');
+        //        $(element).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+        //            $(element).removeClass('animated rubberBand');
+        //        });
+
+        //        // Notification
+        //        // reset
+        //        $('.notification.login-alert').removeClass('bounceOutRight notification-show animated bounceInRight');
+        //        // show notification
+        //        $('.notification.login-alert').addClass('notification-show animated bounceInRight');
+
+        //        $('.notification.login-alert').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+        //            setTimeout(function () {
+        //                $('.notification.login-alert').addClass('animated bounceOutRight');
+        //            }, 2000);
+        //        });
+        //    } else {
+        //        $(element).fadeOut(function () {
+        //            $('.logged-in').fadeIn();
+
+
+        //        });
+        //    }//endif
+        //});
+
+
+        $('.btn-logout').click(function () {
+            $('.logged-in').fadeOut(function () {
+                $('.welcome-text').fadeIn();
+                // Notification
+                $('.notification.logged-out').removeClass('bounceOutRight notification-show animated bounceInRight');
+                // show notification
+                $('.notification.logged-out').addClass('notification-show animated bounceInRight');
+
+                $('.notification.logged-out').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    setTimeout(function () {
+                        $('.notification.logged-out').addClass('animated bounceOutRight');
+                    }, 2000);
+                });
+
+            });
+        });
+
+        var ucase = new RegExp("[A-Z]+");
+        var lcase = new RegExp("[a-z]+");
+        var num = new RegExp("[0-9]+");
+
+        //$("input[type=password]").keyup(function () {
+        $("#RegPASSWORD").keyup(function () {
+            debugger;
+            var Count = 0;
+            if ($("#RegPASSWORD").val().length >= 8) {
+                $("#8char").removeClass("glyphicon-remove");
+                $("#8char").addClass("glyphicon-ok");
+                $("#8char").css("color", "#00A41E");
+
+            } else {
+                $("#8char").removeClass("glyphicon-ok");
+                $("#8char").addClass("glyphicon-remove");
+                $("#8char").css("color", "#FF0004");
+                Count = Count + 1;
+            }
+
+            if (ucase.test($("#RegPASSWORD").val())) {
+                $("#ucase").removeClass("glyphicon-remove");
+                $("#ucase").addClass("glyphicon-ok");
+                $("#ucase").css("color", "#00A41E");
+
+            } else {
+                $("#ucase").removeClass("glyphicon-ok");
+                $("#ucase").addClass("glyphicon-remove");
+                $("#ucase").css("color", "#FF0004");
+                Count = Count + 1;
+            }
+
+            if (lcase.test($("#RegPASSWORD").val())) {
+                $("#lcase").removeClass("glyphicon-remove");
+                $("#lcase").addClass("glyphicon-ok");
+                $("#lcase").css("color", "#00A41E");
+
+            } else {
+                $("#lcase").removeClass("glyphicon-ok");
+                $("#lcase").addClass("glyphicon-remove");
+                $("#lcase").css("color", "#FF0004");
+                Count = Count + 1;
+            }
+
+            if (num.test($("#RegPASSWORD").val())) {
+                $("#num").removeClass("glyphicon-remove");
+                $("#num").addClass("glyphicon-ok");
+                $("#num").css("color", "#00A41E");
+
+            } else {
+                $("#num").removeClass("glyphicon-ok");
+                $("#num").addClass("glyphicon-remove");
+                $("#num").css("color", "#FF0004");
+                Count = Count + 1;
+            }
+
+            if (Count > 0) {
+                //return false;
+                ErrorMsg = "Invalid Password";
+            }
+            else {
+                ErrorMsg = "";
+            }
+
+
+        });
+
+        $("#ConfirmPasswd").keyup(function () {
+
+
+            if ($("#RegPASSWORD").val() == $("#ConfirmPasswd").val()) {
+                $("#pwmatch").removeClass("glyphicon-remove");
+                $("#pwmatch").addClass("glyphicon-ok");
+                $("#pwmatch").css("color", "#00A41E");
+            } else {
+                $("#pwmatch").removeClass("glyphicon-ok");
+                $("#pwmatch").addClass("glyphicon-remove");
+                $("#pwmatch").css("color", "#FF0004");
+                Count = Count + 1;
+            }
+
+
+        });
+    </script>
+</body>
+</html>

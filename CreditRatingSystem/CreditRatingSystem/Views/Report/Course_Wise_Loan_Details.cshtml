@@ -1,0 +1,96 @@
+﻿@model CreditRatingModel.Model.ReportSS 
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";   
+    
+ }
+<div class="row" style="height:50px">
+        </div>
+        
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading"> <label id="lblHeading" class="filter-col control-label labelHead">Course Wise Loan Details</label>  </div>
+                <div class="panel-body">
+                     <fieldset class="scheduler-border">
+            
+                         <br/>
+                    <div class="row">
+                 
+                        <div class="col-xs-6">
+                   
+                            <div class="form-group">
+                                <label id="lblcourseID" class="filter-col control-label label1">Select Course:</label>
+                          @Html.DropDownListFor(modelItem => modelItem.courseId, ViewBag.Course as SelectList, "", new { @class = "form-control dropdown" })
+                                                                                        
+                            </div>
+                        </div>
+                          <div class="col-xs-6">
+                                <label id="lblAYID" class="filter-col control-label label1">Select Academic Year:</label>
+                          @Html.DropDownListFor(modelItem => modelItem.AYID, ViewBag.AY_ID as SelectList, "", new { @class = "form-control dropdown" })
+
+
+                                    </div>
+                    </div>
+                                   </fieldset> 
+                      <div class="row">
+                                <div class="col-xs-5">
+                                    </div>
+                                    <div class="col-xs-4">
+                                     
+                                        <input type="button" id="btnShow" value="Generate Report" />
+                                        
+                                    </div>
+                           <div class="col-xs-3">
+                               @Html.HiddenFor(model => model.Id)
+
+                                    </div>
+                                </div>
+                </div>
+            </div>
+            </div>
+<script type="text/javascript">
+
+    //$("#NID").change(function () {
+    //    debugger;
+    //    var NID = $("#NID").val();
+    //    $.ajax({
+        
+    //        url: '/Report/CheckNID',
+    //        type: 'POST',
+    //        data: { NID: NID },
+    //        success: function (data) {
+    //            debugger;
+    //           // var a = JSON.stringify(data);
+    //            if (data == "False") {
+    //                alert("Invalid National Registration Code");
+    //            }
+              
+
+    //        }
+    //    });
+
+    //});
+
+
+
+
+    $("#btnShow").click(function()
+    {
+        var courseID = $("#courseId").val();
+        var YearID = $("#AYID").val();
+        debugger;
+        //$.ajax({
+        //    url: '/Report/Student_Wise_Lone_Details/',
+        //    type: 'POST',
+        //    data: { NID: NID},
+        //    success: function (data) {
+        //        var a = JSON.stringify(data);
+        //    }
+
+        //});
+        var url = '@Url.Action("Course_Wise_Loan_Details", "Report")' + '?courseID=' + courseID + '&YearID=' + YearID;
+        window.open(url);
+
+    });
+
+    </script>
+

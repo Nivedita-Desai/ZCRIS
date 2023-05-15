@@ -1,0 +1,645 @@
+﻿@model CreditRatingModel.Model.EmployerMaster_Metadata
+
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+@*<script src="@Url.Content("~/js/ValidationJavaScript.js")"></script>*@
+@*<script type="text/javascript" src="~/Images/dialog_cancel.png"></script>*@
+
+<style type="text/css">
+
+    .removediv {
+
+    }
+
+</style>
+
+
+<script >
+    function strd(id) {
+
+        //alert(id);
+            debugger;
+            var div = $('#reDiv');            
+            $("div").remove(".remove_"+id);
+    }
+</script>
+
+<div class="container">
+    <div class="panel panel-primary ">
+        <div class="panel-heading">
+            <label id="lblHeading" class="filter-col control-label labelHead">Employer Details </label>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("Employer", "EmployerMaster", FormMethod.Post,
+                            new { enctype = "multipart/form-data", id = "Employer" }))
+            {
+                      
+                <div id="tabs">
+
+                    <ul>
+                        <li>
+                            <a href="#tabs-1" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Entry</a>
+                        </li>
+                        <li>
+                            <a href="#tabs-2" data-toggle="tab" style="font-size: small; color: #000000; font-weight: bold">Contact Info</a>
+                        </li>
+
+                    </ul>
+                    <div id="tabs-1" class="tab-pane">
+
+                        <div id="cn" class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+
+
+
+                                    <label id="lblCN" class="filter-col control-label label1">Employer Name</label>
+
+
+                                    @Html.TextBoxFor(model => model.EmployerName, new { @class = "form-control", @onkeypress = "return  AllowAlphabet(event)", @maxlength = "100" })
+
+                                </div>
+                            </div>
+                        </div>
+                     
+                        <div  class="row">
+                      
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label id="lblID" class="filter-col control-label label1">Employer Division </label>
+                                        @Html.TextBoxFor(model => model.EmployerType, new {  @class = "form-control" })
+
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label id="" class="filter-col control-label label1">Employer Branch </label>
+                                        @Html.TextBoxFor(model => model.EmployerBranch, new {  @class = "form-control" })
+
+                                    </div>
+                                </div>
+                        </div>
+                        <div id="ic" class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="" class="filter-col control-label label1">Incorporation Date</label>
+                                    @Html.TextBoxFor(model => model.IncorporationDt, new { @type = "date", @class = "form-control" })
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblCD" class="filter-col control-label label1">Commencement Date</label>
+                                    @Html.TextBoxFor(model => model.CommencementDt, new { @type = "date", @class = "form-control" })
+
+                                </div>
+                            </div>
+
+                        </div>
+                         <div class="row" >
+                            <div class="col-xs-4">
+                            </div>
+                           <div class="col-xs-5">
+                                 <input type="button" id="btnNext" value="Next" /> 
+                            </div>
+                           <div class="col-xs-3">
+                            </div>
+
+                      </div>
+
+@*                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+
+                                         <input type="button" id="btnAdddiv" value="Add division And Branch" />
+                                        <input type="button" id="btnreDiv" value="Remove" style="visibility:hidden" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+
+
+@*                        <div id="showdiv">
+
+                        </div>*@
+
+
+                        @*   <div class="row">
+		<input type="hidden" name="count" value="1" />
+        <div class="control-group col-xs-12" id="fields">
+          
+            <div class="controls app" id="profs"> 
+
+                <form class="input-append">
+                    <div id="field" class="row">
+                        <div class="col-xs-4">
+                                <div class="form-group">
+                                @(Html.TextBoxFor(model => model.EmployerTypes, new { @id = "txtOtherDiv", @class = "form-control input-sm" })) 
+                                    </div></div>
+                        <div class="col-xs-4">
+                                <div class="form-group">
+                                        @(Html.TextBoxFor(model => model.EmployerBranches, new { @id = "txtOtherDiv", @class = "form-control input-sm",@style="width:250px;height:34px;border: 1px solid #ccc;" })) <button id="b1" class="btn add-more " style="width:33px;height:35px; color: #fff; background-color: #4AA02C;border-color: #ac2925;" type="button">+</button>
+                                   
+
+
+
+</div></div>
+                                </div>
+                </form>
+         
+         
+            </div>
+        </div>
+      </div>*@
+                        @* <div id="" class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label id="lblPAN" class="filter-col control-label label1">National Registration Code </label>
+                                            @Html.TextBoxFor(model => model.PanNo, new {@class = "form-control", @onkeypress = "return isNRCNumber(event)", @maxlength = "13" })
+                                      
+                                        </div>
+
+                                    </div>
+                                </div>*@
+
+
+
+
+                    </div>
+
+
+                    <div id="tabs-2" class=" tab-pane">
+                        <div id="Address" class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+
+
+                                    <label class="filter-col control-label label1">Address </label>
+                                    @Html.TextBoxFor(model => model.Address1, new { @class = "form-control", @maxlength = "100" ,@onblur="return isAddress(this)"})
+
+                                    @Html.TextBoxFor(model => model.Address2, new { @class = "form-control", @maxlength = "100" })
+
+                                    @Html.TextBoxFor(model => model.Address3, new { @class = "form-control", @maxlength = "100" })
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div id="CID" class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+
+
+
+                                    <label id="lblC" class="filter-col control-label label1">Country</label>
+                                    @Html.DropDownListFor(model => model.CountryId, ViewBag.Country as SelectList, "Select Country", new {  @class = "form-control dropdown" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+
+
+                                    <label id="lblS" class="filter-col control-label label1">Province</label>
+                                    @*@Html.DropDownListFor(model =>model.StateId ,ViewBag.StateList1 as SelectList, "Select", new { @class = "form-control dropdown",@id="selState" })*@
+                                     @Html.DropDownList("selState", new SelectList(string.Empty, "Value", "Text"), "Select Province", new { @class = "form-control dropdown" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="CityPIN" class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+
+
+                                    <label id="lblCI" class="filter-col control-label label1">City </label>
+                                    @*    @Html.TextBoxFor(model => model.City, new { @class = "form-control",  @onkeypress  ="return  AllowAlphabet(event)",@maxlength="20" })*@
+                                    @Html.DropDownList("selCity", new SelectList(string.Empty, "Value", "Text"), "Select", new { @class = "form-control dropdown" })
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label id="lblPIN" class="filter-col control-label label1">Pincode</label>
+                                    @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control", @onkeypress = "return  isNumber(event)",@maxlength = "6",@onblur="return checkLengthForPincode(this)" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label id="lblPhoneNo" class="filter-col control-label label1">Telephone number</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.LandlineCode, new { @class = "form-control", @maxlength = "4", @readonly = "true", @onkeypress = "return isNumber(event)" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.LandlineNo, new { @class = "form-control", @maxlength = "10",  @onkeypress = "return isNumber(event)",@onblur="return checkLengthForContact(this)"  })
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="email" class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+
+                                    <label id="lblemail" class="filter-col control-label label1">Email Id</label>
+                                    @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control", @maxlength = "50", @onblur = "validateEmail(this)" })
+
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                         <div class="row" >
+                            <div class="col-xs-4">
+                            </div>
+                           <div class="col-xs-5">
+                                  <input type="button" id="btnPrevious" value="Previous" style="display: none" />
+                                  <button id="btnemp" type="submit" name="Save">Save</button>
+                            </div>
+                           <div class="col-xs-3">
+                            </div>
+
+                      </div>
+
+                    </div>
+              
+
+                </div> 
+                      
+            }
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    var counter = 1;
+    $('#image').hide();
+
+    var currentTab = 0;
+    $(function () {
+        debugger;
+        $("#tabs").tabs({
+            disabled: [0, 1, 2],
+            select: function (e, i) {
+                currentTab = i.index;
+                return currentTab;
+            }
+        });
+    });
+    $("#btnNext").click(function () {
+        debugger;
+        var selectedTab = currentTab;
+        var b = selectedTab + 1;
+
+        var tabs = $('#tabs').tabs();
+        var c = $('#tabs').tabs("length");
+        currentTab = currentTab == (c - 1) ? currentTab : (currentTab + 1);
+        if (currentTab == (c - 1)) {
+            $("#btnNext").hide();
+            $("#btnPrevious").show();
+
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+
+
+            //tabs.tabs('select', currentTab);
+        } else {
+
+            $("#btnNext").show();
+            $("#btnPrevious").show();
+            //tabs.tabs('select', currentTab);
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+        }
+    });
+    $("#btnPrevious").click(function () {
+        debugger;
+        var selectedTab = currentTab;
+        var b = selectedTab - 1;
+        var tabs = $('#tabs').tabs();
+        var c = $('#tabs').tabs("length");
+        currentTab = currentTab == 0 ? currentTab : (currentTab - 1);
+
+
+        if (currentTab < (c - 1)) {
+            $("#btnNext").show();
+            $("#btnPrevious").show();
+
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+            //tabs.tabs('select', currentTab);
+        }
+
+        if (currentTab == 0) {
+            $("#btnNext").show();
+            $("#btnPrevious").hide();
+
+            tabs.tabs('enable', b);
+            tabs.tabs('option', 'active', b);
+            tabs.tabs('option', 'selected', b);
+
+            var c = tabs.find("ul li").size();
+            for (var i = 0; i < c; i++) {
+                tabs.tabs('disable', i);
+            }
+            //tabs.tabs('select', currentTab);
+
+        }
+
+    });
+    
+    
+    $("#CountryId").change(function () {
+        debugger;
+        var countryid = $("#CountryId").val();
+        var url = '@Url.Action("StateList", "EmployerMaster")';
+
+        $.post(url, { CountryId: countryid }, function (data) {
+
+            //debugger;
+            $("#selState").empty().append($("<option></option>").val(-1).html('Select'));
+
+            $.each(data, function (Key, item) {
+                //debugger;
+                $("#selState").append($("<option></option>").val(item.Value).html(item.Text));
+            });
+        });
+    });
+
+    $(function () {
+        $('#CountryId').change(function () {
+            var countryid = $("#Country").val();
+            debugger;
+            $.ajax({
+                url: '/EmployerMaster/CountryCode/',
+                type: 'POST',
+                data: { countryid: countryid },
+                success: function (data) {
+
+                    debugger;
+                    if (data != null) {
+                        var vdata = data;
+
+
+
+                        $("#MobileCode").val(vdata);
+
+
+
+                    }
+                }
+
+            });
+        });
+
+
+
+    });
+
+    $("#selState").change(function () {
+        var selState = $("#selState").val();
+        debugger;
+        var url = '@Url.Action("CityList", "EmployerMaster")';
+
+             $.post(url, { selState: selState }, function (data) {
+
+                 $("#selCity").empty().append($("<option></option>").val(-1).html('Select'));
+
+                 $.each(data, function (Key, item) {
+
+                     $("#selCity").append($("<option></option>").val(item.Value).html(item.Text));
+                 });
+             });
+         });
+
+
+         $(function () {
+             $('#selCity').change(function () {
+                 var selCity = $("#selCity").val();
+                 debugger;
+                 $.ajax({
+                     url: '/EmployerMaster/CityCode/',
+                     type: 'POST',
+                     data: { selCity: selCity },
+                     success: function (data) {
+
+                         debugger;
+                         if (data != null) {
+                             var vdata = data;
+                             $("#LandlineCode").val(vdata);
+
+                         }
+                     }
+
+
+
+                 });
+             });
+         });
+
+         $(function () {
+             $('#EmployerType').change(function () {
+
+                 var EmployerName = $("#EmployerName").val();
+                 var EmployerType = $("#EmployerType").val();
+                 if (EmployerName != "" && EmployerType != "") {
+                     debugger;
+                     $.ajax({
+                         url: '/EmployerMaster/EmployerType/',
+                         type: 'POST',
+                         data: { EmployerType: EmployerType, EmployerName: EmployerName },
+                         success: function (result) {
+
+                             var a = JSON.stringify(result);
+                             debugger;
+                             if (a == "false") {
+
+                                 alert("Employer Type already exists,Please enter another Type");
+                                 $("#EmployerType").val("");
+                             }
+
+
+                         }
+
+                     });
+                 }
+             });
+         });
+
+         $(function () {
+             $('#EmployerType').change(function () {
+
+                 debugger;
+
+                 var EmployerName = $("#EmployerName").val();
+                 if (EmployerName == "") {
+                     debugger;
+                     $("#EmployerType").val("");
+
+                     alert("First enter the Employer Name ");
+
+                 }
+             });
+             $('#EmployerBranch').change(function () {
+                 debugger;
+
+                 var EmployerName = $("#EmployerName").val();
+                 var EmployerType = $("#EmployerType").val();
+                 if (EmployerName == "" && EmployerType == "") {
+                     debugger;
+
+                     $("#EmployerBranch").val("");
+
+                     alert("First enter the Employer Name and Employer Type  ");
+
+                 }
+
+
+
+             });
+         });
+
+
+         $(function () {
+             debugger;
+             var frmvalidator = new Validator("Employer");
+             frmvalidator.EnableMsgsTogether();
+             debugger;
+             frmvalidator.addValidation("EmployerName", "req", "Please Enter Employer Name ");
+             frmvalidator.addValidation("EmployerType", "req", "Please Enter Employer Division ");
+             frmvalidator.addValidation("EmployerBranch", "req", "Please Enter Employer Branch");
+      frmvalidator.addValidation("IncorporationDt", "req", "Please Select Incorporation Date ");
+             frmvalidator.addValidation("CommencementDt", "req", "Please Select Commencement Date ");
+             // frmvalidator.addValidation("PanNo", "req", "Please Enter National Registration Code");
+
+             frmvalidator.addValidation("Address1", "req", "Please Enter Address");
+             frmvalidator.addValidation("CountryId", "req", "Please Select Country");
+             frmvalidator.addValidation("selState", "req", "Please Select State");
+             frmvalidator.addValidation("Pincode", "req", "Please Enter Pin number");
+
+             frmvalidator.addValidation("LandlineNo", "req", "Please Enter Landline number");
+
+             frmvalidator.addValidation("selCity", "req", "Please Enter City");
+             frmvalidator.addValidation("EmailId", "req", "Please Enter Email id ");
+
+
+
+
+         });
+         $(function () {
+             $('#EmployerName').change(function () {
+                 debugger;
+                 var EmployerName = $("#EmployerName").val();
+                 debugger;
+                 $.ajax({
+                     url: '/EmployerMaster/EmployerName/',
+                     type: 'POST',
+                     data: { EmployerName: EmployerName },
+                     success: function (data) {
+
+                         debugger;
+                         debugger;
+                         if (data!= null) {
+                             if(data == EmployerName)
+                             {
+                                 alert("Employer Name already exists,Please enter another name");
+                             }
+                         }
+                     }
+
+                 });
+             });
+         });
+
+        @* $(
+          function () {
+              var wrapper = $('#showdiv');
+
+              
+
+              $('#btnAdddiv').click(function () {
+                  debugger;
+                  var id = $('#btnDiv option:selected').text();
+
+
+
+                  $(wrapper).append('<div id="reDiv_' + counter + ' " class="row remove_' + counter + '"><div class="col-xs-4"> <div class="form-group"><label id="lblID" class="filter-col control-label label1">Employer Division </label>@Html.TextBoxFor(model => model.EmployerTypes, new {  @class = "form-control" })</div> </div><div class="col-xs-4"><div class="form-group"> <label id="" class="filter-col control-label label1">Employer Branch </label>@Html.TextBoxFor(model => model.EmployerBranches, new {  @class = "form-control" }) </div></div><div class="col-xs-4">      <input type="button" id="' + counter + '" class="removediv" onclick="strd(this.id);" value="Remove" /></div></div></div>')
+
+                  counter = counter + 1;
+
+              });
+
+
+              *@
+              
+          
+
+
+    //          $(document).ready(function () {
+
+                 
+
+    //    //$('#btnreDiv1').click(function () {
+    //    //    debugger;
+    //    //    alert("hii")
+    //    //    debugger;
+    //    //    var div = $('#reDiv');
+    //    //    $("#reDiv_1").remove();
+
+    //    //});
+
+
+    //});
+    //});
+      
+    </Script>
+   
+
+     
+
+ 

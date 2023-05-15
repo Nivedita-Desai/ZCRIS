@@ -1,0 +1,116 @@
+/* CSS Document */
+#wrapper
+{
+	width:45%;
+	height:435px;
+	padding-top:15%;
+	padding-left:55%;
+	background:url("images/bg.jpg") no-repeat;
+	background-size:100%;
+}
+#loginbg
+{
+	width:280px;
+	Height:auto;
+	padding:30px 20px;
+	background-image:url("images/loginbg.png");
+	background-position:center;
+	box-shadow:0px 5px 5px;	
+	float:left;
+}
+.graybg
+{
+	background-color:#334e5d;
+	float:left;
+}
+.centeralign 
+{
+	text-align: center;
+}
+.whitebigheading
+{
+	font-weight: 200;
+	font-size: 24px;
+	margin-bottom: 30px;
+}
+.whitemedheading
+{
+	font-weight: 200;
+	font-size: 18px;
+}
+
+.whitesmlheading
+{
+	font-weight: 200;
+	font-size: 12px;
+}
+
+.fldtext
+{
+    font-family: "Open Sans";
+	width:100%;
+	padding:10px 5px 3px 0px;
+	font-family:Open Sans;
+	font-size:14px;
+	color:#fff;
+}
+
+fldreg
+{
+    font-family: "Open Sans";
+	width:100%;
+	padding:10px 5px 3px 0px;
+	font-family:Open Sans;
+	font-size:10px;
+	color:#fff;
+}
+.fld
+{
+	margin:5px;
+}
+.inputfld
+{
+	padding:5px;
+	width:80%;
+}
+
+.blue_button
+ {
+	font-family: "Open Sans";
+	color: #FFF;
+	background-color: #012236;
+	padding:10px 20px;
+	margin-bottom:10px;
+	border-style:none;
+	text-decoration:none;	
+}
+.btnarea
+{
+	margin-left:9%;
+	margin-right:9%;
+	padding:inherit;
+}
+.floatleft
+{
+	float:left;
+}
+.floatright
+{
+	float:right;
+}
+
+a:link.whitelink  { text-decoration: none; color:white; }
+a:active.whitelink  { text-decoration: none; color:white;  }
+a:visited.whitelink  { text-decoration: none; color:white;  }
+a:hover.whitelink  { text-decoration: underline; color:white;  }
+
+@media all and (max-width: 768px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
+#wrapper
+{
+	width:50%;
+	padding-top:10%;
+	padding-left:30%;
+	padding-right:20%;
+}
+}
+

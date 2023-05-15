@@ -1,0 +1,163 @@
+﻿@model CreditRatingModel.Model.Master
+
+@{
+    ViewBag.Title = "AcademicYear";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+    @using (@Html.BeginForm("ThresholdMaster", "Master", FormMethod.Post, new { id = "frmThreshold" }))
+    {
+        <div class="row" style="height:50px">
+        </div>
+            
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <label id="lblHeading" class="filter-col control-label labelHead">Threshold Master</label>
+                </div>
+                <div class="panel-body">
+                    <fieldset class="scheduler-border">
+                        <br />
+                            @Html.HiddenFor(model => model.Id)
+                        <div class="row">
+                            <div class="col-xs-4">
+                            </div>
+                            <div class="col-xs-2">                                
+                                <div class="form-group">
+                                    <label id="lblfrom" class="filter-col control-label label1">From Date</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.AyFromDate, new { @id = "dtpFrom", @type="date" })
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="form-group">
+                                    <label id="lblto" class="filter-col control-label label1">To Date</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.AyToDate, new { @id = "dtpTo", @type = "date" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblFIN" class="filter-col control-label label2">Financial Year</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.AyId, new { @class = "form-control" , @id = "txtAYear", @readonly = "false" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                            </div>
+                        </div>          
+                           <div class="row">
+                            <div class="col-xs-4">
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label id="lblTA" class="filter-col control-label label2">Threshold Value</label>
+                                    @Html.TextBoxFor(modelItem => modelItem.ThresholdAmt, new { @class = "form-control",@maxlength = "20"})
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                            </div>
+                        </div>                      
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="btnSave" type="submit" name="save" formmethod="post">Save</button>
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+<script type="text/javascript">
+ 
+  //  $(document).ready(function () {
+
+    $('#dtpTo').focusout(function () {
+        debugger;
+            if ($("#dtpFrom").val() != '') {
+                var FromDate = new Date($("#dtpFrom").val());
+                var ToDate = new Date($("#dtpTo").val());
+                var Id = $('#Id').val();
+                if ($('#Id').val() == "") {
+                    Id=0
+                }
+                if (ToDate <= FromDate) {
+                    alert("To Date must be greater than From Date");
+                    $("#dtpTo").val('');
+                }
+                else {
+                   debugger;
+
+                    var FromDate = new Date($("#dtpFrom").val());
+                    var ToDate = new Date($("#dtpTo").val());
+                    debugger;
+                    $("#txtAYear").val(FromDate.getFullYear() + "-" + ToDate.getFullYear());
+                    var FinancialYear = $('#txtAYear').val();
+                    var url = '@Url.Action("doesExitsFinancialYear", "Master")';
+                    $.post(url, { Id : Id,FinancialYear: FinancialYear }, function (data) {
+                        debugger;
+                        // var a = JSON.stringify(result);
+                        if (Id == "") {
+                            if (data == "N") {
+                                alert(' This Financial Year already exits');
+                                $('#txtAYear').val('');
+                                $("#dtpFrom").val('');
+                                $("#dtpTo").val('');
+                            }
+                        }
+                        else {
+                            if (data == "N") {
+                                alert(' This Financial Year already exits');
+                                $('#txtAYear').val('');
+                                $("#dtpFrom").val('');
+                                $("#dtpTo").val('');
+                            }
+                        }
+                       
+                    });
+                }
+            }
+        });
+
+
+        $('#dtpFrom').focusout(function ()
+        {
+            if ($("#dtpTo").val() != '')
+            {            
+                debugger;
+                var FromDate = new Date($("#dtpFrom").val());
+                var ToDate = new Date($("#dtpTo").val());
+
+                if (FromDate >= ToDate) {
+                    alert("From Date must be smaller than To Date");
+                    $("#dtpFrom").val('');
+                }
+                else {
+                    $("#txtAYear").val(FromDate.getFullYear() + "-" + ToDate.getFullYear());
+                }
+            }
+        });
+
+                
+        $('#btnSave').click(function () {
+            debugger;
+            var frmvalidator = new Validator("frmThreshold");
+            debugger;
+            frmvalidator.clearAllValidations();
+            frmvalidator.EnableMsgsTogether();
+            //frmvalidator.addValidation("CountryId", "req", "Please Select Country");
+            frmvalidator.addValidation("dtpFrom", "req", "Please Select From Date");
+            frmvalidator.addValidation("dtpTo", "req", "Please Select To Date");            
+        });
+   // });
+  
+</script>

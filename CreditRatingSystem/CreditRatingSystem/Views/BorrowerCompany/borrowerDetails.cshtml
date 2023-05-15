@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "borrowerDetails";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+  
+<table style="width: 100%;" border="1">
+    <tr>
+        <td>
+            <label>First Name   : </label>
+    <input id="txtFName" type="text" class="textBox"  /></td>
+        
+         <td>
+            <label>Middle Name  :</label>
+        <input id="txtMName" type="text" class="textBox" /></td>
+         <td>
+            <label>Last Name    : </label>
+        <input id="txtLName" type="text"class="textBox"  /></td>
+        
+    </tr>
+    
+        <tr>
+            <td colspan="2" class="textBox1"  >
+        <label>Company Name   :</label>
+        <input id="txtCName" type="text"class="textBox1"  />
+           </td>
+            <td class="textBox1"  >
+        <label>Sub-Division Name   :</label>
+        <input id="txtSDName" type="text" class="textBox2"  />
+           </td>
+        </tr>
+       
+    
+    <tr >
+        <td  class="td" colspan="2" ><Label> Gender  :</Label>
+               <select id="DDGender" class="DDList">
+            <option></option>
+        <option>Male</option>
+        <option>Female</option>
+
+        </select>
+
+            </td>
+        <td class="td" > <label>Date of Birth  :</label>
+        <input id="txtBirth" type="text"class="textBox"  /></td>
+    </tr>
+     <tr >
+         <td colspan="2" class="td" > <label>Company Incorporation Date  :</label>
+        <input id="txtCID" type="text"class="textBox"  />
+          
+
+            </td>
+        <td class="td" > <label>Commence Date  :</label>
+        <input id="txtCD" type="text"class="textBox"  /></td>
+    </tr>
+    <tr>
+      <td  colspan="2" class="td" ><Label> Borrower Type  :</Label>
+                                               
+                                         
+   <select id="DDBType" class="DDList">
+            <option></option>
+        <option>Company</option>
+        <option>Individual</option>
+
+        </select>
+
+     
+
+            </td>
+          <td class="td" ><Label> Company Branch  :</Label>
+                                      
+    <input id="txtCB" type="text"class="textBox"  />
+
+          </td>
+        
+           </tr>
+    <tr>
+          <td colspan="4" class="td" ><Label> PAN Number  :</Label>
+                                      
+    <input id="txtPN" type="text"class="textBox"  />
+              
+          </td>
+            </tr>
+
+     <tr>
+         <td colspan="4" >
+         <input id="btnSave" type="submit" class="btn " name="SAVE"/>
+          </td>
+
+          
+          </tr> 
+</table>
+  
+
+<style type="text/css">
+.textBox{
+    width:250px;
+    height:50px;
+    padding:8px;
+    margin:6px auto;
+    background: #FFF;
+    border-radius: 7px;
+  
+}
+
+.textBox2{
+    width:450px;
+    height:50px;
+    padding:8px;
+    margin:6px auto;
+    background: #FFF;
+    border-radius: 7px;
+   
+}
+.textBox1{
+    width:450px;
+    height:50px;
+    padding:8px;
+    margin:6px auto;
+    background: #FFF;
+    border-radius: 7px;
+}
+   .DDList{
+
+       width:200px;
+       height:35px
+    }
+    .btn {
+        width:60px;
+        height:30px;
+        flex-align:center;
+       
+    }
+
+    .birth {
+
+        width:150px;
+        height:35px;
+             padding:8px;
+    margin:6px auto;
+    background: #FFF;
+    border-radius: 7px; 
+    }
+    .td {
+
+       width:400px
+    }
+
+       </style>

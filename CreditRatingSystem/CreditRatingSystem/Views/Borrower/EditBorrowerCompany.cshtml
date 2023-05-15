@@ -1,0 +1,316 @@
+﻿@model CreditRatingModel.Model.BorrowerDetails
+@{
+    ViewBag.Title = "EditBorrowerCompany";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+<style type="text/css">
+    .form-lower-button
+        {
+            position: relative;
+            bottom: 0;
+            right: 0;
+        }
+
+    .form-style-10 {                               
+        width: 1200px;
+        padding: 30px;
+        margin: 40px auto;
+        background: #FFF;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+        -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+        -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    }
+
+        .form-style-10 .inner-wrap 
+      {
+            padding: 20px;
+            background: #F8F8F8;
+            border-radius: 4px;
+            margin-bottom: 9px;
+            /*float: left;*/
+        }
+
+        .form-style-10 h1 {
+            background: #2A88AD;
+            padding: 20px 30px 15px 30px;
+            margin: -30px -30px 30px -30px;
+            border-radius: 10px 10px 0 0;
+            -webkit-border-radius: 10px 10px 0 0;
+            -moz-border-radius: 10px 10px 0 0;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+            font: normal 30px 'Bitter', serif;
+            -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+            -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+            box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+            border: 1px solid #257C9E;
+        }
+
+        .form-style-10 h1 > span 
+           {
+                display: block;
+                margin-top: 2px;
+                font: 18px Arial, Helvetica, sans-serif;
+            }
+
+        .form-style-10 label {
+            display: block;
+            font: 18px Arial, Helvetica, sans-serif;
+            color: #219EEA;
+            margin-bottom: 15px;
+        }
+
+        .form-style-10 input[type="text"],
+        .form-style-10 input[type="date"],
+        .form-style-10 input[type="datetime"],
+        .form-style-10 input[type="email"],
+        .form-style-10 input[type="number"],
+        .form-style-10 input[type="search"],
+        .form-style-10 input[type="time"],
+        .form-style-10 input[type="url"],
+        .form-style-10 input[type="password"],
+        .form-style-10 textarea,
+        .form-style-10 select {
+            display: block;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            width: 70%;
+            padding: 10px;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 6px;
+            border: 2px solid #27413E;
+            box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+            -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+            -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+        }
+
+        .form-style-10 .section 
+            {
+                font: normal 20px 'Bitter', serif;
+                color: #2A88AD;
+                margin-bottom: 5px;
+            }
+
+            .form-style-10 .section span 
+             {
+                background: #2A88AD;
+                padding: 5px 10px 5px 10px;
+                position: absolute;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border: 4px solid #fff;
+                font-size: 14px;
+                margin-left: -45px;
+                color: #fff;
+                margin-top: -3px;
+            }
+
+        .form-style-10 input[type="button"],
+        .form-style-10 input[type="submit"] {
+            background: #2A88AD;
+            padding: 8px 20px 8px 20px;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+            font: normal 30px 'Bitter', serif;
+            -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+            -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+            box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+            border: 1px solid #257C9E;
+            font-size: 15px;
+            flex-align: end;            
+        }
+
+        .form-style-10 input[type="button"]:hover,
+        .form-style-10 input[type="submit"]:hover 
+            {
+                background: #2A6881;
+                -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+                -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+                box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+                flex-align: end;
+            }
+
+        .form-style-10 .privacy-policy 
+            {
+            float: right;
+            width: 250px;
+            font: 12px Arial, Helvetica, sans-serif;
+            color: #4D4D4D;
+            margin-top: 10px;
+            text-align: right;
+           }
+
+</style>
+<style type="text/css">
+    .MyTable {
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        color: #000000;
+        height: 100px;
+        width: 1080px;
+        border: 1px solid Black;
+    }
+</style>
+<html>
+<body>
+    <form id="frmBorr" action="~/Borrower/EditAction"
+        @using (Html.BeginForm())
+        {      
+            @Html.ValidationSummary(true,"Please fill all required fields.Thank You!")    
+            
+            <h2>Borrower View List</h2>
+                    
+            <div class="container">      
+                <div class="row">
+                    <div class="col-xs-12">                    
+                        <div class="form-group">
+                            <label id="lblOrg" class="filter-col control-label">Company Name</label>
+                            <label class="filter-col control-label" style="color:red">*</label>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="row">
+                    <div class="col-xs-6">                    
+                        <div class="form-group">
+                            @Html.HiddenFor(modelItem => modelItem.id)
+                            @Html.TextBoxFor(modelItem => modelItem.CompanyName, new { @class = "form-control", @id="txtCompName", @readonly="true"})
+                            @Html.ValidationMessageFor(modelItem => modelItem.CompanyName)
+                        </div>
+                    </div>
+                </div>
+           
+                <div class="row">
+                    <div class="col-xs-12">                    
+                        <div class="form-group">
+                            <label id="lblCName" class="filter-col control-label">Sub Division Name</label>
+                            <label class="filter-col control-label" style="color:red">*</label>
+                        </div>
+                    </div>
+               </div>  
+
+                <div class="row">
+                    <div class="col-xs-6">                    
+                        <div class="form-group">                            
+                            @Html.TextBoxFor(modelItem => modelItem.CompanyType, new { @class = "form-control"  , @id="txtSubdivision", @readonly="true" })                                       
+                            @Html.ValidationMessageFor(modelItem => modelItem.CompanyType)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">                    
+                        <div class="form-group">
+                            <label id="lblBName" class="filter-col control-label">Branch Name</label>
+                            <label class="filter-col control-label" style="color:red">*</label>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="row">
+                    <div class="col-xs-6">                    
+                        <div class="form-group">
+                            @Html.TextBoxFor(modelItem => modelItem.BranchName, new { @class = "form-control" , @id="txtBranchName", @readonly="true" })                            
+                            @Html.ValidationMessageFor(modelItem => modelItem.BranchName)
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">                    
+                        <div class="form-group">
+                            <label id="lblIDate" class="filter-col control-label">Incorporation Date</label>
+                            <label class="filter-col control-label" style="color:red">*</label>
+                        </div>
+                    </div>
+               </div>  
+
+                <div class="row">
+                    <div class="col-xs-6">                    
+                        <div class="form-group">
+                        <span id="dtpIncorp"> 
+                            @Html.EditorFor(model => model.IncorporationDate, new { @type = "date" })  </span>                             
+                            @Html.ValidationMessageFor(modelItem => modelItem.IncorporationDate)
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">                    
+                        <div class="form-group">                            
+                            <label id="lblCDate" class="filter-col control-label">Commencement Date</label>
+                            <label class="filter-col control-label" style="color:red">*</label>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="row">
+                    <div class="col-xs-6">                    
+                        <div class="form-group">
+                            <span id="dtpComm"> 
+                            @Html.EditorFor(model => model.CommencementDate, new { @type = "date"}) </span>
+                            @Html.ValidationMessageFor(modelItem => modelItem.CommencementDate)
+                        </div> 
+                    </div>
+                </div>       
+           
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                              <center>                                                  
+                                <input id="btnEdit" type="button" value="Edit"/>
+                                <button id="btnSave" type="submit" name="Save" hidden="true">Save </button>                 
+                                <input id="btnReset" type="button" value="Cancel"/>
+                            </center>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        }                    
+    </form>
+</body>
+   
+
+</html>
+<script type="text/javascript">
+    $('#btnReset').click(function () {
+        window.location.href = "@Url.Action("ViewBorrower", "Borrower")";
+       
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(function () { $('#dtpIncorp :input').attr("readonly", "true"); });
+</script>
+
+<script type="text/javascript">
+    $(function () { $('#dtpComm :input').attr("readonly", "true"); });
+</script>
+
+<script type="text/javascript">
+    $('#btnEdit').click(function ()
+    { 
+        $('#txtCompName').attr("readonly", false)
+        $('#txtSubdivision').attr("readonly", false)
+        $('#txtBranchName').attr("readonly", false)
+         
+        $(function () { $('#dtpIncorp :input').attr("readonly", false); })
+        $(function () { $('#dtpComm :input').attr("readonly", false); })
+      //  debugger;       
+        $('#btnSave').show();
+        $('#btnEdit').hide();
+    });
+</script>

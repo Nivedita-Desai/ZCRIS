@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "de";
+}
+
+   <h2>de</h2>
+<html >
+ 
+<head>
+    <!-- The jQuery library is a prerequisite for all jqSuite products -->
+    <script type="text/ecmascript" src="../../../js/jquery.min.js"></script> 
+    <!-- This is the Javascript file of jqGrid -->   
+    <script type="text/ecmascript" src="../../../js/trirand/jquery.jqGrid.min.js"></script>
+    <!-- This is the localization file of the grid controlling messages, labels, etc.
+    <!-- We support more than 40 localizations -->
+    <script type="text/ecmascript" src="../../../js/trirand/i18n/grid.locale-en.js"></script>
+    <!-- A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../css/jquery-ui.css" />
+    <!-- The link to the CSS that the grid needs -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../css/trirand/ui.jqgrid.css" />
+    <meta charset="utf-8" />
+    <title>jqGrid Loading Data - Dialogs - Edit, Add, Delete</title>
+</head>
+<body>
+
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var template = "<div style='margin-left:15px;'><div>  ID <sup>*</sup>:</div><div> {Id} </div>";
+            template += "<div>  Name: </div><div>{Name} </div>";
+            template += "<div> Category: </div><div>{Category} </div>";
+            template += "<div> Branch Name: </div><div>{BranchName} </div>";
+            template += "<div> Create Date:</div><div> {CreateDate} </div>";
+			template += "<hr style='width:100%;'/>";
+			template += "<div> {sData} {cData}  </div></div>";
+
+            $("#jqGrid").jqGrid({
+                url: '/user/getresult',
+				// we set the changes to be made at client side using predefined word clientArray
+                editurl: 'clientArray',
+                datatype: "json",
+                colModel: [
+                    {
+						label: 'ID',
+						name: 'Id',
+                        width: 75,
+						key: true,
+						editable: true,
+						editrules : { required: true}
+                    },
+                    {
+						label: 'Name',
+						name: 'Name',
+                        width: 140,
+                        editable: true // must set editable to true if you want to make the field editable
+                    },
+                    {
+                        label: 'Category',
+                        name: 'Category',
+                        width: 100,
+                        editable: true
+                    },
+                    {
+                        label: 'Branch Name',
+                        name: 'BranchName',
+                        width: 80,
+                        editable: true
+                    },
+                    {
+                        label: 'Create Date',
+                        name: 'CreateDate',
+                        width: 140,
+                        editable: true
+                    }
+                ],
+                sortname: 'Id',
+				sortorder : 'asc',
+				loadonce: true,
+				viewrecords: true,
+                width: 780,
+                height: 200,
+                rowNum: 10,
+                pager: "#jqGridPager"
+            });
+
+            $('#jqGrid').navGrid('#jqGridPager',
+                // the buttons to appear on the toolbar of the grid
+                { edit: true, add: true, del: true, search: false, refresh: false, view: false, position: "left", cloneToTop: false },
+                // options for the Edit Dialog
+                {
+                    editCaption: "The Edit Dialog",
+					template: template,
+                    errorTextFormat: function (data) {
+                        return 'Error: ' + data.responseText
+                    }
+                },
+                // options for the Add Dialog
+                {
+					template: template,
+                    errorTextFormat: function (data) {
+                        return 'Error: ' + data.responseText
+                    }
+                },
+                // options for the Delete Dailog
+                {
+                    errorTextFormat: function (data) {
+                        return 'Error: ' + data.responseText
+                    }
+                });
+        });
+
+    </script>
+
+    
+</body>
+</html>

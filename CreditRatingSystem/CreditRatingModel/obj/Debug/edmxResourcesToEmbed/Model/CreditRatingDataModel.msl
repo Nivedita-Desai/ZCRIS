@@ -1,0 +1,2723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="creditratingModelStoreContainer" CdmEntityContainer="creaditratingEntities">
+    <EntitySetMapping Name="AccountStatusMasters">
+      <EntityTypeMapping TypeName="creditratingModel.AccountStatusMaster">
+        <MappingFragment StoreEntitySet="AccountStatusMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AddressTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.AddressTypeMaster">
+        <MappingFragment StoreEntitySet="AddressTypeMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BorrowerCompanyTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.BorrowerCompanyTypeMaster">
+        <MappingFragment StoreEntitySet="BorrowerCompanyTypeMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BorrowerCreditRelations">
+      <EntityTypeMapping TypeName="creditratingModel.BorrowerCreditRelation">
+        <MappingFragment StoreEntitySet="BorrowerCreditRelation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FinancialInstituteId" ColumnName="FinancialInstituteId" />
+          <ScalarProperty Name="FinancialInstituteBranchId" ColumnName="FinancialInstituteBranchId" />
+          <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+          <ScalarProperty Name="CreditTypeId" ColumnName="CreditTypeId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChequeTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.ChequeTypeMaster">
+        <MappingFragment StoreEntitySet="ChequeTypeMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ChequeType" ColumnName="ChequeType" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactRelations">
+      <EntityTypeMapping TypeName="creditratingModel.ContactRelation">
+        <MappingFragment StoreEntitySet="ContactRelation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AddressTypeId" ColumnName="AddressTypeId" />
+          <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+          <ScalarProperty Name="IndividualCustomerId" ColumnName="IndividualCustomerId" />
+          <ScalarProperty Name="ContactDetailsId" ColumnName="ContactDetailsId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountryMasters">
+      <EntityTypeMapping TypeName="creditratingModel.CountryMaster">
+        <MappingFragment StoreEntitySet="CountryMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreditCardChilds">
+      <EntityTypeMapping TypeName="creditratingModel.CreditCardChild">
+        <MappingFragment StoreEntitySet="CreditCardChild">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreditCardHeadId" ColumnName="CreditCardHeadId" />
+          <ScalarProperty Name="CreditCardTotalAmountDue" ColumnName="CreditCardTotalAmountDue" />
+          <ScalarProperty Name="CreditCardMinimumAmountDue" ColumnName="CreditCardMinimumAmountDue" />
+          <ScalarProperty Name="CreditCardPaidAmount" ColumnName="CreditCardPaidAmount" />
+          <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreditCardHeads">
+      <EntityTypeMapping TypeName="creditratingModel.CreditCardHead">
+        <MappingFragment StoreEntitySet="CreditCardHead">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BorrowerCreditRelationId" ColumnName="BorrowerCreditRelationId" />
+          <ScalarProperty Name="NameOnCreditCard" ColumnName="NameOnCreditCard" />
+          <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+          <ScalarProperty Name="CreditCardNo1" ColumnName="CreditCardNo1" />
+          <ScalarProperty Name="CreditCardNo2" ColumnName="CreditCardNo2" />
+          <ScalarProperty Name="CreditCardNo3" ColumnName="CreditCardNo3" />
+          <ScalarProperty Name="CreditCardNo4" ColumnName="CreditCardNo4" />
+          <ScalarProperty Name="FromMonth" ColumnName="FromMonth" />
+          <ScalarProperty Name="FromYear" ColumnName="FromYear" />
+          <ScalarProperty Name="ToMonth" ColumnName="ToMonth" />
+          <ScalarProperty Name="ToYear" ColumnName="ToYear" />
+          <ScalarProperty Name="CreditCardBalance" ColumnName="CreditCardBalance" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreditTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.CreditTypeMaster">
+        <MappingFragment StoreEntitySet="CreditTypeMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreditType" ColumnName="CreditType" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.DocumentTypeMaster">
+        <MappingFragment StoreEntitySet="DocumentTypeMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinancialInstitutionCategoryMasters">
+      <EntityTypeMapping TypeName="creditratingModel.FinancialInstitutionCategoryMaster">
+        <MappingFragment StoreEntitySet="FinancialInstitutionCategoryMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinancialInstitutionCreditTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.FinancialInstitutionCreditTypeMaster">
+        <MappingFragment StoreEntitySet="FinancialInstitutionCreditTypeMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreditType" ColumnName="CreditType" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinancialInstitutionCreditTypeRelations">
+      <EntityTypeMapping TypeName="creditratingModel.FinancialInstitutionCreditTypeRelation">
+        <MappingFragment StoreEntitySet="FinancialInstitutionCreditTypeRelation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FinancialInstituteId" ColumnName="FinancialInstituteId" />
+          <ScalarProperty Name="FinancialInstituteBranchId" ColumnName="FinancialInstituteBranchId" />
+          <ScalarProperty Name="FinancialInstituteCreditTypeId" ColumnName="FinancialInstituteCreditTypeId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinancialInstitutionMasters">
+      <EntityTypeMapping TypeName="creditratingModel.FinancialInstitutionMaster">
+        <MappingFragment StoreEntitySet="FinancialInstitutionMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FinancialInstituteCategoryId" ColumnName="FinancialInstituteCategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PersonFullName" ColumnName="PersonFullName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+          <ScalarProperty Name="SwiftCode" ColumnName="SwiftCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IndividualCustomerLogs">
+      <EntityTypeMapping TypeName="creditratingModel.IndividualCustomerLog">
+        <MappingFragment StoreEntitySet="IndividualCustomerLog">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IndividualCustomerId" ColumnName="IndividualCustomerId" />
+          <ScalarProperty Name="OldFirstName" ColumnName="OldFirstName" />
+          <ScalarProperty Name="OldMiddleName" ColumnName="OldMiddleName" />
+          <ScalarProperty Name="OldLastName" ColumnName="OldLastName" />
+          <ScalarProperty Name="NewFirstName" ColumnName="NewFirstName" />
+          <ScalarProperty Name="NewMiddleName" ColumnName="NewMiddleName" />
+          <ScalarProperty Name="NewLastName" ColumnName="NewLastName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstallmentTransactions">
+      <EntityTypeMapping TypeName="creditratingModel.InstallmentTransaction">
+        <MappingFragment StoreEntitySet="InstallmentTransaction">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="ReceivedAmount" ColumnName="ReceivedAmount" />
+          <ScalarProperty Name="InstallmentDate" ColumnName="InstallmentDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InterestTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.InterestTypeMaster">
+        <MappingFragment StoreEntitySet="InterestTypeMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InterestType" ColumnName="InterestType" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanDetailsChilds">
+      <EntityTypeMapping TypeName="creditratingModel.LoanDetailsChild">
+        <MappingFragment StoreEntitySet="LoanDetailsChild">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LoanHeadId" ColumnName="LoanHeadId" />
+          <ScalarProperty Name="LoanEMIAmount" ColumnName="LoanEMIAmount" />
+          <ScalarProperty Name="LoanDueDate" ColumnName="LoanDueDate" />
+          <ScalarProperty Name="LoanPaidDate" ColumnName="LoanPaidDate" />
+          <ScalarProperty Name="LoanPaidAmount" ColumnName="LoanPaidAmount" />
+          <ScalarProperty Name="Charges" ColumnName="Charges" />
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanDetailsHeads">
+      <EntityTypeMapping TypeName="creditratingModel.LoanDetailsHead">
+        <MappingFragment StoreEntitySet="LoanDetailsHead">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BorrowerCreditRelationId" ColumnName="BorrowerCreditRelationId" />
+          <ScalarProperty Name="FinancialInstituteBranchId" ColumnName="FinancialInstituteBranchId" />
+          <ScalarProperty Name="LoanPurpose" ColumnName="LoanPurpose" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+          <ScalarProperty Name="NoOfEMI" ColumnName="NoOfEMI" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="LoanIssueDate" ColumnName="LoanIssueDate" />
+          <ScalarProperty Name="LoanDueDate" ColumnName="LoanDueDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanTypesMasters">
+      <EntityTypeMapping TypeName="creditratingModel.LoanTypesMaster">
+        <MappingFragment StoreEntitySet="LoanTypesMaster">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="LoanTypeId" ColumnName="LoanTypeId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NameTitleMasters">
+      <EntityTypeMapping TypeName="creditratingModel.NameTitleMaster">
+        <MappingFragment StoreEntitySet="NameTitleMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NationalityMasters">
+      <EntityTypeMapping TypeName="creditratingModel.NationalityMaster">
+        <MappingFragment StoreEntitySet="NationalityMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReasonMasters">
+      <EntityTypeMapping TypeName="creditratingModel.ReasonMaster">
+        <MappingFragment StoreEntitySet="ReasonMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StateMasters">
+      <EntityTypeMapping TypeName="creditratingModel.StateMaster">
+        <MappingFragment StoreEntitySet="StateMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.UserTypeMaster">
+        <MappingFragment StoreEntitySet="UserTypeMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="UserTypeShortName" ColumnName="UserTypeShortName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TempInstallmentTransactions">
+      <EntityTypeMapping TypeName="creditratingModel.TempInstallmentTransaction">
+        <MappingFragment StoreEntitySet="TempInstallmentTransaction">
+          <ScalarProperty Name="TempSessionId" ColumnName="TempSessionId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="InstallmentDate" ColumnName="InstallmentDate" />
+          <ScalarProperty Name="ReceivedAmount" ColumnName="ReceivedAmount" />
+          <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+          <ScalarProperty Name="LoanDisburseId" ColumnName="LoanDisburseId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMITransactions">
+      <EntityTypeMapping TypeName="creditratingModel.EMITransaction">
+        <MappingFragment StoreEntitySet="EMITransaction">
+          <ScalarProperty Name="InstallmentId" ColumnName="InstallmentId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="LoanDisburseId" ColumnName="LoanDisburseId" />
+          <ScalarProperty Name="LoanApplicationId" ColumnName="LoanApplicationId" />
+          <ScalarProperty Name="Pan" ColumnName="Pan" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="NoOfEMI" ColumnName="NoOfEMI" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanIndividualRelations">
+      <EntityTypeMapping TypeName="creditratingModel.LoanIndividualRelation">
+        <MappingFragment StoreEntitySet="LoanIndividualRelation">
+          <ScalarProperty Name="CompanyDirectorRelationId" ColumnName="CompanyDirectorRelationId" />
+          <ScalarProperty Name="LoanApplicationId" ColumnName="LoanApplicationId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="IndividualCustomerId" ColumnName="IndividualCustomerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyDirectorRelations">
+      <EntityTypeMapping TypeName="creditratingModel.CompanyDirectorRelation">
+        <MappingFragment StoreEntitySet="CompanyDirectorRelation">
+          <ScalarProperty Name="individualBorrowerId" ColumnName="individualBorrowerId" />
+          <ScalarProperty Name="CompanyBorrowerId" ColumnName="CompanyBorrowerId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+          <ScalarProperty Name="IndividualCustomerId" ColumnName="IndividualCustomerId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="creditratingModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
+          <ScalarProperty Name="MenuDescription" ColumnName="MenuDescription" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleMenuRelations">
+      <EntityTypeMapping TypeName="creditratingModel.RoleMenuRelation">
+        <MappingFragment StoreEntitySet="RoleMenuRelation">
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoleRelations">
+      <EntityTypeMapping TypeName="creditratingModel.UserRoleRelation">
+        <MappingFragment StoreEntitySet="UserRoleRelation">
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreditScoreParameters">
+      <EntityTypeMapping TypeName="creditratingModel.CreditScoreParameter">
+        <MappingFragment StoreEntitySet="CreditScoreParameter">
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="InPercentage" ColumnName="InPercentage" />
+          <ScalarProperty Name="InNos" ColumnName="InNos" />
+          <ScalarProperty Name="EndParam" ColumnName="EndParam" />
+          <ScalarProperty Name="StartParam" ColumnName="StartParam" />
+          <ScalarProperty Name="TransactionTypeId" ColumnName="TransactionTypeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployerBranchMasters">
+      <EntityTypeMapping TypeName="creditratingModel.EmployerBranchMaster">
+        <MappingFragment StoreEntitySet="EmployerBranchMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="EmployerDivisionId" ColumnName="EmployerDivisionId" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployerDivisionMasters">
+      <EntityTypeMapping TypeName="creditratingModel.EmployerDivisionMaster">
+        <MappingFragment StoreEntitySet="EmployerDivisionMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="EmployerDivision" ColumnName="EmployerDivision" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployerMasters">
+      <EntityTypeMapping TypeName="creditratingModel.EmployerMaster">
+        <MappingFragment StoreEntitySet="EmployerMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CommencementDate" ColumnName="CommencementDate" />
+          <ScalarProperty Name="IncorporationDate" ColumnName="IncorporationDate" />
+          <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+          <ScalarProperty Name="PanNo" ColumnName="PanNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreditRatingRejectionReasons">
+      <EntityTypeMapping TypeName="creditratingModel.CreditRatingRejectionReason">
+        <MappingFragment StoreEntitySet="CreditRatingRejectionReason">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RejectionCode" ColumnName="RejectionCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeDetailsLogs">
+      <EntityTypeMapping TypeName="creditratingModel.EmployeeDetailsLog">
+        <MappingFragment StoreEntitySet="EmployeeDetailsLog">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="OldEmailId" ColumnName="OldEmailId" />
+          <ScalarProperty Name="OldContactNo" ColumnName="OldContactNo" />
+          <ScalarProperty Name="OldDesignation" ColumnName="OldDesignation" />
+          <ScalarProperty Name="OldDepartment" ColumnName="OldDepartment" />
+          <ScalarProperty Name="OldSalary" ColumnName="OldSalary" />
+          <ScalarProperty Name="OldDateOfJoining" ColumnName="OldDateOfJoining" />
+          <ScalarProperty Name="OldEducationLoanDisburseId" ColumnName="OldEducationLoanDisburseId" />
+          <ScalarProperty Name="OldEmployerBranchId" ColumnName="OldEmployerBranchId" />
+          <ScalarProperty Name="OldEmployerTypeId" ColumnName="OldEmployerTypeId" />
+          <ScalarProperty Name="OldEmployerId" ColumnName="OldEmployerId" />
+          <ScalarProperty Name="OldSex" ColumnName="OldSex" />
+          <ScalarProperty Name="OldDateOfBirth" ColumnName="OldDateOfBirth" />
+          <ScalarProperty Name="OldPincode" ColumnName="OldPincode" />
+          <ScalarProperty Name="OldCity" ColumnName="OldCity" />
+          <ScalarProperty Name="OldStateId" ColumnName="OldStateId" />
+          <ScalarProperty Name="OldCountryId" ColumnName="OldCountryId" />
+          <ScalarProperty Name="OldAddress" ColumnName="OldAddress" />
+          <ScalarProperty Name="OldName" ColumnName="OldName" />
+          <ScalarProperty Name="OldNId" ColumnName="OldNId" />
+          <ScalarProperty Name="OldEmployeeId" ColumnName="OldEmployeeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TempDocumentCustomerRelations">
+      <EntityTypeMapping TypeName="creditratingModel.TempDocumentCustomerRelation">
+        <MappingFragment StoreEntitySet="TempDocumentCustomerRelation">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="TempCompanyTypeId" ColumnName="TempCompanyTypeId" />
+          <ScalarProperty Name="TempFilePath" ColumnName="TempFilePath" />
+          <ScalarProperty Name="TempExpiryDate" ColumnName="TempExpiryDate" />
+          <ScalarProperty Name="TempIssueDate" ColumnName="TempIssueDate" />
+          <ScalarProperty Name="TempDocumentNumber" ColumnName="TempDocumentNumber" />
+          <ScalarProperty Name="TempDocumentId" ColumnName="TempDocumentId" />
+          <ScalarProperty Name="TempIndividualCustomerId" ColumnName="TempIndividualCustomerId" />
+          <ScalarProperty Name="TempBorrowerId" ColumnName="TempBorrowerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CityMasters">
+      <EntityTypeMapping TypeName="creditratingModel.CityMaster">
+        <MappingFragment StoreEntitySet="CityMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DepartmentMasters">
+      <EntityTypeMapping TypeName="creditratingModel.DepartmentMaster">
+        <MappingFragment StoreEntitySet="DepartmentMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DesignationMasters">
+      <EntityTypeMapping TypeName="creditratingModel.DesignationMaster">
+        <MappingFragment StoreEntitySet="DesignationMaster">
+          <ScalarProperty Name="DesignationType" ColumnName="DesignationType" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StreamMasters">
+      <EntityTypeMapping TypeName="creditratingModel.StreamMaster">
+        <MappingFragment StoreEntitySet="StreamMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Stream" ColumnName="Stream" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AcademicYears">
+      <EntityTypeMapping TypeName="creditratingModel.AcademicYear">
+        <MappingFragment StoreEntitySet="AcademicYear">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="AyId" ColumnName="AyId" />
+          <ScalarProperty Name="AyToDate" ColumnName="AyToDate" />
+          <ScalarProperty Name="AyFromDate" ColumnName="AyFromDate" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeDetails">
+      <EntityTypeMapping TypeName="creditratingModel.EmployeeDetail">
+        <MappingFragment StoreEntitySet="EmployeeDetails">
+          <ScalarProperty Name="ActiveEmployee" ColumnName="ActiveEmployee" />
+          <ScalarProperty Name="MaritalId" ColumnName="MaritalId" />
+          <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+          <ScalarProperty Name="TotalBalanceAmount" ColumnName="TotalBalanceAmount" />
+          <ScalarProperty Name="TotalLoanAmount" ColumnName="TotalLoanAmount" />
+          <ScalarProperty Name="LastWorkingDate" ColumnName="LastWorkingDate" />
+          <ScalarProperty Name="CurrentDesignationId" ColumnName="CurrentDesignationId" />
+          <ScalarProperty Name="CurrentDepartmentId" ColumnName="CurrentDepartmentId" />
+          <ScalarProperty Name="CompanyEmployeeId" ColumnName="CompanyEmployeeId" />
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+          <ScalarProperty Name="EducationLoanDisburseId" ColumnName="EducationLoanDisburseId" />
+          <ScalarProperty Name="EmployerBranchId" ColumnName="EmployerBranchId" />
+          <ScalarProperty Name="EmployerTypeId" ColumnName="EmployerTypeId" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NId" ColumnName="NId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Relationships">
+      <EntityTypeMapping TypeName="creditratingModel.Relationship">
+        <MappingFragment StoreEntitySet="Relationship">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Relation" ColumnName="Relation" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseCategories">
+      <EntityTypeMapping TypeName="creditratingModel.CourseCategory">
+        <MappingFragment StoreEntitySet="CourseCategory">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CourseCategory_Description" ColumnName="CourseCategory_Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EducationLoanTransactions">
+      <EntityTypeMapping TypeName="creditratingModel.EducationLoanTransaction">
+        <MappingFragment StoreEntitySet="EducationLoanTransaction">
+          <ScalarProperty Name="ChequeClearanceDate" ColumnName="ChequeClearanceDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ChequeClear" ColumnName="ChequeClear" />
+          <ScalarProperty Name="LedgerBalance" ColumnName="LedgerBalance" />
+          <ScalarProperty Name="AvailableBalance" ColumnName="AvailableBalance" />
+          <ScalarProperty Name="FinancialInstituteBranchId" ColumnName="FinancialInstituteBranchId" />
+          <ScalarProperty Name="FinancialInstituteId" ColumnName="FinancialInstituteId" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="TransactionNo" ColumnName="TransactionNo" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="RepaymentDate" ColumnName="RepaymentDate" />
+          <ScalarProperty Name="RepaymentAmount" ColumnName="RepaymentAmount" />
+          <ScalarProperty Name="RepayMode" ColumnName="RepayMode" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+          <ScalarProperty Name="NId" ColumnName="NId" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MonthlySalaryTransactions">
+      <EntityTypeMapping TypeName="creditratingModel.MonthlySalaryTransaction">
+        <MappingFragment StoreEntitySet="MonthlySalaryTransaction">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TotalBalanceAmount" ColumnName="TotalBalanceAmount" />
+          <ScalarProperty Name="TotalLoanAmount" ColumnName="TotalLoanAmount" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="SlabId" ColumnName="SlabId" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="MonSalHeadId" ColumnName="MonSalHeadId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spPersonalInfo" FunctionName="creditratingModel.Store.spPersonalInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spPersonalInfo_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Pan" ColumnName="Pan" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="LandlineNumber" ColumnName="LandlineNumber" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="SlabMasters">
+      <EntityTypeMapping TypeName="creditratingModel.SlabMaster">
+        <MappingFragment StoreEntitySet="SlabMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="SlabPercentage" ColumnName="SlabPercentage" />
+          <ScalarProperty Name="RangeTo" ColumnName="RangeTo" />
+          <ScalarProperty Name="RangeFrom" ColumnName="RangeFrom" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_StudWiseLoneDetails" FunctionName="creditratingModel.Store.SP_StudWiseLoneDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_StudWiseLoneDetails_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="EduThresholdMasters">
+      <EntityTypeMapping TypeName="creditratingModel.EduThresholdMaster">
+        <MappingFragment StoreEntitySet="EduThresholdMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="FinancialYear" ColumnName="FinancialYear" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ThresholdValue" ColumnName="ThresholdValue" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MonthlySalaryHeads">
+      <EntityTypeMapping TypeName="creditratingModel.MonthlySalaryHead">
+        <MappingFragment StoreEntitySet="MonthlySalaryHead">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="SalaryMonth" ColumnName="SalaryMonth" />
+          <ScalarProperty Name="EmployerBranchId" ColumnName="EmployerBranchId" />
+          <ScalarProperty Name="EmployerTypeId" ColumnName="EmployerTypeId" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spCheckEmpMonSalExists" FunctionName="creditratingModel.Store.spCheckEmpMonSalExists" />
+    <FunctionImportMapping FunctionImportName="spGetCourseInformation" FunctionName="creditratingModel.Store.spGetCourseInformation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetCourseInformation_Result1">
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CourseExits" ColumnName="CourseExits" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="EMIApprovalChilds">
+      <EntityTypeMapping TypeName="creditratingModel.EMIApprovalChild">
+        <MappingFragment StoreEntitySet="EMIApprovalChild">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="B" ColumnName="B" />
+          <ScalarProperty Name="A" ColumnName="A" />
+          <ScalarProperty Name="TotalEMI" ColumnName="TotalEMI" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMIApprovalHeads">
+      <EntityTypeMapping TypeName="creditratingModel.EMIApprovalHead">
+        <MappingFragment StoreEntitySet="EMIApprovalHead">
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_RepaymentReciept" FunctionName="creditratingModel.Store.SP_RepaymentReciept">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_RepaymentReciept_Result">
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="NId" ColumnName="NId" />
+          <ScalarProperty Name="RepayMode" ColumnName="RepayMode" />
+          <ScalarProperty Name="RepaymentAmount" ColumnName="RepaymentAmount" />
+          <ScalarProperty Name="RepaymentDate" ColumnName="RepaymentDate" />
+          <ScalarProperty Name="TransactionNo" ColumnName="TransactionNo" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="bankName" ColumnName="bankName" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="BalanceAmount" ColumnName="BalanceAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEditEmployee" FunctionName="creditratingModel.Store.spEditEmployee">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spEditEmployee_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NId" ColumnName="NId" />
+          <ScalarProperty Name="CurrentDesignationId" ColumnName="CurrentDesignationId" />
+          <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="CompanyEmployeeId" ColumnName="CompanyEmployeeId" />
+          <ScalarProperty Name="TotalLoanAmount" ColumnName="TotalLoanAmount" />
+          <ScalarProperty Name="TotalBalanceAmount" ColumnName="TotalBalanceAmount" />
+          <ScalarProperty Name="SlabId" ColumnName="SlabId" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TitleId" ColumnName="TitleId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="DistributionTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.DistributionTypeMaster">
+        <MappingFragment StoreEntitySet="DistributionTypeMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CoPartner" ColumnName="CoPartner" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseMasters">
+      <EntityTypeMapping TypeName="creditratingModel.CourseMaster">
+        <MappingFragment StoreEntitySet="CourseMaster">
+          <ScalarProperty Name="InMonth" ColumnName="InMonth" />
+          <ScalarProperty Name="DurationPeriod" ColumnName="DurationPeriod" />
+          <ScalarProperty Name="CourseStartDate" ColumnName="CourseStartDate" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="CourseType" ColumnName="CourseType" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="StreamId" ColumnName="StreamId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="CourseCategoryId" ColumnName="CourseCategoryId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeesDetails">
+      <EntityTypeMapping TypeName="creditratingModel.FeesDetail">
+        <MappingFragment StoreEntitySet="FeesDetails">
+          <ScalarProperty Name="CollegeId" ColumnName="CollegeId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Fees" ColumnName="Fees" />
+          <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeesDetailsHistories">
+      <EntityTypeMapping TypeName="creditratingModel.FeesDetailsHistory">
+        <MappingFragment StoreEntitySet="FeesDetailsHistory">
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="CollegeId" ColumnName="CollegeId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="FeesDetailId" ColumnName="FeesDetailId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Fees" ColumnName="Fees" />
+          <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DisAgreementYears">
+      <EntityTypeMapping TypeName="creditratingModel.DisAgreementYear">
+        <MappingFragment StoreEntitySet="DisAgreementYear">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Naration" ColumnName="Naration" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetCourseFeesInformation" FunctionName="creditratingModel.Store.spGetCourseFeesInformation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetCourseFeesInformation_Result4">
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Fees" ColumnName="Fees" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CollegeId" ColumnName="CollegeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AccountTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.AccountTypeMaster">
+        <MappingFragment StoreEntitySet="AccountTypeMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseCollegeRelations">
+      <EntityTypeMapping TypeName="creditratingModel.CourseCollegeRelation">
+        <MappingFragment StoreEntitySet="CourseCollegeRelation">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CollegeId" ColumnName="CollegeId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseCollegeRelHistories">
+      <EntityTypeMapping TypeName="creditratingModel.CourseCollegeRelHistory">
+        <MappingFragment StoreEntitySet="CourseCollegeRelHistory">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CollegeId" ColumnName="CollegeId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompMonthlyDistributionHeads">
+      <EntityTypeMapping TypeName="creditratingModel.CompMonthlyDistributionHead">
+        <MappingFragment StoreEntitySet="CompMonthlyDistributionHead">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="DistMonth" ColumnName="DistMonth" />
+          <ScalarProperty Name="EmpBranchId" ColumnName="EmpBranchId" />
+          <ScalarProperty Name="EmpDivisionid" ColumnName="EmpDivisionid" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DisAgreementDetails">
+      <EntityTypeMapping TypeName="creditratingModel.DisAgreementDetail">
+        <MappingFragment StoreEntitySet="DisAgreementDetails">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="DisAgreementYearId" ColumnName="DisAgreementYearId" />
+          <ScalarProperty Name="DistributionTypeId" ColumnName="DistributionTypeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_BIND_YEAR" FunctionName="creditratingModel.Store.SP_BIND_YEAR">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_BIND_YEAR_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="effectivedate" ColumnName="effectivedate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_DATE_VALIDATION" FunctionName="creditratingModel.Store.SP_DATE_VALIDATION" />
+    <FunctionImportMapping FunctionImportName="spGetAgreementDetailsInfo" FunctionName="creditratingModel.Store.spGetAgreementDetailsInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetAgreementDetailsInfo_Result">
+          <ScalarProperty Name="DisAgreementYearId" ColumnName="DisAgreementYearId" />
+          <ScalarProperty Name="DistributionTypeId" ColumnName="DistributionTypeId" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="TransactionMasters">
+      <EntityTypeMapping TypeName="creditratingModel.TransactionMaster">
+        <MappingFragment StoreEntitySet="TransactionMaster">
+          <ScalarProperty Name="TransactionName" ColumnName="TransactionName" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="points" ColumnName="points" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RatingRangeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.RatingRangeMaster">
+        <MappingFragment StoreEntitySet="RatingRangeMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="RATING_STATUS" ColumnName="RATING_STATUS" />
+          <ScalarProperty Name="TO_VALUE" ColumnName="TO_VALUE" />
+          <ScalarProperty Name="FROM_VALUE" ColumnName="FROM_VALUE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AreaMasters">
+      <EntityTypeMapping TypeName="creditratingModel.AreaMaster">
+        <MappingFragment StoreEntitySet="AreaMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DistributionAccountMasters">
+      <EntityTypeMapping TypeName="creditratingModel.DistributionAccountMaster">
+        <MappingFragment StoreEntitySet="DistributionAccountMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Narration" ColumnName="Narration" />
+          <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+          <ScalarProperty Name="FinancialInstitutionBranchId" ColumnName="FinancialInstitutionBranchId" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="DistributionTypeId" ColumnName="DistributionTypeId" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="AccountShortName" ColumnName="AccountShortName" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetDisbursementAmt" FunctionName="creditratingModel.Store.spGetDisbursementAmt" />
+    <FunctionImportMapping FunctionImportName="spFillDistributionData" FunctionName="creditratingModel.Store.spFillDistributionData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spFillDistributionData_Result3">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEditMonthlySalaryTransaction" FunctionName="creditratingModel.Store.spEditMonthlySalaryTransaction" />
+    <EntitySetMapping Name="CompMonthlyDistributionChilds">
+      <EntityTypeMapping TypeName="creditratingModel.CompMonthlyDistributionChild">
+        <MappingFragment StoreEntitySet="CompMonthlyDistributionChild">
+          <ScalarProperty Name="FinancialInstitutionBranchId" ColumnName="FinancialInstitutionBranchId" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+          <ScalarProperty Name="DistributionAccountId" ColumnName="DistributionAccountId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="EmployerAccountId" ColumnName="EmployerAccountId" />
+          <ScalarProperty Name="DistributionTypeId" ColumnName="DistributionTypeId" />
+          <ScalarProperty Name="CompMondistId" ColumnName="CompMondistId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetAccountInformation" FunctionName="creditratingModel.Store.spGetAccountInformation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetAccountInformation_Result">
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spFillEmployerDetails" FunctionName="creditratingModel.Store.spFillEmployerDetails" />
+    <FunctionImportMapping FunctionImportName="SP_ConsumerCreditDetails" FunctionName="creditratingModel.Store.SP_ConsumerCreditDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_ConsumerCreditDetails_Result">
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="StudentContactNo" ColumnName="StudentContactNo" />
+          <ScalarProperty Name="StudentEmailId" ColumnName="StudentEmailId" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+          <ScalarProperty Name="TOTALSCORE" ColumnName="TOTALSCORE" />
+          <ScalarProperty Name="SCORE" ColumnName="SCORE" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="CheqNo" ColumnName="CheqNo" />
+          <ScalarProperty Name="CheqStatus" ColumnName="CheqStatus" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_RandomPassword" FunctionName="creditratingModel.Store.usp_RandomPassword" />
+    <FunctionImportMapping FunctionImportName="InsertChequeBounce" FunctionName="creditratingModel.Store.InsertChequeBounce" />
+    <FunctionImportMapping FunctionImportName="SP_GetCourseYear" FunctionName="creditratingModel.Store.SP_GetCourseYear">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_GetCourseYear_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="User_Details">
+      <EntityTypeMapping TypeName="creditratingModel.User_Details">
+        <MappingFragment StoreEntitySet="User_Details">
+          <ScalarProperty Name="DistributionTypeId" ColumnName="DistributionTypeId" />
+          <ScalarProperty Name="EmployerBranchId" ColumnName="EmployerBranchId" />
+          <ScalarProperty Name="IsFirstLogin" ColumnName="IsFirstLogin" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="EmployerDivisionId" ColumnName="EmployerDivisionId" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="USER_TYPE_ID" ColumnName="USER_TYPE_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployerContactDetails">
+      <EntityTypeMapping TypeName="creditratingModel.EmployerContactDetail">
+        <MappingFragment StoreEntitySet="EmployerContactDetails">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
+          <ScalarProperty Name="LandlineCode" ColumnName="LandlineCode" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="EmployerBranchId" ColumnName="EmployerBranchId" />
+          <ScalarProperty Name="EmployerDivisionId" ColumnName="EmployerDivisionId" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactDetailsMasters">
+      <EntityTypeMapping TypeName="creditratingModel.ContactDetailsMaster">
+        <MappingFragment StoreEntitySet="ContactDetailsMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EmailId2" ColumnName="EmailId2" />
+          <ScalarProperty Name="EmailId1" ColumnName="EmailId1" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="MobileCode" ColumnName="MobileCode" />
+          <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
+          <ScalarProperty Name="LandlineCode" ColumnName="LandlineCode" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="BorrowerBranchId" ColumnName="BorrowerBranchId" />
+          <ScalarProperty Name="IndividualCustomerId" ColumnName="IndividualCustomerId" />
+          <ScalarProperty Name="PAN" ColumnName="PAN" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EducationLoanDisbursments">
+      <EntityTypeMapping TypeName="creditratingModel.EducationLoanDisbursment">
+        <MappingFragment StoreEntitySet="EducationLoanDisbursment">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="SactionAmount" ColumnName="SactionAmount" />
+          <ScalarProperty Name="GuardianContactNo" ColumnName="GuardianContactNo" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="ClosureDate" ColumnName="ClosureDate" />
+          <ScalarProperty Name="BalanceAmount" ColumnName="BalanceAmount" />
+          <ScalarProperty Name="AccademicYearId" ColumnName="AccademicYearId" />
+          <ScalarProperty Name="RelationshipId" ColumnName="RelationshipId" />
+          <ScalarProperty Name="GuardianName" ColumnName="GuardianName" />
+          <ScalarProperty Name="GuardianNID" ColumnName="GuardianNID" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+          <ScalarProperty Name="LoanAccountDate" ColumnName="LoanAccountDate" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+          <ScalarProperty Name="DisburseDate" ColumnName="DisburseDate" />
+          <ScalarProperty Name="DisburseAmount" ColumnName="DisburseAmount" />
+          <ScalarProperty Name="CollegeId" ColumnName="CollegeId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="StudentEmailId" ColumnName="StudentEmailId" />
+          <ScalarProperty Name="StudentContactNo" ColumnName="StudentContactNo" />
+          <ScalarProperty Name="NId" ColumnName="NId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollegeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.CollegeMaster">
+        <MappingFragment StoreEntitySet="CollegeMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="ContactPersonEmailId" ColumnName="ContactPersonEmailId" />
+          <ScalarProperty Name="ContactPersonMobile" ColumnName="ContactPersonMobile" />
+          <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+          <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="CollegeName" ColumnName="CollegeName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactDetails">
+      <EntityTypeMapping TypeName="creditratingModel.ContactDetail">
+        <MappingFragment StoreEntitySet="ContactDetails">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployerAccountMasters">
+      <EntityTypeMapping TypeName="creditratingModel.EmployerAccountMaster">
+        <MappingFragment StoreEntitySet="EmployerAccountMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Narration" ColumnName="Narration" />
+          <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+          <ScalarProperty Name="FinancialInstitutionBranchId" ColumnName="FinancialInstitutionBranchId" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="EmployerDivisionId" ColumnName="EmployerDivisionId" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="AccountShortName" ColumnName="AccountShortName" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinancialInstitutionContactMasters">
+      <EntityTypeMapping TypeName="creditratingModel.FinancialInstitutionContactMaster">
+        <MappingFragment StoreEntitySet="FinancialInstitutionContactMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ContactPerson2EmailId" ColumnName="ContactPerson2EmailId" />
+          <ScalarProperty Name="ContactPerson1EmailId" ColumnName="ContactPerson1EmailId" />
+          <ScalarProperty Name="ContactPerson2Mobile" ColumnName="ContactPerson2Mobile" />
+          <ScalarProperty Name="ContactPerson1Mobile" ColumnName="ContactPerson1Mobile" />
+          <ScalarProperty Name="ContactPerson2" ColumnName="ContactPerson2" />
+          <ScalarProperty Name="ContactPerson1" ColumnName="ContactPerson1" />
+          <ScalarProperty Name="FinancialInstituteEmailId1" ColumnName="FinancialInstituteEmailId1" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="FinancialInstituteContact" ColumnName="FinancialInstituteContact" />
+          <ScalarProperty Name="FinancialInstituteBranchId" ColumnName="FinancialInstituteBranchId" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetDisAgreementDetails" FunctionName="creditratingModel.Store.sp_GetDisAgreementDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.sp_GetDisAgreementDetails_Result1">
+          <ScalarProperty Name="effectivedate" ColumnName="effectivedate" />
+          <ScalarProperty Name="DisAgreementYearId" ColumnName="DisAgreementYearId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetDefaultFees" FunctionName="creditratingModel.Store.SP_GetDefaultFees" />
+    <FunctionImportMapping FunctionImportName="spCheckMonthAndYear" FunctionName="creditratingModel.Store.spCheckMonthAndYear" />
+    <FunctionImportMapping FunctionImportName="SP_BankDetails" FunctionName="creditratingModel.Store.SP_BankDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_BankDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetEmpMonthlySalary" FunctionName="creditratingModel.Store.spGetEmpMonthlySalary">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetEmpMonthlySalary_Result6">
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="CEmployeeId" ColumnName="CEmployeeId" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Slab" ColumnName="Slab" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="TotalLoanAmount" ColumnName="TotalLoanAmount" />
+          <ScalarProperty Name="TotalBalanceAmount" ColumnName="TotalBalanceAmount" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="SlabId" ColumnName="SlabId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetMonthlyEMIApproval" FunctionName="creditratingModel.Store.spGetMonthlyEMIApproval">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetMonthlyEMIApproval_Result3">
+          <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="TotalEMI" ColumnName="TotalEMI" />
+          <ScalarProperty Name="PublicPartnerAccount" ColumnName="PublicPartnerAccount" />
+          <ScalarProperty Name="PrivatePartnerAccount" ColumnName="PrivatePartnerAccount" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Generate_Transaction_No" FunctionName="creditratingModel.Store.SP_Generate_Transaction_No" />
+    <EntitySetMapping Name="CountResults">
+      <EntityTypeMapping TypeName="creditratingModel.CountResult">
+        <MappingFragment StoreEntitySet="CountResult">
+          <ScalarProperty Name="MID" ColumnName="MID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+          <ScalarProperty Name="CountReturned" ColumnName="CountReturned" />
+          <ScalarProperty Name="countre" ColumnName="countre" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="Date1" ColumnName="Date1" />
+          <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="creditratingModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spFillEmployerIdDetails" FunctionName="creditratingModel.Store.spFillEmployerIdDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spFillEmployerIdDetails_Result1">
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="EmpDivisionid" ColumnName="EmpDivisionid" />
+          <ScalarProperty Name="EmpBranchId" ColumnName="EmpBranchId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="EduLoanDisbusementChilds">
+      <EntityTypeMapping TypeName="creditratingModel.EduLoanDisbusementChild">
+        <MappingFragment StoreEntitySet="EduLoanDisbusementChild">
+          <ScalarProperty Name="collageId" ColumnName="collageId" />
+          <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+          <ScalarProperty Name="IssuedDate" ColumnName="IssuedDate" />
+          <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+          <ScalarProperty Name="FinancialInstitutionBranchId" ColumnName="FinancialInstitutionBranchId" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="TranDate" ColumnName="TranDate" />
+          <ScalarProperty Name="TranNo" ColumnName="TranNo" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="DisbursementAmount" ColumnName="DisbursementAmount" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="EducationLoanDisburseId" ColumnName="EducationLoanDisburseId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_BIND_PAYMENT_MODE" FunctionName="creditratingModel.Store.SP_BIND_PAYMENT_MODE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_BIND_PAYMENT_MODE_Result1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetDisbursementDetails" FunctionName="creditratingModel.Store.spGetDisbursementDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetDisbursementDetails_Result1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EducationLoanDisburseId" ColumnName="EducationLoanDisburseId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="collageId" ColumnName="collageId" />
+          <ScalarProperty Name="CollegeName" ColumnName="CollegeName" />
+          <ScalarProperty Name="DisbursementAmount" ColumnName="DisbursementAmount" />
+          <ScalarProperty Name="PYID" ColumnName="PYID" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="TranNo" ColumnName="TranNo" />
+          <ScalarProperty Name="TranDate" ColumnName="TranDate" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FinancialInstitutionBranchId" ColumnName="FinancialInstitutionBranchId" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+          <ScalarProperty Name="IssuedDate" ColumnName="IssuedDate" />
+          <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+          <ScalarProperty Name="AyId" ColumnName="AyId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_DeleteEduChild" FunctionName="creditratingModel.Store.SP_DeleteEduChild" />
+    <EntitySetMapping Name="IndividualCustomerMasters">
+      <EntityTypeMapping TypeName="creditratingModel.IndividualCustomerMaster">
+        <MappingFragment StoreEntitySet="IndividualCustomerMaster">
+          <ScalarProperty Name="MaritalStatusId" ColumnName="MaritalStatusId" />
+          <ScalarProperty Name="MarritalStatus" ColumnName="MarritalStatus" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="IsNameChange" ColumnName="IsNameChange" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Pan" ColumnName="Pan" />
+          <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+          <ScalarProperty Name="TitleId" ColumnName="TitleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MaritalStatusMasters">
+      <EntityTypeMapping TypeName="creditratingModel.MaritalStatusMaster">
+        <MappingFragment StoreEntitySet="MaritalStatusMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_EditAcdemicYearDisbursement" FunctionName="creditratingModel.Store.SP_EditAcdemicYearDisbursement">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_EditAcdemicYearDisbursement_Result1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AyId" ColumnName="AyId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_EditGetCourseYear" FunctionName="creditratingModel.Store.SP_EditGetCourseYear">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_EditGetCourseYear_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_CheckRepaimentCount" FunctionName="creditratingModel.Store.SP_CheckRepaimentCount" />
+    <FunctionImportMapping FunctionImportName="SP_checkRepeatLoan" FunctionName="creditratingModel.Store.SP_checkRepeatLoan" />
+    <EntitySetMapping Name="FinancialInstitutionBranchMasters">
+      <EntityTypeMapping TypeName="creditratingModel.FinancialInstitutionBranchMaster">
+        <MappingFragment StoreEntitySet="FinancialInstitutionBranchMaster">
+          <ScalarProperty Name="SwiftCode" ColumnName="SwiftCode" />
+          <ScalarProperty Name="IfscCode" ColumnName="IfscCode" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="FinancialInstituteId" ColumnName="FinancialInstituteId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BorrowerTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.BorrowerTypeMaster">
+        <MappingFragment StoreEntitySet="BorrowerTypeMaster">
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="BorrowerType" ColumnName="BorrowerType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChequeBounceTransactions">
+      <EntityTypeMapping TypeName="creditratingModel.ChequeBounceTransaction">
+        <MappingFragment StoreEntitySet="ChequeBounceTransaction">
+          <ScalarProperty Name="BorrowerTypeId" ColumnName="BorrowerTypeId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ToAccountNo" ColumnName="ToAccountNo" />
+          <ScalarProperty Name="FromAccountNo" ColumnName="FromAccountNo" />
+          <ScalarProperty Name="ChequeTypeId" ColumnName="ChequeTypeId" />
+          <ScalarProperty Name="ReasonId" ColumnName="ReasonId" />
+          <ScalarProperty Name="InFavourOf" ColumnName="InFavourOf" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+          <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+          <ScalarProperty Name="IndividualCustomerId" ColumnName="IndividualCustomerId" />
+          <ScalarProperty Name="FinancialInstituteBranchId" ColumnName="FinancialInstituteBranchId" />
+          <ScalarProperty Name="FinancialInstituteId" ColumnName="FinancialInstituteId" />
+          <ScalarProperty Name="Pan" ColumnName="Pan" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ChequeBounceList" FunctionName="creditratingModel.Store.SP_ChequeBounceList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_ChequeBounceList_Result4">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pan" ColumnName="Pan" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BorrowerTypeId" ColumnName="BorrowerTypeId" />
+          <ScalarProperty Name="FromAccountNo" ColumnName="FromAccountNo" />
+          <ScalarProperty Name="ChequeTypeId" ColumnName="ChequeTypeId" />
+          <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+          <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="InFavourOf" ColumnName="InFavourOf" />
+          <ScalarProperty Name="ToAccountNo" ColumnName="ToAccountNo" />
+          <ScalarProperty Name="ReasonId" ColumnName="ReasonId" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="FinancialInstituteId" ColumnName="FinancialInstituteId" />
+          <ScalarProperty Name="FinancialInstituteBranchId" ColumnName="FinancialInstituteBranchId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="CompanyTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.CompanyTypeMaster">
+        <MappingFragment StoreEntitySet="CompanyTypeMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackageMasters">
+      <EntityTypeMapping TypeName="creditratingModel.PackageMaster">
+        <MappingFragment StoreEntitySet="PackageMaster">
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreditDate" ColumnName="CreditDate" />
+          <ScalarProperty Name="CreditId" ColumnName="CreditId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="PackageCredits" ColumnName="PackageCredits" />
+          <ScalarProperty Name="PackageAmt" ColumnName="PackageAmt" />
+          <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+          <ScalarProperty Name="PackageCode" ColumnName="PackageCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_AcdemicYearDisbursement" FunctionName="creditratingModel.Store.SP_AcdemicYearDisbursement">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_AcdemicYearDisbursement_Result2">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AyId" ColumnName="AyId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_CollegeWiseCourseDetails" FunctionName="creditratingModel.Store.SP_CollegeWiseCourseDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_CollegeWiseCourseDetails_Result2">
+          <ScalarProperty Name="CollegeName" ColumnName="CollegeName" />
+          <ScalarProperty Name="AyId" ColumnName="AyId" />
+          <ScalarProperty Name="Stream" ColumnName="Stream" />
+          <ScalarProperty Name="CourseCategory_Description" ColumnName="CourseCategory_Description" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Fees" ColumnName="Fees" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_CourseWiseLoanDetails" FunctionName="creditratingModel.Store.SP_CourseWiseLoanDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_CourseWiseLoanDetails_Result1">
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="AyId" ColumnName="AyId" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+          <ScalarProperty Name="NId" ColumnName="NId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="DisburseAmount" ColumnName="DisburseAmount" />
+          <ScalarProperty Name="DisburseDate" ColumnName="DisburseDate" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+          <ScalarProperty Name="BalanceAmount" ColumnName="BalanceAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_TRANSACTION_LOAN_DETAILS" FunctionName="creditratingModel.Store.SP_TRANSACTION_LOAN_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_TRANSACTION_LOAN_DETAILS_Result2">
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="NId1" ColumnName="NId1" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+          <ScalarProperty Name="RepayMode" ColumnName="RepayMode" />
+          <ScalarProperty Name="RepaymentAmount" ColumnName="RepaymentAmount" />
+          <ScalarProperty Name="RepaymentDate" ColumnName="RepaymentDate" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="TransactionNo" ColumnName="TransactionNo" />
+          <ScalarProperty Name="bankName" ColumnName="bankName" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="BalanceAmount" ColumnName="BalanceAmount" />
+          <ScalarProperty Name="DisburseAmount" ColumnName="DisburseAmount" />
+          <ScalarProperty Name="TotalDisburseAmount" ColumnName="TotalDisburseAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spCheckLoanApproved" FunctionName="creditratingModel.Store.spCheckLoanApproved" />
+    <EntitySetMapping Name="DistributionHeads">
+      <EntityTypeMapping TypeName="creditratingModel.DistributionHead">
+        <MappingFragment StoreEntitySet="DistributionHead">
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreditDate" ColumnName="CreditDate" />
+          <ScalarProperty Name="CreditId" ColumnName="CreditId" />
+          <ScalarProperty Name="RemainingCredits" ColumnName="RemainingCredits" />
+          <ScalarProperty Name="FinancialInstituteBranchId" ColumnName="FinancialInstituteBranchId" />
+          <ScalarProperty Name="FinancialInstituteId" ColumnName="FinancialInstituteId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetCompMonthlySalary" FunctionName="creditratingModel.Store.spGetCompMonthlySalary">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetCompMonthlySalary_Result7">
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DistributionTypeId" ColumnName="DistributionTypeId" />
+          <ScalarProperty Name="DistributionAccId" ColumnName="DistributionAccId" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="FinancialInstitutionBranchId" ColumnName="FinancialInstitutionBranchId" />
+          <ScalarProperty Name="EmpAccName" ColumnName="EmpAccName" />
+          <ScalarProperty Name="EmpAccId" ColumnName="EmpAccId" />
+          <ScalarProperty Name="CompMonDistChildId" ColumnName="CompMonDistChildId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spApprovedfromCRS" FunctionName="creditratingModel.Store.spApprovedfromCRS" />
+    <EntitySetMapping Name="DistributionChilds">
+      <EntityTypeMapping TypeName="creditratingModel.DistributionChild">
+        <MappingFragment StoreEntitySet="DistributionChild">
+          <ScalarProperty Name="ReceviedAccountNo" ColumnName="ReceviedAccountNo" />
+          <ScalarProperty Name="ReceviedBranchId" ColumnName="ReceviedBranchId" />
+          <ScalarProperty Name="ReceviedBankId" ColumnName="ReceviedBankId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ApproveDate" ColumnName="ApproveDate" />
+          <ScalarProperty Name="ApproveBy" ColumnName="ApproveBy" />
+          <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+          <ScalarProperty Name="BankId" ColumnName="BankId" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="TranscationNo" ColumnName="TranscationNo" />
+          <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="TotalCredits" ColumnName="TotalCredits" />
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+          <ScalarProperty Name="DistributionHeadId" ColumnName="DistributionHeadId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spUpdateDocuments" FunctionName="creditratingModel.Store.spUpdateDocuments" />
+    <FunctionImportMapping FunctionImportName="SP_GetName" FunctionName="creditratingModel.Store.SP_GetName" />
+    <FunctionImportMapping FunctionImportName="spCheckPanExists" FunctionName="creditratingModel.Store.spCheckPanExists" />
+    <FunctionImportMapping FunctionImportName="SP_ApprovePackage" FunctionName="creditratingModel.Store.SP_ApprovePackage" />
+    <FunctionImportMapping FunctionImportName="SP_GetAmtCredits" FunctionName="creditratingModel.Store.SP_GetAmtCredits">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_GetAmtCredits_Result1">
+          <ScalarProperty Name="PackageAmt" ColumnName="PackageAmt" />
+          <ScalarProperty Name="PackageCredits" ColumnName="PackageCredits" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetPackageName" FunctionName="creditratingModel.Store.SP_GetPackageName" />
+    <FunctionImportMapping FunctionImportName="SP_PackageApprove" FunctionName="creditratingModel.Store.SP_PackageApprove">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_PackageApprove_Result1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FinancialInstituteId" ColumnName="FinancialInstituteId" />
+          <ScalarProperty Name="FinancialInstituteBranchId" ColumnName="FinancialInstituteBranchId" />
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+          <ScalarProperty Name="TotalCredits" ColumnName="TotalCredits" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+          <ScalarProperty Name="TranscationNo" ColumnName="TranscationNo" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="BankId" ColumnName="BankId" />
+          <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_PackageRequestList" FunctionName="creditratingModel.Store.SP_PackageRequestList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_PackageRequestList_Result1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+          <ScalarProperty Name="TotalCredits" ColumnName="TotalCredits" />
+          <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spDeleteDocumnet" FunctionName="creditratingModel.Store.spDeleteDocumnet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spDeleteDocumnet_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+          <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="LoanDisbursedInstallments">
+      <EntityTypeMapping TypeName="creditratingModel.LoanDisbursedInstallment">
+        <MappingFragment StoreEntitySet="LoanDisbursedInstallment">
+          <ScalarProperty Name="InstDueDate" ColumnName="InstDueDate" />
+          <ScalarProperty Name="MinDueAmt" ColumnName="MinDueAmt" />
+          <ScalarProperty Name="BillingCycleStartDate" ColumnName="BillingCycleStartDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="TotalAmt" ColumnName="TotalAmt" />
+          <ScalarProperty Name="BounceCharge" ColumnName="BounceCharge" />
+          <ScalarProperty Name="InterestAmt" ColumnName="InterestAmt" />
+          <ScalarProperty Name="LatePayChargedAmt" ColumnName="LatePayChargedAmt" />
+          <ScalarProperty Name="DelayedDays" ColumnName="DelayedDays" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="CHQ_Date" ColumnName="CHQ_Date" />
+          <ScalarProperty Name="CHQ_No" ColumnName="CHQ_No" />
+          <ScalarProperty Name="PaymentModeId" ColumnName="PaymentModeId" />
+          <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+          <ScalarProperty Name="PaidStatus" ColumnName="PaidStatus" />
+          <ScalarProperty Name="LoanDisbursedId" ColumnName="LoanDisbursedId" />
+          <ScalarProperty Name="InstDate" ColumnName="InstDate" />
+          <ScalarProperty Name="InstAmt" ColumnName="InstAmt" />
+          <ScalarProperty Name="InstCounter" ColumnName="InstCounter" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetBorrowerId" FunctionName="creditratingModel.Store.spGetBorrowerId" />
+    <EntitySetMapping Name="EmployeeHistoryDetails">
+      <EntityTypeMapping TypeName="creditratingModel.EmployeeHistoryDetail">
+        <MappingFragment StoreEntitySet="EmployeeHistoryDetails">
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="SlabId" ColumnName="SlabId" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="SalaryEffectiveDate" ColumnName="SalaryEffectiveDate" />
+          <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+          <ScalarProperty Name="CompanyEmployeeId" ColumnName="CompanyEmployeeId" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="EmployerBranchId" ColumnName="EmployerBranchId" />
+          <ScalarProperty Name="EmployerDivisionid" ColumnName="EmployerDivisionid" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentModes">
+      <EntityTypeMapping TypeName="creditratingModel.PaymentMode">
+        <MappingFragment StoreEntitySet="PaymentMode">
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetSalaryList" FunctionName="creditratingModel.Store.sp_GetSalaryList" />
+    <FunctionImportMapping FunctionImportName="SP_SalaryApprovalList" FunctionName="creditratingModel.Store.SP_SalaryApprovalList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_SalaryApprovalList_Result4">
+          <ScalarProperty Name="Date1" ColumnName="Date1" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+          <ScalarProperty Name="firstpara" ColumnName="firstpara" />
+          <ScalarProperty Name="amt" ColumnName="amt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spCalculateAppraisedEMI" FunctionName="creditratingModel.Store.spCalculateAppraisedEMI">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spCalculateAppraisedEMI_Result1">
+          <ScalarProperty Name="SlabId" ColumnName="SlabId" />
+          <ScalarProperty Name="Slab" ColumnName="Slab" />
+          <ScalarProperty Name="NewEMI" ColumnName="NewEMI" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetEmiTransactionList" FunctionName="creditratingModel.Store.SP_GetEmiTransactionList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_GetEmiTransactionList_Result1">
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="DisburseAmount" ColumnName="DisburseAmount" />
+          <ScalarProperty Name="BalanceAmount" ColumnName="BalanceAmount" />
+          <ScalarProperty Name="RepayMode" ColumnName="RepayMode" />
+          <ScalarProperty Name="RepaymentAmount" ColumnName="RepaymentAmount" />
+          <ScalarProperty Name="TransactionNo" ColumnName="TransactionNo" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_Reverse_LoanDisburse_Transaction" FunctionName="creditratingModel.Store.SP_Reverse_LoanDisburse_Transaction" />
+    <FunctionImportMapping FunctionImportName="sp_getpercentage" FunctionName="creditratingModel.Store.sp_getpercentage" />
+    <FunctionImportMapping FunctionImportName="spFillAnnualIncrementData" FunctionName="creditratingModel.Store.spFillAnnualIncrementData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spFillAnnualIncrementData_Result">
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+          <ScalarProperty Name="CompanyEmployeeId" ColumnName="CompanyEmployeeId" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Slab" ColumnName="Slab" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="UpdatedSalary" ColumnName="UpdatedSalary" />
+          <ScalarProperty Name="UpdatedSlabId" ColumnName="UpdatedSlabId" />
+          <ScalarProperty Name="UpdatedEMIAmount" ColumnName="UpdatedEMIAmount" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="SlabId" ColumnName="SlabId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSaveAnnualIncrement" FunctionName="creditratingModel.Store.spSaveAnnualIncrement" />
+    <FunctionImportMapping FunctionImportName="spSaveAnnualIncrementDetails" FunctionName="creditratingModel.Store.spSaveAnnualIncrementDetails" />
+    <FunctionImportMapping FunctionImportName="spGetDirectorCount" FunctionName="creditratingModel.Store.spGetDirectorCount" />
+    <EntitySetMapping Name="BorrowerCompanyMasters">
+      <EntityTypeMapping TypeName="creditratingModel.BorrowerCompanyMaster">
+        <MappingFragment StoreEntitySet="BorrowerCompanyMaster">
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CommencementDate" ColumnName="CommencementDate" />
+          <ScalarProperty Name="IncorporationDate" ColumnName="IncorporationDate" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="PAN" ColumnName="PAN" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BorrowerCompanyBranchMasters">
+      <EntityTypeMapping TypeName="creditratingModel.BorrowerCompanyBranchMaster">
+        <MappingFragment StoreEntitySet="BorrowerCompanyBranchMaster">
+          <ScalarProperty Name="DirectorNo" ColumnName="DirectorNo" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="CompanyTypeId" ColumnName="CompanyTypeId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spAnnualIncrementRpt" FunctionName="creditratingModel.Store.spAnnualIncrementRpt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spAnnualIncrementRpt_Result">
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="SalaryEffectiveDate" ColumnName="SalaryEffectiveDate" />
+          <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+          <ScalarProperty Name="EmployerDivision" ColumnName="EmployerDivision" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spFillFinanceDetails" FunctionName="creditratingModel.Store.spFillFinanceDetails" />
+    <EntitySetMapping Name="DocumentMasters">
+      <EntityTypeMapping TypeName="creditratingModel.DocumentMaster">
+        <MappingFragment StoreEntitySet="DocumentMaster">
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="BorrowerTypeId" ColumnName="BorrowerTypeId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Document" ColumnName="Document" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_RptGetEmpMonthlySalary" FunctionName="creditratingModel.Store.SP_RptGetEmpMonthlySalary">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_RptGetEmpMonthlySalary_Result">
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="CEmployeeId" ColumnName="CEmployeeId" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Slab" ColumnName="Slab" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="TotalLoanAmount" ColumnName="TotalLoanAmount" />
+          <ScalarProperty Name="TotalBalanceAmount" ColumnName="TotalBalanceAmount" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SalaryMonth" ColumnName="SalaryMonth" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spDistributionEmpMonSalary" FunctionName="creditratingModel.Store.spDistributionEmpMonSalary">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spDistributionEmpMonSalary_Result">
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="CEmployeeId" ColumnName="CEmployeeId" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Slab" ColumnName="Slab" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="TotalLoanAmount" ColumnName="TotalLoanAmount" />
+          <ScalarProperty Name="TotalBalanceAmount" ColumnName="TotalBalanceAmount" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="SlabId" ColumnName="SlabId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="MonSalTranId" ColumnName="MonSalTranId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SpBindTempDocumentGrid" FunctionName="creditratingModel.Store.SpBindTempDocumentGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SpBindTempDocumentGrid_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+          <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="DocumentCustomerRelations">
+      <EntityTypeMapping TypeName="creditratingModel.DocumentCustomerRelation">
+        <MappingFragment StoreEntitySet="DocumentCustomerRelation">
+          <ScalarProperty Name="BranchMasterId" ColumnName="BranchMasterId" />
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+          <ScalarProperty Name="CompanyTypeId" ColumnName="CompanyTypeId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="IndividualCustomerId" ColumnName="IndividualCustomerId" />
+          <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TempUploadDocuments">
+      <EntityTypeMapping TypeName="creditratingModel.TempUploadDocument">
+        <MappingFragment StoreEntitySet="TempUploadDocuments">
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+          <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetApproval" FunctionName="creditratingModel.Store.spGetApproval">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetApproval_Result">
+          <ScalarProperty Name="SlNo" ColumnName="SlNo" />
+          <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+          <ScalarProperty Name="Date1" ColumnName="Date1" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="countre" ColumnName="countre" />
+          <ScalarProperty Name="CountReturned" ColumnName="CountReturned" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MID" ColumnName="MID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spViewLoanApplication" FunctionName="creditratingModel.Store.spViewLoanApplication">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spViewLoanApplication_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pan" ColumnName="Pan" />
+          <ScalarProperty Name="LoanApplicationNo" ColumnName="LoanApplicationNo" />
+          <ScalarProperty Name="LoanApplicationDate" ColumnName="LoanApplicationDate" />
+          <ScalarProperty Name="LoanType" ColumnName="LoanType" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GDName" ColumnName="GDName" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="LIRId" ColumnName="LIRId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="EmployeeLoanDetails">
+      <EntityTypeMapping TypeName="creditratingModel.EmployeeLoanDetail">
+        <MappingFragment StoreEntitySet="EmployeeLoanDetails">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="EducationLoanDisburseId" ColumnName="EducationLoanDisburseId" />
+          <ScalarProperty Name="SlabId" ColumnName="SlabId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="LoanPaymentDetails" FunctionName="creditratingModel.Store.LoanPaymentDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.LoanPaymentDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InstCntr" ColumnName="InstCntr" />
+          <ScalarProperty Name="FirstInstallment" ColumnName="FirstInstallment" />
+          <ScalarProperty Name="DisburseAmount" ColumnName="DisburseAmount" />
+          <ScalarProperty Name="InstDate" ColumnName="InstDate" />
+          <ScalarProperty Name="DelayDays" ColumnName="DelayDays" />
+          <ScalarProperty Name="TotalPaidInst" ColumnName="TotalPaidInst" />
+          <ScalarProperty Name="TotalBalInst" ColumnName="TotalBalInst" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetEmployer" FunctionName="creditratingModel.Store.SP_GetEmployer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_GetEmployer_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetEmployeeCompanyHistory" FunctionName="creditratingModel.Store.spGetEmployeeCompanyHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetEmployeeCompanyHistory_Result">
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+          <ScalarProperty Name="Division" ColumnName="Division" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+          <ScalarProperty Name="LastWorkingDate" ColumnName="LastWorkingDate" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AnnualIncrementDetails">
+      <EntityTypeMapping TypeName="creditratingModel.AnnualIncrementDetail">
+        <MappingFragment StoreEntitySet="AnnualIncrementDetails">
+          <ScalarProperty Name="NewEmployerBranchId" ColumnName="NewEmployerBranchId" />
+          <ScalarProperty Name="NewEmployerDivisionId" ColumnName="NewEmployerDivisionId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="UpdatedEMIAmount" ColumnName="UpdatedEMIAmount" />
+          <ScalarProperty Name="UpdatedSalary" ColumnName="UpdatedSalary" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="CompanyEmployeeId" ColumnName="CompanyEmployeeId" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="UpdatedSlabId" ColumnName="UpdatedSlabId" />
+          <ScalarProperty Name="SlabId" ColumnName="SlabId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="NewDepartmentId" ColumnName="NewDepartmentId" />
+          <ScalarProperty Name="NewDesignationId" ColumnName="NewDesignationId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="AnnualIncrementId" ColumnName="AnnualIncrementId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnnualIncrements">
+      <EntityTypeMapping TypeName="creditratingModel.AnnualIncrement">
+        <MappingFragment StoreEntitySet="AnnualIncrement">
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="SalaryEffectiveDate" ColumnName="SalaryEffectiveDate" />
+          <ScalarProperty Name="EmployerBranchId" ColumnName="EmployerBranchId" />
+          <ScalarProperty Name="EmployerDivisionId" ColumnName="EmployerDivisionId" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spFillDropDownData" FunctionName="creditratingModel.Store.spFillDropDownData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spFillDropDownData_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="CardTypeMasters">
+      <EntityTypeMapping TypeName="creditratingModel.CardTypeMaster">
+        <MappingFragment StoreEntitySet="CardTypeMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CashLimit" ColumnName="CashLimit" />
+          <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+          <ScalarProperty Name="GracePeriod" ColumnName="GracePeriod" />
+          <ScalarProperty Name="DueDays" ColumnName="DueDays" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="FinancialInstituteId" ColumnName="FinancialInstituteId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanApplicationTransactions">
+      <EntityTypeMapping TypeName="creditratingModel.LoanApplicationTransaction">
+        <MappingFragment StoreEntitySet="LoanApplicationTransaction">
+          <ScalarProperty Name="CardTypeId" ColumnName="CardTypeId" />
+          <ScalarProperty Name="BorrowerTypeId" ColumnName="BorrowerTypeId" />
+          <ScalarProperty Name="ReasonId" ColumnName="ReasonId" />
+          <ScalarProperty Name="LoanStatus" ColumnName="LoanStatus" />
+          <ScalarProperty Name="FinancialInstitutionBranchId" ColumnName="FinancialInstitutionBranchId" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Pan" ColumnName="Pan" />
+          <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="LoanTypesId" ColumnName="LoanTypesId" />
+          <ScalarProperty Name="LoanApplicationDate" ColumnName="LoanApplicationDate" />
+          <ScalarProperty Name="LoanApplicationNo" ColumnName="LoanApplicationNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanDisburseTransactions">
+      <EntityTypeMapping TypeName="creditratingModel.LoanDisburseTransaction">
+        <MappingFragment StoreEntitySet="LoanDisburseTransaction">
+          <ScalarProperty Name="Downpayment" ColumnName="Downpayment" />
+          <ScalarProperty Name="InstallmentDueDate" ColumnName="InstallmentDueDate" />
+          <ScalarProperty Name="BillingCycleStartDate" ColumnName="BillingCycleStartDate" />
+          <ScalarProperty Name="LastInstallmentDate" ColumnName="LastInstallmentDate" />
+          <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+          <ScalarProperty Name="GracePeriod" ColumnName="GracePeriod" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+          <ScalarProperty Name="FinancialInstitutionBranchId" ColumnName="FinancialInstitutionBranchId" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="LoanApplicationId" ColumnName="LoanApplicationId" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="FirstInstallmentDate" ColumnName="FirstInstallmentDate" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+          <ScalarProperty Name="LoanAccountDate" ColumnName="LoanAccountDate" />
+          <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+          <ScalarProperty Name="CashLimit" ColumnName="CashLimit" />
+          <ScalarProperty Name="CreditCardExpiryDate" ColumnName="CreditCardExpiryDate" />
+          <ScalarProperty Name="InterestTypeId" ColumnName="InterestTypeId" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Tenure" ColumnName="Tenure" />
+          <ScalarProperty Name="FirstInstallment" ColumnName="FirstInstallment" />
+          <ScalarProperty Name="DisburseAmount" ColumnName="DisburseAmount" />
+          <ScalarProperty Name="LoanDisburseDate" ColumnName="LoanDisburseDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spEditLoanApplication" FunctionName="creditratingModel.Store.spEditLoanApplication">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spEditLoanApplication_Result">
+          <ScalarProperty Name="PanL" ColumnName="PanL" />
+          <ScalarProperty Name="ApplicantName" ColumnName="ApplicantName" />
+          <ScalarProperty Name="LoanApplicationNo" ColumnName="LoanApplicationNo" />
+          <ScalarProperty Name="LoanApplicationDate" ColumnName="LoanApplicationDate" />
+          <ScalarProperty Name="LoanTypesId" ColumnName="LoanTypesId" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="FinancialInstitutionBranchId" ColumnName="FinancialInstitutionBranchId" />
+          <ScalarProperty Name="BorrowerTypeId" ColumnName="BorrowerTypeId" />
+          <ScalarProperty Name="Pan" ColumnName="Pan" />
+          <ScalarProperty Name="TitleId" ColumnName="TitleId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+          <ScalarProperty Name="GIndCusId" ColumnName="GIndCusId" />
+          <ScalarProperty Name="MaritalStatusId" ColumnName="MaritalStatusId" />
+          <ScalarProperty Name="AddressTypeId" ColumnName="AddressTypeId" />
+          <ScalarProperty Name="Address1Cont" ColumnName="Address1Cont" />
+          <ScalarProperty Name="Address2Cont" ColumnName="Address2Cont" />
+          <ScalarProperty Name="Address3Cont" ColumnName="Address3Cont" />
+          <ScalarProperty Name="ContCountryId" ColumnName="ContCountryId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="LandlineCode" ColumnName="LandlineCode" />
+          <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
+          <ScalarProperty Name="MobileCode" ColumnName="MobileCode" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="EmailId1" ColumnName="EmailId1" />
+          <ScalarProperty Name="EmailId2" ColumnName="EmailId2" />
+          <ScalarProperty Name="CDMId" ColumnName="CDMId" />
+          <ScalarProperty Name="ContRelId" ColumnName="ContRelId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LIRId" ColumnName="LIRId" />
+          <ScalarProperty Name="CardTypeId" ColumnName="CardTypeId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetLoanCategory" FunctionName="creditratingModel.Store.spGetLoanCategory" />
+    <FunctionImportMapping FunctionImportName="spEditDocumentsDetails" FunctionName="creditratingModel.Store.spEditDocumentsDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spEditDocumentsDetails_Result">
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetCreditCardAmt" FunctionName="creditratingModel.Store.spGetCreditCardAmt" />
+    <EntitySetMapping Name="BorrowerDetailsMasters">
+      <EntityTypeMapping TypeName="creditratingModel.BorrowerDetailsMaster">
+        <MappingFragment StoreEntitySet="BorrowerDetailsMaster">
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="BorrowerType" ColumnName="BorrowerType" />
+          <ScalarProperty Name="IndividualCustomerId" ColumnName="IndividualCustomerId" />
+          <ScalarProperty Name="CompanyTypeId" ColumnName="CompanyTypeId" />
+          <ScalarProperty Name="BranchMasterId" ColumnName="BranchMasterId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spInsertDocuments" FunctionName="creditratingModel.Store.spInsertDocuments">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spInsertDocuments_Result">
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LoanApplicationStatusList" FunctionName="creditratingModel.Store.sp_LoanApplicationStatusList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.sp_LoanApplicationStatusList_Result">
+          <ScalarProperty Name="LoanApplicationNo" ColumnName="LoanApplicationNo" />
+          <ScalarProperty Name="LoanApplicationDate" ColumnName="LoanApplicationDate" />
+          <ScalarProperty Name="LoanType" ColumnName="LoanType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetLoanApprovalDetails" FunctionName="creditratingModel.Store.spGetLoanApprovalDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetLoanApprovalDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PanL" ColumnName="PanL" />
+          <ScalarProperty Name="LoanStatus" ColumnName="LoanStatus" />
+          <ScalarProperty Name="ApplicantName" ColumnName="ApplicantName" />
+          <ScalarProperty Name="LoanApplicationNo" ColumnName="LoanApplicationNo" />
+          <ScalarProperty Name="LoanApplicationDate" ColumnName="LoanApplicationDate" />
+          <ScalarProperty Name="LoanTypesId" ColumnName="LoanTypesId" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="FinancialInstitutionId" ColumnName="FinancialInstitutionId" />
+          <ScalarProperty Name="FinancialInstitutionBranchId" ColumnName="FinancialInstitutionBranchId" />
+          <ScalarProperty Name="FinancialInstitution" ColumnName="FinancialInstitution" />
+          <ScalarProperty Name="FinancialInstitutionBranch" ColumnName="FinancialInstitutionBranch" />
+          <ScalarProperty Name="ReasonId" ColumnName="ReasonId" />
+          <ScalarProperty Name="CardTypeId" ColumnName="CardTypeId" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="BorrowerTypeId" ColumnName="BorrowerTypeId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="CreditRatingScoreTrans">
+      <EntityTypeMapping TypeName="creditratingModel.CreditRatingScoreTran">
+        <MappingFragment StoreEntitySet="CreditRatingScoreTrans">
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditId" ColumnName="EditId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CheqNo" ColumnName="CheqNo" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="TransactionTypeId" ColumnName="TransactionTypeId" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+          <ScalarProperty Name="LoanTypeId" ColumnName="LoanTypeId" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_AnnualIncrementList" FunctionName="creditratingModel.Store.sp_AnnualIncrementList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.sp_AnnualIncrementList_Result">
+          <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+          <ScalarProperty Name="EmployerDivision" ColumnName="EmployerDivision" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="SalaryEffectiveDate" ColumnName="SalaryEffectiveDate" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spLoanApplDeductionPts" FunctionName="creditratingModel.Store.spLoanApplDeductionPts" />
+    <FunctionImportMapping FunctionImportName="sp_CardTypeList" FunctionName="creditratingModel.Store.sp_CardTypeList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.sp_CardTypeList_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="DueDays" ColumnName="DueDays" />
+          <ScalarProperty Name="GracePeriod" ColumnName="GracePeriod" />
+          <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+          <ScalarProperty Name="CashLimit" ColumnName="CashLimit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetCardTypeDetails" FunctionName="creditratingModel.Store.sp_GetCardTypeDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.sp_GetCardTypeDetails_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FinancialInstituteId" ColumnName="FinancialInstituteId" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="DueDays" ColumnName="DueDays" />
+          <ScalarProperty Name="GracePeriod" ColumnName="GracePeriod" />
+          <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+          <ScalarProperty Name="CashLimit" ColumnName="CashLimit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_CRSReport" FunctionName="creditratingModel.Store.SP_CRSReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_CRSReport_Result">
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+          <ScalarProperty Name="PAN" ColumnName="PAN" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_CARD_DETAILS" FunctionName="creditratingModel.Store.SP_GET_CARD_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_GET_CARD_DETAILS_Result">
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+          <ScalarProperty Name="CashLimit" ColumnName="CashLimit" />
+          <ScalarProperty Name="BillingStartDt" ColumnName="BillingStartDt" />
+          <ScalarProperty Name="BillingCycleEndDt" ColumnName="BillingCycleEndDt" />
+          <ScalarProperty Name="BillDueDt" ColumnName="BillDueDt" />
+          <ScalarProperty Name="GracePeriod" ColumnName="GracePeriod" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InstCntr" ColumnName="InstCntr" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetLoanDisburseData" FunctionName="creditratingModel.Store.sp_GetLoanDisburseData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.sp_GetLoanDisburseData_Result">
+          <ScalarProperty Name="Pan" ColumnName="Pan" />
+          <ScalarProperty Name="LoanApplicationDate" ColumnName="LoanApplicationDate" />
+          <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+          <ScalarProperty Name="CashLimit" ColumnName="CashLimit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ViewLoanDisburseList" FunctionName="creditratingModel.Store.sp_ViewLoanDisburseList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.sp_ViewLoanDisburseList_Result">
+          <ScalarProperty Name="UnpaidInstallment" ColumnName="UnpaidInstallment" />
+          <ScalarProperty Name="TotalPaidAmt" ColumnName="TotalPaidAmt" />
+          <ScalarProperty Name="TotalBalAmt" ColumnName="TotalBalAmt" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spBindDocGrid" FunctionName="creditratingModel.Store.spBindDocGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spBindDocGrid_Result">
+          <ScalarProperty Name="Document" ColumnName="Document" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetIndividualDetails" FunctionName="creditratingModel.Store.spGetIndividualDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.spGetIndividualDetails_Result">
+          <ScalarProperty Name="BDMID" ColumnName="BDMID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TitleId" ColumnName="TitleId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="MaritalStatusId" ColumnName="MaritalStatusId" />
+          <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="AddressTypeId" ColumnName="AddressTypeId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="EmailId1" ColumnName="EmailId1" />
+          <ScalarProperty Name="EmailId2" ColumnName="EmailId2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ChequeBounceInsert" FunctionName="creditratingModel.Store.SP_ChequeBounceInsert" />
+    <FunctionImportMapping FunctionImportName="SP_GetUnpaidInstallmentDetails" FunctionName="creditratingModel.Store.SP_GetUnpaidInstallmentDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="creditratingModel.SP_GetUnpaidInstallmentDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TotalPaidInst" ColumnName="TotalPaidInst" />
+          <ScalarProperty Name="TotalBalInst" ColumnName="TotalBalInst" />
+          <ScalarProperty Name="InstCounter" ColumnName="InstCounter" />
+          <ScalarProperty Name="InstDate" ColumnName="InstDate" />
+          <ScalarProperty Name="InstAmt" ColumnName="InstAmt" />
+          <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+          <ScalarProperty Name="DelayDays" ColumnName="DelayDays" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
